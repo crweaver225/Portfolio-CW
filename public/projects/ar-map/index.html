@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+<link rel="stylesheet" href="https://www.example.com/main.min.css" />
+
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>AR Map</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="Portfolio site of Christopher Weaver.">
+<link rel="canonical" href="https://www.example.com/projects/ar-map/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AR Map">
+<meta property="og:description" content="ARKit implementation that pins a user&rsquo;s location to maps and globes.">
+<meta property="og:url" content="https://www.example.com/projects/ar-map/">
+<meta property="article:published_time" content="2023-12-12T13:58:51-06:00">
+  <meta property="article:modified_time" content="2023-12-12T13:58:51-06:00">
+  
+
+<meta property="og:image" content="https://www.example.com/projects/ar-map/screenshots/p1.png"/>
+  
+
+
+
+
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="AR Map">
+<meta name="twitter:description" content="ARKit implementation that pins a user&rsquo;s location to maps and globes.">
+
+
+<meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:image" content="https://www.example.com/projects/ar-map/screenshots/p1.png"/>
+  
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.example.com/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "https://www.example.com/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://www.example.com/#/schema/image/1",
+        "url": "https://www.example.com/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.example.com/#/schema/website/1",
+      "url": "https://www.example.com/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "https://www.example.com/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.example.com/projects/ar-map/",
+      "url": "https://www.example.com/projects/ar-map/",
+      "name": "AR Map",
+      "description": "Portfolio site of Christopher Weaver.",
+      "isPartOf": {
+        "@id": "https://www.example.com/#/schema/website/1"
+      },
+      "about": {
+        "@id": "https://www.example.com/#/schema/person/1"
+      },
+      "datePublished": "2023-12-12T13:58:51-06:00",
+      "dateModified": "2023-12-12T13:58:51-06:00",
+      "breadcrumb": {
+        "@id": "https://www.example.com/projects/ar-map/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://www.example.com/projects/ar-map/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["https://www.example.com/projects/ar-map/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.example.com/projects/ar-map/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://www.example.com/",
+          "url": "https://www.example.com/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://www.example.com/projects/",
+          "url": "https://www.example.com/projects/",
+          "name": "Projects"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "https://www.example.com/projects/ar-map/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "https://www.example.com/projects/ar-map/#/schema/image/2",
+          "url": "https://www.example.com/projects/ar-map/screenshots/p1.png",
+          "contentUrl": "https://www.example.com/projects/ar-map/screenshots/p1.png",
+          "caption": "AR Map"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  
+
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="https://www.example.com/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/contact/" class="menu-link">Contact</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <div class="">
+      <h1 class="page-header-title">AR Map<sup></sup>
+      </h1>
+      <div class="project-list-meta">
+        
+        
+          <span>Native iOS</span>
+        
+          <span>AR-Kit</span>
+        
+          <span>Swift</span>
+        
+          <span>Computer Vision</span>
+        
+        
+        
+          
+            <a href="https://www.example.com/project-types/personal/">Personal</a>
+          
+        
+      </div>
+      <p class="page-header-desc">ARKit implementation that pins a user&#39;s location to maps and globes.</p>
+      
+    </div>
+  </section>
+</div>
+<div class="single-container">
+  <div class="single-feature-img">
+
+
+
+  
+
+
+<img class="feature-image" 
+     srcset="/projects/ar-map/screenshots/p1.png 480w, /projects/ar-map/screenshots/p1.png 800w"
+     sizes="(max-width: 600px) 480px, 800px"
+     src="/projects/ar-map/screenshots/p1.png"
+     alt="Feature image">
+</div>
+  <article class="markdown">
+    <h1 id="ar-map">AR-Map<a href="#ar-map">
+    <svg role="img" aria-labelledby="ar-map-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="ar-map-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h1><p>ARKit implementation that pins a user&rsquo;s location to maps and globes. One implimentation takes user addresses in string format and pins those addresses, using augmented reality pins, to a real world map. These pins keep their position regardless of the angle or position of the phone. The other implimentation places an augmented reality globe in front of the user where a similar pins related to a user&rsquo;s address can be placed.</p>
+<p>AR Map Video Demo
+<a href="https://www.youtube.com/watch?v=9qS1esEsrjY&amp;feature=youtu.be" target="_blank" rel="noopener">https://www.youtube.com/watch?v=9qS1esEsrjY&feature=youtu.be</a></p>
+<p>AR Map Images</p>
+<p>
+	
+	
+	<img src="/projects/ar-map/screenshots/p1.png"
+	width="290"
+	height="464"
+	
+	alt="PinController. Location" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+
+
+	
+	
+	<img src="/projects/ar-map/screenshots/p2.png"
+	width="290"
+	height="468"
+	
+	alt="PinController. Location" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+
+
+	
+	
+	<img src="/projects/ar-map/screenshots/p3.png"
+	width="290"
+	height="463"
+	
+	alt="PinController. Location" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>AR Globe Video Demo
+<a href="https://youtu.be/FIU2LH0VpjQ" target="_blank" rel="noopener">https://youtu.be/FIU2LH0VpjQ</a></p>
+<p>AR Globe Images</p>
+<p>
+	
+	
+	<img src="/projects/ar-map/screenshots/p4.png"
+	width="290"
+	height="447"
+	
+	alt="PinController. Location" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+
+
+	
+	
+	<img src="/projects/ar-map/screenshots/p5.png"
+	width="290"
+	height="454"
+	
+	alt="PinController. Location" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+
+
+	
+	
+	<img src="/projects/ar-map/screenshots/p6.png"
+	width="290"
+	height="449"
+	
+	alt="PinController. Location" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+
+  </article>
+</div>
+
+    </main><footer>
+  
+    
+<section class="section">
+  <div class="container--sm">
+    <h2 class="newsletter-header">This is my custom newsletter header with a captivating title.</h2>
+    <p class="newsletter-desc">This is my custom newsletter description that tells you why you should sign up.</p>
+    <form id="newsletter-form" name="newsletter" method="POST" data-netlify="true">
+      <input type="email" id="newsletter-form--input" name="email" placeholder="Your best email..." title="Enter your best email" required>
+      <button type="submit" id="newsletter-form--submit" class="btn-primary">Join now</button>
+    </form>
+  </div>
+</section>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2023 &middot; 
+      <a href="https://www.example.com/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+
+  
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+
+
+
+
+  
+  
+    
+
+<script src="https://www.example.com/main.min.js"></script>
+
+
+
+  
+</body>
+</html>

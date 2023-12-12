@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Christopher Weaver</title>
+    <link>https://www.example.com/series/</link>
+    <description>Recent content in Series on Christopher Weaver</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://www.example.com/series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Public Works and the Justice Maxim</title>
+      <link>https://www.example.com/philosophy/public-works-justice-maxim/</link>
+      <pubDate>Mon, 12 Dec 2016 13:38:23 -0600</pubDate>
+      
+      <guid>https://www.example.com/philosophy/public-works-justice-maxim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Presuppositions Of Freedom Kant And The Social Contract</title>
+      <link>https://www.example.com/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</link>
+      <pubDate>Mon, 16 May 2016 21:21:46 -0500</pubDate>
+      
+      <guid>https://www.example.com/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</guid>
+      <description>Northern Illinois University M.A. Thesis</description>
+    </item>
+    
+    <item>
+      <title>Obergefell and Communitarian Liberty</title>
+      <link>https://www.example.com/philosophy/obergefell/</link>
+      <pubDate>Sat, 12 Dec 2015 13:42:45 -0600</pubDate>
+      
+      <guid>https://www.example.com/philosophy/obergefell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Difference Principle and Consent Moving Away from Utopia</title>
+      <link>https://www.example.com/philosophy/different-principle-utopia/</link>
+      <pubDate>Sat, 12 Dec 2015 13:06:56 -0600</pubDate>
+      
+      <guid>https://www.example.com/philosophy/different-principle-utopia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Political Science and Epistomology</title>
+      <link>https://www.example.com/philosophy/politicalscience-and-epistomology/</link>
+      <pubDate>Fri, 12 Dec 2014 13:47:01 -0600</pubDate>
+      
+      <guid>https://www.example.com/philosophy/politicalscience-and-epistomology/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Retrospective Voting</title>
+      <link>https://www.example.com/philosophy/retrospective-voting/</link>
+      <pubDate>Fri, 12 Dec 2014 13:31:19 -0600</pubDate>
+      
+      <guid>https://www.example.com/philosophy/retrospective-voting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Identity of Indiscernibles</title>
+      <link>https://www.example.com/philosophy/identity-of-indiscernibles/</link>
+      <pubDate>Sun, 11 Dec 2011 14:30:11 -0600</pubDate>
+      
+      <guid>https://www.example.com/philosophy/identity-of-indiscernibles/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
