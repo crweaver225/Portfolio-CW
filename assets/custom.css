@@ -1,0 +1,7 @@
+/* Add custom CSS */
+
+.class {
+    width: 15%;
+    border-radius: 50%;
+    text-align: right;
+}
