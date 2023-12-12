@@ -1,5 +1,5 @@
 ### General
-baseURL = 'https://main.d2npe0f56txfuj.amplifyapp.com/' # Enter your full production URL
+baseURL = '/' # Enter your full production URL
 languageCode = 'en-us' # Default
 timeZone = 'America/New_York' # IANA timezone https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 title = 'Christopher Weaver' # Site title used throughout site
