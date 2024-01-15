@@ -12,7 +12,7 @@ lastmod:
 expiryDate: 
 publishDate: 
 
-feature_image: 
+feature_image: Ioi.jpeg
 feature_image_alt: 
 
 categories:
@@ -20,8 +20,6 @@ categories:
 tags:
 - Philosophy
 series:
-
-feature_image: Ioi.jpeg
 
 toc: true
 related: true
