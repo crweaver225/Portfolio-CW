@@ -7,10 +7,10 @@ slug: Liberty Conquest and Time Preference
 author: Christopher Weaver
 
 draft: false
-date: 2025-05-12T13:34:34-06:00
+date: 2015-05-12T13:34:34-06:00
 lastmod: 
 expiryDate: 
-publishDate: 
+publishDate:
 
 feature_image: 
 feature_image_alt: 
