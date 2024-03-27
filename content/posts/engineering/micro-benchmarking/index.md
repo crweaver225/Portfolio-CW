@@ -1,9 +1,9 @@
 ---
 title: Microbenchmarking in C++
-seo_title: Microbenchmarking in C++
+seo_title: Microbenchmarking in C
 summary: 
 description: 
-slug: Microbenchmarking in C++
+slug: Microbenchmarking in C
 author: Christopher Weaver
 
 draft: false
@@ -67,7 +67,7 @@ make
 make install
 ```
 3. Next I started a new C++ project to consisting of two files (CMakeLists.txt and main.cpp). My CMakeLists.txt was very basic:
-```
+```C++
 cmake_minimum_required(VERSION 3.0)
 project(benchmark-test) # I was sure to set my CMake path to -DCMAKE_INSTALL_PREFIX=$HOME/Desktop/Libraries
 
@@ -80,7 +80,7 @@ add_executable(benchmark_test main.cpp)
 target_link_libraries(benchmark_test benchmark::benchmark)
 ```
 4. Lastly was writting my C++ file for benchmarking. For this example I benchmarked a linear and binary search algorithm for a vector. The two functions I am testing (and microbenchmarking against to optimize)
-```
+```C++
 bool linear_search(const std::vector<int>& v, int key) {
     for (size_t i = 0; i < v.size(); i ++) {
         if (v[i] == key) {
@@ -107,7 +107,7 @@ bool binary_search(const std::vector<int>& v, int key) {
 }
 ```
 I have this function to build out a vector for testing:
-```
+```C++
 auto gen_vec(int n) {
     std::vector<int> v;
     for (int i = 0; i < n; i++) {
@@ -117,7 +117,7 @@ auto gen_vec(int n) {
 }
 ```
 Next I need to build out another function for each piece of code I am testing. This function needs to be static and should take a bechmark::State& parameter. The state will tell me how large the size of the array will be based on parameters I give the framework later using the range() function. Run a for loop through the state and tell the benchmark not to optimize. Finally we will have the framework guess the time complexity by calling the set SetComplexityN() function on the state. 
-```
+```C++
 static void bm_linear_search(benchmark::State& state) {
     auto n = state.range(0);
     auto v = gen_vec(n);
@@ -141,7 +141,7 @@ static void bm_binary_search(benchmark::State& state) {
 }
 ```
 When microbenchmarking, you will not have a main function. Instead pass the functions you will be testing into a BENCHMARK function and then set BENCHMARK_MAIN(). You will see by setting the RangeMultiplier we will get the benchmark to test with a bunch of different input sizes. 
-```
+```C++
 BENCHMARK(bm_linear_search)->RangeMultiplier(2)->Range(64,4096)->Complexity();
 BENCHMARK(bm_binary_search)->RangeMultiplier(2)->Range(64,4096)->Complexity();
 BENCHMARK_MAIN();
@@ -152,8 +152,10 @@ cmake .
 make
 ./benchmark_test
 ```
-This will compile and run the program. The results on my machine looked like this
-![image info](./mbresults.png)
-Not surprisingly, a binary search significantly faster. On a vector with 4096 items, it took the linear search function 15021 nanoseconds and only 67 nanoseconds for the binary search. Information about the BigO is also included which can be very helpful for more complex algorithms. 
+This will compile and run the program. The results on my machine looked like this:
+
+![Example Image](bmResults.png "Example Image")
+
+Not surprisingly, a binary search is significantly faster. On a vector with 4096 items, it took the linear search function 15021 nanoseconds and only 67 nanoseconds for the binary search. Information about the Big O is also included which can be very helpful for more complex algorithms. 
 
 There is obviously a lot more that can be said about microbenchmarking and more that can be done with Google's framework. But what has been said above is enough to hit the ground running.

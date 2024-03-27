@@ -59,7 +59,7 @@
 [[main]]
     identifier = "Data Structures & Algorithms"
     name = "Data Structures & Algorithms"
-    url = "/Data Structures & Algorithms/"
+    url = "/series/Data Structures & Algorithms"
     # url = "/posts/Data Structures & Algorithms/" # Remove url param from Engineering/_index.md frontmatter to use full permalink
     parent = "Learn"
     weight = 5
@@ -68,6 +68,14 @@
     identifier = "C++"
     name = "C++"
     url = "/series/C++"
+    # url = "/posts/Data Structures & Algorithms/" # Remove url param from Engineering/_index.md frontmatter to use full permalink
+    parent = "Learn"
+    weight = 5
+
+[[main]]
+    identifier = "Machine Learning"
+    name = "Machine Learning"
+    url = "/series/Machine Learning"
     # url = "/posts/Data Structures & Algorithms/" # Remove url param from Engineering/_index.md frontmatter to use full permalink
     parent = "Learn"
     weight = 5
