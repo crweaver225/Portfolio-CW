@@ -1,0 +1,630 @@
+
+
+
+<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=49983&amp;path=livereload" data-no-instant defer></script><script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:49983/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:49983/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>
+</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="Portfolio site of Christopher Weaver.">
+<link rel="canonical" href="//localhost:49983/engineering/dynamic-programming/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic Programming">
+<meta property="og:description" content="Solving complex algorithmic problems requires a lot of tools in one&rsquo;s toolbelt. One of the most powerful tools we have available is dynamic programming. Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once. It&rsquo;s typically used when a problem has overlapping subproblems and optimal substructure, meaning that the solution to a larger problem can be constructed from the solutions of its smaller subproblems.">
+<meta property="og:url" content="//localhost:49983/engineering/dynamic-programming/">
+<meta property="article:published_time" content="2024-02-21T07:07:50-05:00">
+  <meta property="article:modified_time" content="2024-02-21T07:07:50-05:00">
+  
+
+
+  <meta name="og:image" content="//localhost:49983/images/default.png"/>
+
+
+
+
+
+  
+  
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Dynamic Programming">
+<meta name="twitter:description" content="Solving complex algorithmic problems requires a lot of tools in one&rsquo;s toolbelt. One of the most powerful tools we have available is dynamic programming. Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once. It&rsquo;s typically used when a problem has overlapping subproblems and optimal substructure, meaning that the solution to a larger problem can be constructed from the solutions of its smaller subproblems.">
+
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="//localhost:49983/images/default.png"/>
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:49983/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:49983/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:49983/#/schema/image/1",
+        "url": "//localhost:49983/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:49983/#/schema/website/1",
+      "url": "//localhost:49983/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:49983/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:49983/engineering/dynamic-programming/",
+      "url": "//localhost:49983/engineering/dynamic-programming/",
+      "name": "Dynamic Programming",
+      "description": "Portfolio site of Christopher Weaver.",
+      "isPartOf": {
+        "@id": "//localhost:49983/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:49983/#/schema/person/1"
+      },
+      "datePublished": "2024-02-21T07:07:50-05:00",
+      "dateModified": "2024-02-21T07:07:50-05:00",
+      "breadcrumb": {
+        "@id": "//localhost:49983/engineering/dynamic-programming/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:49983/engineering/dynamic-programming/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:49983/engineering/dynamic-programming/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:49983/engineering/dynamic-programming/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:49983/",
+          "url": "//localhost:49983/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:49983/engineering/",
+          "url": "//localhost:49983/engineering/",
+          "name": "Engineering"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:49983/engineering/dynamic-programming/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:49983/#/schema/article/1",
+          "headline": "Dynamic Programming",
+          "description": "",
+          "isPartOf": {
+            "@id": "//localhost:49983/engineering/dynamic-programming/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:49983/engineering/dynamic-programming/"
+          },
+          "datePublished": "2024-02-21T07:07:50-05:00",
+          "dateModified": "2024-02-21T07:07:50-05:00",
+          "author": {
+            "@id": "//localhost:49983/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:49983/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:49983/engineering/dynamic-programming/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:49983/engineering/dynamic-programming/#/schema/image/2",
+          "url": "//localhost:49983/images/default.png",
+          "contentUrl": "//localhost:49983/images/default.png",
+          "caption": "Dynamic Programming"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  
+
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:49983/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/contact/" class="menu-link">Contact</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Learn<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/series/c&#43;&#43;" class="menu-link">C&#43;&#43;</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/data-structures-algorithms" class="menu-link">Data Structures &amp; Algorithms</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/machine-learning" class="menu-link">Machine Learning</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Dynamic Programming</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Feb 21, 2024&nbsp;&middot;&nbsp;7 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="//localhost:49983/categories/data-structures-algorithms/">Data Structures &amp; Algorithms</a>
+        
+          <a href="//localhost:49983/categories/engineering/">Engineering</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc"></p>
+    <div class="single-terms">
+      
+      
+      <a class="term" href="//localhost:49983/tags/data-structures-algorithms/">Data Structures &amp; Algorithms</a></li>
+      
+      <a class="term" href="//localhost:49983/tags/engineering/">Engineering</a></li>
+      
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents"></nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+      <div class="series">
+        <p>Part of the <a href="//localhost:49983/series/data-structures-algorithms/">Data Structures &amp; Algorithms</a> series:</p>
+        
+        <ol class="series-list">
+        </ol>
+      </div>
+    
+    <div class="single-feature-img">
+
+
+
+  
+
+</div>
+    <article class="markdown">
+        <p>Solving complex algorithmic problems requires a lot of tools in one&rsquo;s toolbelt. One of the most powerful tools we have available is dynamic programming. Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once. It&rsquo;s typically used when a problem has overlapping subproblems and optimal substructure, meaning that the solution to a larger problem can be constructed from the solutions of its smaller subproblems.</p>
+<p>In dynamic programming, solutions to subproblems are stored in memory so that they can be reused when needed, which avoids redundant computation. This makes dynamic programming particularly useful for optimization problems and problems involving optimization of some value, where the solution involves making a sequence of decisions. Some people will differentiate dynamic programming from memoization (such as storing fibonacci results as you break the bigger problem into smaller subproblems until you get to the smallest) and say dynamic programming is only bottom up (starting at the smallest subproblem and working your way up). I consider both bottom up and top down to be dynamic programming.</p>
+<p>Let us consider this further with an example problem:</p>
+
+
+  <pre><code>You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
+
+Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+
+You may assume that you have an infinite number of each kind of coin.</code></pre>
+<p>So there are a bunch of different ways to solve this, but in this instance we are going to consider how to using dynamic programming to solve it. Again, dynamic programming is about solving subproblems until the larger solution is revealed. In this problem our sub-problem can be defined as <em>what is the minimal number of coins needed to represent all denominations up to the integer amount of money in the problem (1,2,3,4..)</em>. In other words, if given an array of coins and an integer value of 5, we will look to see the minimal amount of coins required to match 1 and 2 and 3 and 4 before we do 5. This is a bottom up approach that is more efficient than it initially sounds considering we can reference back to computations already done.</p>
+<p>Lets assume the amount is 6 and we are given the coins [1,2,5]. The first step is to generate a vector that represents all the solutions for 0 up to 6</p>
+
+
+  <pre><code>{0, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX}</code></pre>
+<p>We now loop 1 through 6 representing each index in this array. For each index, we will have an inside loop that will loop through all coins in the array. We need to compute all combinations of coins that add up to 1 and pick the smallest. For any coin less than the target of 1, see if the <em>target - coin</em> has already been solved. In this case only the one will be:</p>
+<p>target&lt;1&gt; - coin&lt;1&gt; == 0 (when we equal zero than we know we have a match). Our vector will now look like this:</p>
+
+
+  <pre><code>{0, 1, INT_MAX, INT_MAX, INT_MAX, INT_MAX, INT_MAX}</code></pre>
+<p>We next move to 2. We compute target&lt;2&gt; - coin&lt;1&gt; = vector&lt;1&gt; == 1. Which means it takes one coin plus the solution we found at 2 - 1. The answer is 2. But we need to continue to loop through the coins list to find out if this is the optimal solution. We next try target&lt;2&gt; - coin&lt;2&gt; = vector&lt;0&gt; == 0. In this case the one coin for 2 + the solution at vector&lt;0&gt; 0 equals only 1 coin being used. This is the optimal solution for the vector index 2.</p>
+
+
+  <pre><code>{0, 1, 1, INT_MAX, INT_MAX, INT_MAX, INT_MAX}</code></pre>
+<p>We continue this until we get to the final target value. The code looks like this:</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">coinChange</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> coins, <span style="color:#66d9ef">int</span> amount) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dp(amount <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, INT_MAX);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        dp[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        sort(coins.begin(), coins.end());
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> amount; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> c : coins) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>                <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">-</span> c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) { <span style="color:#66d9ef">break</span>; }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>                <span style="color:#66d9ef">if</span> (dp[i <span style="color:#f92672">-</span> c] <span style="color:#f92672">!=</span> INT_MAX) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>                    dp[i] <span style="color:#f92672">=</span> min(dp[i <span style="color:#f92672">-</span> c] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, dp[i]);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>                }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        <span style="color:#66d9ef">return</span> dp[amount] <span style="color:#f92672">==</span> INT_MAX <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> dp[amount];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    }</span></span></code></pre></div>
+<p>Lets try another problem. This one is called Rod Cutting:</p>
+<p>Given a rod of length n and a list of rod prices where each index represents the size of a rod cut and each value the price for that cut, find the optimial way to cut the rod into smaller rods to maximize profit:</p>
+<p>price[] = [1, 5, 8, 9, 10, 17, 17, 20]</p>
+<p>Rod length: 4 <br>
+Best: Cut the rod into two pieces of length 2 each to gain revenue of 5 + 5 = 10</p>
+
+
+  <pre><code> Cut           Profit 
+ 4                9 
+ 1, 3            (1 &#43; 8) = 9 
+ 2, 2            (5 &#43; 5) = 10 
+ 3, 1            (8 &#43; 1) = 9 
+ 1, 1, 2         (1 &#43; 1 &#43; 5) = 7 
+ 1, 2, 1         (1 &#43; 5 &#43; 1) = 7 
+ 2, 1, 1         (5 &#43; 1 &#43; 1) = 7 
+ 1, 1, 1, 1      (1 &#43; 1 &#43; 1 &#43; 1) = 4</code></pre>
+<p>As we begin to cut the pipe down into smaller pieces we then need to consider how to handle these smaller pieces (should they be further cut down?). These are our sub problems that if first solved bottom up means they are only ever computed once and a solution should be available by the time we consider not making a cut at all&hellip;</p>
+<p>To solve sub problems first, we start with a rod length of 1, then we will loop through all possible cuts on that length and compute the maximum prices. So first we would get:</p>
+<p>n = 1, we can make a cut at 1 with a price = 1. We store this price:</p>
+<p>T[1] = max(1, T[0])</p>
+<p>That is all the cuts we can make at 1. Next lets consider a rod of size 2:</p>
+<p>n = 2, we can make a cut at 1 with a price = 1. This leaves 1 left on the rod which we already computed and stored in T. We can set:</p>
+<p>T[2] = max(1 + T[1], T[2])</p>
+<p>Now we see what happens if we have a cut of 2 from the rod (meaning we make no cut), price = 5 and set:</p>
+<p>T[2] = max(5 + T[0], T[2])</p>
+<p>Here we compute that the most optimal price we get when a rod is of size 2 will be to not cut it and get a price of 5. This value is stored in the T array and usable as we continue to scale up our rod size to what was originally asked for in the question. The entire code can be found here:</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">rodCut</span>(<span style="color:#66d9ef">int</span> price[], <span style="color:#66d9ef">int</span> n) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#75715e">// `T[i]` stores the maximum profit achieved from a rod of length `i`
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> T[n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#75715e">// initialize maximum profit to 0
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        T[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#75715e">// consider a rod of length `i`
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        <span style="color:#75715e">// divide the rod of length `i` into two rods of length `j`
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#75715e"></span>        <span style="color:#75715e">// and `i-j` each and take maximum
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> i; j<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>            T[i] <span style="color:#f92672">=</span> max(T[i], price[j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> T[i <span style="color:#f92672">-</span> j]);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    <span style="color:#75715e">// `T[n]` stores the maximum profit achieved from a rod of length `n`
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> T[n];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>}</span></span></code></pre></div>
+<p>As a rule of thumb, whenever I come across a problem that seems to be a good fit for recursion, I also check to see if dynamic programming can help alleviate the quadratic runtime recursion often produces. But beyond that, dynamic programming can clear up the problem we are trying to tackle in our head. I find there is an initial cognitive cost to thinking through a dynamic programming solution but this initial extra work pays off in the long run as things start to come together. Solving smaller sub-problems is an easier cognitive task and can be rather intuitive to program once a strategy is settled in your head.</p>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+          
+          <a class="term" href="//localhost:49983/tags/data-structures-algorithms/">Data Structures &amp; Algorithms</a></li>
+          
+          <a class="term" href="//localhost:49983/tags/engineering/">Engineering</a></li>
+          
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a49983%2fengineering%2fdynamic-programming%2f&amp;source=%2f%2flocalhost%3a49983%2fengineering%2fdynamic-programming%2f&amp;title=Dynamic%20Programming&amp;summary=Dynamic%20Programming" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Dynamic%20Programming.&amp;body=Dynamic%20Programming%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a49983%2fengineering%2fdynamic-programming%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        <div class="series">
+          <p>Part of the <a href="//localhost:49983/series/data-structures-algorithms/">Data Structures &amp; Algorithms</a> series:</p>
+          
+          <ol>
+          </ol>
+        </div>
+      
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2024 &middot; 
+      <a href="//localhost:49983/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:49983/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:49983/main.js"></script>
+
+
+</body>
+</html>

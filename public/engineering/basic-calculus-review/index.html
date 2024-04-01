@@ -1,0 +1,726 @@
+
+
+
+<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=49983&amp;path=livereload" data-no-instant defer></script><script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:49983/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:49983/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>
+</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="Portfolio site of Christopher Weaver.">
+<link rel="canonical" href="//localhost:49983/engineering/basic-calculus-review/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Calculus Review">
+<meta property="og:description" content="I recently began reading
+Essential Math for Data Science
+Author: Thomas Nield
+I have so far found the book to be an excellent refresher on a lot of the mathematics that power todays machine learning algorithms. It is true libraries like scikit-learn have abstracted away most of the underlying mathematics used by engineers and data scientists in the field of machine learning, but I still generally hear a consensus from those in the industry that a knowledge of the underlying math is still valuable.">
+<meta property="og:url" content="//localhost:49983/engineering/basic-calculus-review/">
+<meta property="article:published_time" content="2024-03-19T18:03:08-05:00">
+  <meta property="article:modified_time" content="2024-03-19T18:03:08-05:00">
+  
+
+
+  <meta name="og:image" content="//localhost:49983/images/default.png"/>
+
+
+
+
+
+  
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Basic Calculus Review">
+<meta name="twitter:description" content="I recently began reading
+Essential Math for Data Science
+Author: Thomas Nield
+I have so far found the book to be an excellent refresher on a lot of the mathematics that power todays machine learning algorithms. It is true libraries like scikit-learn have abstracted away most of the underlying mathematics used by engineers and data scientists in the field of machine learning, but I still generally hear a consensus from those in the industry that a knowledge of the underlying math is still valuable.">
+
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="//localhost:49983/images/default.png"/>
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:49983/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:49983/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:49983/#/schema/image/1",
+        "url": "//localhost:49983/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:49983/#/schema/website/1",
+      "url": "//localhost:49983/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:49983/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:49983/engineering/basic-calculus-review/",
+      "url": "//localhost:49983/engineering/basic-calculus-review/",
+      "name": "Basic Calculus Review",
+      "description": "Portfolio site of Christopher Weaver.",
+      "isPartOf": {
+        "@id": "//localhost:49983/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:49983/#/schema/person/1"
+      },
+      "datePublished": "2024-03-19T18:03:08-05:00",
+      "dateModified": "2024-03-19T18:03:08-05:00",
+      "breadcrumb": {
+        "@id": "//localhost:49983/engineering/basic-calculus-review/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:49983/engineering/basic-calculus-review/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:49983/engineering/basic-calculus-review/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:49983/engineering/basic-calculus-review/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:49983/",
+          "url": "//localhost:49983/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:49983/engineering/",
+          "url": "//localhost:49983/engineering/",
+          "name": "Engineering"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:49983/engineering/basic-calculus-review/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:49983/#/schema/article/1",
+          "headline": "Basic Calculus Review",
+          "description": "",
+          "isPartOf": {
+            "@id": "//localhost:49983/engineering/basic-calculus-review/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:49983/engineering/basic-calculus-review/"
+          },
+          "datePublished": "2024-03-19T18:03:08-05:00",
+          "dateModified": "2024-03-19T18:03:08-05:00",
+          "author": {
+            "@id": "//localhost:49983/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:49983/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:49983/engineering/basic-calculus-review/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:49983/engineering/basic-calculus-review/#/schema/image/2",
+          "url": "//localhost:49983/images/default.png",
+          "contentUrl": "//localhost:49983/images/default.png",
+          "caption": "Basic Calculus Review"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  
+
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:49983/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/contact/" class="menu-link">Contact</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Learn<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/series/c&#43;&#43;" class="menu-link">C&#43;&#43;</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/data-structures-algorithms" class="menu-link">Data Structures &amp; Algorithms</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/machine-learning" class="menu-link">Machine Learning</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Basic Calculus Review</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Mar 19, 2024&nbsp;&middot;&nbsp;8 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="//localhost:49983/categories/mathematics/">Mathematics</a>
+        
+          <a href="//localhost:49983/categories/machine-learning/">Machine Learning</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc"></p>
+    <div class="single-terms">
+      
+      
+      <a class="term" href="//localhost:49983/tags/mathematics/">Mathematics</a></li>
+      
+      <a class="term" href="//localhost:49983/tags/machine-learning/">Machine Learning</a></li>
+      
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#numbering-systems">Numbering Systems</a></li>
+        <li><a href="#summation">Summation</a></li>
+        <li><a href="#exponentials">Exponentials</a></li>
+        <li><a href="#logarithms">Logarithms</a></li>
+        <li><a href="#derivatives">Derivatives</a></li>
+        <li><a href="#partial-derivatives">Partial Derivatives</a></li>
+        <li><a href="#the-chain-rule">The Chain Rule</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+      <div class="series">
+        <p>Part of the <a href="//localhost:49983/series/machine-learning/">Machine Learning</a> series:</p>
+        
+        <ol class="series-list">
+        </ol>
+      </div>
+    
+    <div class="single-feature-img">
+
+
+
+  
+
+</div>
+    <article class="markdown">
+        <p>I recently began reading</p>
+<p><em><strong>Essential Math for Data Science</strong></em></p>
+<p><strong>Author:</strong> <em>Thomas Nield</em></p>
+<p>
+	
+	
+	<img src="/engineering/basic-calculus-review/mathForML.png"
+	width="300"
+	height="398"
+	
+	alt="Book Image"  title="Book Image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>I have so far found the book to be an excellent refresher on a lot of the mathematics that power todays machine learning algorithms. It is true libraries like scikit-learn have abstracted away most of the underlying mathematics used by engineers and data scientists in the field of machine learning, but I still generally hear a consensus from those in the industry that a knowledge of the underlying math is still valuable. I also submit as a way of opinion that any engineer in the field should have significant interest in how these algorithms work and will find these sorts of topics interesting. In this articile I will be reviewing chapter one of this book, *<strong>Basic Math and Calculus Review</strong>. I suggest anyone interested in the topic take a look at this book themselves. It can be found Here: <a href="https://www.amazon.com/Essential-Math-Data-Science-Fundamental/dp/1098102932/ref=sr_1_1?crid=2GOBT6F3KYFAN&amp;dib=eyJ2IjoiMSJ9.9La-aWMmokRz38-DhSrQLOXG8UdZoQMdAuAhct27u9CV7Gxfl_ZNJpHLBTxoFusp.gfiz4joz32LWZOy3-c421oiCl4haOB-g6HYHfyKsMKc&amp;dib_tag=se&amp;keywords=essential&#43;math&#43;for&#43;data&#43;science&#43;thomas&#43;nield&amp;qid=1710890782&amp;sprefix=essential&#43;math&#43;for&#43;data%2Caps%2C100&amp;sr=8-1" target="_blank" rel="noopener">link</a></p>
+<h3 id="numbering-systems">Numbering Systems<a href="#numbering-systems">
+    <svg role="img" aria-labelledby="numbering-systems-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="numbering-systems-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p><em>Natural Numbers</em> - 1, 2, 3, 4, 5&hellip; Only postive whole numbers.</p>
+<p><em>Whole Numbers</em> - Adding the number 0 to the list of natural numbers. Not only is this a valid number prior to 1, but it also becomes the placeholder notion in a base 10 numbering system.</p>
+<p><em>Integers</em> - Includes both positive and negative whole numbers.</p>
+<p><em>Rational Numbers</em> - Any number that can be expressed as a fraction, such as 2/3. This includes all integers and finite decimals. Examples include 2/1 = 2 and 687/100 = 6.87.</p>
+<p><em>Irrational Numbers</em> - Any number that cannot be expressed as a fraction because they are not finite. The famous example of this is pi which has decimals that go on for infinity.</p>
+<p><em>Real Numbers</em> - This refers to both rational and irrational numbers. Anything that is not an imaginary number.</p>
+<p><em>Imaginary Numbers</em> - This is a result of taking the square root of a negative number.</p>
+<h3 id="summation">Summation<a href="#summation">
+    <svg role="img" aria-labelledby="summation-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="summation-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>A summation, expressed by the sigma character ∑ tells us to iterate and sum elements together. Consider this summation</p>
+<p>$$
+\sum_{i=1}^{n} x^2
+$$</p>
+<p>What this is notating is that starting at the number 1, iterate to the number n. For each iteration, take i and square it and then add to a tally of the summation. The end result of this is summing each value together after squaring it.</p>
+<h3 id="exponentials">Exponentials<a href="#exponentials">
+    <svg role="img" aria-labelledby="exponentials-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="exponentials-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Exponentials are pretty intuitive and I do not feel the need to go into detail about how to compute them. But the one more complex aspect we will see later is when computing the chain rule on multiple derivatives. When this happens, we will often need to calculate something similar to:</p>
+<p>$$
+(8^3)^2
+$$</p>
+<p>Often we need to simplify this before computing. The rules to simplifying this is to multiple exponents on different levels</p>
+<p>$$
+(8^3)^2 = 8^3*2 = 8^6
+$$</p>
+<p>When multiplying two exponential values
+$$
+x^2x^3
+$$
+we need to add these exponents
+$$
+x^2x^3 = x^2+3 = x^5
+$$</p>
+<p>When division of exponentials is happening
+$$
+x^2/x^5
+$$
+We cancel out the value at the top and then what is left over on the bottom becomes negative
+$$
+x^2/x^5 = 1/x^3 = x^-3
+$$
+Final one is understanding fractional exponents renders into a square root
+$$
+8^1/3 = 3\sqrt{8} = 2
+$$</p>
+<h3 id="logarithms">Logarithms<a href="#logarithms">
+    <svg role="img" aria-labelledby="logarithms-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="logarithms-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>A logarithm is a math function that finds a power for a specific number and base. To understand logarithms, consider the following equation
+$$
+2^x = 8
+$$
+The question we need to solve is what power do we need to raise our base (2) to in order to get 8? A logarithm is essentially a different notation for solving this exact same problem. The way we would notate that is
+$$
+\log_2 8
+$$
+In this example our base is 2 and the answer would be 3. Of course base 2 is just an arbitrary number and we could pick anything. But in data science we tend to default the base to eulers number. Eulers number is an irrational number approximated as 2.71828 and has the notation e. It tends to be used because it is a derivative to itself which is conveniant due to the amount of derivatives that are computed in machine learning. Using e as our based is refered to as <em>natural logarithm</em>.</p>
+<h3 id="derivatives">Derivatives<a href="#derivatives">
+    <svg role="img" aria-labelledby="derivatives-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="derivatives-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>A derivative tells us the slope of a function and is extremely useful for informing on the rate of change at any point in a function. I have not spoken much about functions so far, so I think a small example is required. Consider the function f(x) = $x^2$. The independent variable is the input while the dependent variable is the output. If we graph this function we will see something like this</p>
+<p>
+	
+	
+	<img src="/engineering/basic-calculus-review/function.png"
+	width="250"
+	height="230"
+	
+	alt="Function Image"  title="Function Image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>Now if we wanted to find the derivative of f(2) (i.e. how &lsquo;steep&rsquo; the curve is at f(2)), we could do this by drawing a <em>tangent</em> line as a straight line that &ldquo;just touches&rdquo; the curve at the given point. To do this we would take f(2) = 4 and f(2.1) = 4.41 and plot both points to determine our tangent line.</p>
+<p>
+	
+	
+	<img src="/engineering/basic-calculus-review/tangentLine.png"
+	width="231"
+	height="284"
+	
+	alt="Book Image"  title="Book Image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>We can then compute the slope of that line:
+$$
+m = y2 - y1 / x2 - x1
+m = 4.41 - 4.0 / 2.1 - 2.0
+m = 4.1
+$$
+So our derivative is 4.1. What we would find though is that the closer we made out two points together, the more accurate our result will be. f(2) and f(2.00001) will result in a slope of 4.0004. This is much closer to what is considered to be the accurate slope for this function, 4.</p>
+<p>For the purposes of computing derivatives in machine learning, there is a simplier approach. There are rules which can help transform our function in a different expression that we can use to compute the derivative. For example, when we encounter an exponential function like $$f(x) = x^2$$, we can make the exponent a multiplier and decrement the exponent by 1
+$$
+f(x) = x^2
+(d/dx)f(x) = (d/dx)x^2 = 2x
+(d/dx)f(2) = 2(2) = 4
+$$</p>
+<p>There are lots of rules to help us transform our functions into computable derivatives. I think it is sufficient to simply know this can be done for now.</p>
+<h3 id="partial-derivatives">Partial Derivatives<a href="#partial-derivatives">
+    <svg role="img" aria-labelledby="partial-derivatives-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="partial-derivatives-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>A partial derivative involves finding the derivative for an input in a function that takes multiple inputs.
+$$
+f(x,y) = 2x^3 + 3y^3
+$$
+This function is going to map out into a three dimensional graph and will have multiple slopes based on the combination of all three coordinates. What we want to do here is figure out the slope for each input as a way of understanding the slope for one direction on our graph, assuming all others are held constant. We need to isolate each input parameter in the function to compute its own specific gradient
+$$
+f(x,y) = 2x^3 + 3y^3
+(d/dx)2x^3 + 3y^3 = 6x^2 (here we multiply the exponent by the coefficient and decrement the exponent)
+(d/dy)2x^3 + 3y^3 = 9y^2
+$$
+So for (x,y) values of (1,2), the slope with respect to x is 6 and the slope with respect to y is 36.</p>
+<h3 id="the-chain-rule">The Chain Rule<a href="#the-chain-rule">
+    <svg role="img" aria-labelledby="the-chain-rule-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="the-chain-rule-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>One last topic that I think is important to cover is the chain rule. This is something I have run across a ton when building neural networks. it is actually foundational to how neural networks learn when using stochastic gradient descent. Consider these two functions
+$$
+y = x^2 + 1
+z = y^3 - 2
+$$
+Notice that these two functions are linked since the output of y is used in the function to compute z. We could re-write this like
+$$
+z = (x^2 + 1)^3 - 2
+$$
+What makes the chain rule important is that it allows us to compute the derivative for z with respect to x in a super simple way. To do this, all we need to do is compute the derivative of y and the derivative of z separately and then multiply them!
+$$
+(dy/dx)(x^2 + 1) = 2x
+(dz/dy)(y^3 - 2) = 3y^2
+(dz/dx) = (2x)(3y^2) = 6xy^2
+$$
+The last step we need is to substitute y so that the entire derivative of z with respect to x is expressed without y. All that really means is inserting the y function for the y value so that the only values we need are x and z
+$$
+(dz/dx) = 6x(x^2 + 1)^2
+$$
+That is it. We have computed the derivative of z with respect to x.</p>
+<h3 id="conclusion">Conclusion<a href="#conclusion">
+    <svg role="img" aria-labelledby="conclusion-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="conclusion-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>The last part of this chapter involves integrals and computing the area under the curve of our function. As important as this is in math, I am not certain how much value these concepts will have for us in our engineering endeavours going forward. If that changes I might come back and update this post. But for now, I think this concludes my summary of chapter 1. Next up will be chapter 2 and probability.</p>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+          
+          <a class="term" href="//localhost:49983/tags/mathematics/">Mathematics</a></li>
+          
+          <a class="term" href="//localhost:49983/tags/machine-learning/">Machine Learning</a></li>
+          
+        
+      </div>
+      
+        <div class="series">
+          <p>Part of the <a href="//localhost:49983/series/machine-learning/">Machine Learning</a> series:</p>
+          
+          <ol>
+          </ol>
+        </div>
+      
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2024 &middot; 
+      <a href="//localhost:49983/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:49983/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:49983/main.js"></script>
+
+
+</body>
+</html>
