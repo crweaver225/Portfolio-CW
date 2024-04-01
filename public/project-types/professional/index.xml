@@ -2,188 +2,188 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Christopher Weaver</title>
-    <link>//localhost:49983/project-types/professional/</link>
+    <link>//localhost:51131/project-types/professional/</link>
     <description>Recent content in Professional on Christopher Weaver</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Dec 2023 14:30:53 -0600</lastBuildDate><atom:link href="//localhost:49983/project-types/professional/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Dec 2023 14:30:53 -0600</lastBuildDate><atom:link href="//localhost:51131/project-types/professional/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Constructors and Move Semantics in C&#43;&#43;</title>
-      <link>//localhost:49983/engineering/constructors-and-move-semantics-in-cpp/</link>
+      <link>//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/</link>
       <pubDate>Mon, 01 Apr 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:49983/engineering/constructors-and-move-semantics-in-cpp/</guid>
+      <guid>//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ranges in C&#43;&#43;</title>
-      <link>//localhost:49983/engineering/ranges-in-cpp/</link>
+      <link>//localhost:51131/engineering/ranges-in-cpp/</link>
       <pubDate>Wed, 20 Mar 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:49983/engineering/ranges-in-cpp/</guid>
+      <guid>//localhost:51131/engineering/ranges-in-cpp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SOLID</title>
-      <link>//localhost:49983/engineering/solid/</link>
+      <link>//localhost:51131/engineering/solid/</link>
       <pubDate>Wed, 20 Mar 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:49983/engineering/solid/</guid>
+      <guid>//localhost:51131/engineering/solid/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Testing your software</title>
-      <link>//localhost:49983/engineering/testing-your-software/</link>
+      <link>//localhost:51131/engineering/testing-your-software/</link>
       <pubDate>Wed, 20 Mar 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:49983/engineering/testing-your-software/</guid>
+      <guid>//localhost:51131/engineering/testing-your-software/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Basic Calculus Review</title>
-      <link>//localhost:49983/engineering/basic-calculus-review/</link>
+      <link>//localhost:51131/engineering/basic-calculus-review/</link>
       <pubDate>Tue, 19 Mar 2024 18:03:08 -0500</pubDate>
       
-      <guid>//localhost:49983/engineering/basic-calculus-review/</guid>
+      <guid>//localhost:51131/engineering/basic-calculus-review/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Algorithms in the C&#43;&#43; Standard Library</title>
-      <link>//localhost:49983/engineering/algorithms-in-the-c-standard-library/</link>
+      <link>//localhost:51131/engineering/algorithms-in-the-c-standard-library/</link>
       <pubDate>Fri, 15 Mar 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:49983/engineering/algorithms-in-the-c-standard-library/</guid>
+      <guid>//localhost:51131/engineering/algorithms-in-the-c-standard-library/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dynamic Programming</title>
-      <link>//localhost:49983/engineering/dynamic-programming/</link>
+      <link>//localhost:51131/engineering/dynamic-programming/</link>
       <pubDate>Wed, 21 Feb 2024 07:07:50 -0500</pubDate>
       
-      <guid>//localhost:49983/engineering/dynamic-programming/</guid>
+      <guid>//localhost:51131/engineering/dynamic-programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Big O</title>
-      <link>//localhost:49983/engineering/big-o/</link>
+      <link>//localhost:51131/engineering/big-o/</link>
       <pubDate>Thu, 15 Feb 2024 07:07:50 -0500</pubDate>
       
-      <guid>//localhost:49983/engineering/big-o/</guid>
+      <guid>//localhost:51131/engineering/big-o/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Automatic Type Deduction</title>
-      <link>//localhost:49983/engineering/automatic-type-deduction/</link>
+      <link>//localhost:51131/engineering/automatic-type-deduction/</link>
       <pubDate>Sat, 03 Feb 2024 07:32:00 -0600</pubDate>
       
-      <guid>//localhost:49983/engineering/automatic-type-deduction/</guid>
+      <guid>//localhost:51131/engineering/automatic-type-deduction/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Microbenchmarking in C&#43;&#43;</title>
-      <link>//localhost:49983/engineering/microbenchmarking-in-c/</link>
+      <link>//localhost:51131/engineering/microbenchmarking-in-c/</link>
       <pubDate>Mon, 29 Jan 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:49983/engineering/microbenchmarking-in-c/</guid>
+      <guid>//localhost:51131/engineering/microbenchmarking-in-c/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43; Compilers</title>
-      <link>//localhost:49983/engineering/compilers/</link>
+      <link>//localhost:51131/engineering/compilers/</link>
       <pubDate>Tue, 16 Jan 2024 07:07:50 -0500</pubDate>
       
-      <guid>//localhost:49983/engineering/compilers/</guid>
+      <guid>//localhost:51131/engineering/compilers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Public Works and the Justice Maxim</title>
-      <link>//localhost:49983/philosophy/public-works-justice-maxim/</link>
+      <link>//localhost:51131/philosophy/public-works-justice-maxim/</link>
       <pubDate>Mon, 12 Dec 2016 13:38:23 -0600</pubDate>
       
-      <guid>//localhost:49983/philosophy/public-works-justice-maxim/</guid>
+      <guid>//localhost:51131/philosophy/public-works-justice-maxim/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The Presuppositions Of Freedom Kant And The Social Contract</title>
-      <link>//localhost:49983/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</link>
+      <link>//localhost:51131/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</link>
       <pubDate>Mon, 16 May 2016 21:21:46 -0500</pubDate>
       
-      <guid>//localhost:49983/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</guid>
+      <guid>//localhost:51131/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</guid>
       <description>Northern Illinois University M.A. Thesis</description>
     </item>
     
     <item>
       <title>Obergefell and Communitarian Liberty</title>
-      <link>//localhost:49983/philosophy/obergefell/</link>
+      <link>//localhost:51131/philosophy/obergefell/</link>
       <pubDate>Sat, 12 Dec 2015 13:42:45 -0600</pubDate>
       
-      <guid>//localhost:49983/philosophy/obergefell/</guid>
+      <guid>//localhost:51131/philosophy/obergefell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The Difference Principle and Consent - Moving Away from Utopia</title>
-      <link>//localhost:49983/philosophy/different-principle-utopia/</link>
+      <link>//localhost:51131/philosophy/different-principle-utopia/</link>
       <pubDate>Sat, 12 Dec 2015 13:06:56 -0600</pubDate>
       
-      <guid>//localhost:49983/philosophy/different-principle-utopia/</guid>
+      <guid>//localhost:51131/philosophy/different-principle-utopia/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Liberty Conquest and Time Preference</title>
-      <link>//localhost:49983/philosophy/liberty-conquest-and-time-preference/</link>
+      <link>//localhost:51131/philosophy/liberty-conquest-and-time-preference/</link>
       <pubDate>Tue, 12 May 2015 13:34:34 -0600</pubDate>
       
-      <guid>//localhost:49983/philosophy/liberty-conquest-and-time-preference/</guid>
+      <guid>//localhost:51131/philosophy/liberty-conquest-and-time-preference/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Political Science and Epistomology</title>
-      <link>//localhost:49983/philosophy/politicalscience-and-epistomology/</link>
+      <link>//localhost:51131/philosophy/politicalscience-and-epistomology/</link>
       <pubDate>Fri, 12 Dec 2014 13:47:01 -0600</pubDate>
       
-      <guid>//localhost:49983/philosophy/politicalscience-and-epistomology/</guid>
+      <guid>//localhost:51131/philosophy/politicalscience-and-epistomology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Retrospective Voting</title>
-      <link>//localhost:49983/philosophy/retrospective-voting/</link>
+      <link>//localhost:51131/philosophy/retrospective-voting/</link>
       <pubDate>Fri, 12 Dec 2014 13:31:19 -0600</pubDate>
       
-      <guid>//localhost:49983/philosophy/retrospective-voting/</guid>
+      <guid>//localhost:51131/philosophy/retrospective-voting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Technology and the Nature of Intelligence</title>
-      <link>//localhost:49983/philosophy/technology-and-the-nature-of-intelligence/</link>
+      <link>//localhost:51131/philosophy/technology-and-the-nature-of-intelligence/</link>
       <pubDate>Fri, 12 Dec 2014 13:31:19 -0600</pubDate>
       
-      <guid>//localhost:49983/philosophy/technology-and-the-nature-of-intelligence/</guid>
+      <guid>//localhost:51131/philosophy/technology-and-the-nature-of-intelligence/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Identity of Indiscernibles</title>
-      <link>//localhost:49983/philosophy/identity-of-indiscernibles/</link>
+      <link>//localhost:51131/philosophy/identity-of-indiscernibles/</link>
       <pubDate>Sun, 11 Dec 2011 14:30:11 -0600</pubDate>
       
-      <guid>//localhost:49983/philosophy/identity-of-indiscernibles/</guid>
+      <guid>//localhost:51131/philosophy/identity-of-indiscernibles/</guid>
       <description></description>
     </item>
     
