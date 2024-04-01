@@ -31,6 +31,8 @@ newsletter: false
 disable_comments: false
 ---
 
+*MathJax currently not rendering
+
 I recently began reading 
 
 ***Essential Math for Data Science***
