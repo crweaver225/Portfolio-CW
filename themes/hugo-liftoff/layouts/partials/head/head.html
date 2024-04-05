@@ -7,4 +7,5 @@
   {{ partial "head/seo/seo.html" . }}
   {{ partial "head/favicons.html" . }}
   {{ partial "head/scripts.html" . }}
+  {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
 </head>

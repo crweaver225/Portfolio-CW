@@ -27,7 +27,7 @@ techstack:
 live_url: https://youtu.be/FoL-Q-pcomY
 source_url: https://github.com/crweaver225/ConsoleGameEngine
 
-newsletter: true
+newsletter: false
 ---
 
 An iOS app that monitors for Covid-19 using an Apple Watch

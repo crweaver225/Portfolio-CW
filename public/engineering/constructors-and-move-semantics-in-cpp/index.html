@@ -1,29 +1,6 @@
 
-
-
-<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51131&amp;path=livereload" data-no-instant defer></script><script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-</script>
-
 <!DOCTYPE html>
-<html lang="en-us"><head>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=63207&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,10 +26,10 @@ MathJax.Hub.Config({
 
 
 
-<link rel="stylesheet" href="//localhost:51131/scss/main.css" />
+<link rel="stylesheet" href="//localhost:63207/scss/main.css" />
 
 
-<link rel="stylesheet" href="//localhost:51131/custom.css" />
+<link rel="stylesheet" href="//localhost:63207/custom.css" />
 
   
 <meta name="robots" content="index, follow">
@@ -60,32 +37,30 @@ MathJax.Hub.Config({
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   
 
-<title>
-  &lt;title>Constructors and Move Semantics in Cpp</title>
-</title>
+<title>Constructors and Move Semantics in C&#43;&#43; | Christopher Weaver</title>
 
 
 <meta name="author" content="Christopher Weaver">
 
 <meta name="description" content="Portfolio site of Christopher Weaver.">
-<link rel="canonical" href="//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/">
+<link rel="canonical" href="//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/">
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Constructors and Move Semantics in Cpp">
-<meta property="og:description" content="Constructors Link to this heading It is fair to say C&#43;&#43; is not explicitly a object oriented programming language. You can certainly use C&#43;&#43; with other paradigms. But C&#43;&#43; has all the tools needed for object orientation and has a long history of being used in that way. One of the foundational parts of an object in C&#43;&#43; is its constructor. The constructor is invoked automaticaly during the initialization of an object and as we will see, can be overloaded in a bunch of different ways.">
-<meta property="og:url" content="//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/">
+<meta property="og:description" content="Constructors Link to this heading It is fair to say C&#43;&#43; is not explicitly an object-oriented programming language. You can certainly use C&#43;&#43; with other paradigms. But C&#43;&#43; has all the tools needed for object orientation and has a long history of being used in that way. One of the foundational parts of an object in C&#43;&#43; is its constructor. The constructor is invoked automatically during the initialization of an object and, as we will see, can be overloaded in a bunch of different ways.">
+<meta property="og:url" content="//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/">
 <meta property="article:published_time" content="2024-04-01T09:38:32-06:00">
   <meta property="article:modified_time" content="2024-04-01T09:38:32-06:00">
   
 
 
-  <meta name="og:image" content="//localhost:51131/images/default.png"/>
+  <meta name="og:image" content="//localhost:63207/images/default.png"/>
 
 
 
 
 
-  <meta property="og:see_also" content="//localhost:51131/engineering/ranges-in-cpp/" /><meta property="og:see_also" content="//localhost:51131/engineering/solid/" /><meta property="og:see_also" content="//localhost:51131/engineering/testing-your-software/" /><meta property="og:see_also" content="//localhost:51131/engineering/algorithms-in-the-c-standard-library/" /><meta property="og:see_also" content="//localhost:51131/engineering/automatic-type-deduction/" />
+  <meta property="og:see_also" content="//localhost:63207/engineering/solid/" /><meta property="og:see_also" content="//localhost:63207/engineering/ranges-in-cpp/" /><meta property="og:see_also" content="//localhost:63207/engineering/algorithms-in-the-c-standard-library/" /><meta property="og:see_also" content="//localhost:63207/engineering/automatic-type-deduction/" /><meta property="og:see_also" content="//localhost:63207/engineering/microbenchmarking-in-c/" />
   
 
 
@@ -95,12 +70,12 @@ MathJax.Hub.Config({
   <meta name="twitter:creator" content="johndoestwitter">
 
 <meta name="twitter:title" content="Constructors and Move Semantics in Cpp">
-<meta name="twitter:description" content="Constructors Link to this heading It is fair to say C&#43;&#43; is not explicitly a object oriented programming language. You can certainly use C&#43;&#43; with other paradigms. But C&#43;&#43; has all the tools needed for object orientation and has a long history of being used in that way. One of the foundational parts of an object in C&#43;&#43; is its constructor. The constructor is invoked automaticaly during the initialization of an object and as we will see, can be overloaded in a bunch of different ways.">
+<meta name="twitter:description" content="Constructors Link to this heading It is fair to say C&#43;&#43; is not explicitly an object-oriented programming language. You can certainly use C&#43;&#43; with other paradigms. But C&#43;&#43; has all the tools needed for object orientation and has a long history of being used in that way. One of the foundational parts of an object in C&#43;&#43; is its constructor. The constructor is invoked automatically during the initialization of an object and, as we will see, can be overloaded in a bunch of different ways.">
 
 
 
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image" content="//localhost:51131/images/default.png"/>
+  <meta name="twitter:image" content="//localhost:63207/images/default.png"/>
 
 
 
@@ -115,13 +90,13 @@ MathJax.Hub.Config({
   "@graph": [
     {
       "@type": "Person",
-      "@id": "//localhost:51131/#/schema/person/1",
+      "@id": "//localhost:63207/#/schema/person/1",
       "name": "Christopher Weaver",
-      "url": "//localhost:51131/",
+      "url": "//localhost:63207/",
       "image": {
         "@type": "ImageObject",
-        "@id": "//localhost:51131/#/schema/image/1",
-        "url": "//localhost:51131/images/default.png",
+        "@id": "//localhost:63207/#/schema/image/1",
+        "url": "//localhost:63207/images/default.png",
         "width": 453 ,
         "height": 455 ,
         "caption": "Christopher Weaver"
@@ -129,50 +104,50 @@ MathJax.Hub.Config({
     },
     {
       "@type": "WebSite",
-      "@id": "//localhost:51131/#/schema/website/1",
-      "url": "//localhost:51131/",
+      "@id": "//localhost:63207/#/schema/website/1",
+      "url": "//localhost:63207/",
       "name": "Christopher Weaver",
       "description": "Portfolio site of Christopher Weaver.",
       "publisher": {
-        "@id": "//localhost:51131/#/schema/person/1"
+        "@id": "//localhost:63207/#/schema/person/1"
       }
     },
     {
       "@type": "WebPage",
-      "@id": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/",
-      "url": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/",
+      "@id": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/",
+      "url": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/",
       "name": "Constructors and Move Semantics in C++",
       "description": "Portfolio site of Christopher Weaver.",
       "isPartOf": {
-        "@id": "//localhost:51131/#/schema/website/1"
+        "@id": "//localhost:63207/#/schema/website/1"
       },
       "about": {
-        "@id": "//localhost:51131/#/schema/person/1"
+        "@id": "//localhost:63207/#/schema/person/1"
       },
       "datePublished": "2024-04-01T09:38:32-06:00",
       "dateModified": "2024-04-01T09:38:32-06:00",
       "breadcrumb": {
-        "@id": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/#/schema/breadcrumb/1"
+        "@id": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/#/schema/breadcrumb/1"
       },
       "primaryImageOfPage": {
-        "@id": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/#/schema/image/2"
+        "@id": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/#/schema/image/2"
       },
       "inLanguage": "en-US",
       "potentialAction": [{
-        "@type": "ReadAction", "target": ["//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/"]
+        "@type": "ReadAction", "target": ["//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/"]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/#/schema/breadcrumb/1",
+      "@id": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/#/schema/breadcrumb/1",
       "name": "Breadcrumbs",
       "itemListElement": [{
         "@type": "ListItem",
         "position":  1 ,
         "item": {
           "@type": "WebPage",
-          "@id": "//localhost:51131/",
-          "url": "//localhost:51131/",
+          "@id": "//localhost:63207/",
+          "url": "//localhost:63207/",
           "name": "Home"
           }
         },{
@@ -180,15 +155,15 @@ MathJax.Hub.Config({
         "position":  2 ,
         "item": {
           "@type": "WebPage",
-          "@id": "//localhost:51131/engineering/",
-          "url": "//localhost:51131/engineering/",
+          "@id": "//localhost:63207/engineering/",
+          "url": "//localhost:63207/engineering/",
           "name": "Engineering"
           }
         },{
         "@type": "ListItem",
         "position":  3 ,
         "item": {
-          "@id": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/"
+          "@id": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/"
           }
         }]
     },
@@ -197,25 +172,25 @@ MathJax.Hub.Config({
       "@graph": [
         {
           "@type": "Article",
-          "@id": "//localhost:51131/#/schema/article/1",
+          "@id": "//localhost:63207/#/schema/article/1",
           "headline": "Constructors and Move Semantics in C++",
           "description": "",
           "isPartOf": {
-            "@id": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/"
+            "@id": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/"
           },
           "mainEntityOfPage": {
-            "@id": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/"
+            "@id": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/"
           },
           "datePublished": "2024-04-01T09:38:32-06:00",
           "dateModified": "2024-04-01T09:38:32-06:00",
           "author": {
-            "@id": "//localhost:51131/#/schema/person/1"
+            "@id": "//localhost:63207/#/schema/person/1"
           },          
           "publisher": {
-            "@id": "//localhost:51131/#/schema/person/1"
+            "@id": "//localhost:63207/#/schema/person/1"
           },
           "image": {
-            "@id": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/#/schema/image/2"
+            "@id": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/#/schema/image/2"
           }
         }
       ]
@@ -224,9 +199,9 @@ MathJax.Hub.Config({
       "@graph": [
         {
           "@type": "ImageObject",
-          "@id": "//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/#/schema/image/2",
-          "url": "//localhost:51131/images/default.png",
-          "contentUrl": "//localhost:51131/images/default.png",
+          "@id": "//localhost:63207/engineering/constructors-and-move-semantics-in-cpp/#/schema/image/2",
+          "url": "//localhost:63207/images/default.png",
+          "contentUrl": "//localhost:63207/images/default.png",
           "caption": "Constructors and Move Semantics in C++"
         }
       ]
@@ -243,10 +218,11 @@ MathJax.Hub.Config({
 
   
 
+  
 </head><body>
     <header class="container">
   <nav class="main-nav" id="js-navbar">
-    <a class="logo" href="//localhost:51131/">Christopher Weaver</a>
+    <a class="logo" href="//localhost:63207/">Christopher Weaver</a>
     <ul class="menu" id="js-menu">
       
       
@@ -261,10 +237,6 @@ MathJax.Hub.Config({
           
             <li class="menu-item">
               <a href="/about/" class="menu-link">About</a>                  
-            </li>
-          
-            <li class="menu-item">
-              <a href="/contact/" class="menu-link">Contact</a>                  
             </li>
           
         </ul>
@@ -359,7 +331,7 @@ MathJax.Hub.Config({
       
       <div class="post-list-categories">
         
-          <a href="//localhost:51131/categories/engineering/">Engineering</a>
+          <a href="//localhost:63207/categories/engineering/">Engineering</a>
         
       </div>
       
@@ -369,7 +341,7 @@ MathJax.Hub.Config({
     <div class="single-terms">
       
       
-      <a class="term" href="//localhost:51131/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+      <a class="term" href="//localhost:63207/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
       
       
     </div>
@@ -387,14 +359,7 @@ MathJax.Hub.Config({
   <ul>
     <li>
       <ul>
-        <li><a href="#constructors">Constructors</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li>
-      <ul>
+        <li></li>
         <li><a href="#copy-constructors">Copy Constructors</a></li>
         <li><a href="#l-and-r-values">L and R Values</a></li>
         <li><a href="#move-semantics">Move Semantics</a></li>
@@ -408,35 +373,31 @@ MathJax.Hub.Config({
 
   <div class="single-post-contents">
       <div class="series">
-        <p>Part of the <a href="//localhost:51131/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
+        <p>Part of the <a href="//localhost:63207/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
         
         <ol class="series-list">
             <li>
-                <a href="//localhost:51131/engineering/compilers/">C&#43;&#43; Compilers</a>
+                <a href="//localhost:63207/engineering/compilers/">C&#43;&#43; Compilers</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/microbenchmarking-in-c/">Microbenchmarking in C&#43;&#43;</a>
+                <a href="//localhost:63207/engineering/microbenchmarking-in-c/">Microbenchmarking in C&#43;&#43;</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
+                <a href="//localhost:63207/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
+                <a href="//localhost:63207/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/testing-your-software/">Testing your software</a>
+                <a href="//localhost:63207/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/solid/">SOLID</a>
-              
-            </li>
-            <li>
-                <a href="//localhost:51131/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
+                <a href="//localhost:63207/engineering/solid/">SOLID</a>
               
             </li>
             <li>Constructors and Move Semantics in C&#43;&#43;<span class="series-this-post">This post!</span>
@@ -453,14 +414,14 @@ MathJax.Hub.Config({
 
 </div>
     <article class="markdown">
-        <h3 id="constructors">Constructors<a href="#constructors">
+        <h4 id="constructors">Constructors<a href="#constructors">
     <svg role="img" aria-labelledby="constructors-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="constructors-IconTitle">Link to this heading</title>
       <path d="M0 0h24v24H0z" fill="none"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg>
   </a>
-</h3><p>It is fair to say C++ is not explicitly a object oriented programming language. You can certainly use C++ with other paradigms. But C++ has all the tools needed for object orientation and has a long history of being used in that way. One of the foundational parts of an object in C++ is its constructor. The constructor is invoked automaticaly during the initialization of an object and as we will see, can be overloaded in a bunch of different ways.</p>
+</h4><p>It is fair to say C++ is not explicitly an object-oriented programming language. You can certainly use C++ with other paradigms. But C++ has all the tools needed for object orientation and has a long history of being used in that way. One of the foundational parts of an object in C++ is its constructor. The constructor is invoked automatically during the initialization of an object and, as we will see, can be overloaded in a bunch of different ways.</p>
 <h4 id="default-constructor">Default Constructor<a href="#default-constructor">
     <svg role="img" aria-labelledby="default-constructor-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="default-constructor-IconTitle">Link to this heading</title>
@@ -496,7 +457,7 @@ MathJax.Hub.Config({
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>n_Value <span style="color:#f92672">=</span> n;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        }
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>}</span></span></code></pre></div>
-<p>The example above overloads the constructor with a couple of different options. Furthermore you can see in the second constructor there was an ambigious use of m_Value and n_Value between the named constructor parameters and the class members. To fix that, we use a this-&gt; as a pointer to the class that helps the compiler know which value we are referring to. One issue with the code above is it will no longer automatically build a default constructor for us. Attempting to set an Integer i1; will result in a comiler error, even though all the member values should default to zero and work fine. To fix this, we can tell the compiler to build the default constructor</p>
+<p>The example above overloads the constructor with a couple of different options. Furthermore, you can see in the second constructor there was an ambiguous use of m_Value and n_Value between the named constructor parameters and the class members. To fix that, we use this-&gt; as a pointer to the class that helps the compiler know which value we are referring to. One issue with the code above is it will no longer automatically build a default constructor for us. Attempting to set an Integer i1; will result in a compiler error, even though all the member values should default to zero and work fine. To fix this, we can tell the compiler to build the default constructor</p>
 
 
   <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Integer</span> {
@@ -513,7 +474,7 @@ MathJax.Hub.Config({
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>n_Value <span style="color:#f92672">=</span> n;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        }
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>};</span></span></code></pre></div>
-<p>An often despised part of the C++ programming lanaguage is implicit conversions. This is something that needs to be looked out for when building constructors as well. Consider this example</p>
+<p>An often despised part of the C++ programming language is implicit conversions. This is something that needs to be looked out for when building constructors as well. Consider this example</p>
 
 
   <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyClass</span> {
@@ -530,7 +491,7 @@ MathJax.Hub.Config({
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    display(<span style="color:#ae81ff">10</span>);
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>}</span></span></code></pre></div>
-<p>This example compiles and runs because the complier will implicitly convert the int 10 into MyClass. This is a scary prospect for a strongly typed language like C++ as it allows our program to be used in ways we did not anticipate or want. In most cases, it is best to mark the constructor as <em>explicit</em> to help ensure these types of conversions are not allowed</p>
+<p>This example compiles and runs because the compiler will implicitly convert the int 10 into MyClass. This is a scary prospect for a strongly typed language like C++ as it allows our program to be used in ways we did not anticipate or want. In most cases, it is best to mark the constructor as explicit to help ensure these types of conversions are not allowed</p>
 
 
   <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyClass</span> {
@@ -547,21 +508,21 @@ MathJax.Hub.Config({
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    display(<span style="color:#ae81ff">10</span>); <span style="color:#75715e">// compiler error, constructor is marked explicit
 </span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#75715e"></span>}</span></span></code></pre></div>
-<h1 id="initializer-lists">Initializer Lists<a href="#initializer-lists">
+<h4 id="initializer-lists">Initializer Lists<a href="#initializer-lists">
     <svg role="img" aria-labelledby="initializer-lists-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="initializer-lists-IconTitle">Link to this heading</title>
       <path d="M0 0h24v24H0z" fill="none"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg>
   </a>
-</h1><p>An initializer list in the constructor will initialize member variables to specific values just before the class constructor runs</p>
+</h4><p>An initializer list in the constructor will initialize member variables to specific values just before the class constructor runs</p>
 
 
   <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>Date<span style="color:#f92672">::</span>Date(<span style="color:#66d9ef">int</span> day, <span style="color:#66d9ef">int</span> month, <span style="color:#66d9ef">int</span> year) <span style="color:#f92672">:</span> year_(year) {
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    Day(day);
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    Month(month);
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}</span></span></code></pre></div>
-<p>In general, unless an invariant needs to be applied to the argument being passed in, prefer initialization over assignment within the constructor. Initialization sets the value as soon as the obejct exists, whereas assignment sets the value only after the objet comes into being. This means that assignment creates an opportunity to accidently use a variable before its value is set. Initialization is actually a requirement for const member functions and for many use cases in dynamic polymorphism.</p>
+<p>In general, unless an invariant needs to be applied to the argument being passed in, prefer initialization over assignment within the constructor. Initialization sets the value as soon as the object exists, whereas assignment sets the value only after the object comes into being. This means that assignment creates an opportunity to accidentally use a variable before its value is set. Initialization is actually a requirement for const member functions and for many use cases in dynamic polymorphism.</p>
 
 
   <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
@@ -583,7 +544,7 @@ MathJax.Hub.Config({
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg>
   </a>
-</h3><p>C++ supports value and referrence semantics for different needs. Passing objects by pointer or reference essentially means passing the memory address of the object so that it can be modified in other scopes. Passing by value means making a copy of the object, data being allocated to a new memory space. When passed by value, any modifications done in one scope will not be reflective in another scope. For primitive data types like int, float, bool, etc, we are safe to almost always pass the variable around by value. But often we must be more careful when working with user defined objects</p>
+</h3><p>C++ supports value and reference semantics for different needs. Passing objects by pointer or reference essentially means passing the memory address of the object so that it can be modified in other scopes. Passing by value means making a copy of the object, data being allocated to a new memory space. When passed by value, any modifications done in one scope will not be reflective in another scope. For primitive data types like int, float, bool, etc, we are safe to almost always pass the variable around by value. But often we must be more careful when working with user-defined objects</p>
 
 
   <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Integer</span> {
@@ -606,7 +567,7 @@ MathJax.Hub.Config({
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> i.getValue();
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>}</span></span></code></pre></div>
-<p>Running this code may cause a crash in debug mode. The reason is because of how C++ default copies values when passing by value. By default, C++ does a <em>shallow copy</em> of the object. A new copy of primitive types will be made for the new object be created, but for dynamically allocated data, C++ will end up copying the pointer to the new object instead of its underlying data. This is problematic when moving data between scopes because the following will happen:</p>
+<p>Running this code may cause a crash in debug mode. The reason is because of how C++ default copies values when passing by value. By default, C++ does a shallow copy of the object. A new copy of primitive types will be made for the new object to be created, but for dynamically allocated data, C++ will end up copying the pointer to the new object instead of its underlying data. This is problematic when moving data between scopes because the following will happen:</p>
 <ol>
 <li>We create a Integer class in Main() and pass it to the Print() function</li>
 <li>Passing to the print function by value triggers a copy, a new Integer object is created and the p_int memory address is copied from the original Integer to the new one.</li>
@@ -635,7 +596,7 @@ MathJax.Hub.Config({
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    p_int <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>(obj.p_int);
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>}</span></span></code></pre></div>
-<p>Once these two constructors are built, the Integer class can safely be passed around by value without concern since a deep copy of the entire object will now be generated. When we pass the Intger class to the Print() function, the user defined copy constructor will be called instead of compiler generated one which by default does the shallow copy.</p>
+<p>Once these two constructors are built, the Integer class can safely be passed around by value without concern since a deep copy of the entire object will now be generated. When we pass the Integer class to the Print() function, the user-defined copy constructor will be called instead of the compiler-generated one which by default does the shallow copy.</p>
 <h3 id="l-and-r-values">L and R Values<a href="#l-and-r-values">
     <svg role="img" aria-labelledby="l-and-r-values-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="l-and-r-values-IconTitle">Link to this heading</title>
@@ -714,7 +675,7 @@ MathJax.Hub.Config({
 	decoding="async"
 	>
 </p>
-<p>This will invalidate the original object since it no longer as a correct pointer to its dynamic data, but this is usually of no concern since it is a temporary (r-value) anyways. By adding overloaded constructors for r-values in our object, we can support moving these objects as r-values and improve the performance of our program</p>
+<p>This will invalidate the original object since it no longer has a correct pointer to its dynamic data, but this is usually of no concern since it is a temporary (r-value) anyway. By adding overloaded constructors for r-values in our object, we can support moving these objects as r-values and improve the performance of our program</p>
 
 
   <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Integer</span> {
@@ -740,7 +701,7 @@ MathJax.Hub.Config({
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    obj.p_int <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>;
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>}</span></span></code></pre></div>
-<p>With these new constructors in place, when passing an Integer to a function by value where that function will return an Integer itself, we should no longer expect the deep copy from the copy constructor to be performed. Instead the Integer within the Print() function will be returned as an r-value and effeciently moved back to the main() function as the returned Integer (this ignores that C++ often avoids all this using copy elision).</p>
+<p>With these new constructors in place, when passing an Integer to a function by value where that function will return an Integer itself, we should no longer expect the deep copy from the copy constructor to be performed. Instead, the Integer within the Print() function will be returned as an r-value and efficiently moved back to the main() function as the returned Integer (this ignores that C++ often avoids all this using copy elision).</p>
 <h3 id="the-rule-of-5">The Rule of 5<a href="#the-rule-of-5">
     <svg role="img" aria-labelledby="the-rule-of-5-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="the-rule-of-5-IconTitle">Link to this heading</title>
@@ -796,7 +757,7 @@ MathJax.Hub.Config({
       <div class="single-terms">
         
           
-          <a class="term" href="//localhost:51131/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+          <a class="term" href="//localhost:63207/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
           
         
       </div>
@@ -817,13 +778,13 @@ MathJax.Hub.Config({
         
         
         
-        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a51131%2fengineering%2fconstructors-and-move-semantics-in-cpp%2f&amp;source=%2f%2flocalhost%3a51131%2fengineering%2fconstructors-and-move-semantics-in-cpp%2f&amp;title=Constructors%20and%20Move%20Semantics%20in%20C%2b%2b&amp;summary=Constructors%20and%20Move%20Semantics%20in%20C%2b%2b" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a63207%2fengineering%2fconstructors-and-move-semantics-in-cpp%2f&amp;source=%2f%2flocalhost%3a63207%2fengineering%2fconstructors-and-move-semantics-in-cpp%2f&amp;title=Constructors%20and%20Move%20Semantics%20in%20C%2b%2b&amp;summary=Constructors%20and%20Move%20Semantics%20in%20C%2b%2b" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
           <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
         </a>
         
         
         
-        <a href="mailto:?subject=Christopher%20Weaver%20-%20Constructors%20and%20Move%20Semantics%20in%20C%2b%2b.&amp;body=Constructors%20and%20Move%20Semantics%20in%20C%2b%2b%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a51131%2fengineering%2fconstructors-and-move-semantics-in-cpp%2f%0a" target="_blank" class="social-btn email">
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Constructors%20and%20Move%20Semantics%20in%20C%2b%2b.&amp;body=Constructors%20and%20Move%20Semantics%20in%20C%2b%2b%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a63207%2fengineering%2fconstructors-and-move-semantics-in-cpp%2f%0a" target="_blank" class="social-btn email">
           <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
         </a>
       </ul>
@@ -831,35 +792,31 @@ MathJax.Hub.Config({
   </section>
   
         <div class="series">
-          <p>Part of the <a href="//localhost:51131/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
+          <p>Part of the <a href="//localhost:63207/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
           
           <ol>
               <li>
-                  <a href="//localhost:51131/engineering/compilers/">C&#43;&#43; Compilers</a>
+                  <a href="//localhost:63207/engineering/compilers/">C&#43;&#43; Compilers</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/microbenchmarking-in-c/">Microbenchmarking in C&#43;&#43;</a>
+                  <a href="//localhost:63207/engineering/microbenchmarking-in-c/">Microbenchmarking in C&#43;&#43;</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
+                  <a href="//localhost:63207/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
+                  <a href="//localhost:63207/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/testing-your-software/">Testing your software</a>
+                  <a href="//localhost:63207/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/solid/">SOLID</a>
-                
-              </li>
-              <li>
-                  <a href="//localhost:51131/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
+                  <a href="//localhost:63207/engineering/solid/">SOLID</a>
                 
               </li>
               <li>Constructors and Move Semantics in C&#43;&#43;<span class="series-this-post">This post!</span>
@@ -877,7 +834,7 @@ MathJax.Hub.Config({
   
   <div class="section footer">
     <p class="footer-copyright">&copy; 2024 &middot; 
-      <a href="//localhost:51131/">Christopher Weaver</a>
+      <a href="//localhost:63207/">Christopher Weaver</a>
       
     </p>
     
@@ -937,7 +894,7 @@ MathJax.Hub.Config({
   
   
   
-    <script src="//localhost:51131/custom.js"></script>
+    <script src="//localhost:63207/custom.js"></script>
   
 
 
@@ -945,7 +902,7 @@ MathJax.Hub.Config({
 
   
 
-<script src="//localhost:51131/main.js"></script>
+<script src="//localhost:63207/main.js"></script>
 
 
 </body>

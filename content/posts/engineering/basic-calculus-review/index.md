@@ -26,9 +26,11 @@ series:
 
 toc: true
 related: true
-social_share: false
+social_share: true
 newsletter: false
 disable_comments: false
+
+math: true
 ---
 
 I recently began reading 

@@ -1,5 +1,5 @@
 ---
 title: Projects
-summary: Tell visitors about your projects by customizing this text.
+summary: Projects built by Christopher Weaver
 description: Explore some of the projects I've worked on.
 ---

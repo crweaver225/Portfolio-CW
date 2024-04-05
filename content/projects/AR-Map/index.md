@@ -27,7 +27,7 @@ techstack:
 live_url: 
 source_url: 
 
-newsletter: true
+newsletter: false
 ---
 
 # AR-Map

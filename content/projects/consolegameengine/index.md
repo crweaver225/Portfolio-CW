@@ -25,7 +25,7 @@ techstack:
 live_url: https://www.youtube.com/watch?v=dHbLpaEQ0fc
 source_url: https://github.com/crweaver225/ConsoleGameEngine/assets/18660043/2cddb531-3843-43ae-a2ff-b68033590118
 
-newsletter: true
+newsletter: false
 ---
 
 # ConsoleGameEngine

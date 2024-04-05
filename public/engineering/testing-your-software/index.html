@@ -1,29 +1,6 @@
 
-
-
-<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51131&amp;path=livereload" data-no-instant defer></script><script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-</script>
-
 <!DOCTYPE html>
-<html lang="en-us"><head>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=63315&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,10 +26,10 @@ MathJax.Hub.Config({
 
 
 
-<link rel="stylesheet" href="//localhost:51131/scss/main.css" />
+<link rel="stylesheet" href="//localhost:63315/scss/main.css" />
 
 
-<link rel="stylesheet" href="//localhost:51131/custom.css" />
+<link rel="stylesheet" href="//localhost:63315/custom.css" />
 
   
 <meta name="robots" content="index, follow">
@@ -60,33 +37,31 @@ MathJax.Hub.Config({
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   
 
-<title>
-  &lt;title>Testing your software</title>
-</title>
+<title>Testing your software</title>
 
 
 <meta name="author" content="Christopher Weaver">
 
 <meta name="description" content="Portfolio site of Christopher Weaver.">
-<link rel="canonical" href="//localhost:51131/engineering/testing-your-software/">
+<link rel="canonical" href="//localhost:63315/engineering/testing-your-software/">
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Testing your software">
 <meta property="og:description" content="Design for Testability Link to this heading Building tests for your software is an awesome way to deal with the chellenges of changing things. The purpose of these tests is to be able to assert that all of your software functionally still works, even after making a change. Iglberger then makes what to some will be a controvertial statement: software shoudl be designed for testability.
 Lets consider the following Widget class and how we its private member function making writing tests challenging.">
-<meta property="og:url" content="//localhost:51131/engineering/testing-your-software/">
+<meta property="og:url" content="//localhost:63315/engineering/testing-your-software/">
 <meta property="article:published_time" content="2024-03-20T09:38:32-06:00">
   <meta property="article:modified_time" content="2024-03-20T09:38:32-06:00">
   
 
 
-  <meta name="og:image" content="//localhost:51131/images/default.png"/>
+  <meta name="og:image" content="//localhost:63315/images/default.png"/>
 
 
 
 
 
-  <meta property="og:see_also" content="//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/" /><meta property="og:see_also" content="//localhost:51131/engineering/ranges-in-cpp/" /><meta property="og:see_also" content="//localhost:51131/engineering/solid/" /><meta property="og:see_also" content="//localhost:51131/engineering/algorithms-in-the-c-standard-library/" /><meta property="og:see_also" content="//localhost:51131/engineering/automatic-type-deduction/" />
+  <meta property="og:see_also" content="//localhost:63315/engineering/constructors-and-move-semantics-in-cpp/" /><meta property="og:see_also" content="//localhost:63315/engineering/ranges-in-cpp/" /><meta property="og:see_also" content="//localhost:63315/engineering/solid/" /><meta property="og:see_also" content="//localhost:63315/engineering/algorithms-in-the-c-standard-library/" /><meta property="og:see_also" content="//localhost:63315/engineering/automatic-type-deduction/" />
   
 
 
@@ -102,7 +77,7 @@ Lets consider the following Widget class and how we its private member function 
 
 
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image" content="//localhost:51131/images/default.png"/>
+  <meta name="twitter:image" content="//localhost:63315/images/default.png"/>
 
 
 
@@ -117,13 +92,13 @@ Lets consider the following Widget class and how we its private member function 
   "@graph": [
     {
       "@type": "Person",
-      "@id": "//localhost:51131/#/schema/person/1",
+      "@id": "//localhost:63315/#/schema/person/1",
       "name": "Christopher Weaver",
-      "url": "//localhost:51131/",
+      "url": "//localhost:63315/",
       "image": {
         "@type": "ImageObject",
-        "@id": "//localhost:51131/#/schema/image/1",
-        "url": "//localhost:51131/images/default.png",
+        "@id": "//localhost:63315/#/schema/image/1",
+        "url": "//localhost:63315/images/default.png",
         "width": 453 ,
         "height": 455 ,
         "caption": "Christopher Weaver"
@@ -131,50 +106,50 @@ Lets consider the following Widget class and how we its private member function 
     },
     {
       "@type": "WebSite",
-      "@id": "//localhost:51131/#/schema/website/1",
-      "url": "//localhost:51131/",
+      "@id": "//localhost:63315/#/schema/website/1",
+      "url": "//localhost:63315/",
       "name": "Christopher Weaver",
       "description": "Portfolio site of Christopher Weaver.",
       "publisher": {
-        "@id": "//localhost:51131/#/schema/person/1"
+        "@id": "//localhost:63315/#/schema/person/1"
       }
     },
     {
       "@type": "WebPage",
-      "@id": "//localhost:51131/engineering/testing-your-software/",
-      "url": "//localhost:51131/engineering/testing-your-software/",
+      "@id": "//localhost:63315/engineering/testing-your-software/",
+      "url": "//localhost:63315/engineering/testing-your-software/",
       "name": "Testing your software",
       "description": "Portfolio site of Christopher Weaver.",
       "isPartOf": {
-        "@id": "//localhost:51131/#/schema/website/1"
+        "@id": "//localhost:63315/#/schema/website/1"
       },
       "about": {
-        "@id": "//localhost:51131/#/schema/person/1"
+        "@id": "//localhost:63315/#/schema/person/1"
       },
       "datePublished": "2024-03-20T09:38:32-06:00",
       "dateModified": "2024-03-20T09:38:32-06:00",
       "breadcrumb": {
-        "@id": "//localhost:51131/engineering/testing-your-software/#/schema/breadcrumb/1"
+        "@id": "//localhost:63315/engineering/testing-your-software/#/schema/breadcrumb/1"
       },
       "primaryImageOfPage": {
-        "@id": "//localhost:51131/engineering/testing-your-software/#/schema/image/2"
+        "@id": "//localhost:63315/engineering/testing-your-software/#/schema/image/2"
       },
       "inLanguage": "en-US",
       "potentialAction": [{
-        "@type": "ReadAction", "target": ["//localhost:51131/engineering/testing-your-software/"]
+        "@type": "ReadAction", "target": ["//localhost:63315/engineering/testing-your-software/"]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "//localhost:51131/engineering/testing-your-software/#/schema/breadcrumb/1",
+      "@id": "//localhost:63315/engineering/testing-your-software/#/schema/breadcrumb/1",
       "name": "Breadcrumbs",
       "itemListElement": [{
         "@type": "ListItem",
         "position":  1 ,
         "item": {
           "@type": "WebPage",
-          "@id": "//localhost:51131/",
-          "url": "//localhost:51131/",
+          "@id": "//localhost:63315/",
+          "url": "//localhost:63315/",
           "name": "Home"
           }
         },{
@@ -182,15 +157,15 @@ Lets consider the following Widget class and how we its private member function 
         "position":  2 ,
         "item": {
           "@type": "WebPage",
-          "@id": "//localhost:51131/engineering/",
-          "url": "//localhost:51131/engineering/",
+          "@id": "//localhost:63315/engineering/",
+          "url": "//localhost:63315/engineering/",
           "name": "Engineering"
           }
         },{
         "@type": "ListItem",
         "position":  3 ,
         "item": {
-          "@id": "//localhost:51131/engineering/testing-your-software/"
+          "@id": "//localhost:63315/engineering/testing-your-software/"
           }
         }]
     },
@@ -199,25 +174,25 @@ Lets consider the following Widget class and how we its private member function 
       "@graph": [
         {
           "@type": "Article",
-          "@id": "//localhost:51131/#/schema/article/1",
+          "@id": "//localhost:63315/#/schema/article/1",
           "headline": "Testing your software",
           "description": "",
           "isPartOf": {
-            "@id": "//localhost:51131/engineering/testing-your-software/"
+            "@id": "//localhost:63315/engineering/testing-your-software/"
           },
           "mainEntityOfPage": {
-            "@id": "//localhost:51131/engineering/testing-your-software/"
+            "@id": "//localhost:63315/engineering/testing-your-software/"
           },
           "datePublished": "2024-03-20T09:38:32-06:00",
           "dateModified": "2024-03-20T09:38:32-06:00",
           "author": {
-            "@id": "//localhost:51131/#/schema/person/1"
+            "@id": "//localhost:63315/#/schema/person/1"
           },          
           "publisher": {
-            "@id": "//localhost:51131/#/schema/person/1"
+            "@id": "//localhost:63315/#/schema/person/1"
           },
           "image": {
-            "@id": "//localhost:51131/engineering/testing-your-software/#/schema/image/2"
+            "@id": "//localhost:63315/engineering/testing-your-software/#/schema/image/2"
           }
         }
       ]
@@ -226,9 +201,9 @@ Lets consider the following Widget class and how we its private member function 
       "@graph": [
         {
           "@type": "ImageObject",
-          "@id": "//localhost:51131/engineering/testing-your-software/#/schema/image/2",
-          "url": "//localhost:51131/images/default.png",
-          "contentUrl": "//localhost:51131/images/default.png",
+          "@id": "//localhost:63315/engineering/testing-your-software/#/schema/image/2",
+          "url": "//localhost:63315/images/default.png",
+          "contentUrl": "//localhost:63315/images/default.png",
           "caption": "Testing your software"
         }
       ]
@@ -245,10 +220,11 @@ Lets consider the following Widget class and how we its private member function 
 
   
 
+  
 </head><body>
     <header class="container">
   <nav class="main-nav" id="js-navbar">
-    <a class="logo" href="//localhost:51131/">Christopher Weaver</a>
+    <a class="logo" href="//localhost:63315/">Christopher Weaver</a>
     <ul class="menu" id="js-menu">
       
       
@@ -263,10 +239,6 @@ Lets consider the following Widget class and how we its private member function 
           
             <li class="menu-item">
               <a href="/about/" class="menu-link">About</a>                  
-            </li>
-          
-            <li class="menu-item">
-              <a href="/contact/" class="menu-link">Contact</a>                  
             </li>
           
         </ul>
@@ -361,7 +333,7 @@ Lets consider the following Widget class and how we its private member function 
       
       <div class="post-list-categories">
         
-          <a href="//localhost:51131/categories/engineering/">Engineering</a>
+          <a href="//localhost:63315/categories/engineering/">Engineering</a>
         
       </div>
       
@@ -371,7 +343,7 @@ Lets consider the following Widget class and how we its private member function 
     <div class="single-terms">
       
       
-      <a class="term" href="//localhost:51131/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+      <a class="term" href="//localhost:63315/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
       
       
     </div>
@@ -398,38 +370,38 @@ Lets consider the following Widget class and how we its private member function 
 
   <div class="single-post-contents">
       <div class="series">
-        <p>Part of the <a href="//localhost:51131/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
+        <p>Part of the <a href="//localhost:63315/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
         
         <ol class="series-list">
             <li>
-                <a href="//localhost:51131/engineering/compilers/">C&#43;&#43; Compilers</a>
+                <a href="//localhost:63315/engineering/compilers/">C&#43;&#43; Compilers</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/microbenchmarking-in-c/">Microbenchmarking in C&#43;&#43;</a>
+                <a href="//localhost:63315/engineering/microbenchmarking-in-c/">Microbenchmarking in C&#43;&#43;</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
+                <a href="//localhost:63315/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
+                <a href="//localhost:63315/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
               
             </li>
             <li>Testing your software<span class="series-this-post">This post!</span>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/solid/">SOLID</a>
+                <a href="//localhost:63315/engineering/solid/">SOLID</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
+                <a href="//localhost:63315/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
               
             </li>
             <li>
-                <a href="//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
+                <a href="//localhost:63315/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
               
             </li>
         </ol>
@@ -485,7 +457,7 @@ Lets consider the following Widget class and how we its private member function 
       <div class="single-terms">
         
           
-          <a class="term" href="//localhost:51131/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+          <a class="term" href="//localhost:63315/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
           
         
       </div>
@@ -506,13 +478,13 @@ Lets consider the following Widget class and how we its private member function 
         
         
         
-        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a51131%2fengineering%2ftesting-your-software%2f&amp;source=%2f%2flocalhost%3a51131%2fengineering%2ftesting-your-software%2f&amp;title=Testing%20your%20software&amp;summary=Testing%20your%20software" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a63315%2fengineering%2ftesting-your-software%2f&amp;source=%2f%2flocalhost%3a63315%2fengineering%2ftesting-your-software%2f&amp;title=Testing%20your%20software&amp;summary=Testing%20your%20software" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
           <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
         </a>
         
         
         
-        <a href="mailto:?subject=Christopher%20Weaver%20-%20Testing%20your%20software.&amp;body=Testing%20your%20software%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a51131%2fengineering%2ftesting-your-software%2f%0a" target="_blank" class="social-btn email">
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Testing%20your%20software.&amp;body=Testing%20your%20software%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a63315%2fengineering%2ftesting-your-software%2f%0a" target="_blank" class="social-btn email">
           <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
         </a>
       </ul>
@@ -520,38 +492,38 @@ Lets consider the following Widget class and how we its private member function 
   </section>
   
         <div class="series">
-          <p>Part of the <a href="//localhost:51131/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
+          <p>Part of the <a href="//localhost:63315/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
           
           <ol>
               <li>
-                  <a href="//localhost:51131/engineering/compilers/">C&#43;&#43; Compilers</a>
+                  <a href="//localhost:63315/engineering/compilers/">C&#43;&#43; Compilers</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/microbenchmarking-in-c/">Microbenchmarking in C&#43;&#43;</a>
+                  <a href="//localhost:63315/engineering/microbenchmarking-in-c/">Microbenchmarking in C&#43;&#43;</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
+                  <a href="//localhost:63315/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
+                  <a href="//localhost:63315/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
                 
               </li>
               <li>Testing your software<span class="series-this-post">This post!</span>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/solid/">SOLID</a>
+                  <a href="//localhost:63315/engineering/solid/">SOLID</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
+                  <a href="//localhost:63315/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
                 
               </li>
               <li>
-                  <a href="//localhost:51131/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
+                  <a href="//localhost:63315/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
                 
               </li>
           </ol>
@@ -566,7 +538,7 @@ Lets consider the following Widget class and how we its private member function 
   
   <div class="section footer">
     <p class="footer-copyright">&copy; 2024 &middot; 
-      <a href="//localhost:51131/">Christopher Weaver</a>
+      <a href="//localhost:63315/">Christopher Weaver</a>
       
     </p>
     
@@ -626,7 +598,7 @@ Lets consider the following Widget class and how we its private member function 
   
   
   
-    <script src="//localhost:51131/custom.js"></script>
+    <script src="//localhost:63315/custom.js"></script>
   
 
 
@@ -634,7 +606,7 @@ Lets consider the following Widget class and how we its private member function 
 
   
 
-<script src="//localhost:51131/main.js"></script>
+<script src="//localhost:63315/main.js"></script>
 
 
 </body>

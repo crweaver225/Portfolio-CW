@@ -28,7 +28,9 @@ Skills:
 **Live**: Yorkville, IL  
 **Family**: Husband and father of two  
 **Religion**: Christian  
-**Hobby**: I enjoy reading and writing about philosophy. I like thinking about the implications of epistomology on politics, ethics, and the nature of the universe. I consider myself a Kantian in the tradition of Ludwig von Mises and Hans-Hermann Hoppe. 
+**Hobbies**: I enjoy reading and writing about philosophy. I like thinking about the implications of epistomology on politics, ethics, and the nature of the universe. I consider myself a Kantian in the tradition of Ludwig von Mises and Hans-Hermann Hoppe. 
+
+I also love hiking and live outdoor music.
 
 ## My Experience
 
@@ -50,10 +52,11 @@ Skills:
 ## Technical Certifications
 
 * Udacity
-    * C++
-    * Machine Learning
-    * iOS App Development
+    * [C++](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213)
+    * [Machine Learning](https://www.udacity.com/course/aws-machine-learning-engineer-nanodegree--nd189)
+    * [Deep Learning](https://www.udacity.com/course/deep-learning-nanodegree--nd101)
+    * [iOS App Development](https://www.udacity.com/course/ios-developer-nanodegree--nd003)
 * IBM
-    * Data Science Professional Certificate
+    * [Data Science Professional Certificate](https://www.coursera.org/professional-certificates/ibm-data-science?utm_medium=sem&utm_source=gg&utm_campaign=B2C_NAMER_ibm-data-science_ibm_FTCOF_professional-certificates_country-US-country-CA&campaignid=1876641588&adgroupid=117357906417&device=c&keyword=&matchtype=&network=g&devicemodel=&adposition=&creativeid=507196710149&hide_mobile_promo&gad_source=1&gclid=CjwKCAjwtqmwBhBVEiwAL-WAYaJA86A7LSJJM5htxnUh2NpGMNk6xa240vkj9siSPO_RRTMuK9c5mxoCBm4QAvD_BwE)
 
 You can contact me [here]({{< ref "contact" >}})

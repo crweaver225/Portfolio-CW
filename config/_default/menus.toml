@@ -20,13 +20,6 @@
     weight = 2
 
 [[main]]
-    identifier = "contact"
-    name = "Contact"
-    url = "/contact/"
-    parent = "work"
-    weight = 3
-
-[[main]]
     # Top-level menu entry
     identifier = "writing"
     name = "Writing"

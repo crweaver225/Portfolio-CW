@@ -1273,20 +1273,6 @@ body {
   margin: 20px 0;
   max-width: 750px; }
 
-.post-entry-img {
-  position: relative;
-  border-radius: 10px 10px 0 0;
-  min-height: 1rem; }
-  .post-entry-img img {
-    width: 50%;
-    height: 15vh;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
-    border-bottom: 1px solid var(--color-contrast-low);
-    z-index: -1;
-    position: relative;
-    filter: grayscale(50%); }
-
 .post-entry-divider {
   background-color: var(--color-contrast-low);
   content: "";

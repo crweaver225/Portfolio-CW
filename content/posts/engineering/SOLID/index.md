@@ -7,7 +7,7 @@ slug: SOLID
 author: Christopher Weaver
 
 draft: false
-date: 2024-03-20T09:38:32-06:00
+date: 2024-03-25T09:38:32-06:00
 lastmod: 
 expiryDate: 
 publishDate: 
@@ -55,7 +55,7 @@ The acronyn stands for
 4) Interface segregation principle
 5) Dependency inversion principle
 
-#### Single-responsibility principle
+### Single-responsibility principle
 
 One of the best strategies for reducing the types of artificial dependencies and allowing for a simplification of code change is breaking down systems into small, understandable pieces. The first part of the *SOLID* principle directly ties in to the separation of concerns: *Single-Responsibility Principle* (SRP). 
 

@@ -29,20 +29,20 @@ newsletter: false
 disable_comments: false
 ---
 
-### Constructors
+#### Constructors
 
-It is fair to say C++ is not explicitly a object oriented programming language. You can certainly use C++ with other paradigms. But C++ has all the tools needed for object orientation and has a long history of being used in that way. One of the foundational parts of an object in C++ is its constructor. The constructor is invoked automaticaly during the initialization of an object and as we will see, can be overloaded in a bunch of different ways. 
+It is fair to say C++ is not explicitly an object-oriented programming language. You can certainly use C++ with other paradigms. But C++ has all the tools needed for object orientation and has a long history of being used in that way. One of the foundational parts of an object in C++ is its constructor. The constructor is invoked automatically during the initialization of an object and, as we will see, can be overloaded in a bunch of different ways.
 
 #### Default Constructor
 
-This constructor has no arguments and can be automatically synthesized by the compiler if no other user-defined constructor exists. 
+This constructor has no arguments and can be automatically synthesized by the compiler if no other user-defined constructor exists.
 ```C++
 Car c; // Invokes default constructor
 ```
 
 #### Parameterized Constructor
 
-The parameterized constructor has one or more arguments. It will accept one or more arguments and will never be synthesized by the compiler. The usage of a parameterized constructor will block the compiler from building a default constructor. 
+The parameterized constructor has one or more arguments. It will accept one or more arguments and will never be synthesized by the compiler. The usage of a parameterized constructor will block the compiler from building a default constructor.
 
 ``` C++
 class Integer {
@@ -59,7 +59,7 @@ class Integer {
         }
 }
 ```
-The example above overloads the constructor with a couple of different options. Furthermore you can see in the second constructor there was an ambigious use of m_Value and n_Value between the named constructor parameters and the class members. To fix that, we use a this-> as a pointer to the class that helps the compiler know which value we are referring to. One issue with the code above is it will no longer automatically build a default constructor for us. Attempting to set an Integer i1; will result in a comiler error, even though all the member values should default to zero and work fine. To fix this, we can tell the compiler to build the default constructor
+The example above overloads the constructor with a couple of different options. Furthermore, you can see in the second constructor there was an ambiguous use of m_Value and n_Value between the named constructor parameters and the class members. To fix that, we use this-> as a pointer to the class that helps the compiler know which value we are referring to. One issue with the code above is it will no longer automatically build a default constructor for us. Attempting to set an Integer i1; will result in a compiler error, even though all the member values should default to zero and work fine. To fix this, we can tell the compiler to build the default constructor
 ```C++
 class Integer {
         int m_Value{0};
@@ -76,7 +76,7 @@ class Integer {
         }
 };
 ```
-An often despised part of the C++ programming lanaguage is implicit conversions. This is something that needs to be looked out for when building constructors as well. Consider this example
+An often despised part of the C++ programming language is implicit conversions. This is something that needs to be looked out for when building constructors as well. Consider this example
 ```C++
 class MyClass {
     public:
@@ -93,7 +93,7 @@ int main() {
     display(10);
 }
 ```
-This example compiles and runs because the complier will implicitly convert the int 10 into MyClass. This is a scary prospect for a strongly typed language like C++ as it allows our program to be used in ways we did not anticipate or want. In most cases, it is best to mark the constructor as *explicit* to help ensure these types of conversions are not allowed
+This example compiles and runs because the compiler will implicitly convert the int 10 into MyClass. This is a scary prospect for a strongly typed language like C++ as it allows our program to be used in ways we did not anticipate or want. In most cases, it is best to mark the constructor as explicit to help ensure these types of conversions are not allowed
 ```C++
 class MyClass {
     public:
@@ -110,7 +110,7 @@ int main() {
     display(10); // compiler error, constructor is marked explicit
 }
 ```
-# Initializer Lists
+#### Initializer Lists
 An initializer list in the constructor will initialize member variables to specific values just before the class constructor runs
 ```C++
 Date::Date(int day, int month, int year) : year_(year) {
@@ -118,7 +118,7 @@ Date::Date(int day, int month, int year) : year_(year) {
     Month(month);
 }
 ```
-In general, unless an invariant needs to be applied to the argument being passed in, prefer initialization over assignment within the constructor. Initialization sets the value as soon as the obejct exists, whereas assignment sets the value only after the objet comes into being. This means that assignment creates an opportunity to accidently use a variable before its value is set. Initialization is actually a requirement for const member functions and for many use cases in dynamic polymorphism. 
+In general, unless an invariant needs to be applied to the argument being passed in, prefer initialization over assignment within the constructor. Initialization sets the value as soon as the object exists, whereas assignment sets the value only after the object comes into being. This means that assignment creates an opportunity to accidentally use a variable before its value is set. Initialization is actually a requirement for const member functions and for many use cases in dynamic polymorphism.
 ```C++
 class Animal {
     std::string name_;
@@ -132,11 +132,11 @@ class Dog: public Animal {
         void Talk() const override;
 }
 ```
-Since the Dog inherits from the Animal, C++ requires we first initialize the Animal base class before we finish initializing the Dog. 
+Since the Dog inherits from the Animal, C++ requires we first initialize the Animal base class before we finish initializing the Dog.
 
 ### Copy Constructors
 
-C++ supports value and referrence semantics for different needs. Passing objects by pointer or reference essentially means passing the memory address of the object so that it can be modified in other scopes. Passing by value means making a copy of the object, data being allocated to a new memory space. When passed by value, any modifications done in one scope will not be reflective in another scope. For primitive data types like int, float, bool, etc, we are safe to almost always pass the variable around by value. But often we must be more careful when working with user defined objects
+C++ supports value and reference semantics for different needs. Passing objects by pointer or reference essentially means passing the memory address of the object so that it can be modified in other scopes. Passing by value means making a copy of the object, data being allocated to a new memory space. When passed by value, any modifications done in one scope will not be reflective in another scope. For primitive data types like int, float, bool, etc, we are safe to almost always pass the variable around by value. But often we must be more careful when working with user-defined objects
 ```C++
 class Integer {
     int *p_int;
@@ -159,7 +159,7 @@ int main() {
     return 0;
 }
 ```
-Running this code may cause a crash in debug mode. The reason is because of how C++ default copies values when passing by value. By default, C++ does a *shallow copy* of the object. A new copy of primitive types will be made for the new object be created, but for dynamically allocated data, C++ will end up copying the pointer to the new object instead of its underlying data. This is problematic when moving data between scopes because the following will happen:
+Running this code may cause a crash in debug mode. The reason is because of how C++ default copies values when passing by value. By default, C++ does a shallow copy of the object. A new copy of primitive types will be made for the new object to be created, but for dynamically allocated data, C++ will end up copying the pointer to the new object instead of its underlying data. This is problematic when moving data between scopes because the following will happen:
 1) We create a Integer class in Main() and pass it to the Print() function
 2) Passing to the print function by value triggers a copy, a new Integer object is created and the p_int memory address is copied from the original Integer to the new one. 
 3) The Print function finishes and the Integer class within the function goes out of scope triggering the destructor
@@ -187,7 +187,7 @@ Integer& Integer::operator = (const Integer &obj) {
     return *this;
 }
 ```
-Once these two constructors are built, the Integer class can safely be passed around by value without concern since a deep copy of the entire object will now be generated. When we pass the Intger class to the Print() function, the user defined copy constructor will be called instead of compiler generated one which by default does the shallow copy. 
+Once these two constructors are built, the Integer class can safely be passed around by value without concern since a deep copy of the entire object will now be generated. When we pass the Integer class to the Print() function, the user-defined copy constructor will be called instead of the compiler-generated one which by default does the shallow copy.
 
 ### L and R Values
 C++ differentiates between L and R values with major implications any C++ enigneer needs to be aware of. An L value:
@@ -241,7 +241,7 @@ When using move semantics, instead of allocating new memory in order to copy the
 
 ![Book Image](moving-vector.png "Book Image")
 
-This will invalidate the original object since it no longer as a correct pointer to its dynamic data, but this is usually of no concern since it is a temporary (r-value) anyways. By adding overloaded constructors for r-values in our object, we can support moving these objects as r-values and improve the performance of our program
+This will invalidate the original object since it no longer has a correct pointer to its dynamic data, but this is usually of no concern since it is a temporary (r-value) anyway. By adding overloaded constructors for r-values in our object, we can support moving these objects as r-values and improve the performance of our program
 ```C++
 class Integer {
     int *p_int;
@@ -267,7 +267,7 @@ Integer& Integer::operator = (Integer &&obj) {
     return *this;
 }
 ```
-With these new constructors in place, when passing an Integer to a function by value where that function will return an Integer itself, we should no longer expect the deep copy from the copy constructor to be performed. Instead the Integer within the Print() function will be returned as an r-value and effeciently moved back to the main() function as the returned Integer (this ignores that C++ often avoids all this using copy elision). 
+With these new constructors in place, when passing an Integer to a function by value where that function will return an Integer itself, we should no longer expect the deep copy from the copy constructor to be performed. Instead, the Integer within the Print() function will be returned as an r-value and efficiently moved back to the main() function as the returned Integer (this ignores that C++ often avoids all this using copy elision). 
 
 ### The Rule of 5
 
@@ -305,4 +305,4 @@ int main() {
     Print(std::move(ii));
 }
 ```
-std::move() forces the object to use the move constructor when creating the i Integer within the Print function instead of the copy constructor. The pro of this is the efficiency we gain from such an operation, the negative is if we try to use the ii variable after calling the Print function in main(), we will likely have undefined behavior since its data has been moved. 
+std::move() forces the object to use the move constructor when creating the i Integer within the Print function instead of the copy constructor. The pro of this is the efficiency we gain from such an operation, the negative is if we try to use the ii variable after calling the Print function in main(), we will likely have undefined behavior since its data has been moved.
