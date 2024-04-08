@@ -12,7 +12,7 @@ lastmod:
 expiryDate: 
 publishDate: 
 
-feature_image:
+feature_image: cpp-constructor.jpeg
 feature_image_alt: 
 
 categories:

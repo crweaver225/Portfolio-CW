@@ -60,6 +60,6 @@ about_page_socials = true
 [social.share]
   facebook = false
   linkedin = true
-  twitter = false
+  twitter = true
   reddit = false
   email = true
