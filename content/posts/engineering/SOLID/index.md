@@ -12,7 +12,7 @@ lastmod:
 expiryDate: 
 publishDate: 
 
-feature_image:
+feature_image: Solid.png
 feature_image_alt: 
 
 categories:
@@ -31,13 +31,13 @@ disable_comments: false
 
 ### Design for Change
 
-Building software that does its design task is often onlyl half the battle. Often it is the case that we need our software to change and be adaptable over time as requirements and needs change. One of the essential needs of good software is the ability to change it easily. Good software design is crucial to making adaptable software possible. Often with bad design patterns ever the most simple change can turn into a complicated endevour as seemingy unrelated functionality breaks from your "minor change". 
+Building software that does its designed task is often only half the battle. It is also the case that we need our software to adjust and be adaptable over time as requirements and needs change. One of the essential needs of good software is the ability to change it easily. Good software design is crucial to making adaptable software possible. Often with bad design patterns even the most simple change can turn into a complicated endevour as seemingy unrelated functionality breaks from your "minor change". 
 
-Our major culprit to flexible and robust software is dependencies. The coupling of different segments of code in order to form features and functionality. The interaction between code segments that we describe as dependency is a required part of writing software. But we have flexibility in how this is done, and choosing the right approach to managing dependencies goes a long way towards building better software systems.
+Our major culprit to preventing flexible and robust software is dependencies. The coupling of different segments of code in order to form features and functionality. The interaction between code segments that we describe as dependency is a required part of writing software. But we have flexibility in how this is done, and choosing the right approach to managing dependencies goes a long way towards building better software systems.
 
 ### SOLID
 
-SOLID is a mnemonic acronym for five software design patters intended to make your software more understandable, flexible, and maintainable. Most of what I will be detailing below comes from
+SOLID is a mnemonic acronym for five software design patterns intended to make your software more understandable, flexible, and maintainable. Most of what I will be detailing below comes from
 
 ***C++ Software Design***
 
@@ -47,7 +47,7 @@ SOLID is a mnemonic acronym for five software design patters intended to make yo
 
 I highly recommend the book, you can find it for purchase [here](https://www.amazon.com/Software-Design-Principles-Patterns-High-Quality/dp/1098113160/ref=sr_1_3?crid=3EIAKRJ6I9RYZ&dib=eyJ2IjoiMSJ9.leTWyGrelAfYNVsZmlqjNIIWuByFnaRuHn0QbI4jC74JFVAJM4QMV1IHHuxfxSJolTytjLL7EIgzeoxgr6DwgXcD7bDvgz7VWzkXdk2iHAzjXEMDPDzABa59mDvIZocmPwIH2uHwFCGB-sza3M1Kf5F1AwCK6t5g_p34kZsdQ7DDNocCgBKqsGQP4Sp2COFMATzuHyLjjznLijhGbNDfUipO2okLHYt_QO84nDIFnf0.ZEvP6-KyR-IGuLWK11zPIbzh_y0d6uYiCDaOwE4Gais&dib_tag=se&keywords=c%2B%2B+software+design&qid=1711117286&sprefix=c%2B%2B+softwar%2Caps%2C100&sr=8-3)
 
-The acronyn stands for
+The acronym stands for
 
 1) Single-responsibility principle
 2) Open-close principle
@@ -59,7 +59,7 @@ The acronyn stands for
 
 One of the best strategies for reducing the types of artificial dependencies and allowing for a simplification of code change is breaking down systems into small, understandable pieces. The first part of the *SOLID* principle directly ties in to the separation of concerns: *Single-Responsibility Principle* (SRP). 
 
-The *SRP* in its colloquial form says "Everything should just do one thing". What this exactly means is certianly up for interpretation. But I found the example used on pg. 12 to be extremely helpful concrete example. Consider this Document class
+The *SRP* in its colloquial form says "Everything should just do one thing". What this exactly means is certianly up for interpretation. But I found the example used on pg. 12 to be an extremely helpful concrete example. Consider this Document class
 ```C++
 class Document {
   public:
@@ -70,9 +70,9 @@ class Document {
 ```
 This purely abstract class looks eerily similar to classes I have personally written many times. On its surface there are a lot of things to like about it. This is a form of runtime polymorphism that allows our code to generically handle lots of different types without needing to know the nitty gritty details of how they implement their functionalities. Our document class appears to be well built to encapsulate and abstract away implementation details that other parts of code do not need to know. 
 
-But this class is a bad design because of contains multiple artificial dependencies. First, exportTOJSON() needs to be implemented by all derived classes (even if the derived class does not support exporting to JSON!). Often in C++, things like implementing JSON exports is left to a third party library. If that is the case, all derived classes will be seperately using this library. If the time comes where a change is made to which library is used, we now need to go into each derived class and make the change (each derived class is coupled to each other in that all of them need the same change based on a change to a library). 
+But this class is a bad design because it contains multiple artificial dependencies. First, exportTOJSON() needs to be implemented by all derived classes (even if the derived class does not support exporting to JSON!). Often in C++, things like implementing JSON exports is left to a third party library. If that is the case, all derived classes will be seperately using this library. If the time comes where a change is made to which library is used, we now need to go into each derived class and make the change (each derived class is coupled to each other in that all of them need the same change based on a change to a library). 
 
-Another dependency is introduced in the serialize() function which will likely need to know which kind of document it needs to serialize its contents into. A common approach is to build an document type enum that each derived class uses to help understand its own state and how it should proceed with serialization. 
+Another dependency is introduced in the serialize() function which will likely need to know which kind of document it needs to serialize its contents into. A common approach is to build a document type enum that each derived class uses to help understand its own state and how it should proceed with serialization. 
 ```C++
 enum class DocumentType {
   pdf,
@@ -87,13 +87,13 @@ class Document {
     virtual ~Document() = default;
 }
 ```
-Obviously we have now lost two important features we need. We will later discuss how to better support exporting to JSON and serialization for this document class. 
+Obviously we have now lost two important features we need. We will later discuss in the Interface Segregation Principle section how to better support exporting to JSON and serialization for this document class. 
 
 ### Open-close principle
 
 Another part of *SOLID* is the *Open-Closed Principle* (OCP). This principle states that classes should be open to extension, but closed to modification. Consider the case where you build a class to complete its single responsibility. You test the class and you ship it off to the client. But now you need to add new functionality by adding another interface. Updating the class itself means we need to re-test and ship this same class out again with the changes. Furthermore, whenever a base class needs to be changed, there can be numerous implications for the derived classes. Therefore we should instead require that classes be extended when change is required. But this extension should be easy and should not modify existing code.
 
-Consider the example of a product class. We need to be able to filter by different criterion including color and size. A poor design patter would be to build another class called ProductFilter with interfaces for filtering by these criteria. The reason being that over time what we need to filter for will likely change, meaning we will need to change the ProductFilter class. Instead check out the example below where we build a BetterFilter class that can be extended using different templates. 
+Consider the example of a product class. We need to be able to filter by different criterion including color and size. A poor design pattern would be to build another class called ProductFilter with interfaces for filtering by these criteria. The reason being that over time what we need to filter for will likely change, meaning we will need to change the ProductFilter class. Instead check out the example below where we build a BetterFilter class that can be extended using different templates. 
 
 ```C++
 
@@ -202,7 +202,7 @@ class Square: public Rectangle {
   int getArea() const override;
 }
 ```
-From a mathematical standpoint, having a square inherit from a rectangle makes sense. But consider this problem. When computing the getArea() function, we expect the width with be multiplied by the height. If we set the height to 7 and the width to 4, we expect getArea() = 24. But this will not be the case for the Square class which must have an equal width and height. For the square class, setting the height and width separately makes not sense. When dealing with abstractions of this type, we may well have a function like this:
+From a mathematical standpoint, having a square inherit from a rectangle makes sense. But consider this problem. When computing the getArea() function, we expect the width to be multiplied by the height. If we set the height to 7 and the width to 4, we expect getArea() = 24. But this will not be the case for the Square class which must have an equal width and height. For the square class, setting the height and width separately makes no sense. When dealing with abstractions of this type, we may well have a function like this:
 
 ```C++
 void transform(Rectangle &rectanle) {
@@ -210,7 +210,7 @@ void transform(Rectangle &rectanle) {
   rectangle.setHeight(4);
 }
 ```
-Our expectaion is this rectangle has a height of 4 and a width of 7. But if the actual derived class is a square, this is not be the case and unexpected results may occur. 
+Our expectaion is this rectangle has a height of 4 and a width of 7. But if the actual derived class is a square, this is not the case and unexpected results may occur. 
 
 It is important that our derived classes can always be subsituted for a based class without any issues or violation of our expectations. 
 
@@ -239,14 +239,14 @@ void exportDocument(JSONExportable const& exportable) {
   exportable.exportToJSON(/*pass arguments*/);
 }
 ```
-Now the JSONExportable functionality no longer depends on the the serialization functionality or the ByteStream class. 
+Now the JSONExportable functionality no longer depends on the serialization functionality or the ByteStream class. 
 
 ### Dependency Inversion Principle
 
-The *Dependency Inversion Principle* simples states that for the sake of dependencies, you should depend on abstractions instead of concrete types or implementation details. This principle can be broken down into two rules
+The *Dependency Inversion Principle* simples states that for the sake of dependencies, you should depend on abstractions instead of concrete types or implementation details. This principle can be broken down into two rules:
 
 1) High-level modules (code that is stable, with low dependency), should not depend on low-level modules (malleable, volitile, high dependency). Both should depend on abstractions. 
-2) Abstractions should not depend on details. Instead details shoudl depend on abstractions. 
+2) Abstractions should not depend on details. Instead details should depend on abstractions. 
 
 Consider this example that has a high level and low level module. 
 ```C++
@@ -297,7 +297,7 @@ int main() {
 }
 ```
 
-Here we have a high level module recieving a low level module as a dependency. The research class is aware of the Relationships class and impliments its part with using the vector within the Relationships class. But since Relationships is low-level, it is subject to change. Perhaps it stops using a vector or moves that vector to be private. Both changes will brake our high level code. 
+Here we have a high level module recieving a low level module as a dependency. The research class is aware of the Relationships class and implements its part using the vector within the Relationships class. But since Relationships is low-level, it is subject to change. Perhaps it stops using a vector or moves that vector to be private. Both changes will brake our high level code. 
 
 To fix this, we need to introduce another abstraction. In this example I create the RelationshipBrowser class (a pure virtual class) which will act as our abstraction that mediates and removes the dependency of our high level code on our low level implementation details. 
 
@@ -363,3 +363,7 @@ int main() {
 ```
 
 Now Research no longer has any knowledge of the Relationship class and will continue to work even if changes are made to the Relationship class. 
+
+### Conclusion
+
+Like most design patterns, SOLID is a tool to write better code. An engineers goal should never be to write code that is SOLID, but to use SOLID to help write code. Engineers must be flexible to all the factors that make up the software they are working on. Sometimes, using SOLID in your source code is a bad idea. Software is a means to an end, not the end itself. The same applies to SOLID. 

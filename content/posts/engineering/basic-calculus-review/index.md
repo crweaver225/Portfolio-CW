@@ -153,7 +153,8 @@ $$
 This function is going to map out into a three dimensional graph and will have multiple slopes based on the combination of all three coordinates. What we want to do here is figure out the slope for each input as a way of understanding the slope for one direction on our graph, assuming all others are held constant. We need to isolate each input parameter in the function to compute its own specific gradient
 $$
 f(x,y) = 2x^3 + 3y^3
-(d/dx)2x^3 + 3y^3 = 6x^2 (here we multiply the exponent by the coefficient and decrement the exponent)
+(d/dx)2x^3 + 3y^3 = 6x^2$$ (above we multiply the exponent by the coefficient and decrement the exponent)
+$$
 (d/dy)2x^3 + 3y^3 = 9y^2
 $$
 So for (x,y) values of (1,2), the slope with respect to x is 6 and the slope with respect to y is 36. 
