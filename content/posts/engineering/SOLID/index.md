@@ -19,8 +19,10 @@ categories:
 - Engineering
 tags:
 - C++
+- Design Patterns
 series:
 - C++
+- Design Patterns
 
 toc: true
 related: true
