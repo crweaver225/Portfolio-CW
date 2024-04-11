@@ -2,285 +2,285 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:60354/tags/c&#43;&#43;/</loc>
+    <loc>//localhost:63048/tags/c&#43;&#43;/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/series/c&#43;&#43;/</loc>
+    <loc>//localhost:63048/series/c&#43;&#43;/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/categories/</loc>
+    <loc>//localhost:63048/categories/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/</loc>
+    <loc>//localhost:63048/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/tags/design-patterns/</loc>
+    <loc>//localhost:63048/tags/design-patterns/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/series/design-patterns/</loc>
+    <loc>//localhost:63048/series/design-patterns/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/categories/engineering/</loc>
+    <loc>//localhost:63048/categories/engineering/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/</loc>
+    <loc>//localhost:63048/engineering/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/posts/</loc>
+    <loc>//localhost:63048/posts/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/series/</loc>
+    <loc>//localhost:63048/series/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/tags/</loc>
+    <loc>//localhost:63048/tags/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/the-visitor-design-pattern/</loc>
+    <loc>//localhost:63048/engineering/the-visitor-design-pattern/</loc>
     <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/categories/epistomology/</loc>
+    <loc>//localhost:63048/categories/epistomology/</loc>
     <lastmod>2024-04-04T11:31:19-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/categories/philosophy/</loc>
+    <loc>//localhost:63048/categories/philosophy/</loc>
     <lastmod>2024-04-04T11:31:19-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/</loc>
+    <loc>//localhost:63048/philosophy/</loc>
     <lastmod>2024-04-04T11:31:19-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/technology-and-the-nature-of-intelligence/</loc>
+    <loc>//localhost:63048/philosophy/technology-and-the-nature-of-intelligence/</loc>
     <lastmod>2024-04-04T11:31:19-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/constructors-and-move-semantics-in-cpp/</loc>
+    <loc>//localhost:63048/engineering/constructors-and-move-semantics-in-cpp/</loc>
     <lastmod>2024-04-01T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/solid/</loc>
+    <loc>//localhost:63048/engineering/solid/</loc>
     <lastmod>2024-03-25T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/ranges-in-cpp/</loc>
+    <loc>//localhost:63048/engineering/ranges-in-cpp/</loc>
     <lastmod>2024-03-20T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/basic-calculus-review/</loc>
+    <loc>//localhost:63048/engineering/basic-calculus-review/</loc>
     <lastmod>2024-03-19T18:03:08-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/tags/machine-learning/</loc>
+    <loc>//localhost:63048/tags/machine-learning/</loc>
     <lastmod>2024-03-19T18:03:08-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/series/machine-learning/</loc>
+    <loc>//localhost:63048/series/machine-learning/</loc>
     <lastmod>2024-03-19T18:03:08-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/categories/machine-learning/</loc>
+    <loc>//localhost:63048/categories/machine-learning/</loc>
     <lastmod>2024-03-19T18:03:08-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/tags/mathematics/</loc>
+    <loc>//localhost:63048/tags/mathematics/</loc>
     <lastmod>2024-03-19T18:03:08-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/categories/mathematics/</loc>
+    <loc>//localhost:63048/categories/mathematics/</loc>
     <lastmod>2024-03-19T18:03:08-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/algorithms-in-the-c-standard-library/</loc>
+    <loc>//localhost:63048/engineering/algorithms-in-the-c-standard-library/</loc>
     <lastmod>2024-03-15T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/tags/data-structures--algorithms/</loc>
+    <loc>//localhost:63048/tags/data-structures--algorithms/</loc>
     <lastmod>2024-02-21T07:07:50-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/series/data-structures--algorithms/</loc>
+    <loc>//localhost:63048/series/data-structures--algorithms/</loc>
     <lastmod>2024-02-21T07:07:50-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/categories/data-structures--algorithms/</loc>
+    <loc>//localhost:63048/categories/data-structures--algorithms/</loc>
     <lastmod>2024-02-21T07:07:50-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/dynamic-programming/</loc>
+    <loc>//localhost:63048/engineering/dynamic-programming/</loc>
     <lastmod>2024-02-21T07:07:50-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/tags/engineering/</loc>
+    <loc>//localhost:63048/tags/engineering/</loc>
     <lastmod>2024-02-21T07:07:50-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/series/engineering/</loc>
+    <loc>//localhost:63048/series/engineering/</loc>
     <lastmod>2024-02-21T07:07:50-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/big-o/</loc>
+    <loc>//localhost:63048/engineering/big-o/</loc>
     <lastmod>2024-02-15T07:07:50-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/automatic-type-deduction/</loc>
+    <loc>//localhost:63048/engineering/automatic-type-deduction/</loc>
     <lastmod>2024-02-03T07:32:00-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/microbenchmarking-in-c/</loc>
+    <loc>//localhost:63048/engineering/microbenchmarking-in-c/</loc>
     <lastmod>2024-01-29T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/categories/c&#43;&#43;/</loc>
+    <loc>//localhost:63048/categories/c&#43;&#43;/</loc>
     <lastmod>2024-01-16T07:07:50-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/engineering/compilers/</loc>
+    <loc>//localhost:63048/engineering/compilers/</loc>
     <lastmod>2024-01-16T07:07:50-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/projects/eshow-conference-app/</loc>
+    <loc>//localhost:63048/projects/eshow-conference-app/</loc>
     <lastmod>2023-12-12T14:30:53-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/project-types/professional/</loc>
+    <loc>//localhost:63048/project-types/professional/</loc>
     <lastmod>2023-12-12T14:30:53-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/project-types/</loc>
+    <loc>//localhost:63048/project-types/</loc>
     <lastmod>2023-12-12T14:30:53-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/projects/</loc>
+    <loc>//localhost:63048/projects/</loc>
     <lastmod>2023-12-12T14:30:53-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/projects/ar-map/</loc>
+    <loc>//localhost:63048/projects/ar-map/</loc>
     <lastmod>2023-12-12T13:58:51-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/project-types/personal/</loc>
+    <loc>//localhost:63048/project-types/personal/</loc>
     <lastmod>2023-12-12T13:58:51-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/projects/covid-monitor/</loc>
+    <loc>//localhost:63048/projects/covid-monitor/</loc>
     <lastmod>2021-12-12T14:05:34-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/projects/portfolio-project-1/</loc>
+    <loc>//localhost:63048/projects/portfolio-project-1/</loc>
     <lastmod>2019-02-20T03:52:30-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/public-works-justice-maxim/</loc>
+    <loc>//localhost:63048/philosophy/public-works-justice-maxim/</loc>
     <lastmod>2016-12-12T13:38:23-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/tags/philosophy/</loc>
+    <loc>//localhost:63048/tags/philosophy/</loc>
     <lastmod>2016-05-16T21:21:46-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</loc>
+    <loc>//localhost:63048/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</loc>
     <lastmod>2016-05-16T21:21:46-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/obergefell/</loc>
+    <loc>//localhost:63048/philosophy/obergefell/</loc>
     <lastmod>2015-12-12T13:42:45-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/different-principle-utopia/</loc>
+    <loc>//localhost:63048/philosophy/different-principle-utopia/</loc>
     <lastmod>2015-12-12T13:06:56-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/liberty-conquest-and-time-preference/</loc>
+    <loc>//localhost:63048/philosophy/liberty-conquest-and-time-preference/</loc>
     <lastmod>2015-05-12T13:34:34-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/politicalscience-and-epistomology/</loc>
+    <loc>//localhost:63048/philosophy/politicalscience-and-epistomology/</loc>
     <lastmod>2014-12-12T13:47:01-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/retrospective-voting/</loc>
+    <loc>//localhost:63048/philosophy/retrospective-voting/</loc>
     <lastmod>2014-12-12T13:31:19-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/philosophy/identity-of-indiscernibles/</loc>
+    <loc>//localhost:63048/philosophy/identity-of-indiscernibles/</loc>
     <lastmod>2011-12-11T14:30:11-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/about/</loc>
+    <loc>//localhost:63048/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/projects/consolegameengine/</loc>
+    <loc>//localhost:63048/projects/consolegameengine/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:60354/contact/</loc>
+    <loc>//localhost:63048/contact/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

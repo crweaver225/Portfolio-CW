@@ -1,9 +1,9 @@
 ---
 title: Algorithms in the C++ Standard Library
-seo_title: Algorithms in the C Standard Library
+seo_title: Algorithms in the C++ Standard Library
 summary: 
 description: 
-slug: Algorithms in the C Standard Library
+slug: Algorithms in the C++ Standard Library
 author: Christopher Weaver
 
 draft: false
