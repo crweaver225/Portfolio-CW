@@ -1,9 +1,9 @@
 ---
 title: Microbenchmarking in C++
-seo_title: Microbenchmarking in C
+seo_title: Microbenchmarking in C++
 summary: 
 description: 
-slug: Microbenchmarking in C
+slug: Microbenchmarking in C++
 author: Christopher Weaver
 
 draft: false
@@ -12,7 +12,7 @@ lastmod:
 expiryDate: 
 publishDate: 
 
-feature_image:
+feature_image: benchmarking.png
 feature_image_alt: 
 
 categories:

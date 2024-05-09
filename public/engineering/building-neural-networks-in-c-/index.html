@@ -1,0 +1,1045 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=55028&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:55028/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:55028/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>Building Neural Networks in C&#43;&#43; | Christopher Weaver</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="Portfolio site of Christopher Weaver.">
+<link rel="canonical" href="//localhost:55028/engineering/building-neural-networks-in-c-/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building Neural Networks in C&#43;&#43;">
+<meta property="og:description" content="Introduction Link to this heading Python is the undisputed champion of machine learning, and for good reason. Its simple syntax allows people from various professions to quickly master it for their specific use cases. As a scripting language, Python facilitates rapid iteration of code blocks in Jupyter Notebooks. Although it&rsquo;s slow, Python boasts an array of powerful libraries that leverage C and C&#43;&#43; for heavy computation behind the scenes.
+So, why consider C&#43;&#43; for building and training artificial neural networks when Python is such a natural choice?">
+<meta property="og:url" content="//localhost:55028/engineering/building-neural-networks-in-c-/">
+<meta property="article:published_time" content="2024-04-28T09:38:32-06:00">
+  <meta property="article:modified_time" content="2024-04-28T09:38:32-06:00">
+  
+
+<meta property="og:image" content="//localhost:55028/engineering/building-neural-networks-in-c-/cpp-nn.jpeg"/>
+  
+
+
+
+
+
+  <meta property="og:see_also" content="//localhost:55028/engineering/compile-time-programming-in-c-/" /><meta property="og:see_also" content="//localhost:55028/engineering/the-visitor-design-pattern/" /><meta property="og:see_also" content="//localhost:55028/engineering/constructors-and-move-semantics-in-cpp/" /><meta property="og:see_also" content="//localhost:55028/engineering/solid/" /><meta property="og:see_also" content="//localhost:55028/engineering/ranges-in-cpp/" />
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Building Neural Networks in C&#43;&#43;">
+<meta name="twitter:description" content="Introduction Link to this heading Python is the undisputed champion of machine learning, and for good reason. Its simple syntax allows people from various professions to quickly master it for their specific use cases. As a scripting language, Python facilitates rapid iteration of code blocks in Jupyter Notebooks. Although it&rsquo;s slow, Python boasts an array of powerful libraries that leverage C and C&#43;&#43; for heavy computation behind the scenes.
+So, why consider C&#43;&#43; for building and training artificial neural networks when Python is such a natural choice?">
+
+
+<meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:image" content="//localhost:55028/engineering/building-neural-networks-in-c-/cpp-nn.jpeg"/>
+  
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:55028/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:55028/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:55028/#/schema/image/1",
+        "url": "//localhost:55028/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:55028/#/schema/website/1",
+      "url": "//localhost:55028/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:55028/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:55028/engineering/building-neural-networks-in-c-/",
+      "url": "//localhost:55028/engineering/building-neural-networks-in-c-/",
+      "name": "Building Neural Networks in C++",
+      "description": "Portfolio site of Christopher Weaver.",
+      "isPartOf": {
+        "@id": "//localhost:55028/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:55028/#/schema/person/1"
+      },
+      "datePublished": "2024-04-28T09:38:32-06:00",
+      "dateModified": "2024-04-28T09:38:32-06:00",
+      "breadcrumb": {
+        "@id": "//localhost:55028/engineering/building-neural-networks-in-c-/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:55028/engineering/building-neural-networks-in-c-/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:55028/engineering/building-neural-networks-in-c-/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:55028/engineering/building-neural-networks-in-c-/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:55028/",
+          "url": "//localhost:55028/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:55028/engineering/",
+          "url": "//localhost:55028/engineering/",
+          "name": "Engineering"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:55028/engineering/building-neural-networks-in-c-/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:55028/#/schema/article/1",
+          "headline": "Building Neural Networks in C++",
+          "description": "",
+          "isPartOf": {
+            "@id": "//localhost:55028/engineering/building-neural-networks-in-c-/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:55028/engineering/building-neural-networks-in-c-/"
+          },
+          "datePublished": "2024-04-28T09:38:32-06:00",
+          "dateModified": "2024-04-28T09:38:32-06:00",
+          "author": {
+            "@id": "//localhost:55028/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:55028/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:55028/engineering/building-neural-networks-in-c-/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:55028/engineering/building-neural-networks-in-c-/#/schema/image/2",
+          "url": "//localhost:55028/engineering/building-neural-networks-in-c-/cpp-nn.jpeg",
+          "contentUrl": "//localhost:55028/engineering/building-neural-networks-in-c-/cpp-nn.jpeg",
+          "caption": "Building Neural Networks in C++"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  
+
+  
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:55028/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Learn<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/series/c&#43;&#43;" class="menu-link">C&#43;&#43;</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/data-structures--algorithms" class="menu-link">Data Structures &amp; Algorithms</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/machine-learning" class="menu-link">Machine Learning</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Building Neural Networks in C&#43;&#43;</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Apr 28, 2024&nbsp;&middot;&nbsp;15 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="//localhost:55028/categories/engineering/">Engineering</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc"></p>
+    <div class="single-terms">
+      
+      
+      <a class="term" href="//localhost:55028/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+      
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#getting-our-database">Getting our database</a></li>
+        <li><a href="#lets-get-to-the-c">Lets get to the C++</a></li>
+        <li><a href="#unlocking-the-power-of-the-gpu">Unlocking the power of the GPU</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+      <div class="series">
+        <p>Part of the <a href="//localhost:55028/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
+        
+        <ol class="series-list">
+            <li>
+                <a href="//localhost:55028/engineering/compilers/">C&#43;&#43; Compilers</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:55028/engineering/microbenchmarking-in-c-/">Microbenchmarking in C&#43;&#43;</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:55028/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:55028/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:55028/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:55028/engineering/solid/">SOLID</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:55028/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:55028/engineering/the-visitor-design-pattern/">The Visitor Design Pattern</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:55028/engineering/compile-time-programming-in-c-/">Compile-Time Programming in C&#43;&#43;</a>
+              
+            </li>
+            <li>Building Neural Networks in C&#43;&#43;<span class="series-this-post">This post!</span>
+              
+            </li>
+        </ol>
+      </div>
+    
+    <div class="single-feature-img">
+
+
+
+  
+
+
+<img class="feature-image" 
+     srcset="/engineering/building-neural-networks-in-c-/cpp-nn.jpeg 480w, /engineering/building-neural-networks-in-c-/cpp-nn.jpeg 800w"
+     sizes="(max-width: 600px) 480px, 800px"
+     src="/engineering/building-neural-networks-in-c-/cpp-nn.jpeg"
+     alt="Feature image">
+</div>
+    <article class="markdown">
+        <h3 id="introduction">Introduction<a href="#introduction">
+    <svg role="img" aria-labelledby="introduction-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="introduction-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Python is the undisputed champion of machine learning, and for good reason. Its simple syntax allows people from various professions to quickly master it for their specific use cases. As a scripting language, Python facilitates rapid iteration of code blocks in Jupyter Notebooks. Although it&rsquo;s slow, Python boasts an array of powerful libraries that leverage C and C++ for heavy computation behind the scenes.</p>
+<p>So, why consider C++ for building and training artificial neural networks when Python is such a natural choice? In some scenarios, performance and portability requirements render the Python interpreter impractical. For instance, Python is not well-suited for low-latency, high-performance, or multithreaded environments, such as video games or production servers. Additionally, deploying AI on edge devices poses significant challenges due to the intensive memory and compute resources required by deep learning models and the constraints of edge devices. A robot powered by reinforcement learning may handle the computational demands of its models, but mobile robotics often face limitations such as restricted battery power and the need to minimize computational use. While C++ does not entirely solve these issues, it does help mitigate them.</p>
+<h3 id="installation">Installation<a href="#installation">
+    <svg role="img" aria-labelledby="installation-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="installation-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>We will be using LibTorch C++ for this project. It is a C++ frontend that uses the same engine as PyTorch does for Python. This is great for those who know PyTorch as things look very similar between the two. Please be aware this is not a tutorial on training neural networks, simply how to train them in pure C++.</p>
+<p>First thing we need to do is setup our project and ensure we have all the libraries we need. I will be doing everything on my m1 macbook pro, so some steps will be different for different machines. I start by creating a new directory, creating my main.cpp file, my lib directory, my cmakelists.txt, and my build directory.</p>
+
+
+  <span class="code-language">bash</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>touch torch-cpp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>cd torch-cpp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>touch main.cpp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>mkdir lib
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>touch CMakeLists.txt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>mkdir build</span></span></code></pre></div>
+<p>Now we need to get the LibTorch C++ library into our project. Go to this <a href="https://pytorch.org" target="_blank" rel="noopener">link</a> and pick all the criteria for your machine (be sure you are picking LibTorch and C++/Java). If you have a device that supports CUDA, be sure and pick that one for faster training. Download using the provided link and store the download in your lib directory within the project.</p>
+<p>
+	
+	
+	<img src="/engineering/building-neural-networks-in-c-/downloadLib.png"
+	width="300"
+	height="120"
+	
+	alt="image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>Next we need to setup our CMakeLists.txt. If you are not familiar with CMake, it is a popular build system for C++ that will help us easily pull in the LibTorch library into our project for use. You can find out more, including how to install CMAke it on your machine <a href="https://cmake.org/getting-started/" target="_blank" rel="noopener">here</a>. This is what my CMakeLists.txt file ended up looking like:</p>
+
+
+  <span class="code-language">C</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#a6e22e">cmake_minimum_required</span>(VERSION <span style="color:#ae81ff">3.18</span> FATAL_ERROR)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#a6e22e">project</span>(main)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#a6e22e">set</span>(CMAKE_OSX_ARCHITECTURES <span style="color:#e6db74">&#34;arm64&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#a6e22e">find_package</span>(Torch REQUIRED PATHS <span style="color:#960050;background-color:#1e0010">$</span>{CMAKE_CURRENT_SOURCE_DIR}<span style="color:#f92672">/</span>lib<span style="color:#f92672">/</span>libtorch<span style="color:#f92672">/</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#a6e22e">message</span>(STATUS <span style="color:#e6db74">&#34;Torch libraries: ${TORCH_LIBRARIES}&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#a6e22e">set</span>(RPATH <span style="color:#960050;background-color:#1e0010">$</span>{CMAKE_CURRENT_SOURCE_DIR}<span style="color:#f92672">/</span>lib)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#a6e22e">list</span>(APPEND CMAKE_BUILD_RPATH <span style="color:#960050;background-color:#1e0010">$</span>{RPATH})
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#a6e22e">message</span>(STATUS <span style="color:#e6db74">&#34;libomp found: ${RPATH}&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#a6e22e">find_package</span>(Threads REQUIRED)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#a6e22e">include_directories</span>(<span style="color:#960050;background-color:#1e0010">$</span>{TORCH_INCLUDE_DIRS})
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#a6e22e">link_directories</span>(<span style="color:#960050;background-color:#1e0010">$</span>{TORCH_LIBRARY_DIRS})
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#a6e22e">add_executable</span>(main main.cpp)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#a6e22e">target_include_directories</span>(main PRIVATE .<span style="color:#f92672">/</span>lib)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span><span style="color:#a6e22e">target_link_libraries</span>(main <span style="color:#e6db74">&#34;${TORCH_LIBRARIES}&#34;</span> <span style="color:#e6db74">&#34;${CMAKE_THREAD_LIBS_INIT}&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#a6e22e">target_compile_features</span>(main PUBLIC cxx_std_17)  <span style="color:#960050;background-color:#1e0010">#</span> Ensures C<span style="color:#f92672">++</span><span style="color:#ae81ff">17</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#66d9ef">if</span>(TORCH_CUDA_VERSION)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>    <span style="color:#a6e22e">message</span>(STATUS <span style="color:#e6db74">&#34;CUDA Version: ${TORCH_CUDA_VERSION}&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>    <span style="color:#a6e22e">add_definitions</span>(<span style="color:#f92672">-</span>DUSE_CUDA)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span><span style="color:#a6e22e">endif</span>()</span></span></code></pre></div>
+<p>A couple things worth noting. Personally, I like to bring all my libaries physically into my project which is why we initially downloaded the libtorch into the lib directory in our project. That means I need to tell CMake where to find this library: find_package(Torch REQUIRED PATHS ${CMAKE_CURRENT_SOURCE_DIR}/lib/libtorch/)</p>
+<p>Secondly, I ran into an issue with the LibTorch library running on my mac. C++ kept complaining it could not find the libomp library and would crash at runtime.</p>
+<p>
+	
+	
+	<img src="/engineering/building-neural-networks-in-c-/error1.png"
+	width="750"
+	height="136"
+	
+	alt="image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>I am not entirely sure what is up with that, but I knew I had that library in HomeBrew on my mac, so I just made a copy of the libomp.dylib and added it to my lib directory. I then direct Cmake to link all libraries in that directory so that it successfully gets pulled in. Problem solved. Also, I know I will not have CUDA on my machine, but I did decide to put in some extra checking in my CMakeLists.txt just in case it might be helpful for someone else.</p>
+<p>Now lets quickly add some code to our main.cpp file to ensure we are ready to start building. I initialize a simple Tensor to ensure we play nice with LibTorch</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;torch/torch.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    torch<span style="color:#f92672">::</span>Tensor foo <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>rand({<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>});
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;We are ready to begin!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>}</span></span></code></pre></div>
+<p>In my terminal I next run</p>
+
+
+  <span class="code-language">bash</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>cd build
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>cmake .. 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>make
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>./main</span></span></code></pre></div>
+<p>If everything is setup correctly, you should successfully have an executable called main compiled to your build directory. When we run it &ldquo;./main&rdquo; we should see &ldquo;We are ready to begin!&rdquo; printing to your terminal!</p>
+<p>
+	
+		
+	
+	
+	<img src="/engineering/building-neural-networks-in-c-/compile_hu936bb654ab8d1c39a480723eac8206dd_175031_800x0_resize_q75_h2_box_3.webp"
+	width="800"
+	height="273"
+	
+	alt="image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<h3 id="getting-our-database">Getting our database<a href="#getting-our-database">
+    <svg role="img" aria-labelledby="getting-our-database-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="getting-our-database-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>We will be training our model to recognize images of handwritten digits between 0-9. This is called the MNIST dataset</p>
+<p>
+	
+	
+	<img src="/engineering/building-neural-networks-in-c-/mnist.png"
+	width="250"
+	height="250"
+	
+	alt="image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>We actually will need four different ubyte files representing the train images, test images, train labels, and test labels. In my project I added a new directory called mnist_data where these files will live. I then added this python script to that directory to download those files (the site these files are served from is notorious for returning 503 errors, if you get this, keep running the script and it will eventually work)</p>
+
+
+  <span class="code-language">Python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_file</span>(url, filename):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#e6db74">&#34;&#34;&#34; Helper function to download a file from a URL to the specified filename &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    response<span style="color:#f92672">.</span>raise_for_status()  <span style="color:#75715e"># Check that the request was successful</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#66d9ef">with</span> open(filename, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        f<span style="color:#f92672">.</span>write(response<span style="color:#f92672">.</span>content)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Downloaded </span><span style="color:#e6db74">{</span>filename<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_mnist_ubyte</span>():
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    <span style="color:#e6db74">&#34;&#34;&#34; Download the MNIST dataset in UBYTE format &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    base_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://yann.lecun.com/exdb/mnist/&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    files <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        <span style="color:#e6db74">&#34;train-images-idx3-ubyte.gz&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>        <span style="color:#e6db74">&#34;train-labels-idx1-ubyte.gz&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>        <span style="color:#e6db74">&#34;t10k-images-idx3-ubyte.gz&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>        <span style="color:#e6db74">&#34;t10k-labels-idx1-ubyte.gz&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    ]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>    <span style="color:#66d9ef">for</span> file <span style="color:#f92672">in</span> files:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>        url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>base_url<span style="color:#e6db74">}{</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>        download_file(url, file)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span><span style="color:#75715e"># Run the function to download the dataset</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>download_mnist_ubyte()</span></span></code></pre></div>
+<p>This script will download the files into our mnist_data directory. The last thing you will need to do is extract the four files and we are good to go.</p>
+<h3 id="lets-get-to-the-c">Lets get to the C++<a href="#lets-get-to-the-c">
+    <svg role="img" aria-labelledby="lets-get-to-the-c-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="lets-get-to-the-c-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>We are now ready to start writing our C++ code to setup are model architecture, load up our data, and train it to classify these images. First we are going to build out our model.</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#75715e">// Define a new Module. Inhereit from the torch nn module
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Dense_Net</span> <span style="color:#f92672">:</span> torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Module {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    Dense_Net() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#75715e">// Construct and register two Linear submodules.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#75715e"></span>        fc1 <span style="color:#f92672">=</span> register_module(<span style="color:#e6db74">&#34;fc1&#34;</span>, torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Linear(<span style="color:#ae81ff">784</span>, <span style="color:#ae81ff">350</span>));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        fc2 <span style="color:#f92672">=</span> register_module(<span style="color:#e6db74">&#34;fc2&#34;</span>, torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Linear(<span style="color:#ae81ff">350</span>, <span style="color:#ae81ff">75</span>));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        fc3 <span style="color:#f92672">=</span> register_module(<span style="color:#e6db74">&#34;fc3&#34;</span>, torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Linear(<span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">10</span>));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#75715e">// Implement the Net&#39;s algorithm.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#75715e"></span>    torch<span style="color:#f92672">::</span>Tensor forward(torch<span style="color:#f92672">::</span>Tensor x) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>relu(fc1<span style="color:#f92672">-&gt;</span>forward(x.reshape({x.size(<span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">784</span>})));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>dropout(x, <span style="color:#75715e">/*p=*/</span><span style="color:#ae81ff">0.5</span>, <span style="color:#75715e">/*train=*/</span>is_training());
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>relu(fc2<span style="color:#f92672">-&gt;</span>forward(x));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>log_softmax(fc3<span style="color:#f92672">-&gt;</span>forward(x), <span style="color:#75715e">/*dim=*/</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        <span style="color:#66d9ef">return</span> x;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    <span style="color:#75715e">// Use one of many &#34;standard library&#34; modules.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span><span style="color:#75715e"></span>    torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Linear fc1{<span style="color:#66d9ef">nullptr</span>}, fc2{<span style="color:#66d9ef">nullptr</span>}, fc3{<span style="color:#66d9ef">nullptr</span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>};</span></span></code></pre></div>
+<p>So what are doing here is defining out model as a C++ struct that inherits from the torch nn module. It appears we have to use a struct instead of a class otherwise torch complains the parameters member function we need to access later is private. Our model will be comprised of three linear layers of type torch::nn::Linear. When initializing our struct, we assign to each layer the size of the input coming into it and the size of the output coming from it. We also need to register the module with LibTorch. Finally we need to define our forward function. The forward function needs to take a torch::Tensor and will continously modify that Tensor as it executes the function. We call forward on each layer of our model, passing in the tensor, and then we apply the relu activitation function upon the result from that forward operation. On the final layer, we will apply to log_softmax function as a way to obtain the model classification prediction.</p>
+<p>Next we will move to our main() function and work on loading up our dataset for training. Luckily for us, the LibTorch library has some specialized features for working with the MNIST dataset specifically.</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#66d9ef">auto</span> dataset <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>datasets<span style="color:#f92672">::</span>MNIST(<span style="color:#e6db74">&#34;../mnist_data&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>                    .map(torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>transforms<span style="color:#f92672">::</span>Normalize<span style="color:#f92672">&lt;&gt;</span>(<span style="color:#ae81ff">0.1307</span>, <span style="color:#ae81ff">0.3081</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>                    .map(torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>transforms<span style="color:#f92672">::</span>Stack<span style="color:#f92672">&lt;&gt;</span>());
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    <span style="color:#66d9ef">auto</span> data_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>make_data_loader(std<span style="color:#f92672">::</span>move(dataset),torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>DataLoaderOptions().batch_size(<span style="color:#ae81ff">64</span>));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>}</span></span></code></pre></div>
+<p>The first thing we are doing is loading our dataset. We tell torch where to find the MNIST dataset and to then normalize each image and to store the entirety as a stack. There are many more things we can do to help pre-process our dataset prior to training, but this is all we really need for this use case.</p>
+<p>Next we need to create a dataloader that will batch our data in mini-batches of 64 per examples training iteration. This will help speed up training and help the model generalize what it is learning. Once our data_loader is ready, we can now begin training</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>  <span style="color:#75715e">// Initialize our model
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">auto</span> net <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>make_shared<span style="color:#f92672">&lt;</span>Dense_Net<span style="color:#f92672">&gt;</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>  <span style="color:#75715e">// Set up an optimizer.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#75715e"></span>  torch<span style="color:#f92672">::</span>optim<span style="color:#f92672">::</span>Adam optimizer(net<span style="color:#f92672">-&gt;</span>parameters(), <span style="color:#75715e">/*lr=*/</span><span style="color:#ae81ff">0.01</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  <span style="color:#75715e">// Iterate over the amount of epochs you want to train your data for
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (size_t epoch <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; epoch <span style="color:#f92672">!=</span> <span style="color:#ae81ff">10</span>; <span style="color:#f92672">++</span>epoch) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    size_t batch_index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#75715e">// Iterate the data loader to yield batches from the dataset.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> batch : <span style="color:#f92672">*</span>data_loader) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>      <span style="color:#75715e">// Reset gradients.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#75715e"></span>      optimizer.zero_grad();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>      <span style="color:#75715e">// Execute the model on the input data.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#75715e"></span>      torch<span style="color:#f92672">::</span>Tensor prediction <span style="color:#f92672">=</span> net<span style="color:#f92672">-&gt;</span>forward(batch.data);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>      <span style="color:#75715e">// Compute a loss value to judge the prediction of our model.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#75715e"></span>      torch<span style="color:#f92672">::</span>Tensor loss <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>nll_loss(prediction, batch.target);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>      <span style="color:#75715e">// Compute gradients of the loss w.r.t. the parameters of our model.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#75715e"></span>      loss.backward();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>      <span style="color:#75715e">// Update the parameters based on the calculated gradients.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span><span style="color:#75715e"></span>      optimizer.step();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>      <span style="color:#75715e">// Output the loss every 100 batches.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">++</span>batch_index <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>          std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Epoch: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> epoch <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; | Batch: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> batch_index
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>               <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; | Loss: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> loss.item<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span>() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>      }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>  }</span></span></code></pre></div>
+<p>There&rsquo;s a lot to unpack here, but for those familiar with using PyTorch in Python, this will all seem quite familiar. The comments provided should help clarify things. As we iterate over the data loader, we receive a mini-batch of 64 images from the MNIST dataset. The neural network executes this mini-batch, and then backpropagation is performed as part of the learning process. We log progress to the terminal after every 100 mini-batches processed.</p>
+<p>Once training is complete, we assess the effectiveness of our model by testing it against the test dataset, which it has not yet seen. This is an excellent opportunity to determine if our model has truly learned to generalize digit recognition or has merely learned to classify the specific images from the training dataset.</p>
+<p>Just like before, we load up a dataset and dataloader, although this time for our test dataset</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#75715e">// Create the test dataset
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> test_dataset <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>datasets<span style="color:#f92672">::</span>MNIST(<span style="color:#e6db74">&#34;../mnist_data&#34;</span>, torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>datasets<span style="color:#f92672">::</span>MNIST<span style="color:#f92672">::</span>Mode<span style="color:#f92672">::</span>kTest)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        .map(torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>transforms<span style="color:#f92672">::</span>Normalize<span style="color:#f92672">&lt;&gt;</span>(<span style="color:#ae81ff">0.1307</span>, <span style="color:#ae81ff">0.3081</span>))  <span style="color:#75715e">// Normalize data
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#75715e"></span>        .map(torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>transforms<span style="color:#f92672">::</span>Stack<span style="color:#f92672">&lt;&gt;</span>());  <span style="color:#75715e">// Stack data into a single tensor
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    <span style="color:#75715e">// Create a data loader for the test dataset
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> test_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>make_data_loader(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>        std<span style="color:#f92672">::</span>move(test_dataset),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>        torch<span style="color:#f92672">::</span>data<span style="color:#f92672">::</span>DataLoaderOptions());</span></span></code></pre></div>
+<p>This should look nearly identical to when we loaded our train dataset except that we pass the parameter torch::data::datasets::MNIST::Mode::kTest which tells torch to load up the correct one.</p>
+<p>Next we setup our model to eval() mode and iterate over the test dataset, evaluating the accuracy of its output against the test training labels</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>net<span style="color:#f92672">-&gt;</span>eval();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#66d9ef">int</span> correct <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  <span style="color:#75715e">// Count of correct predictions
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;    <span style="color:#75715e">// Total number of samples processed
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#75715e">// Iterate over the test dataset
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> batch : <span style="color:#f92672">*</span>test_loader) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        <span style="color:#66d9ef">auto</span> data <span style="color:#f92672">=</span> batch.data;   <span style="color:#75715e">// Features (input images)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">auto</span> targets <span style="color:#f92672">=</span> batch.target.squeeze(); <span style="color:#75715e">// Targets (true labels)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        <span style="color:#75715e">// Forward pass to get the output from the model
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">auto</span> output <span style="color:#f92672">=</span> net<span style="color:#f92672">-&gt;</span>forward(data);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        <span style="color:#75715e">// Get the predictions by finding the index of the max log-probability
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">auto</span> pred <span style="color:#f92672">=</span> output.argmax(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        <span style="color:#75715e">// Compare predictions with true labels
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#75715e"></span>        correct <span style="color:#f92672">+=</span> pred.eq(targets).sum().item<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int64_t</span><span style="color:#f92672">&gt;</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>        total <span style="color:#f92672">+=</span> data.size(<span style="color:#ae81ff">0</span>);  <span style="color:#75715e">// Increment total by the batch size
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    <span style="color:#75715e">// Calculate accuracy
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> accuracy <span style="color:#f92672">=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span>(correct) <span style="color:#f92672">/</span> total;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Accuracy: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> accuracy <span style="color:#f92672">*</span> <span style="color:#ae81ff">100.0</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;%&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;</span></span></code></pre></div>
+<p>I was able to get an accuracy of 96% after 10 epochs of training on this model, not bad considering its a simple dense neural network.</p>
+<p>
+	
+	
+	<img src="/engineering/building-neural-networks-in-c-/dense_train.png"
+	width="250"
+	height="76"
+	
+	alt="image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>There are better results to be had though if we instead utilize a convolutional neural network which specializes in vision tasks. We can easily cook one up</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Conv_Net</span> <span style="color:#f92672">:</span> torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Module {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        Conv_Net()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>            <span style="color:#f92672">:</span> conv1(torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Conv2dOptions(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">3</span>)), <span style="color:#75715e">// input channels, output channels, kernel size=3
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#75715e"></span>            conv2(torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Conv2dOptions(<span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">3</span>)),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>            fc1(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">128</span>), <span style="color:#75715e">// Adjusted to 500 based on the calculation
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#75715e"></span>            fc2(<span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>            register_module(<span style="color:#e6db74">&#34;conv1&#34;</span>, conv1);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>            register_module(<span style="color:#e6db74">&#34;conv2&#34;</span>, conv2);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            register_module(<span style="color:#e6db74">&#34;fc1&#34;</span>, fc1);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>            register_module(<span style="color:#e6db74">&#34;fc2&#34;</span>, fc2);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>        torch<span style="color:#f92672">::</span>Tensor forward(torch<span style="color:#f92672">::</span>Tensor x) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>            x <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>relu(torch<span style="color:#f92672">::</span>max_pool2d(conv1<span style="color:#f92672">-&gt;</span>forward(x), <span style="color:#ae81ff">2</span>)); <span style="color:#75715e">// pool kernel size=2
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#75715e"></span>            x <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>relu(torch<span style="color:#f92672">::</span>max_pool2d(conv2<span style="color:#f92672">-&gt;</span>forward(x), <span style="color:#ae81ff">2</span>)); <span style="color:#75715e">// pool kernel size=2
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#75715e"></span>            x <span style="color:#f92672">=</span> x.view({<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">800</span>}); <span style="color:#75715e">// Flatten to 800 features for fc1
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#75715e"></span>            x <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>relu(fc1<span style="color:#f92672">-&gt;</span>forward(x));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>            x <span style="color:#f92672">=</span> fc2<span style="color:#f92672">-&gt;</span>forward(x);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>            <span style="color:#66d9ef">return</span> torch<span style="color:#f92672">::</span>log_softmax(x, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>        torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Conv2d conv1, conv2;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>        torch<span style="color:#f92672">::</span>nn<span style="color:#f92672">::</span>Linear fc1, fc2;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>};</span></span></code></pre></div>
+<p>My convolution model has two convolutional layers, two maxpool layers and two dense layers to reduce our output down to the 10 final values we can do a softmax on. We also need to flatten the tensor coming out of the last maxpool layer into the type of a one dimensional tensor our dense layers can take. Training this for 5 epochs got us up to 98.6%</p>
+<p>Alright, now that our model is perfoming well, we probably want to save it for use later</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>torch<span style="color:#f92672">::</span>save(net, <span style="color:#e6db74">&#34;net.pt&#34;</span>);</span></span></code></pre></div>
+<p>And finally, loading up the model</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>torch<span style="color:#f92672">::</span>load(net, <span style="color:#e6db74">&#34;net.pt&#34;</span>); 
+</span></span></code></pre></div>
+<h3 id="unlocking-the-power-of-the-gpu">Unlocking the power of the GPU<a href="#unlocking-the-power-of-the-gpu">
+    <svg role="img" aria-labelledby="unlocking-the-power-of-the-gpu-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="unlocking-the-power-of-the-gpu-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Modern deep learning is powered by GPU&rsquo;s and other hardware specialized for the types of linear algebra these models execute en masse. Luckily, the TorchLib C++ library supports training our models on CUDA powered gps&rsquo;s right out of the box. This of course wont work on my macbook which does not run on a NVIDIA gpu with CUDA on it, but I was able to test and confirm what I have below does work on my linux machine that does have the hardware for this. Assuming you have the correct version of CUDA for the LibTorch library you installed (for me I am using Cuda 12.4 with libtorch 2.3.0), all we need to do is change a few lines in our C++ file. After we initialize our model, we check to see if our machine has a compatible verison of CUDA on it, if so we initailize a torch::Device object that is defaulted to the cpu, but can be changed to a gpu if the conditional check passes</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>torch<span style="color:#f92672">::</span>Device device(torch<span style="color:#f92672">::</span>kCPU);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#66d9ef">if</span> (torch<span style="color:#f92672">::</span>cuda<span style="color:#f92672">::</span>is_available()) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>  device <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>Device(torch<span style="color:#f92672">::</span>kCUDA);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}</span></span></code></pre></div>
+<p>Now, all we need to do is ensure our model and the data it will be interacting with is properly moved to this device (hopefully our GPU). Three lines need to reflect this change:</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>net<span style="color:#f92672">-&gt;</span>to(device);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#66d9ef">auto</span> data <span style="color:#f92672">=</span> batch.data.to(device);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#66d9ef">auto</span> targets <span style="color:#f92672">=</span> batch.target.to(device);</span></span></code></pre></div>
+<p>That is it. With this change our model should successfully train on our GPU. The good news is, even if we do not have a compatible GPU, this code will still work fine since we default to the cpu. Our updated code will look like this:</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#75715e">// setup our device contingent upon the machine we are training on
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#75715e"></span> torch<span style="color:#f92672">::</span>Device device(torch<span style="color:#f92672">::</span>kCPU);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span> <span style="color:#66d9ef">if</span> (torch<span style="color:#f92672">::</span>cuda<span style="color:#f92672">::</span>is_available()) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>   device <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>Device(torch<span style="color:#f92672">::</span>kCUDA);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span> <span style="color:#75715e">// Initialize our model
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">auto</span> net <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>make_shared<span style="color:#f92672">&lt;</span>Dense_Net<span style="color:#f92672">&gt;</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  net<span style="color:#f92672">-&gt;</span>to(device);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  <span style="color:#75715e">// Set up an optimizer.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#75715e"></span>  torch<span style="color:#f92672">::</span>optim<span style="color:#f92672">::</span>Adam optimizer(net<span style="color:#f92672">-&gt;</span>parameters(), <span style="color:#75715e">/*lr=*/</span><span style="color:#ae81ff">0.01</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  <span style="color:#75715e">// Iterate over the amount of epochs you want to train your data for
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (size_t epoch <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; epoch <span style="color:#f92672">!=</span> <span style="color:#ae81ff">10</span>; <span style="color:#f92672">++</span>epoch) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    size_t batch_index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    <span style="color:#75715e">// Iterate the data loader to yield batches from the dataset.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> batch : <span style="color:#f92672">*</span>data_loader) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>      
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>      <span style="color:#75715e">// ensure our data is on the gpu or cpu depending on our machine
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">auto</span> data <span style="color:#f92672">=</span> batch.data.to(device);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>      <span style="color:#66d9ef">auto</span> targets <span style="color:#f92672">=</span> batch.target.to(device);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>      <span style="color:#75715e">// Reset gradients.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span><span style="color:#75715e"></span>      optimizer.zero_grad();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>      <span style="color:#75715e">// Execute the model on the input data.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span><span style="color:#75715e"></span>      torch<span style="color:#f92672">::</span>Tensor prediction <span style="color:#f92672">=</span> net<span style="color:#f92672">-&gt;</span>forward(data);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>      <span style="color:#75715e">// Compute a loss value to judge the prediction of our model.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span><span style="color:#75715e"></span>      torch<span style="color:#f92672">::</span>Tensor loss <span style="color:#f92672">=</span> torch<span style="color:#f92672">::</span>nll_loss(prediction, targets);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>      <span style="color:#75715e">// Compute gradients of the loss w.r.t. the parameters of our model.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span><span style="color:#75715e"></span>      loss.backward();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>      <span style="color:#75715e">// Update the parameters based on the calculated gradients.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span><span style="color:#75715e"></span>      optimizer.step();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>      <span style="color:#75715e">// Output the loss every 100 batches.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">++</span>batch_index <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>          std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Epoch: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> epoch <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; | Batch: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> batch_index
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>               <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; | Loss: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> loss.item<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span>() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>      }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span>  }</span></span></code></pre></div>
+<p>If you successfully do get this to train our your gpu, you should see a significant speedup in training time (especially for the convolutional neural network).</p>
+<p>Please do heed my warning that getting CUDA to work on your machine for deep learning is not for the faint of heart. There is no simple process to get that up and running, even when you do have the correct hardware. Previous to writing this post, I was running CUDA 10 on my linux machine, which was not compatible with libtorch, and it took me a good couple of hours to struggle my way through removing CUDA 10 and then installing CUDA 12.</p>
+<h3 id="conclusion">Conclusion<a href="#conclusion">
+    <svg role="img" aria-labelledby="conclusion-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="conclusion-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>There are thousands of tutorials available that teach how to train a neural network to accurately classify the MNIST dataset using Python. This popularity is well-founded, as Python offers an impressive array of tools for this purpose. However, there&rsquo;s an emerging need for edge devices that can harness the power of these neural networks. Using C++ for such applications provides the efficiency and low memory footprint that these devices critically require. As we move forward, it&rsquo;s likely that developers will increasingly turn to C++ to meet the stringent performance demands of edge computing environments.</p>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+          
+          <a class="term" href="//localhost:55028/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+          
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        <a href="https://twitter.com/intent/tweet?url=%2f%2flocalhost%3a55028%2fengineering%2fbuilding-neural-networks-in-c-%2f&amp;text=Building%20Neural%20Networks%20in%20C%2b%2b" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
+        </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a55028%2fengineering%2fbuilding-neural-networks-in-c-%2f&amp;source=%2f%2flocalhost%3a55028%2fengineering%2fbuilding-neural-networks-in-c-%2f&amp;title=Building%20Neural%20Networks%20in%20C%2b%2b&amp;summary=Building%20Neural%20Networks%20in%20C%2b%2b" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Building%20Neural%20Networks%20in%20C%2b%2b.&amp;body=Building%20Neural%20Networks%20in%20C%2b%2b%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a55028%2fengineering%2fbuilding-neural-networks-in-c-%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        <div class="series">
+          <p>Part of the <a href="//localhost:55028/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
+          
+          <ol>
+              <li>
+                  <a href="//localhost:55028/engineering/compilers/">C&#43;&#43; Compilers</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:55028/engineering/microbenchmarking-in-c-/">Microbenchmarking in C&#43;&#43;</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:55028/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:55028/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:55028/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:55028/engineering/solid/">SOLID</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:55028/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:55028/engineering/the-visitor-design-pattern/">The Visitor Design Pattern</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:55028/engineering/compile-time-programming-in-c-/">Compile-Time Programming in C&#43;&#43;</a>
+                
+              </li>
+              <li>Building Neural Networks in C&#43;&#43;<span class="series-this-post">This post!</span>
+                
+              </li>
+          </ol>
+        </div>
+      
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2024 &middot; 
+      <a href="//localhost:55028/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:55028/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:55028/main.js"></script>
+
+
+</body>
+</html>
