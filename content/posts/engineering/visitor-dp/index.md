@@ -21,7 +21,6 @@ tags:
 - C++
 - Design Patterns
 series:
-- C++
 - Design Patterns
 
 toc: true
