@@ -1,6 +1,6 @@
 ---
 title: The Strategy Design Pattern
-seo_title: The Visitor Design Pattern
+seo_title: The Strategy Design Pattern
 summary: 
 description: 
 slug: The Strategy Design Pattern
