@@ -45,6 +45,9 @@ public:
         // Call the startEngine method of the Derived class
         static_cast<Derived*>(this)->startEngine();
     }
+    int size() const {
+        static_cast<Derived*>(this)->size();
+    }
 };
 
 // Derived class
@@ -53,6 +56,9 @@ public:
     void startEngine() {
         std::cout << "SportsCar engine started with a roar!" << std::endl;
     }
+    int size() const {
+        return 100;
+    }
 };
 
 // Another derived class
@@ -60,6 +66,9 @@ class FamilyCar : public Car<FamilyCar> {
 public:
     void startEngine() {
         std::cout << "FamilyCar engine started quietly." << std::endl;
+    }
+    int size() const {
+        return 50;
     }
 };
 
@@ -124,17 +133,56 @@ You should expect an implementation of CRTP to be significantly faster than a si
 
 4. **Predictability and Branch Prediction**: The absence of vtable lookups means there are fewer conditional branches in your code, which can improve branch prediction on modern CPUs. Better branch prediction can lead to smoother and faster execution paths through your code.
 
-### Downside
-There are some major shortcomings to the CRTP that need to be known before anyone goes about making changes everywhere in their code. The biggest is we lose a major benefit of dynamic polymorphism when we instead use the CRTP, which is the ability to use a common base class as an abstraction. In our car example above, you will often find using dynamic polymorphism that a collection of different types of cars will be stored in a container as instances of their base class pointer. This allows different places in the code to interact with instances of Car and interact with the Car interface without needing to worry about which exact derived type of the Car base class it is. This is a super powerful way to program generically and introduce abstractions into your system, and it is lost with CRTP. We cannot add our SportsCar and FamilyCar instantiations into a vector<Car> and then pass that around to other functions. This is because both of these classes technically have different base classes (Car<SportsCar> & Car<FamilyCar>). C++ templates will build separate classes for both templates with no way to store them as a common Car class. 
-
-Secondly, everything that touches these CRTP classes must also be implemented using templates. If we want to build a function to compute the fair market price, we must use templates:
+The major benefit of any type of polymorphism is that we can work with objects even though we do not know their specific type. This is possible with static polymorphism via templates
 ```C++
 template<typename Derived>
 float fairMarketPrice(Car<Derived> car) {
-    /// implementation
+    int car_size = car->size();
+    /// the rest of the implementation
 }
 ```
-This might not be a big deal, but it is rather intrusive in some contexts. 
+Here our function does not know which specific car is being passed to it until compile time. This gives us our polymorphism that we want. 
+
+### CRTP and Abstract Classes
+When a derived class does not implement a function that it should, the base class will attempt to do it on the derived class's behalf. But if the base class does not implement the function either (because we are attempting to make the function something the derived class must implement), our program will be malformed. In order to match the pure virtual functions of dynamic polymorphism, we must change the implementation name that the derived class should complete to be different from the base class function to cause a compilation error when it is not implemented.
+```C++
+template <typename D>
+class B {
+    public:
+        void f(int i) {
+            static_cast<D*>(this)->f_impl(i);
+        }
+};
+class D : public B<D> {
+    public:
+        void f_impl(int i) {
+            // implementation
+        }
+};
+```
+
+### CRTP and Access Control
+How do we allow our base class to access private functions and members of the derived class that we do not want accessible to the client? The simplest way is to use a friend declaration against the template argument.
+```C++
+template <typename D>
+class B {
+    friend D;
+    public:
+        void f(int i) {
+            static_cast<D*>(this)->f_impl(i);
+        }
+};
+class D : public B<D> {
+    private:
+        void f_impl(int i) {
+            // implementation
+        }
+};
+```
+As a general rule of thumb, using a friend declaration invokes a code smell. But sometimes, such as this, it makes sense in its use.
+
+### Downside
+There are some major shortcomings to the CRTP that need to be known before anyone goes about making changes everywhere in their code. The biggest is we lose a major benefit of dynamic polymorphism when we instead use the CRTP, which is the ability to use a common base class as an abstraction. In our car example above, you will often find using dynamic polymorphism that a collection of different types of cars will be stored in a container as instances of their base class pointer. This allows different places in the code to interact with instances of Car and interact with the Car interface without needing to worry about which exact derived type of the Car base class it is. This is a super powerful way to program generically and introduce abstractions into your system, and it is lost with CRTP. We cannot add our SportsCar and FamilyCar instantiations into a vector<Car> and then pass that around to other functions. This is because both of these classes technically have different base classes (Car<SportsCar> & Car<FamilyCar>). C++ templates will build separate classes for both templates with no way to store them as a common Car class. 
 
 ### Using Concepts Instead 
 C++20 comes with the addition of concepts, which is a modern approach to restrict our templates in interesting ways. In many cases, we can use concepts instead of the CRTP.
@@ -163,7 +211,6 @@ public:
     }
 };
 
-
 int main() {
     Vehicle<SportsCar> mySportsCar;
     mySportsCar.start();
@@ -171,7 +218,42 @@ int main() {
     return 0;
 }
 ```
-As long as our derived class implements the Car concept requirements, we can define our Vehicle class with the start() interface similar to what we did with the CRTP above. The difference is that C++ concepts provide a cleaner, less perplexing syntax along with comprehensible compile-time errors when something is wrong. Along with these benefits, we also get the same runtime performance as CRTP. I recommend using C++ concepts over the CRTP whenever possible. 
+As long as our derived class implements the Car concept requirements, we can define our Vehicle class with the start() interface similar to what we did with the CRTP above. The difference is that C++ concepts provide a cleaner, less perplexing syntax along with comprehensible compile-time errors when something is wrong. Along with these benefits, we also get the same runtime performance as CRTP. Let's look at one more example where we want a function that can take two examples of a generic base class and compute the Euclidean distance between them. With dynamic polymorphism, we would create our abstract base class Point with virtual functions to get x() and y() values that our derived class would use to return values. We can do something similar to that with concepts by first defining our limiting concept:
+```C++
+template <typename T>
+concept Point = requires(T p) {
+    requires std::is_same_v<decltype(p.x()), decltype(p.y())>; // Requires T has x() & y() and they return the same types
+    requires std::is_arithmetic_v<decltype(p.x())>; // ensures the return value can be operated on by C++ math operators 
+};
+```
+Instead of defining a base class Point, we have now defined a Point concept that other classes can mimic as long as they meet all the criteria defined in the concept.
+```C++
+template <typename T>
+class Point2D {
+    public:
+        Point2D(T x, T y) : x_{x}, y_{y} {}
+        auto x() { return x_; }
+        auto y() { return y_; }
+    private:
+        T x_{};
+        T y_{};
+};
+
+auto dist(Point auto p1, Point auto p2) {
+    auto a = p1.x() - p2.x();
+    auto b = p1.y() - p2.y();
+    return std::sqrt(a*a + b*b);
+}
+
+int main() {
+    Point2D p1{12.0, 14.0};
+    Point2D p2{5.0, 11.0};
+    auto e_distance = dist(p1, p2);
+}
+```
+Point2D does not inherit from Point, yet it can be passed to a function that accepts Point because it successfully honors the requirements of the concept Point. We get the convenience of generically using the Point abstraction and the performance of no virtual function indirection!
+
+Concepts are huge, and something I plan to explore more in the future. I recommend using C++ concepts over the CRTP whenever possible.
 
 ### Conclusion
 For the C++ engineer working on high-performance applications such as high-frequency trading or game engines, static polymorphism in the form of the CRTP or C++20 Concepts is an excellent way to get some of the benefits of runtime polymorphism without the performance hit. It is not a silver bullet, particularly because we lose the ability to abstract away via a common base class. But when a common base class is not necessary, static polymorphism should be the default approach.
