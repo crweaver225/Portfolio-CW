@@ -7,7 +7,7 @@ slug: Observer Design Pattern
 author: Christopher Weaver
 
 draft: false
-date: 2024-09-012T09:38:32-06:00
+date: 2024-09-12T09:38:32-06:00
 lastmod: 
 expiryDate: 
 publishDate: 
