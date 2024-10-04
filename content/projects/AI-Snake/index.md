@@ -7,8 +7,8 @@ slug: AI Snake Agent
 author: Christopher Weaver
 
 draft: false
-date: 2024-5-9T13:54:46-06:00
-publishDate: 2024-5-9T13:54:46-06:00
+date: 2024-05-9T13:54:46-06:00
+publishDate: 2024-05-9T13:54:46-06:00
 
 project types: 
 - personal
