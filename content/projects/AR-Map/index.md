@@ -8,7 +8,6 @@ author: Christopher Weaver
 
 draft: false
 date: 2023-12-12T13:58:51-06:00
-publishDate: 2023-12-12T13:58:51-06:00
 
 feature_image: screenshots/p1.png
 
