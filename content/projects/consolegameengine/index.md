@@ -8,12 +8,8 @@ author: Christopher Weaver
 
 draft: false
 date: 2023-9-12T13:54:46-06:00
-lastmod: 
-expiryDate: 
-publishDate: 
+publishDate: 2023-9-12T13:54:46-06:00
 
-feature_image: 
-feature_image_alt: 
 
 project types: 
 - personal

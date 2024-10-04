@@ -8,9 +8,8 @@ author: Christopher Weaver
 
 draft: false
 date: 2024-04-01T09:38:32-06:00
-lastmod: 
-expiryDate: 
-publishDate: 
+lastmod: 2024-04-01T09:38:32-06:00
+publishDate: 2024-04-01T09:38:32-06:00
 
 feature_image: cpp-constructor.jpeg
 feature_image_alt: 

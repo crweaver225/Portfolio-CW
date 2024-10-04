@@ -8,12 +8,9 @@ author: Christopher Weaver
 
 draft: false
 date: 2023-12-12T14:30:53-06:00
-lastmod: 
-expiryDate: 
-publishDate: 
+publishDate: 2023-12-12T14:30:53-06:00
 
 feature_image: screenshots/p1.png
-feature_image_alt: 
 
 project types: 
 - Professional

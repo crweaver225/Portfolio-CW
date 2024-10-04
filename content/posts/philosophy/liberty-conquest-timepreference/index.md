@@ -8,9 +8,8 @@ author: Christopher Weaver
 
 draft: false
 date: 2015-05-12T13:34:34-06:00
-lastmod: 
-expiryDate: 
-publishDate:
+lastmod: 2015-05-12T13:34:34-06:00
+publishDate: 2015-05-12T13:34:34-06:00
 
 feature_image: 
 feature_image_alt: 

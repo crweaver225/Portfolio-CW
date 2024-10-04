@@ -4,13 +4,11 @@ seo_title: C.A.I.N.N.
 summary: C.A.I.N.N. (Christopher's Artifically Intelligent Neural Network) is a machine learning framework built in native C++ with a Python wrapper around it.
 description: C.A.I.N.N. (Christopher's Artifically Intelligent Neural Network) is a machine learning framework built in native C++ with a Python wrapper around it. 
 slug: portfolio-project-1
-author: John Doe
+author: Christopher Weaver
 
 draft: false
 date: 2019-02-20T03:52:30-05:00
-lastmod: 
-expiryDate: 
-publishDate: 
+publishDate: 2019-02-20T03:52:30-05:00
 
 feature_image: cainn.png
 feature_image_alt:

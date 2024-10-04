@@ -8,9 +8,8 @@ author: Christopher Weaver
 
 draft: false
 date: 2011-12-11T14:30:11-06:00
-lastmod: 
-expiryDate: 
-publishDate: 
+lastmod: 2011-12-11T14:30:11-06:00
+publishDate: 2011-12-11T14:30:11-06:00
 
 feature_image: Ioi.jpeg
 feature_image_alt: 

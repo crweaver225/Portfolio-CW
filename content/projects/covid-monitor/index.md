@@ -8,12 +8,9 @@ author: Christopher Weaver
 
 draft: false
 date: 2021-12-12T14:05:34-06:00
-lastmod: 
-expiryDate: 
-publishDate: 
+publishDate: 2021-12-12T14:05:34-06:00
 
 feature_image: Screen_Shots/1.png
-feature_image_alt: 
 
 project types: 
 - personal

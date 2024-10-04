@@ -8,9 +8,8 @@ author: Christopher Weaver
 
 draft: true
 date: 2023-12-20T09:38:32-06:00
-lastmod: 
-expiryDate: 
-publishDate: 
+lastmod: 2023-12-20T09:38:32-06:00
+publishDate: 2023-12-20T09:38:32-06:00
 
 feature_image: cplusplus.jpeg
 feature_image_alt: cplusplus.jpeg
