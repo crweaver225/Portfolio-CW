@@ -195,42 +195,42 @@ The first thing we are doing is loading our dataset. We tell torch where to find
 
 Next we need to create a dataloader that will batch our data in mini-batches of 64 per examples training iteration. This will help speed up training and help the model generalize what it is learning. Once our data_loader is ready, we can now begin training
 ```C++
-  // Initialize our model
-  auto net = std::make_shared<Dense_Net>();
+// Initialize our model
+auto net = std::make_shared<Dense_Net>();
 
-  // Set up an optimizer.
-  torch::optim::Adam optimizer(net->parameters(), /*lr=*/0.01);
+// Set up an optimizer.
+torch::optim::Adam optimizer(net->parameters(), /*lr=*/0.01);
 
-  // Iterate over the amount of epochs you want to train your data for
-  for (size_t epoch = 0; epoch != 10; ++epoch) {
+// Iterate over the amount of epochs you want to train your data for
+for (size_t epoch = 0; epoch != 10; ++epoch) {
 
     size_t batch_index = 0;
 
     // Iterate the data loader to yield batches from the dataset.
     for (auto& batch : *data_loader) {
 
-      // Reset gradients.
-      optimizer.zero_grad();
+        // Reset gradients.
+        optimizer.zero_grad();
 
-      // Execute the model on the input data.
-      torch::Tensor prediction = net->forward(batch.data);
+        // Execute the model on the input data.
+        torch::Tensor prediction = net->forward(batch.data);
 
-      // Compute a loss value to judge the prediction of our model.
-      torch::Tensor loss = torch::nll_loss(prediction, batch.target);
+        // Compute a loss value to judge the prediction of our model.
+        torch::Tensor loss = torch::nll_loss(prediction, batch.target);
 
-      // Compute gradients of the loss w.r.t. the parameters of our model.
-      loss.backward();
+        // Compute gradients of the loss w.r.t. the parameters of our model.
+        loss.backward();
 
-      // Update the parameters based on the calculated gradients.
-      optimizer.step();
+        // Update the parameters based on the calculated gradients.
+        optimizer.step();
 
-      // Output the loss every 100 batches.
-      if (++batch_index % 100 == 0) {
-          std::cout << "Epoch: " << epoch << " | Batch: " << batch_index
+        // Output the loss every 100 batches.
+        if (++batch_index % 100 == 0) {
+            std::cout << "Epoch: " << epoch << " | Batch: " << batch_index
                << " | Loss: " << loss.item<float>() << std::endl;
-      }
+        }
     }
-  }
+}
 ```
 There's a lot to unpack here, but for those familiar with using PyTorch in Python, this will all seem quite familiar. The comments provided should help clarify things. As we iterate over the data loader, we receive a mini-batch of 64 images from the MNIST dataset. The neural network executes this mini-batch, and then backpropagation is performed as part of the learning process. We log progress to the terminal after every 100 mini-batches processed.
 
@@ -238,15 +238,15 @@ Once training is complete, we assess the effectiveness of our model by testing i
 
 Just like before, we load up a dataset and dataloader, although this time for our test dataset
 ```C++
-    // Create the test dataset
-    auto test_dataset = torch::data::datasets::MNIST("../mnist_data", torch::data::datasets::MNIST::Mode::kTest)
-        .map(torch::data::transforms::Normalize<>(0.1307, 0.3081))  // Normalize data
-        .map(torch::data::transforms::Stack<>());  // Stack data into a single tensor
+// Create the test dataset
+auto test_dataset = torch::data::datasets::MNIST("../mnist_data", torch::data::datasets::MNIST::Mode::kTest)
+    .map(torch::data::transforms::Normalize<>(0.1307, 0.3081))  // Normalize data
+    .map(torch::data::transforms::Stack<>());  // Stack data into a single tensor
 
-    // Create a data loader for the test dataset
-    auto test_loader = torch::data::make_data_loader(
-        std::move(test_dataset),
-        torch::data::DataLoaderOptions());
+// Create a data loader for the test dataset
+auto test_loader = torch::data::make_data_loader(
+    std::move(test_dataset),
+    torch::data::DataLoaderOptions());
 ```
 This should look nearly identical to when we loaded our train dataset except that we pass the parameter torch::data::datasets::MNIST::Mode::kTest which tells torch to load up the correct one. 
 
@@ -254,28 +254,28 @@ Next we setup our model to eval() mode and iterate over the test dataset, evalua
 ```C++
 net->eval();
 
-    int correct = 0;  // Count of correct predictions
-    int total = 0;    // Total number of samples processed
+int correct = 0;  // Count of correct predictions
+int total = 0;    // Total number of samples processed
 
-    // Iterate over the test dataset
-    for (auto& batch : *test_loader) {
-        auto data = batch.data;   // Features (input images)
-        auto targets = batch.target.squeeze(); // Targets (true labels)
+// Iterate over the test dataset
+for (auto& batch : *test_loader) {
+    auto data = batch.data;   // Features (input images)
+    auto targets = batch.target.squeeze(); // Targets (true labels)
 
-        // Forward pass to get the output from the model
-        auto output = net->forward(data);
+    // Forward pass to get the output from the model
+    auto output = net->forward(data);
 
-        // Get the predictions by finding the index of the max log-probability
-        auto pred = output.argmax(1);
+    // Get the predictions by finding the index of the max log-probability
+    auto pred = output.argmax(1);
 
-        // Compare predictions with true labels
-        correct += pred.eq(targets).sum().item<int64_t>();
-        total += data.size(0);  // Increment total by the batch size
-    }
+    // Compare predictions with true labels
+    correct += pred.eq(targets).sum().item<int64_t>();
+    total += data.size(0);  // Increment total by the batch size
+}
 
-    // Calculate accuracy
-    double accuracy = static_cast<double>(correct) / total;
-    std::cout << "Accuracy: " << accuracy * 100.0 << "%" << std::endl;
+// Calculate accuracy
+double accuracy = static_cast<double>(correct) / total;
+std::cout << "Accuracy: " << accuracy * 100.0 << "%" << std::endl;
 ```
 I was able to get an accuracy of 96% after 10 epochs of training on this model, not bad considering its a simple dense neural network. 
 
@@ -341,51 +341,51 @@ That is it. With this change our model should successfully train on our GPU. The
 ```C++
 // setup our device contingent upon the machine we are training on
  torch::Device device(torch::kCPU);
- if (torch::cuda::is_available()) {
-   device = torch::Device(torch::kCUDA);
- }
+if (torch::cuda::is_available()) {
+    device = torch::Device(torch::kCUDA);
+}
 
- // Initialize our model
-  auto net = std::make_shared<Dense_Net>();
-  net->to(device);
+// Initialize our model
+auto net = std::make_shared<Dense_Net>();
+net->to(device);
 
-  // Set up an optimizer.
-  torch::optim::Adam optimizer(net->parameters(), /*lr=*/0.01);
+// Set up an optimizer.
+torch::optim::Adam optimizer(net->parameters(), /*lr=*/0.01);
 
-  // Iterate over the amount of epochs you want to train your data for
-  for (size_t epoch = 0; epoch != 10; ++epoch) {
+// Iterate over the amount of epochs you want to train your data for
+for (size_t epoch = 0; epoch != 10; ++epoch) {
 
     size_t batch_index = 0;
 
     // Iterate the data loader to yield batches from the dataset.
     for (auto& batch : *data_loader) {
       
-      // ensure our data is on the gpu or cpu depending on our machine
-      auto data = batch.data.to(device);
-      auto targets = batch.target.to(device);
+        // ensure our data is on the gpu or cpu depending on our machine
+        auto data = batch.data.to(device);
+        auto targets = batch.target.to(device);
 
-      // Reset gradients.
-      optimizer.zero_grad();
+        // Reset gradients.
+        optimizer.zero_grad();
 
-      // Execute the model on the input data.
-      torch::Tensor prediction = net->forward(data);
+        // Execute the model on the input data.
+        torch::Tensor prediction = net->forward(data);
 
-      // Compute a loss value to judge the prediction of our model.
-      torch::Tensor loss = torch::nll_loss(prediction, targets);
+        // Compute a loss value to judge the prediction of our model.
+        torch::Tensor loss = torch::nll_loss(prediction, targets);
 
-      // Compute gradients of the loss w.r.t. the parameters of our model.
-      loss.backward();
+        // Compute gradients of the loss w.r.t. the parameters of our model.
+        loss.backward();
 
-      // Update the parameters based on the calculated gradients.
-      optimizer.step();
+        // Update the parameters based on the calculated gradients.
+        optimizer.step();
 
-      // Output the loss every 100 batches.
-      if (++batch_index % 100 == 0) {
-          std::cout << "Epoch: " << epoch << " | Batch: " << batch_index
+        // Output the loss every 100 batches.
+        if (++batch_index % 100 == 0) {
+            std::cout << "Epoch: " << epoch << " | Batch: " << batch_index
                << " | Loss: " << loss.item<float>() << std::endl;
-      }
+        }
     }
-  }
+}
 ```
 If you successfully do get this to train our your gpu, you should see a significant speedup in training time (especially for the convolutional neural network). 
 

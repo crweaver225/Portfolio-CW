@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=64761&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:64761/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:64761/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>Conways Game of Life - Epistemological Considerations | Christopher Weaver</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="What Conways Game of Life can teach us about the nature of reality">
+<link rel="canonical" href="//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Conways Game of Life - Epistemological Considerations">
+<meta property="og:description" content="What Conways Game of Life can teach us about the nature of reality">
+<meta property="og:url" content="//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/">
+<meta property="article:published_time" content="2024-12-10T13:06:56-06:00">
+  <meta property="article:modified_time" content="2024-12-10T13:06:56-06:00">
+  
+
+<meta property="og:image" content="//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/Halting.png"/>
+  
+
+
+
+
+
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Conways Game of Life - Epistemological Considerations">
+<meta name="twitter:description" content="What Conways Game of Life can teach us about the nature of reality">
+
+
+<meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:image" content="//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/Halting.png"/>
+  
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:64761/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:64761/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:64761/#/schema/image/1",
+        "url": "//localhost:64761/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:64761/#/schema/website/1",
+      "url": "//localhost:64761/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:64761/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/",
+      "url": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/",
+      "name": "Conways Game of Life - Epistemological Considerations",
+      "description": "What Conways Game of Life can teach us about the nature of reality",
+      "isPartOf": {
+        "@id": "//localhost:64761/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:64761/#/schema/person/1"
+      },
+      "datePublished": "2024-12-10T13:06:56-06:00",
+      "dateModified": "2024-12-10T13:06:56-06:00",
+      "breadcrumb": {
+        "@id": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:64761/",
+          "url": "//localhost:64761/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:64761/philosophy/",
+          "url": "//localhost:64761/philosophy/",
+          "name": "Philosophy"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:64761/#/schema/article/1",
+          "headline": "Conways Game of Life - Epistemological Considerations",
+          "description": "What Conways Game of Life can teach us about the nature of reality",
+          "isPartOf": {
+            "@id": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/"
+          },
+          "datePublished": "2024-12-10T13:06:56-06:00",
+          "dateModified": "2024-12-10T13:06:56-06:00",
+          "author": {
+            "@id": "//localhost:64761/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:64761/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/#/schema/image/2",
+          "url": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/Halting.png",
+          "contentUrl": "//localhost:64761/philosophy/conways-game-of-life-epistemological-considerations/Halting.png",
+          "caption": "Conways Game of Life - Epistemological Considerations"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:64761/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Learn<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/series/c&#43;&#43;" class="menu-link">C&#43;&#43;</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/data-structures--algorithms" class="menu-link">Data Structures &amp; Algorithms</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/machine-learning" class="menu-link">Machine Learning</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Conways Game of Life - Epistemological Considerations</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Dec 10, 2024&nbsp;&middot;&nbsp;11 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="//localhost:64761/categories/philosophy/">Philosophy</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc">Similar to what God said to the sea in Job 38:11, He tell us our knowledge of the universe can come this far, but no further.</p>
+    <div class="single-terms">
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents"></nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+    <div class="single-feature-img">
+
+
+
+  
+
+
+<img class="feature-image" 
+     srcset="/philosophy/conways-game-of-life-epistemological-considerations/Halting.png 480w, /philosophy/conways-game-of-life-epistemological-considerations/Halting.png 800w"
+     sizes="(max-width: 600px) 480px, 800px"
+     src="/philosophy/conways-game-of-life-epistemological-considerations/Halting.png"
+     alt="Feature image">
+</div>
+    <article class="markdown">
+        <p>The Game of Life, also known as Conway&rsquo;s Game of Life or simply Life, is a cellular automaton simulation devised by the British mathematician John Horton Conway in 1970. The game is played on a grid of square cells, where each cell is either alive or dead. The cells interact with their eight neighbors, which are the cells that are adjacent to them horizontally, vertically, or diagonally. The rules for Conway&rsquo;s Game of Life are:</p>
+<ol>
+<li>Birth: A dead cell becomes alive if it has exactly three live neighbors.</li>
+<li>Death by isolation: A live cell dies if it has one or fewer live neighbors.</li>
+<li>Death by overcrowding: A live cell dies if it has four or more live neighbors.</li>
+<li>Survival: A live cell survives if it has two or three live neighbors.</li>
+</ol>
+<p>I recently set out to build the Game of Life myself <a href="/projects/rust-game-of-life/">link</a>. Thanks to the simplicity of the game, it only took me about an hour to get the program up and running in Rust. But despite the lack of complexity to the program, there are massive epistemological implications to the game I would like to flesh out a little more.</p>
+<p>Back in undergraduate school, I began reading a lot of Ludwig Von Mises and Friedrick Hayek, both economists from the Austrian school of thinking. What fascinated me about these two was how much they leveraged the epistemological constraints of human intellect into their economic frameworks. They argued that human knowledge was not only practically limited, but also fundamentally limited in ways that had massive implications for economic science. Things like the <a href="https://en.wikipedia.org/wiki/Socialist_calculation_debate" target="_blank" rel="noopener">socialist calculation problem</a> arose from this framework arguing the knowledge needed to centrally plan resource allocation was outside the grasp of all of us. Any attempt to centrally plan the economy would require using shortcut informational heuristics to guess about the best allocation or resources that would likely result in misallocation, shortages, and poverty. Instead, the only real option available for efficient economic allocation is to allow for the free exchange of goods and resources between individuals and allow for the corresponding coordinatation that would come through the prices these exchanges naturally produced. In summary, the answer to the best allocation of resources can&rsquo;t be predicted, and is only known afterwards as we let things play out.</p>
+<p>Back in 2013, I came across a <a href="https://cdn.mises.org/qjae16_2_5.pdf" target="_blank" rel="noopener">paper</a> written by Lucas Engelhardt that investigates the claim that, although humans might not have the cognitive capacity to centrally control the allocation of resources, maybe computers can. Computers, after all, are kind of magical. They tend to do things magnitudes of orders faster than us. The macbook m1 I am typing this post up on can run at 3.2 GHz, which is approximately 3.2 billion computations per second. Math problems that would take me minutes with pen and paper to resolve can be solved by computers is microseconds. The speed and capacity of computers to take in massive amounts of data and process them appears ripe as a tool for central planning. Yet accoding to Engelhardt, even assuming away most of the challenges of economic planning and the computing involved in managing this planning, it takes computers way too long. With massive unrealistic assumptions to simplify the problem, it would take the worlds top 500 supercomputers (working together) 2.6 million years to manage just 100 different economic goods amongst the population of the United States. Probably not practical.</p>
+<p>At the time, this was surprising to me given my lack of understanding on the topic, and of computers in general. But it sent me down a long rabbit hole into a very rich field of research involving epistemology and computing. I began reading about <a href="https://en.wikipedia.org/wiki/Halting_problem" target="_blank" rel="noopener">the halting problem</a> and <a href="https://en.wikipedia.org/wiki/G%c3%b6del%27s_incompleteness_theorems" target="_blank" rel="noopener">Godel&rsquo;s incompleteness theorem</a>. I to this day continue to struggle to map to my mental model of the world that there exists no formal system that is itself sufficient without the help of an outside axiom to work. <em><strong>Turing&rsquo;s Cathedral: The Origins of the Digital Universe</strong></em> by George Dyson does a really good job of documenting the wave of insights that occured the first half of the 20th century that brought many of these insights. It is a read I highly recommend. This all brings us back to the Game of Life and why it is so interesting.</p>
+<p>The Game of Life has a very few simple rules. And yet, given a starting configuration of black and white squares, it is impossible to systematically predict the final outcome, or if there will even be a final outcome. For example, the only way to know what will happen with this starting configuratino is to actual run the game:</p>
+<p>
+	
+	
+	<img src="/philosophy/conways-game-of-life-epistemological-considerations/GOL-start.png"
+	width="300"
+	height="278"
+	
+	alt="Game Of Life"  title="Game of Life" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>This is a strange claim, but stick with me. The great Stephen Wolfram speaks to this often, he calls it computational irreducibility. Wolfram argues that there are lots of things that are computationally reducible. What he means by this is there are algorithms / shorcuts that allow us to predict the outcome of certain events without having to simulate each step of the process. Dropping a baseball off a 10 story building is such an example. We have shortcuts equations such as this</p>
+<p>For a projectile launched with an initial velocity ( v_0 ) at an angle ( \theta ):</p>
+<ol>
+<li>
+<p><strong>Horizontal position</strong>: $$
+x(t) = v_0 \cos(\theta) t
+$$</p>
+</li>
+<li>
+<p><strong>Vertical position</strong>:
+$$
+y(t) = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+$$</p>
+</li>
+<li>
+<p><strong>Time of flight</strong>:
+$$
+T = \frac{2 v_0 \sin(\theta)}{g}
+$$</p>
+</li>
+<li>
+<p><strong>Maximum height</strong>:
+$$
+H = \frac{(v_0 \sin(\theta))^2}{2g}
+$$</p>
+</li>
+<li>
+<p><strong>Range</strong>:
+$$
+R = \frac{v_0^2 \sin(2\theta)}{g}
+$$</p>
+</li>
+</ol>
+<p>We can use these equations to know when the ball will hit the ground without having to sit and actually watch the ball fall to see the end result. This was great news for the Apollo 11 astronauts who upon being flung out into space were probably very relieved to find that the moon was exactly where our equations said it would be. We have millions of examples like this where we have found ways to understand the world using shortcut equations and rules. But other things do not appear to lend way to such reducibility. The Game of Life falls into this category, it suffers from the same constraints as the halting problem.</p>
+<p>The halting problem was first formulated by Alan Turing in 1936. It addresses whether it is possible to create an algorithm that can determine, for any arbitrary program and input, whether the program will eventually halt (finish execution) or run forever. He concluded that some problems cannot be solved by algorithm using the proof:</p>
+<ol>
+<li>Assume such an algorithm exists.</li>
+<li>Use H to construct a program P′ that contradicts its own behavior</li>
+<li>If H predicts P′ will halt, P ′enters an infinite loop.</li>
+<li>If H predicts P′ will not halt, P′ halts.</li>
+<li>This contradiction shows H cannot exist.</li>
+</ol>
+<p>We cannot predict, prior to running the Game of Life program, if the starting configuration will ever fall into a stable state where nothing new happens or if new configurations will continue indefinitely. Now this does not mean we can&rsquo;t predict the outcome of some specific configurations at start. We obviously can predict how a configuration that is one black square in the center of the board will finish. Instead, what we mean is that there is no algorithm that allows us to take any and all arbitrary starting configurations and predict the outcome.</p>
+<p>For example, this initial starting configuration:</p>
+<p>
+	
+	
+	<img src="/philosophy/conways-game-of-life-epistemological-considerations/T1.png"
+	width="300"
+	height="320"
+	
+	alt="t1" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>produced this outcome at the second time step:</p>
+<p>
+	
+	
+	<img src="/philosophy/conways-game-of-life-epistemological-considerations/T2.png"
+	width="300"
+	height="320"
+	
+	alt="t2" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>It was only after about 10 minutes of running the game that the board reached a configuration where nothing new would occur</p>
+<p>
+	
+	
+	<img src="/philosophy/conways-game-of-life-epistemological-considerations/T3.png"
+	width="300"
+	height="327"
+	
+	alt="t3" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>This configuration was made of shapes that either did nothing new or would rotate between two shapes indefinitely. For an easier example of what I mean, takethis shape:</p>
+<p>
+	
+	
+	<img src="/philosophy/conways-game-of-life-epistemological-considerations/t4.png"
+	width="300"
+	height="317"
+	
+	alt="t4" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>which will always result in this shape:</p>
+<p>
+	
+	
+	<img src="/philosophy/conways-game-of-life-epistemological-considerations/t5.png"
+	width="300"
+	height="320"
+	
+	alt="t5" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>which will always turn back into the previous shape:</p>
+<p>
+	
+	
+	<img src="/philosophy/conways-game-of-life-epistemological-considerations/t4.png"
+	width="300"
+	height="317"
+	
+	alt="t4" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>and this will continue for as long as we run the program. This is generally referred to as a stable configuration in the game similar to a program halting. My initial configuration above similarly resulted in a stable configuration, but this was not something I knew would happen prior to running the program, partially because there is no general equation or algorithm that could have predicted this outcome prior to running the simulation.</p>
+<p>The conclusion of all this is rather unintuitive. The Game of Life is deterministic and simple, yet fully outside our ability to predict prior to running the simulation. It posits a hard limit to the predictability and knowledge we can obtain about certain parts of our universe. Similar to what God said to the sea in Job 38:11, He tell us our knowledge of the universe can come this far, but no further. The implications of this extend far outside of the Game of Life. There are things inscrutable to human cognition. Epistemic humility is a requirement to having a better model of our world. For fans of science fiction, Netflix&rsquo;s The Three Body Problem tackles this very topic focusing on the computational irreducibility of knowing how three large bodies in space will precisely interaction with each other and how a planets orbit will be influenced by these interactions after a certain period of time. Things we intuitively think would be possible to accomplish, particularly with our advancements in computing, end up being too difficult to ever know.</p>
+<p>Outside of predicting how a computer program will execute or if an alien planet will experience inclement weather, the lessons of computational irreducibility / epistemic humility have lots of implications for our moral and political philosophies as well. Arguments for and against tax cuts that regularly accompany the American politic fail to take into account the immense number of variables at stake in an a large economy such as ours. All these variables similarly make predicting the outcome of any tax policy impossible. The fact that a tax cut was followed by a recession is far from proof that tax cuts do not work as a catalyst to economic growth. Utilitarianism also famously suffers from the reducibility problem. How any action might contribute to producing the greatest good for the greatest number (whatever that might even mean) is beyond our ability to know. Much like the Game of Life, it is only by watching the consequences of our actions play out in real time that we can begin to understand its utility and if it was actually a moral action. Not of much help for those of us who, as of yet, do not possess time machines. Even worse, we cannot predict when the consequences of our actions will halt (in this scenario when our action will no longer have any impact on general utility) which means we might need to observe the consequences for our actions into the infinite future prior to knowing if it was a moral action.</p>
+<p>We, of course, are not without tools in our belt to understand and make predictions about future states of computationally irreducible problems. Praxeology tells us that, everything else being equal, tax cuts will produce economic prosperity<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. We cannot predict if a tax cut will produce any increase in GDP or decrease in poverty rates, but the knowledge praxeology provides is nonetheless a helpful guide for our actions. Likewise for utilitarianism, looking back at past actions and their consequences to date give us an inference to how similar actions will impact societal utility in the future. Weather prediction is technically a problem of computation irreducibility, and yet we get relatively accurate forcasts week after week due to simplified models that can give us probabalistic outcomes (70% chance of rain tomorow). In some cases, it is incumbent upon us to become more bayesian, in other areas more deontological. Parsing out when to be which is something we all must come to work on, but it must start with coming to grips with our epistemic limitations.</p>
+<p>Conway&rsquo;s Game of Life is a fun demonstration of the nature of our reality. Our technological progress over the past 100 years has given many a false sense of confidence in our abilities. In some ways, I think humans are wired with a false sense of confidence in our ability to conquer and subdue the world around us, if not now in some ways, then in the near future for sure. This may be a major contributor to how we have acheived as much as we have as a species. But in pursuit of truth and a better model of the universe, the Game of Life introduces road closed signs on potential paths we can take. I recommend we heed the message these signs provide and plan our paths accordingly.</p>
+<p>Footnotes</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Economic prosperity is narrowly defined here to mean individuals will be able to acheive their own ends more easily the lower taxation rates are. This comes about as more capital is made available to invest in lengthening production and allowing for fewer inputs to be needed to acheive the same amount of outputs. Theoretically, a society could become poorer but still this could be called prosperity if this aligns with the desires of people, for example a society that rather sit around on the beach in little huts most of their day may give up many luxuries we consider a part of economic growth.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        <a href="https://twitter.com/intent/tweet?url=%2f%2flocalhost%3a64761%2fphilosophy%2fconways-game-of-life-epistemological-considerations%2f&amp;text=Conways%20Game%20of%20Life%20-%20Epistemological%20Considerations" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
+        </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a64761%2fphilosophy%2fconways-game-of-life-epistemological-considerations%2f&amp;source=%2f%2flocalhost%3a64761%2fphilosophy%2fconways-game-of-life-epistemological-considerations%2f&amp;title=Conways%20Game%20of%20Life%20-%20Epistemological%20Considerations&amp;summary=Conways%20Game%20of%20Life%20-%20Epistemological%20Considerations" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Conways%20Game%20of%20Life%20-%20Epistemological%20Considerations.&amp;body=Conways%20Game%20of%20Life%20-%20Epistemological%20Considerations%2c%20by%20Christopher%20Weaver%0aWhat%20Conways%20Game%20of%20Life%20can%20teach%20us%20about%20the%20nature%20of%20reality%0a%0a%2f%2flocalhost%3a64761%2fphilosophy%2fconways-game-of-life-epistemological-considerations%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        
+
+  
+  
+
+        
+  <section>
+    <h2>Read Next</h2>
+    <div class="single-next-previous">
+      
+        <a class="previous" href="//localhost:64761/philosophy/technology-and-the-nature-of-intelligence/">&laquo; Technology and the Nature of Intelligence</a>
+      
+      
+    </div>
+  </section>
+
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2024 &middot; 
+      <a href="//localhost:64761/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:64761/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:64761/main.js"></script>
+
+
+</body>
+</html>

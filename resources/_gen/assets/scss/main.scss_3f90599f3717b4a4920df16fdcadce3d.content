@@ -9,7 +9,7 @@
   --color-contrast-medium: hsl(240, 1%, 48%);
   --color-contrast-medium-high: hsl(240, 2%, 34%);
   --color-contrast-high: hsl(240, 4%, 20%);
-  --color-contrast-higher: black;
+  --color-contrast-higher: #282A36;
   --color-text: var(--color-contrast-high);
   --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
   --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
@@ -460,7 +460,7 @@ code {
   overflow-x: scroll; }
 
 pre:not([style]) {
-  background-color: #272822;
+  background-color: #282a36;
   color: #f8f8f2;
   padding: 20px; }
 
@@ -1001,7 +1001,7 @@ body {
   background-color: #272822;
   color: #7f7f7f;
   z-index: 1000;
-  top: 25px;
+  top: 15px;
   font-size: var(--font-size-base);
   line-height: calc(8px + 2ex); }
 
@@ -1020,7 +1020,7 @@ body {
   .markdown figcaption {
     font-size: var(--font-size-sm);
     line-height: calc(8px + 2ex);
-    color: var(--color-contrast-medium);
+    color: var(--color-contrast-low);
     font-weight: 300; }
 
 @media (min-width: 1200px) {
