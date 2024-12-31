@@ -4,7 +4,7 @@ netlify_forms = false # add data-netlify attribute to contact and newsletter for
 disallow_search_engines = false # Disallow search engine crawling in robots.txt
 
 ### Content
-favicon = true # Enable favicon, add your favicon files to /static/ directory
+favicon = false # Enable favicon, add your favicon files to /static/ directory
 avatar = 'avatar-cw.jpg' # Custom avatar image in /assets/
 grayscale_avatar = true # Add a grayscale filter to the avatar image
 author = 'Christopher Weaver' # Default author for <head> meta
@@ -43,7 +43,7 @@ schemaImageHeight = 455 # Height of the above image
 ### Social
 # Show social links in footer, home hero section, or about page
 footer_socials = true
-home_hero_socials = true
+home_hero_socials = false
 about_page_socials = true
 
 # Enable or disable individual social icons
