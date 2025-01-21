@@ -17,15 +17,6 @@
     </item>
     
     <item>
-      <title>Why Rust is everything I wanted C&#43;&#43; to be</title>
-      <link>//localhost:51469/engineering/programming-in-rust/</link>
-      <pubDate>Tue, 03 Dec 2024 09:38:32 -0600</pubDate>
-      
-      <guid>//localhost:51469/engineering/programming-in-rust/</guid>
-      <description>What I discovered learning Rust</description>
-    </item>
-    
-    <item>
       <title>Building a Log Utility Class in C&#43;&#43;</title>
       <link>//localhost:51469/engineering/building-a-log-utility-class-in-cpp/</link>
       <pubDate>Fri, 04 Oct 2024 09:38:32 -0600</pubDate>
