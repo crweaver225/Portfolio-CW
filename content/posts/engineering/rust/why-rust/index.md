@@ -6,7 +6,7 @@ description: What I discovered learning Rust
 slug: Programming in Rust
 author: Christopher Weaver
 
-draft: true
+draft: false
 date: 2024-12-03T09:38:32-06:00
 lastmod: 2024-12-03T09:38:32-06:00
 publishDate: 2024-12-03T09:38:32-06:00
