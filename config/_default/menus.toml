@@ -58,6 +58,14 @@
     weight = 5
 
 [[main]]
+    identifier = "Rust"
+    name = "Rust"
+    url = "/series/Rust"
+    # url = "/posts/Data Structures & Algorithms/" # Remove url param from Engineering/_index.md frontmatter to use full permalink
+    parent = "Learn"
+    weight = 5
+
+[[main]]
     identifier = "C++"
     name = "C++"
     url = "/series/C++"

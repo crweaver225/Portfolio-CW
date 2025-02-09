@@ -53,14 +53,16 @@
   <meta property="article:modified_time" content="2024-12-03T09:38:32-06:00">
   
 
-
-  <meta name="og:image" content="//localhost:51469/images/default.png"/>
-
-
-
-
-
+<meta property="og:image" content="//localhost:51469/engineering/programming-in-rust/rustIcon.jpeg"/>
   
+    <meta property="og:image:alt" content="rustIcon.jpeg" />
+  
+
+
+
+
+
+  <meta property="og:see_also" content="//localhost:51469/engineering/clean-code-rust/" />
   
 
 
@@ -73,14 +75,18 @@
 <meta name="twitter:description" content="What I discovered learning Rust">
 
 
+<meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:image" content="//localhost:51469/engineering/programming-in-rust/rustIcon.jpeg"/>
+  
+    <meta name="twitter:image:alt" content="rustIcon.jpeg">
+  
 
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image" content="//localhost:51469/images/default.png"/>
 
 
 
 
-
+  
+    
   
 
 
@@ -200,9 +206,9 @@
         {
           "@type": "ImageObject",
           "@id": "//localhost:51469/engineering/programming-in-rust/#/schema/image/2",
-          "url": "//localhost:51469/images/default.png",
-          "contentUrl": "//localhost:51469/images/default.png",
-          "caption": "Why Rust is everything I wanted C++ to be"
+          "url": "//localhost:51469/engineering/programming-in-rust/rustIcon.jpeg",
+          "contentUrl": "//localhost:51469/engineering/programming-in-rust/rustIcon.jpeg",
+          "caption": "rustIcon.jpeg"
         }
       ]
     }
@@ -301,6 +307,10 @@
               <a href="/series/machine-learning" class="menu-link">Machine Learning</a>                  
             </li>
           
+            <li class="menu-item">
+              <a href="/series/rust" class="menu-link">Rust</a>                  
+            </li>
+          
         </ul>
       </li>
       
@@ -370,6 +380,10 @@
             <li>Why Rust is everything I wanted C&#43;&#43; to be<span class="series-this-post">This post!</span>
               
             </li>
+            <li>
+                <a href="//localhost:51469/engineering/clean-code-rust/">Clean Rust</a>
+              
+            </li>
         </ol>
       </div>
     
@@ -379,6 +393,12 @@
 
   
 
+
+<img class="feature-image" 
+     srcset="/engineering/programming-in-rust/rustIcon.jpeg 480w, /engineering/programming-in-rust/rustIcon.jpeg 800w"
+     sizes="(max-width: 600px) 480px, 800px"
+     src="/engineering/programming-in-rust/rustIcon.jpeg"
+     alt="rustIcon.jpeg">
 </div>
     <article class="markdown">
         <h3 id="c---cracks-in-the-foundation">C++ - Cracks in the Foundation<a href="#c---cracks-in-the-foundation">
@@ -411,12 +431,25 @@
 <p>Implicit and undefined behavior has recently become a front and center issue for me and it had me open to exploring other options. C++ has been the industry standard for software that needs to reach the bleeding edge of speed and memory efficiency for decades, and so many of the promised C++ killers like Java and Go were entirely unacceptable as replacements where low level code is needed. Rust though, seemed to be different. It promised comparable speed to C and C++, but without so many of the drawbacks of those languages. I decided it was worth a little bit of my time to start learning. I started by picking up a copy of</p>
 <p><em><strong>Programming Rust</strong></em></p>
 <p><strong>Author:</strong> <em>Jim Blandy, Jason Orendorff, and Leonora Indall</em></p>
-<p><img src="rustProgramming.jpeg"
+<p>
+	
+	
+	
+		
+	<img src="/engineering/programming-in-rust/rustProgramming.jpeg"
+	width="196"
+	height="257"
+	style="
+		background-image: url('data:image/jpg;base64,/9j/2wCEACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo&#43;AjIqgtObDoKrarYqMyP/L2u71////m8H////6/&#43;b9//gBKy0tPDU8dkFBdviljKX4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;P/AABEIAD8AMAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&#43;Tl5ufo6ery8/T19vf4&#43;fr/2gAMAwEAAhEDEQA/ANZt4&#43;6AfrSAv3UCo5n2yL&#43;9CccA96P9J3AZGD3oAsYoxUAFxnG9c&#43;lG24yPnFAErA44oUgj3psJkO7zPwpxUZzQBXuYWkfKtj5MY9eaYY5Su3I2jdyH65q5gHtSHYvXAoArwRlJQ77c7MHDdKs7h6imSnbHlVBqmZ5QTgqMdOKTdhpXNCiqtvd&#43;Y3lyDa/86tUxNWGTSeXEWAye1ZwlZ5f3nGKvXKloDt6jmsqRiAH659KllxWhae5bGxM8VVlmYEktx9abuIXJDKvahFaVgVjJVfakVZIeknzxyAHA5Na0LvICzLtB6Cst45FYF1ZQelacCgRghmII71SIkSNu2/LjPvWfcI6fe25bsorRB4prKrEEjkUCTsZkEZnfYzDFaiKqKFUYAqJbeNWyBzT2TcetCQN3EkCNgNzjmnKynhab5Y9aVV25OaYj/9k=');
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		background-size: cover;"
 	alt="Book Image"  title="Book Image" 
 	class="single-post-image" 
 	loading="lazy"
 	decoding="async"
-	></p>
+	>
+</p>
 <p>I was interested to see what made Rust one of the most beloved langauges amongst developers according to recent <a href="https://survey.stackoverflow.co/2024/technology#2-programming-scripting-and-markup-languages" target="_blank" rel="noopener">surveys</a>. What I discovered was that <strong>Rust was everything I wanted C++ to be</strong>. The things I liked about C++ (compared to other langauges like Java and Python), Rust also had, but it just did it better.</p>
 <p>What follows is my list of some of the things I discovered that Rust does that I sorely wish C++ either did, or did as well as Rust. I will largely avoid discussing memory safety as it was something I was already aware of prior to reading the book, and its discussion is largely low hanging fruit when it comes to comparing Rust to C++.</p>
 <ol>
@@ -590,6 +623,10 @@ C++ was first introduced to the world in 1979. A lot has changed since then and 
           
           <ol>
               <li>Why Rust is everything I wanted C&#43;&#43; to be<span class="series-this-post">This post!</span>
+                
+              </li>
+              <li>
+                  <a href="//localhost:51469/engineering/clean-code-rust/">Clean Rust</a>
                 
               </li>
           </ol>

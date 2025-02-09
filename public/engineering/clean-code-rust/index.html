@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51469&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:51469/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:51469/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>Clean Rust | Christopher Weaver</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="Practical Applications of Clean Code to the Rust Programming Language">
+<link rel="canonical" href="//localhost:51469/engineering/clean-code-rust/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Clean Code in Rust">
+<meta property="og:description" content="Practical Applications of Clean Code to the Rust Programming Language">
+<meta property="og:url" content="//localhost:51469/engineering/clean-code-rust/">
+<meta property="article:published_time" content="2025-02-06T09:38:32-06:00">
+  <meta property="article:modified_time" content="2025-02-06T09:38:32-06:00">
+  
+
+<meta property="og:image" content="//localhost:51469/engineering/clean-code-rust/CleanCode.png"/>
+  
+    <meta property="og:image:alt" content="CleanCode.png" />
+  
+
+
+
+
+
+  <meta property="og:see_also" content="//localhost:51469/engineering/programming-in-rust/" />
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Clean Code in Rust">
+<meta name="twitter:description" content="Practical Applications of Clean Code to the Rust Programming Language">
+
+
+<meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:image" content="//localhost:51469/engineering/clean-code-rust/CleanCode.png"/>
+  
+    <meta name="twitter:image:alt" content="CleanCode.png">
+  
+
+
+
+
+
+  
+    
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:51469/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:51469/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:51469/#/schema/image/1",
+        "url": "//localhost:51469/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:51469/#/schema/website/1",
+      "url": "//localhost:51469/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:51469/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:51469/engineering/clean-code-rust/",
+      "url": "//localhost:51469/engineering/clean-code-rust/",
+      "name": "Clean Rust",
+      "description": "Practical Applications of Clean Code to the Rust Programming Language",
+      "isPartOf": {
+        "@id": "//localhost:51469/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:51469/#/schema/person/1"
+      },
+      "datePublished": "2025-02-06T09:38:32-06:00",
+      "dateModified": "2025-02-06T09:38:32-06:00",
+      "breadcrumb": {
+        "@id": "//localhost:51469/engineering/clean-code-rust/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:51469/engineering/clean-code-rust/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:51469/engineering/clean-code-rust/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:51469/engineering/clean-code-rust/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:51469/",
+          "url": "//localhost:51469/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:51469/engineering/",
+          "url": "//localhost:51469/engineering/",
+          "name": "Engineering"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:51469/engineering/clean-code-rust/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:51469/#/schema/article/1",
+          "headline": "Clean Rust",
+          "description": "Practical Applications of Clean Code to the Rust Programming Language",
+          "isPartOf": {
+            "@id": "//localhost:51469/engineering/clean-code-rust/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:51469/engineering/clean-code-rust/"
+          },
+          "datePublished": "2025-02-06T09:38:32-06:00",
+          "dateModified": "2025-02-06T09:38:32-06:00",
+          "author": {
+            "@id": "//localhost:51469/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:51469/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:51469/engineering/clean-code-rust/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:51469/engineering/clean-code-rust/#/schema/image/2",
+          "url": "//localhost:51469/engineering/clean-code-rust/CleanCode.png",
+          "contentUrl": "//localhost:51469/engineering/clean-code-rust/CleanCode.png",
+          "caption": "CleanCode.png"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+  
+
+  
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:51469/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Learn<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/series/c&#43;&#43;" class="menu-link">C&#43;&#43;</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/data-structures--algorithms" class="menu-link">Data Structures &amp; Algorithms</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/machine-learning" class="menu-link">Machine Learning</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/rust" class="menu-link">Rust</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Clean Rust</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Feb 6, 2025&nbsp;&middot;&nbsp;17 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="//localhost:51469/categories/engineering/">Engineering</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc">Practical Applications of Clean Code to the Rust Programming Language</p>
+    <div class="single-terms">
+      
+      
+      <a class="term" href="//localhost:51469/tags/rust/">Rust</a></li>
+      
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents"></nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+      <div class="series">
+        <p>Part of the <a href="//localhost:51469/series/rust/">Rust</a> series:</p>
+        
+        <ol class="series-list">
+            <li>
+                <a href="//localhost:51469/engineering/programming-in-rust/">Why Rust is everything I wanted C&#43;&#43; to be</a>
+              
+            </li>
+            <li>Clean Rust<span class="series-this-post">This post!</span>
+              
+            </li>
+        </ol>
+      </div>
+    
+    <div class="single-feature-img">
+
+
+
+  
+
+
+<img class="feature-image" 
+     srcset="/engineering/clean-code-rust/CleanCode.png 480w, /engineering/clean-code-rust/CleanCode.png 800w"
+     sizes="(max-width: 600px) 480px, 800px"
+     src="/engineering/clean-code-rust/CleanCode.png"
+     alt="CleanCode.png">
+</div>
+    <article class="markdown">
+        <p>Rust represents a paradigm shift in software engineering. For decades, engineers have had to choose between performance and the flexibility to modify software easily. The optimizations used to squeeze every last cycle out of a program often came at the cost of added complexity in the codebase. This is partly due to the nature of optimization itself, which requires focusing on specific aspects of a program’s behavior to tailor performance to that narrow area.</p>
+<p>Such optimizations almost always sacrifice more generic, flexible solutions—solutions that engineers can more easily understand and modify. While speed is crucial in software engineering, software is constantly evolving. The ability to change a program confidently relies on proper design patterns that decouple dependencies and structure code in a way that’s easy to reason about.</p>
+<p>There’s no shortage of books that emphasize the importance of clean code and effective software design. Among those I’ve read, I highly recommend:</p>
+<p><em><strong>Clean Code</strong></em></p>
+<p><strong>Author:</strong> <em>Robert Martin</em></p>
+<p>
+	
+	
+	
+		
+	<img src="/engineering/clean-code-rust/clean_code.jpg"
+	width="250"
+	height="331"
+	style="
+		background-image: url('data:image/jpg;base64,/9j/2wCEACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo&#43;AjIqgtObDoKrarYqMyP/L2u71////m8H////6/&#43;b9//gBKy0tPDU8dkFBdviljKX4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;P/AABEIAEAAMAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&#43;Tl5ufo6ery8/T19vf4&#43;fr/2gAMAwEAAhEDEQA/AMpY89SBS&#43;V/tCmAZqx9jc5CEMynBA7UAMCbf4gasQKhYBmA9yag&#43;yT4zs7Z60C2dlXBBZhkL7etUpWJlG5euo4UwI5Fbj1qi6gjjrThZTFAdvOfu1XpuTYlBIcoU9Wx&#43;FWPPcciY5/3etVwKlSPNTYpuxIZ3IH748e1NWVkACynA6fLUggJHSmtAR2p8pPOhPtD4H78/lVdwoGVbJ&#43;lPZMVGRSKTHxttbOAavxTRkDMYFZoNSK&#43;KEJ3NqNoiPu0kgiPtWYs5Hela4J71RnZk00URGQ&#43;D9KoOADwc095M1G3QHI5qWaIbS04lPLBAG7PIpu7/ZFBQZozQGGeVFSLsPUAUWEM2sRnBxSFWAyQQKsfu8Yz/Oo3K7eufbmm0Fz/2Q==');
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		background-size: cover;"
+	alt="Book Image"  title="Book Image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p><em><strong>C++ Software Design</strong></em></p>
+<p><strong>Author:</strong> <em>Klaus Iglberger</em></p>
+<p>
+	
+	
+	<img src="/engineering/clean-code-rust/cppSoftwareDesign.png"
+	width="250"
+	height="325"
+	
+	alt="Book Image"  title="Book Image" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>An area of heavy study for me is how to best apply many of the most useful design patterns in C++ without the unacceptable tradeoffs in performance that usually requires the use of C++ to begin with. The std::variant for the visitor design pattern, compile time type erasure, are among some of the patterns I usually attempt to leverage because they offer both excellent run time performance and readily adhere to the benefits of clean code. But C++ is a massive and complex language with a million and one ways to accidentally cede away performance in an attempt to design clean, flexible software.</p>
+<p>This is where Rust comes in. Rust promises the performance of C++ without the plethora of design patterns meant to tame the language into something that is manageable. Rust came onto the scene in 2015 and stood on the shoulders of giants. It had the massive advantage of learning all the lessons C++ provided as it attempted to adapt to the programming paradigm shifts of the past 40 years. Rust takes the benefits of object oriented development but without things like inheritance. It adopts many of the best aspects of functional programming and makes them first class citizens within the language. All this means Rust allows for cleaner code with less sacrifice required to your programs performance. Rust still suppports most of the classic design patterns in some <a href="https://rust-unofficial.github.io/patterns/patterns/index.html" target="_blank" rel="noopener">fashion</a>, but they are dramatically tamed down compared to what you will see in lanaguages like Java and C++. They often are significantly less needed. Rust encourages clean code with orthagonal pieces out of the box. It makes the sea of objects that quickly become dependencies within each other hard to create and instead nudges users toward better software design.</p>
+<p>Rust can be expressive, which means we humans still have the ability to write really bad Rust code. Despite all the ways Rust discourages this behavior, it is possible. Adherence to some of the following guidelines keeps code cleaner, easier to reason about, and more robust. But first, we are well served to better define clean code. Clean code can be conceptualized by five key principles:</p>
+<ol>
+<li>Readability: Code should be self-explanatory.</li>
+<li>Simplicity: Avoid unnecessary complexity</li>
+<li>Maintainability: Code should be easy to modify.</li>
+<li>Efficiency: Code needs to be efficient enough to meet the needs it was written for</li>
+<li>Idiomatic: Each programming language comes with its own idiosyncrasies that the community has crafted best practices to combat</li>
+</ol>
+<p>Lets explore each of these, one at a time and go over some ways to help Rust meet these principles.</p>
+<p><em><strong>Readability</strong></em>
+Most of us who have been doing software engineering long enough have had to suffer through many code bases where variable names are not readily meaningful.</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">process</span>(a: <span style="color:#66d9ef">f64</span>) -&gt; <span style="color:#66d9ef">f64</span> { a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1.0</span> }</span></span></code></pre></div>
+<p>What does x mean within the broader context of the control flow of the program? Process? What are we processing? Also, if our process function is complex enough, attempting to reason about what &lsquo;a&rsquo; is quickly becomes confusing in itself. None of these variable names are helpful to anyone who might later need to jump into the code and understand what is happening. At best, it will take the engineer significantly longer to understand what is happening. But another likely outcome is bugs will be introduced due to a slight misunderstand of the nature of these variables and function names. Perhaps even more frustrating is the use of abbreviated variable names to save on developer keystrokes and to &ldquo;increase readability&rdquo;.</p>
+
+
+  <span class="code-language">Python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">random_function</span>(sn, vb):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>        do_some_stuff()</span></span></code></pre></div>
+<p>I see this constantly. These variables were given names that are functionally significant, but were abbreviated to the point that they are not obvious. Here sn likely means serial number, and vb verbose, since these are generally used as shorthand for these terms. But why must I guess this? Is the developer really saving that much time to type sn instead of serial_number? The answer is absolutely not. Will the verbosity of longer variable names make the code less readable? Again, no. It might make it look less pretty at first glance, but fully typed out coherent names will allow for significantly better code that others can quickly reason about.</p>
+<p>Rust offers an amazing form of code documenting that needs to be highly utilized by everyone who programs with the language. When it comes to readability, the code itself should explain what it does. This is the exact reason why we have programming languages on top of machine code, to make the control flow of these programs more human readable. But even when we write good code that explains what it does, we still should be adding comments that explain WHY some piece of code exists. Good code has lots of interconnected orthagonal pieces that need to come together into a symphony of functionality. Comments help us reason about each individual piece at a higher level of context. Rust also offers rustdocs, which empowers cargo to locate all comments with three backshlashes /// and turns it into an easily digestable html docment. This means you can manage code comments and documentation all from one central location! Furthermore, you can easily add tests into your code comments that cargo will automatically extract and run when testing your code. Advocates of Test Driven Development have long argued that tests are a great way to explain the purpose of code and act as a form of code documentation. Rust integrates this altogether into one place for clean, easily readable code.</p>
+<p><em><strong>Simplicity</strong></em>
+One of the most pervisive acronyms within software development is SOLID. Generally applicable to heavily object oriented programming, the S, standing for single responsibility has applicability in Rust as well. Functions should be limited in what they do to both to allow for easier reasoning about in the code (at least if functions are properly named) but also to make each function more reusable throughout the code. A function to process data that both filters an array and then sorts the array is a function that might be too complex and lacks the simplicity to be reusable throughout the codebase</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">process_data</span>(data: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i8</span><span style="color:#f92672">&gt;</span>) -&gt; Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i8</span><span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#66d9ef">let</span> filtered: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i32</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> data.into_iter().filter(<span style="color:#f92672">|&amp;</span>x<span style="color:#f92672">|</span> x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>).collect();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    filtered.into_iter().sorted().collect();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}</span></span></code></pre></div>
+<p>Seperating this into distinct parts better conforms to the single responsibility principle</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">filter_data</span>(data: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i8</span><span style="color:#f92672">&gt;</span>) -&gt; Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i8</span><span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    data.into_iter().filter(<span style="color:#f92672">|&amp;</span>x<span style="color:#f92672">|</span> x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>).collect();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sort_data</span>(data:Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i8</span><span style="color:#f92672">&gt;</span>) -&gt; Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i8</span><span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    data.into_iter().sorted().collect();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>}</span></span></code></pre></div>
+<p>The above is actually a very bad example, since we can use zero cost iterators to do that all in one swoop in a much more readable way, but what I display above presents the fundamental idea of what is being asked of developers.</p>
+<p><em><strong>Maintainability</strong></em>
+The issue with being able to modify code can be broken down into two sub-issues:</p>
+<ol>
+<li>Can you reason about the code sufficiently to change it</li>
+<li>Can you modify the code without breaking other parts of your software you did not expect to be related</li>
+</ol>
+<p>Rust has the best type system I have every come across in a programming language. It is sufficiently stricter than what dynamic languages like Python and JavaScript offer. Even C++, because of its large amount of implicit behavior, lacks the definitive type system Rust offers out of the box. But Rust also offers an incredible level of flexibility within its type system in the form of algebraic sum types. Rust enums can store different types of data based on the case that can be pattern matched at runtime. Bringing together both the unique strictness and flexibility of the Rust type system allows us to take bad code like this</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">handle_response</span>(code: <span style="color:#66d9ef">i32</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#66d9ef">if</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">200</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#75715e">// Do success code
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">404</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>        <span style="color:#75715e">// Do not found code
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>        <span style="color:#75715e">// Do unknown error code
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>}</span></span></code></pre></div>
+<p>and turn it into something more type safe</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">HTTPStatus</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    Success,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    NotFound,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    Unknown
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">handle_response</span>(code: <span style="color:#a6e22e">HttpStatus</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#66d9ef">match</span> code {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        HTTPStatus::Success <span style="color:#f92672">=&gt;</span> <span style="color:#75715e">// Do success code ,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#75715e"></span>        HTTPStatus::NotFound <span style="color:#f92672">=&gt;</span> <span style="color:#75715e">// Do not found code ,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#75715e"></span>        HTTPStatus::Unknown <span style="color:#f92672">=&gt;</span> <span style="color:#75715e">// Do unknown error code,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>}</span></span></code></pre></div>
+<p>Leveraging Rusts strong type system allows for more expressive programming that is easier for others to see what exactly you are doing, but it also catches lots of mistakes. In the first example, if you accidentally type 405 instead of 404, your program will successfully compile and run, but the results are hard to predict (and could be disastrous). But a typo in the second example will be caught during compile time and disaster will be averted. Rusts type system, when used to its full potential, means we can make code changes quicker and sleep more soundly at night.</p>
+<p>Maintainable code is also code that properly handles the reality that errors outside the control of the engineer are bound to happen during runtime. It could be a network issue, or perhaps the machine you are running on fails to read from disk, or the user inputs incorrect data. All these things are outside the control of the software engineer, but they need to be handled. Most other languages offer, amongst many different options, the ability to throw exceptions when these errors occur. Exceptions are a controversial subject within the software development community. They are often hard to reason about and for languages like C++ incur a non-determinstic runtime penalty when utilized. Perhaps most importantly, it is often difficult to reason about the control flow of a program that throws exceptions. If a function throws an exception, which part of your program will take ownership of the control flow? What happens to all the resources that were allocated prior to the error being thrown? How far will the error get propogated?</p>
+<p>Rust takes a different approach. It does not support exceptions, but instead requires code that might experience errors to explicitly work with a Result&lt;, Error&gt; enum. This is nice because we get a determinstic runtime approach ideal for systems programming. But for the purposes of maintainability, it is really nice because it means we can clearly see all the places error might occur and the compiler requires us to explicitly deal with them as they arise</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">divide</span>(a: <span style="color:#66d9ef">i32</span>, b: <span style="color:#66d9ef">i32</span>) -&gt; Result<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i32</span>, String<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">if</span> b <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        Err(<span style="color:#e6db74">&#34;Division by zero&#34;</span>.to_string())
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        Ok(a <span style="color:#f92672">/</span> b)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#66d9ef">let</span> divide_result <span style="color:#f92672">=</span> <span style="color:#66d9ef">match</span> divide(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">6</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    Ok(answer) <span style="color:#f92672">=&gt;</span> answer,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    Err(error) <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>}</span></span></code></pre></div>
+<p>Here we can see that the return value of our divide function is a result, which is an immediate heuristric to us that this function might return an error of some kind. The fact that this is listed in the function signature means we can much more quickly reason about our code which is a major contributor to maintainability. But also, Rust requires that we deal with the Result enum if we want to work with this value. Pattern matching the Result provides a clean, idiomatic way to handle errors across the entirety of our program.</p>
+<p>Writing tests can be a massive pain in many ecosystems. Often, seperate libraries need to get incorporated into the build system that allow for the types of testing large projects require. But the reality is, a system without tests is a system you cannot reliably maintain. Tests allow engineers to make changes and ensure those changes do not have unanticipated consequences elsewhere in the system. This safety mechanism allows for quicker iteration and a system that is overall more maintainable.</p>
+<p>Rust offers first class testing right out of the box with cargo</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#75715e">// src/main.rs
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#75715e"></span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Calculator</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#66d9ef">impl</span> Calculator {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">add</span>(a: <span style="color:#66d9ef">i32</span>, b: <span style="color:#66d9ef">i32</span>) -&gt; <span style="color:#66d9ef">i32</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        a <span style="color:#f92672">+</span> b
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">subtract</span>(a: <span style="color:#66d9ef">i32</span>, b: <span style="color:#66d9ef">i32</span>) -&gt; <span style="color:#66d9ef">i32</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        a <span style="color:#f92672">-</span> b
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">multiply</span>(a: <span style="color:#66d9ef">i32</span>, b: <span style="color:#66d9ef">i32</span>) -&gt; <span style="color:#66d9ef">i32</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        a <span style="color:#f92672">*</span> b
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">divide</span>(a: <span style="color:#66d9ef">i32</span>, b: <span style="color:#66d9ef">i32</span>) -&gt; Result<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i32</span>, String<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>        <span style="color:#66d9ef">if</span> b <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>            Err(String::from(<span style="color:#e6db74">&#34;Cannot divide by zero&#34;</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>            Ok(a <span style="color:#f92672">/</span> b)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>    println!(<span style="color:#e6db74">&#34;5 + 3 = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, Calculator::add(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>    println!(<span style="color:#e6db74">&#34;10 - 4 = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, Calculator::subtract(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>    println!(<span style="color:#e6db74">&#34;6 * 7 = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, Calculator::multiply(<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>    <span style="color:#66d9ef">match</span> Calculator::divide(<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>        Ok(result) <span style="color:#f92672">=&gt;</span> println!(<span style="color:#e6db74">&#34;20 / 4 = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, result),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>        Err(e) <span style="color:#f92672">=&gt;</span> println!(<span style="color:#e6db74">&#34;Error: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, e),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span><span style="color:#75715e">// src/lib.rs (for tests)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span><span style="color:#75715e"></span><span style="color:#75715e">#[cfg(test)]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span><span style="color:#66d9ef">mod</span> tests {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>    <span style="color:#66d9ef">use</span> <span style="color:#66d9ef">super</span>::<span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>    <span style="color:#75715e">#[test]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test_add</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>        assert_eq!(Calculator::add(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>    <span style="color:#75715e">#[test]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test_subtract</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span>        assert_eq!(Calculator::subtract(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>), <span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51</span><span>    <span style="color:#75715e">#[test]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52</span><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test_multiply</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53</span><span>        assert_eq!(Calculator::multiply(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>), <span style="color:#ae81ff">21</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56</span><span>    <span style="color:#75715e">#[test]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57</span><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test_divide</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58</span><span>        assert_eq!(Calculator::divide(<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">4</span>).unwrap(), <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61</span><span>    <span style="color:#75715e">#[test]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62</span><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test_divide_by_zero</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63</span><span>        assert!(Calculator::divide(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>).is_err());
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65</span><span>}</span></span></code></pre></div>
+<p>The #[test] macro allows developers to run &lsquo;cargo test&rsquo; to quickly have all the written test run to confirm the system is operating as it should. Test can easily live within the same file as the code they are testing and, as mentioned above, can be integrated into the code documentation as well. With the ease in which tests can be written into a project in Rust, developers no longer have an excuse not to utilize these to their full potention.</p>
+<p><em><strong>Efficiency</strong></em>
+Rust carves out its niche as a systems programming language that offers comparable speed to C/C++ but with additional safety guarantees and without all the technical baggage these other older langauges had accumulated over the years. This does not mean Rust cannot be written in a way that runs painfully slow, but only that it offers the ability to execute top tier performance other languages like Python and Java cannot match. Taking advantage of this speed involves keeping as much in stack memory as possible</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Car</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#75715e">// Car stuff
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#75715e"></span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#66d9ef">let</span> car <span style="color:#f92672">=</span> Box::new(Car); <span style="color:#75715e">// Bad, stay away from heap memory if you can
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#66d9ef">let</span> other_car <span style="color:#f92672">=</span> Car(); <span style="color:#75715e">// Better, this is stack allocated and will likely be significantly faster
+</span></span></span></code></pre></div>
+<p>and avoiding deep copies of large data structures through the usage of references. References are memory pointers that allow your code to pass the memory address of a resources to other parts of your code quickly and efficiently</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">process_data</span>(data: <span style="color:#66d9ef">&amp;</span>Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i32</span><span style="color:#f92672">&gt;</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#75715e">// Do something with data
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#66d9ef">let</span> data: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i32</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> Vec::new();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>process_data(<span style="color:#f92672">&amp;</span>data);</span></span></code></pre></div>
+<p>No data gets copied. Only a 64 bit pointer gets passed to the function which can now use the data vector to do its thing. This has historically been a pain point for langauges like C++ which use these techniques for efficiency, but then struggle to cope with what modifications might be happening to these data objects as they get passed around. Rust solves this by not allowing modifications to references by default, essentially putting the resources into read only mode as long as a reference to it exists somewhere. You can pass a reference elsewhere that is mutable, but the compiler will ensure this mutable reference only exists in one place at a time during the lifetime of your program.</p>
+<p>Rust also offers zero cost iterators that lazily do work over data structures like vectors to efficiently handle the same kinds of tasks engineers have historically used For Loops to solve.</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">let</span> numbers <span style="color:#f92672">=</span> vec![<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#66d9ef">let</span> doubled: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">i32</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> numbers.iter().map(<span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> x <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>).collect();</span></span></code></pre></div>
+<p>The second line here gets a new vector where each value from the numbers vector has been doubled. We can chain lots of these iterators together to form some really cool and complex behavior. These iterators do not make unecessary copies of data and only operate lazily on elements as necessary, which makes them very performant. They also provide for features that are significantly easier to reason about than custom for loops which can be challenging to understand and are very error prone.</p>
+<p>Using pattern matching and enums to handle different types of data also provides excellent optimizations techniques relative to dynamic polymorphism which is the go to method in other languages to match functionality. A classic C++ example</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">make_noise</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Animal {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> make_noise { std<span style="color:#f92672">::</span> cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Bark&#34;</span>; }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Animal {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> make_noise { std<span style="color:#f92672">::</span>count <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Meow&#34;</span>; }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    Animal animal1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Dog();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    Animal animal2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Cat();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    Vector<span style="color:#f92672">&lt;</span>Animal<span style="color:#f92672">&gt;</span> v;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    v.push_back(animal1);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    v.push_back(animal2);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#66d9ef">for</span> (animal : v) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        animal.make_noise();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>}</span></span></code></pre></div>
+<p>This program works really well. We have a list of generic animals. Despite the fact that each animal in the vector is distinct, they share a common interface which means we can generically call make_noise on each animal and get the custom behavior we expect depending on the actual type of animal we have. The problem is, this type of dynamic polymorphism comes with runtime costs since the program needs to navigate through multiple pointers to different places in memory.</p>
+<p>Rust handles this differently with enums:</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    Dog,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    Cat,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#66d9ef">impl</span> Animal {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">make_noise</span>(<span style="color:#f92672">&amp;</span>self) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        <span style="color:#66d9ef">match</span> self {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>            Animal::Dog <span style="color:#f92672">=&gt;</span> println!(<span style="color:#e6db74">&#34;Woof!&#34;</span>),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>            Animal::Cat <span style="color:#f92672">=&gt;</span> println!(<span style="color:#e6db74">&#34;Meow!&#34;</span>),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#66d9ef">let</span> animals <span style="color:#f92672">=</span> vec![Animal::Dog, Animal::Cat, Animal::Dog];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#66d9ef">for</span> animal <span style="color:#66d9ef">in</span> <span style="color:#f92672">&amp;</span>animals {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>        animal.make_noise();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>}</span></span></code></pre></div>
+<p>We have similar functionality, but with what is likely much better runtime performance. There is no heap indirection, but instead tightly packed enum types that the compiler will likely be able to optimize and inline much of the functionality for. C++ and other languages can provide similar functionality using std::variant and the std::visit function. But Rust offers a superior level of optimization here and this all lives as a first class citizen in the language. Use these algebraic sum types and pattern matching often in Rust. It is clean, and it is efficient.</p>
+<p><em><strong>Idiomatic</strong></em>
+Idiomatic Rust code follows best practices that have been discovered and affirmed over time by the community. These practices tend to offer excellent runtime performance and cleaner code that other developers can quickly reason about and understand. Things such as pattern matching, Results, and Options are out of the box solutions that can improve a code base significantly if properly utilized. Traits and Generics are another idiomatic feature of the language that provides a powerful tool for DRY, easily understandable code. Want a way to easily print your car object?</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Car</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    model: String,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#66d9ef">impl</span> Printable or Car {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">print</span>(<span style="color:#f92672">&amp;</span>self) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        println!(<span style="color:#e6db74">&#34;Value: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, self.model);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#66d9ef">let</span> car <span style="color:#f92672">=</span> Car{<span style="color:#e6db74">&#34;Honda&#34;</span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    car.print();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>}</span></span></code></pre></div>
+<p>We have just easily extended our car object with a new trait. This aligns well with the Open-Closed principle (the O in SOLID) which states we should allow for classes to be extended with new functionality without modifying the class itself. But even better, we can utilize generics to handle our Car class without duplication of code</p>
+
+
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">print_value</span><span style="color:#f92672">&lt;</span>T: <span style="color:#a6e22e">Printable</span><span style="color:#f92672">&gt;</span>(value: <span style="color:#a6e22e">T</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    value.print();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    <span style="color:#66d9ef">let</span> car <span style="color:#f92672">=</span> Car{<span style="color:#e6db74">&#34;Honda&#34;</span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    print_value(car);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>}</span></span></code></pre></div>
+<p>The print_value function has no idea what a Car struct is, nor does it care. All it needs to know is that it is being passed something that implements the Printable trait and therefore has the print() function that it can call.</p>
+<p>Generics and traits are two extremely useful idiomatic tools Rust offers for clean, robust software without any compromise to our runtime performance.</p>
+<p><em><strong>Conclusion</strong></em>
+Rust offers a fresh start on some of the things software engineers have had to struggle with for decades now. How do we structure code in a way that allows for quick and safe changes without sacrificing needed performance. There is no exact answer on how to do this, and each language offers multiple pros and cons when considering the tradeoff. But Rust does a better job of not only making it harder to write unclean code, but in offering out of the box tools that support clean code along with premium runtime performance. It is a paradigm shift. As hardware bottlenecks continue to crop up in the market, Rust offers the ability to democratize faster software that we can adapt quicker and offers us the robustness we have craved for so long.</p>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+          
+          <a class="term" href="//localhost:51469/tags/rust/">Rust</a></li>
+          
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        <a href="https://twitter.com/intent/tweet?url=%2f%2flocalhost%3a51469%2fengineering%2fclean-code-rust%2f&amp;text=Clean%20Rust" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
+        </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a51469%2fengineering%2fclean-code-rust%2f&amp;source=%2f%2flocalhost%3a51469%2fengineering%2fclean-code-rust%2f&amp;title=Clean%20Rust&amp;summary=Clean%20Rust" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Clean%20Rust.&amp;body=Clean%20Rust%2c%20by%20Christopher%20Weaver%0aPractical%20Applications%20of%20Clean%20Code%20to%20the%20Rust%20Programming%20Language%0a%0a%2f%2flocalhost%3a51469%2fengineering%2fclean-code-rust%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        <div class="series">
+          <p>Part of the <a href="//localhost:51469/series/rust/">Rust</a> series:</p>
+          
+          <ol>
+              <li>
+                  <a href="//localhost:51469/engineering/programming-in-rust/">Why Rust is everything I wanted C&#43;&#43; to be</a>
+                
+              </li>
+              <li>Clean Rust<span class="series-this-post">This post!</span>
+                
+              </li>
+          </ol>
+        </div>
+      
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2025 &middot; 
+      <a href="//localhost:51469/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:51469/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:51469/main.js"></script>
+
+
+</body>
+</html>
