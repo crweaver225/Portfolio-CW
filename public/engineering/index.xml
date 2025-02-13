@@ -6,7 +6,16 @@
     <description>Recent content in Engineering on Christopher Weaver</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Feb 2025 09:38:32 -0600</lastBuildDate><atom:link href="//localhost:51469/engineering/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Feb 2025 07:07:50 -0500</lastBuildDate><atom:link href="//localhost:51469/engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Back to the Basics - Binary and Hex</title>
+      <link>//localhost:51469/engineering/back-to-the-basics-binary-and-hex/</link>
+      <pubDate>Mon, 10 Feb 2025 07:07:50 -0500</pubDate>
+      
+      <guid>//localhost:51469/engineering/back-to-the-basics-binary-and-hex/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Clean Rust</title>
       <link>//localhost:51469/engineering/clean-code-rust/</link>

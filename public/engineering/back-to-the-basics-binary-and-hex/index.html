@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=58135&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:58135/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:58135/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>Back to the Basics - Binary and Hex | Christopher Weaver</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="Portfolio site of Christopher Weaver.">
+<link rel="canonical" href="//localhost:58135/engineering/back-to-the-basics-binary-and-hex/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Back to the Basics - Binary and Hex">
+<meta property="og:description" content="Introduction
+    
+      Link to this heading
+      
+      
+    
+  
+The past 60 years of software engineering has focused a lot of its attention towards building greater levels of abstraction between the computer and the computer programmer. The earliest digital computers were programmed on punch cards where each hole in the card represented a specific binary digit.">
+<meta property="og:url" content="//localhost:58135/engineering/back-to-the-basics-binary-and-hex/">
+<meta property="article:published_time" content="2025-02-10T07:07:50-05:00">
+  <meta property="article:modified_time" content="2025-02-10T07:07:50-05:00">
+  
+
+
+  <meta name="og:image" content="//localhost:58135/images/default.png"/>
+
+
+
+
+
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Back to the Basics - Binary and Hex">
+<meta name="twitter:description" content="Introduction
+    
+      Link to this heading
+      
+      
+    
+  
+The past 60 years of software engineering has focused a lot of its attention towards building greater levels of abstraction between the computer and the computer programmer. The earliest digital computers were programmed on punch cards where each hole in the card represented a specific binary digit.">
+
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="//localhost:58135/images/default.png"/>
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:58135/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:58135/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:58135/#/schema/image/1",
+        "url": "//localhost:58135/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:58135/#/schema/website/1",
+      "url": "//localhost:58135/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:58135/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/",
+      "url": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/",
+      "name": "Back to the Basics - Binary and Hex",
+      "description": "Portfolio site of Christopher Weaver.",
+      "isPartOf": {
+        "@id": "//localhost:58135/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:58135/#/schema/person/1"
+      },
+      "datePublished": "2025-02-10T07:07:50-05:00",
+      "dateModified": "2025-02-10T07:07:50-05:00",
+      "breadcrumb": {
+        "@id": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:58135/engineering/back-to-the-basics-binary-and-hex/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:58135/",
+          "url": "//localhost:58135/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:58135/engineering/",
+          "url": "//localhost:58135/engineering/",
+          "name": "Engineering"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:58135/#/schema/article/1",
+          "headline": "Back to the Basics - Binary and Hex",
+          "description": "",
+          "isPartOf": {
+            "@id": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/"
+          },
+          "datePublished": "2025-02-10T07:07:50-05:00",
+          "dateModified": "2025-02-10T07:07:50-05:00",
+          "author": {
+            "@id": "//localhost:58135/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:58135/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:58135/engineering/back-to-the-basics-binary-and-hex/#/schema/image/2",
+          "url": "//localhost:58135/images/default.png",
+          "contentUrl": "//localhost:58135/images/default.png",
+          "caption": "Back to the Basics - Binary and Hex"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:58135/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Learn<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/series/c&#43;&#43;" class="menu-link">C&#43;&#43;</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/data-structures--algorithms" class="menu-link">Data Structures &amp; Algorithms</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/machine-learning" class="menu-link">Machine Learning</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/rust" class="menu-link">Rust</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Back to the Basics - Binary and Hex</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Feb 10, 2025&nbsp;&middot;&nbsp;9 min.</div>
+      
+      
+    </div>
+    <p class="page-header-desc"></p>
+    <div class="single-terms">
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#binary-values">Binary Values</a></li>
+        <li><a href="#adding-binary-values">Adding Binary Values</a></li>
+        <li><a href="#signed-integers">Signed Integers</a></li>
+        <li><a href="#overflows">Overflows</a></li>
+        <li><a href="#extensions">Extensions</a></li>
+        <li><a href="#floating-points">Floating Points</a></li>
+        <li><a href="#hexadecimal">Hexadecimal</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+    <div class="single-feature-img">
+
+
+
+  
+
+</div>
+    <article class="markdown">
+        <h3 id="introduction">Introduction<a href="#introduction">
+    <svg role="img" aria-labelledby="introduction-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="introduction-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>The past 60 years of software engineering has focused a lot of its attention towards building greater levels of abstraction between the computer and the computer programmer. The earliest digital computers were programmed on punch cards where each hole in the card represented a specific binary digit.</p>
+<p>
+	
+	
+	
+		
+	<img src="/engineering/back-to-the-basics-binary-and-hex/punchCards.jpeg"
+	width="350"
+	height="264"
+	style="
+		background-image: url('data:image/jpg;base64,/9j/2wCEACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo&#43;AjIqgtObDoKrarYqMyP/L2u71////m8H////6/&#43;b9//gBKy0tPDU8dkFBdviljKX4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;P/AABEIACQAMAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&#43;Tl5ufo6ery8/T19vf4&#43;fr/2gAMAwEAAhEDEQA/AKklvIYg/J7AVchbdGiTIVPbIxT7cOrcuGUnIFWZF3oVPekBUFrbS/wEFsjOehrPltWjbg7kz94dqvsrg4PBzkfWrqKGAYqM49KAMI2k3VULr6rzSeTKp5jcfhW8RGZFHR15wOM09pAoycYFAFEQrFIrheQewqb7SmQCCKha3vQf9aPzpjW153ZT&#43;VAFrzoic7hTxIh6MKzzbXI6lf0pRb3Pqv5igCS5neO5XyhuYjBFXhCsqDzRnPas5ba63blK7h6YqZUv8/6z9RQBpFQetMKADA6VIaa1MBhjU4PPHvShAF70val/g/CgBNo96UAZo7UooA//2Q==');
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		background-size: cover;"
+	alt="punch cards"  title="Punch Card Computing" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>Over time the industry developed compilers that could take programming langauges like Fortran, that happened to be closer to natural human language, and break them down into binary on our behalf. Many of these earliest languages were vastly easier to work with than machine code, but still required engineers to manage system level details like memory on their own. The 1990&rsquo;s brought with it newer languages with their own garbage collectors and runtime interpreters which automated away many of the remaining low level implementation details previous generations of developers had to contend with. This, for the most part, is a good thing. Most of the business problems software developers are asked to tackle do not require any knowledge or binary; and abstracting away these difficult, low level implementation details reduces development costs significantly which in a world constantly hungry for more and more software, is a good thing.</p>
+<p>But there are still lots of times when understanding binary for bitwise operations is extremely helpful for low level systems programming tasks. A comprehension of how computers represent all data and instructions in specific binary formats can be a superpower for engineers tasked with micro optimizations on tasks that need it. To that end, I have recently been reading <em><strong>C and C++ Under the Hood</strong></em> by <em>Anthony Dos Reis</em> and thought I would summarize the general takeaways from the introductory chapter on binary and hex values.</p>
+<p>
+	
+	
+	
+		
+	<img src="/engineering/back-to-the-basics-binary-and-hex/cUnderHood.jpg"
+	width="250"
+	height="323"
+	style="
+		background-image: url('data:image/jpg;base64,/9j/2wCEACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo&#43;AjIqgtObDoKrarYqMyP/L2u71////m8H////6/&#43;b9//gBKy0tPDU8dkFBdviljKX4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;Pj4&#43;P/AABEIAD4AMAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&#43;Tl5ufo6ery8/T19vf4&#43;fr/2gAMAwEAAhEDEQA/AMwIWIAGSaXymD7cZPtzU0YKuCBkjtT0Ijk3hDjHGTWggktQbfeqEEeneq3kPuK45HXJ6VdNxIUAK/J04qEtuZ8oSG5xn0pAVShz0puKueY6FPlHy8jioGBJJNAGokO1gcU/ZgYC8dKt4T1FA2A5yKy9oh8pVxj&#43;H/61RbTvDYPAxxV8tH6imFo/UU&#43;dD5WU&#43;hGVJx0z2qtJHuYnHU1ou0ZJORULGP8AvCjnQcrMj7RN/wA9G/Ok8&#43;X/AJ6N&#43;dR06NQ7YLBfc0WC7F86T&#43;&#43;350nmP/fP51J5I/56pS&#43;Qn/PVaYrkW9v7x/Ok3H1NK67WwGB9xTaAFAyQPWpvs55/eJ&#43;dQUUASmBgPvKeccGhYCyghl/E1FRQBMLckA71/OoiMHFJRQB//9k=');
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		background-size: cover;"
+	alt="punch cards"  title="Punch Card Computing" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<h3 id="binary-values">Binary Values<a href="#binary-values">
+    <svg role="img" aria-labelledby="binary-values-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="binary-values-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Digital computers work using binary. 1 for the presence of a signal and 0 for the absence of a signal. Usually a signal is represented by the existence of electrical flow through a wire or not, but this is not necessarily the case. The binary numbering system is a base 2 numbering system, since there are only two possible values used to represent all other values (1 and 0). This is in contrast to our regular base 10 numbering system which uses numbers 0 through 9 to represent all possible numbers. Both numbering systems increment their values by their respective bases from right to left. For base 10, the number
+$$
+542
+$$
+Gets computer like so
+$$
+(5 * 100) + (4 * 10) + (2 * 1)
+$$
+The first number on the right is in the ones place, the next number is 1 * 10 (since this is base 10), the third number is 10 * 10, and so on.</p>
+<p>Binary works exactly the same, just in base 2. The number 9 can be presented in binary like so
+$$
+1001
+$$
+Similar to what we did in base 10 above, each we can compute the value from right to left
+$$
+(1 * 1) + (0 * 2) + (0 * 4) + (1 * 8)
+$$
+The first number on the right is in the ones place, the next number will be multiplied by 2 (since this is base 2), the third number will be multipled by 4, the fourth number will be multiplied by 8. If we continued, the next numbers to the left would be multiplied by 16, 32, 64, etc.</p>
+<p>Most computer architectures group 8 bits together into discrete types called a byte. One byte can represent a positive whole number in the range of 0 to 255 (since 255 would be all 8 bits being 1). In order to increase the range of numbers we can represent on a computer, we group together multiple bytes to represent our data. Most implementations of an int in C++ use 4 bytes to represent an integer which allows for representing a number between 0 and 4,294,967,295.</p>
+<p>An interesting aspect of this, usable for bitwise operations, is that adding a zero to the right of any binary number will double the number. In this example, 4 becomes 8
+$$
+100 -&gt; 4
+1000 -&gt; 8
+$$</p>
+<h3 id="adding-binary-values">Adding Binary Values<a href="#adding-binary-values">
+    <svg role="img" aria-labelledby="adding-binary-values-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="adding-binary-values-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Adding two binary numbers is also very similar to adding base 10 numbers
+$$
+157 + 238 = 395
+$$
+Here we take any decimal other than than the first and we carry it over into the next column for addition. The same happens for binary
+$$
+0011 + 0011 = 0110
+$$
+Adding 1 + 1 will equal 10 (2 in binary), we then carry the 1 to the next column where we add 1 + 1 + 1 which equals 11 (3 in binary), we again carry the 1.</p>
+<h3 id="signed-integers">Signed Integers<a href="#signed-integers">
+    <svg role="img" aria-labelledby="signed-integers-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="signed-integers-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Of course, sometimes we want to represent negative numbers as well. When a number can be either positive or negative, we refer to this as a signed number with the left-most bit used to represent if the entire value is negative or positive. For a signed value, a 1 for the left-most bit means the value is negative and a 0 to represent the value is non-negative.
+$$
+0011 -&gt; +3
+1011 -&gt; -3
+$$
+The range of values a signed number of a certain bit width remains the same, but the need to represent negative numbers means the number of positive values a signed value can represent is cut in half. Whereas an unsigned 8 bit number can represent numbers 0 to 255, a signed number will represent values -128 to 127.</p>
+<h3 id="overflows">Overflows<a href="#overflows">
+    <svg role="img" aria-labelledby="overflows-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="overflows-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>When a number becomes larger than the number of bits the program has allocated to represent it, this is known as an overflow. For an 8 bit unsigned value, 255 is represented as: 11111111. But if we add one to this binary value:</p>
+<p>$$
+11111111 + 00000001 = 1 00000000
+$$</p>
+<p>We end up with 8 zeros and a one carried over to the a decimal place we do not have. In C/C++, this kind of overflow is known as undefined behavior and we cannot know for certain what the outcome will be. Ideally, the best result is probably that the program terminates with a fatal error. Other programming languages like Rust will safely wrap this operation and the user will end up back at zero. Still not ideal, but at least predictable.</p>
+<h3 id="extensions">Extensions<a href="#extensions">
+    <svg role="img" aria-labelledby="extensions-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="extensions-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Larger values (more bytes) are less prone to overflows. Suppose we want to take a 1-byte binary number and extend it to two-bytes. We can do this in two ways. We can add on the left eight zeros or add on the left eight copies of the sign bit. For example, to extend 11111111, we can add eight zeros to get</p>
+<p>0000000011111111</p>
+<p>or we can replicate the sign bit to get</p>
+<p>1111111111111111</p>
+<p>The former is called <em>zero extension</em>, the latter is called <em>sign extension</em>. If a negative signed number is zero extended, it changes its value. For example, 11111111 (which is equal to -1) zero extended to 16 bits is 0000000011111111 (which is +255). If however, it is sign extended, its value remains -1. Therefore, we should always sign extend signed numbers. The inverse is true for unsigned values which should always be zero extended to keep its value.</p>
+<h3 id="floating-points">Floating Points<a href="#floating-points">
+    <svg role="img" aria-labelledby="floating-points-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="floating-points-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Floating point values store non-whole numbers such as 13.25 and are usually represented as either 32-bit, 64-bit, or 128-bit binary values. Floating points are represented by dividing the binary representation into three parts: the sign bit, the exponent, and the significand. This is how the number 5.75 would be represented:</p>
+<p>Step 1:
+5 in binary is 101.
+0.75 in binary is .11 (since 0.75 = 0.5 + 0.25 = 2⁻¹ + 2⁻²).
+So, 5.75 in binary = 101.11.
+Step 2:
+We write 101.11 in normalized scientific notation: 1.0111 × 2².
+Here, 1.0111 is the significand, and 2 is the exponent. <br>
+Step 3:
+Since 5.75 is positive, the sign bit = 0.
+Step 4:
+The bias for single-precision (8-bit exponent) is 127.
+Actual exponent = 2, so biased exponent = 2 + 127 = 129.
+129 in binary = 10000001.
+Step 5:
+We drop the leading 1 (since it&rsquo;s implicit) and keep the next 23 bits: 01110000000000000000000.
+Final Result:
+Sign bit: 0
+Exponent: 10000001
+Signigicand: 01110000000000000000000
+So, 5.75 in (32-bit) binary = 0 10000001 01110000000000000000000</p>
+<p>Floating point value representations in binary are definitely far less trivial than whole number representations. This can contribute to significantly more compute to process these values than whole numbers and should be avoided unless necessary.</p>
+<p>One interesting fact worth noting here is that in mathematics, the addition of real numbers is associative, but the additional of floating points numbers by a computer is not. The order matters and requires careful attention by engineers in order to prevent unexpected behavior from creeping into their programs.</p>
+<h3 id="hexadecimal">Hexadecimal<a href="#hexadecimal">
+    <svg role="img" aria-labelledby="hexadecimal-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="hexadecimal-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Because binary values can be difficult to read, short hand notations called hexidecimals exist. A hexadecimal is a base-16 numbering system using values 0-9 and a,b,c,d,e, and f. Besides the obvious values the numbers represent, the alphabetic values represent 10,11,,12,13,14, and 15 respectively. The hexadecimal value 2c5 would be translated like so</p>
+<p>Weights be decimal</p>
+<p>2 = 256   c = 16   5 = 1
+$$
+(2 x 256) + (12 x 16) + (5 x 1) = 709
+$$</p>
+<p>When parsing through disassembly and many debuggers, certain values such as memory addresses will commonly be represented as hexadecimal values to help with readability. A basic understanding of this numbering system will be helpful.</p>
+<h3 id="conclusion">Conclusion<a href="#conclusion">
+    <svg role="img" aria-labelledby="conclusion-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="conclusion-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>This is an extremely condensed summary of binary. To bring this full circle, software engineers rarely need to know or think about the binary ecosystem they work in. We have build abstractions on top of binary to make things easier and empower developers to be more productive. But for systems that need to operate at a lower level, or need to squeeze every possible optimization out of their software to be effective, an understanding of binary opens up a whole world of bitwise operations that can turbo-charge applications if properly leveraged. Even for those who do not need the optimizations bitwise operators allow for, understanding value overflows, signed and unsigned values, and having a rudimentary ability to read hexadecimal will almost certainly come in handy at some point in all of our careers.</p>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        <a href="https://twitter.com/intent/tweet?url=%2f%2flocalhost%3a58135%2fengineering%2fback-to-the-basics-binary-and-hex%2f&amp;text=Back%20to%20the%20Basics%20-%20Binary%20and%20Hex" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
+        </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a58135%2fengineering%2fback-to-the-basics-binary-and-hex%2f&amp;source=%2f%2flocalhost%3a58135%2fengineering%2fback-to-the-basics-binary-and-hex%2f&amp;title=Back%20to%20the%20Basics%20-%20Binary%20and%20Hex&amp;summary=Back%20to%20the%20Basics%20-%20Binary%20and%20Hex" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Back%20to%20the%20Basics%20-%20Binary%20and%20Hex.&amp;body=Back%20to%20the%20Basics%20-%20Binary%20and%20Hex%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a58135%2fengineering%2fback-to-the-basics-binary-and-hex%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        
+
+  
+  
+
+        
+  <section>
+    <h2>Read Next</h2>
+    <div class="single-next-previous">
+      
+        <a class="previous" href="//localhost:58135/engineering/clean-code-rust/">&laquo; Clean Rust</a>
+      
+      
+    </div>
+  </section>
+
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2025 &middot; 
+      <a href="//localhost:58135/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:58135/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:58135/main.js"></script>
+
+
+</body>
+</html>
