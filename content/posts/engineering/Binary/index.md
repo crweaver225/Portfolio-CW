@@ -1,9 +1,9 @@
 ---
-title: Back to the Basics - Binary and Hex
-seo_title: Back to the Basics - Binary and Hex
+title: Breaking Binary - Back to the Basics
+seo_title: Breaking Binary - Back to the Basics
 summary: 
 description: 
-slug: Back to the Basics - Binary and Hex
+slug: Breaking Binary - Back to the Basics
 author: Christopher Weaver
 
 draft: false
@@ -11,7 +11,7 @@ date: 2025-02-10T07:07:50-05:00
 lastmod: 2025-02-10T07:07:50-05:00
 publishDate: 2025-02-10T07:07:50-05:00
 
-feature_image: 
+feature_image: breakingBinary.png
 feature_image_alt: 
 
 categories:
