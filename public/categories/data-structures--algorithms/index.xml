@@ -2,332 +2,350 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Christopher Weaver</title>
-    <link>//localhost:1313/categories/data-structures--algorithms/</link>
+    <link>//localhost:58562/categories/data-structures--algorithms/</link>
     <description>Recent content in Data Structures &amp; Algorithms on Christopher Weaver</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Feb 2024 07:07:50 -0500</lastBuildDate><atom:link href="//localhost:1313/categories/data-structures--algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Feb 2024 07:07:50 -0500</lastBuildDate><atom:link href="//localhost:58562/categories/data-structures--algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Haskell Algorithms</title>
+      <link>//localhost:58562/engineering/haskell-algorithms/</link>
+      <pubDate>Fri, 21 Mar 2025 09:38:32 -0600</pubDate>
+      
+      <guid>//localhost:58562/engineering/haskell-algorithms/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>The Basics of Haskell</title>
-      <link>//localhost:1313/engineering/the-basics-of-haskell/</link>
+      <link>//localhost:58562/engineering/the-basics-of-haskell/</link>
       <pubDate>Thu, 20 Feb 2025 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/the-basics-of-haskell/</guid>
+      <guid>//localhost:58562/engineering/the-basics-of-haskell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Haskell Learning Plan</title>
+      <link>//localhost:58562/engineering/the-haskell-learning-plan/</link>
+      <pubDate>Thu, 20 Feb 2025 09:38:32 -0600</pubDate>
+      
+      <guid>//localhost:58562/engineering/the-haskell-learning-plan/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Breaking Binary - Back to the Basics</title>
-      <link>//localhost:1313/engineering/breaking-binary-back-to-the-basics/</link>
+      <link>//localhost:58562/engineering/breaking-binary-back-to-the-basics/</link>
       <pubDate>Mon, 10 Feb 2025 07:07:50 -0500</pubDate>
       
-      <guid>//localhost:1313/engineering/breaking-binary-back-to-the-basics/</guid>
+      <guid>//localhost:58562/engineering/breaking-binary-back-to-the-basics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Clean Rust</title>
-      <link>//localhost:1313/engineering/clean-code-rust/</link>
+      <link>//localhost:58562/engineering/clean-code-rust/</link>
       <pubDate>Thu, 06 Feb 2025 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/clean-code-rust/</guid>
+      <guid>//localhost:58562/engineering/clean-code-rust/</guid>
       <description>Practical Applications of Clean Code to the Rust Programming Language</description>
     </item>
     
     <item>
       <title>Conways Game of Life - Epistemological Considerations</title>
-      <link>//localhost:1313/philosophy/conways-game-of-life-epistemological-considerations/</link>
+      <link>//localhost:58562/philosophy/conways-game-of-life-epistemological-considerations/</link>
       <pubDate>Tue, 10 Dec 2024 13:06:56 -0600</pubDate>
       
-      <guid>//localhost:1313/philosophy/conways-game-of-life-epistemological-considerations/</guid>
+      <guid>//localhost:58562/philosophy/conways-game-of-life-epistemological-considerations/</guid>
       <description>Similar to what God said to the sea in Job 38:11, He tell us our knowledge of the universe can come this far, but no further.</description>
     </item>
     
     <item>
       <title>Why Rust is everything I wanted C&#43;&#43; to be</title>
-      <link>//localhost:1313/engineering/programming-in-rust/</link>
+      <link>//localhost:58562/engineering/programming-in-rust/</link>
       <pubDate>Tue, 03 Dec 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/programming-in-rust/</guid>
+      <guid>//localhost:58562/engineering/programming-in-rust/</guid>
       <description>What I discovered learning Rust</description>
     </item>
     
     <item>
       <title>Building a Log Utility Class in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/building-a-log-utility-class-in-cpp/</link>
+      <link>//localhost:58562/engineering/building-a-log-utility-class-in-cpp/</link>
       <pubDate>Fri, 04 Oct 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/building-a-log-utility-class-in-cpp/</guid>
+      <guid>//localhost:58562/engineering/building-a-log-utility-class-in-cpp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Value Semantics in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/value-semantics/</link>
+      <link>//localhost:58562/engineering/value-semantics/</link>
       <pubDate>Mon, 16 Sep 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/value-semantics/</guid>
+      <guid>//localhost:58562/engineering/value-semantics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Observer Design Pattern</title>
-      <link>//localhost:1313/engineering/observer-design-pattern/</link>
+      <link>//localhost:58562/engineering/observer-design-pattern/</link>
       <pubDate>Thu, 12 Sep 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/observer-design-pattern/</guid>
+      <guid>//localhost:58562/engineering/observer-design-pattern/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Building a Thread Pool in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/building-a-thread-pool/</link>
+      <link>//localhost:58562/engineering/building-a-thread-pool/</link>
       <pubDate>Thu, 05 Sep 2024 07:32:00 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/building-a-thread-pool/</guid>
+      <guid>//localhost:58562/engineering/building-a-thread-pool/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ScopeGuards</title>
-      <link>//localhost:1313/engineering/scopeguards/</link>
+      <link>//localhost:58562/engineering/scopeguards/</link>
       <pubDate>Thu, 11 Jul 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/scopeguards/</guid>
+      <guid>//localhost:58562/engineering/scopeguards/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Static Polymorphism</title>
-      <link>//localhost:1313/engineering/static-polymorphism/</link>
+      <link>//localhost:58562/engineering/static-polymorphism/</link>
       <pubDate>Tue, 04 Jun 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/static-polymorphism/</guid>
+      <guid>//localhost:58562/engineering/static-polymorphism/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small Buffer Optimization</title>
-      <link>//localhost:1313/engineering/small-buffer-optimization/</link>
+      <link>//localhost:58562/engineering/small-buffer-optimization/</link>
       <pubDate>Mon, 03 Jun 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/small-buffer-optimization/</guid>
+      <guid>//localhost:58562/engineering/small-buffer-optimization/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The Strategy Design Pattern</title>
-      <link>//localhost:1313/engineering/the-strategy-design-pattern/</link>
+      <link>//localhost:58562/engineering/the-strategy-design-pattern/</link>
       <pubDate>Fri, 24 May 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/the-strategy-design-pattern/</guid>
+      <guid>//localhost:58562/engineering/the-strategy-design-pattern/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Concurrency in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/concurrency-in-c-/</link>
+      <link>//localhost:58562/engineering/concurrency-in-c-/</link>
       <pubDate>Mon, 13 May 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/concurrency-in-c-/</guid>
+      <guid>//localhost:58562/engineering/concurrency-in-c-/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Building Neural Networks in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/building-neural-networks-in-c-/</link>
+      <link>//localhost:58562/engineering/building-neural-networks-in-c-/</link>
       <pubDate>Sun, 28 Apr 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/building-neural-networks-in-c-/</guid>
+      <guid>//localhost:58562/engineering/building-neural-networks-in-c-/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Compile-Time Programming in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/compile-time-programming-in-c-/</link>
+      <link>//localhost:58562/engineering/compile-time-programming-in-c-/</link>
       <pubDate>Fri, 12 Apr 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/compile-time-programming-in-c-/</guid>
+      <guid>//localhost:58562/engineering/compile-time-programming-in-c-/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The Visitor Design Pattern</title>
-      <link>//localhost:1313/engineering/the-visitor-design-pattern/</link>
+      <link>//localhost:58562/engineering/the-visitor-design-pattern/</link>
       <pubDate>Tue, 09 Apr 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/the-visitor-design-pattern/</guid>
+      <guid>//localhost:58562/engineering/the-visitor-design-pattern/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Technology and the Nature of Intelligence</title>
-      <link>//localhost:1313/philosophy/technology-and-the-nature-of-intelligence/</link>
+      <link>//localhost:58562/philosophy/technology-and-the-nature-of-intelligence/</link>
       <pubDate>Thu, 04 Apr 2024 11:31:19 -0600</pubDate>
       
-      <guid>//localhost:1313/philosophy/technology-and-the-nature-of-intelligence/</guid>
+      <guid>//localhost:58562/philosophy/technology-and-the-nature-of-intelligence/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Constructors and Move Semantics in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/constructors-and-move-semantics-in-cpp/</link>
+      <link>//localhost:58562/engineering/constructors-and-move-semantics-in-cpp/</link>
       <pubDate>Mon, 01 Apr 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/constructors-and-move-semantics-in-cpp/</guid>
+      <guid>//localhost:58562/engineering/constructors-and-move-semantics-in-cpp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SOLID</title>
-      <link>//localhost:1313/engineering/solid/</link>
+      <link>//localhost:58562/engineering/solid/</link>
       <pubDate>Mon, 25 Mar 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/solid/</guid>
+      <guid>//localhost:58562/engineering/solid/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ranges in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/ranges-in-cpp/</link>
+      <link>//localhost:58562/engineering/ranges-in-cpp/</link>
       <pubDate>Wed, 20 Mar 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/ranges-in-cpp/</guid>
+      <guid>//localhost:58562/engineering/ranges-in-cpp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Basic Calculus Review</title>
-      <link>//localhost:1313/engineering/basic-calculus-review/</link>
+      <link>//localhost:58562/engineering/basic-calculus-review/</link>
       <pubDate>Tue, 19 Mar 2024 18:03:08 -0500</pubDate>
       
-      <guid>//localhost:1313/engineering/basic-calculus-review/</guid>
+      <guid>//localhost:58562/engineering/basic-calculus-review/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Algorithms in the C&#43;&#43; Standard Library</title>
-      <link>//localhost:1313/engineering/algorithms-in-the-c-standard-library/</link>
+      <link>//localhost:58562/engineering/algorithms-in-the-c-standard-library/</link>
       <pubDate>Fri, 15 Mar 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/algorithms-in-the-c-standard-library/</guid>
+      <guid>//localhost:58562/engineering/algorithms-in-the-c-standard-library/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dynamic Programming</title>
-      <link>//localhost:1313/engineering/dynamic-programming/</link>
+      <link>//localhost:58562/engineering/dynamic-programming/</link>
       <pubDate>Wed, 21 Feb 2024 07:07:50 -0500</pubDate>
       
-      <guid>//localhost:1313/engineering/dynamic-programming/</guid>
+      <guid>//localhost:58562/engineering/dynamic-programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Big O</title>
-      <link>//localhost:1313/engineering/big-o/</link>
+      <link>//localhost:58562/engineering/big-o/</link>
       <pubDate>Thu, 15 Feb 2024 07:07:50 -0500</pubDate>
       
-      <guid>//localhost:1313/engineering/big-o/</guid>
+      <guid>//localhost:58562/engineering/big-o/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Automatic Type Deduction</title>
-      <link>//localhost:1313/engineering/automatic-type-deduction/</link>
+      <link>//localhost:58562/engineering/automatic-type-deduction/</link>
       <pubDate>Sat, 03 Feb 2024 07:32:00 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/automatic-type-deduction/</guid>
+      <guid>//localhost:58562/engineering/automatic-type-deduction/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Microbenchmarking in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/microbenchmarking-in-c-/</link>
+      <link>//localhost:58562/engineering/microbenchmarking-in-c-/</link>
       <pubDate>Mon, 29 Jan 2024 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/microbenchmarking-in-c-/</guid>
+      <guid>//localhost:58562/engineering/microbenchmarking-in-c-/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43; Compilers</title>
-      <link>//localhost:1313/engineering/compilers/</link>
+      <link>//localhost:58562/engineering/compilers/</link>
       <pubDate>Tue, 16 Jan 2024 07:07:50 -0500</pubDate>
       
-      <guid>//localhost:1313/engineering/compilers/</guid>
+      <guid>//localhost:58562/engineering/compilers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Public Works and the Justice Maxim</title>
-      <link>//localhost:1313/philosophy/public-works-justice-maxim/</link>
+      <link>//localhost:58562/philosophy/public-works-justice-maxim/</link>
       <pubDate>Mon, 12 Dec 2016 13:38:23 -0600</pubDate>
       
-      <guid>//localhost:1313/philosophy/public-works-justice-maxim/</guid>
+      <guid>//localhost:58562/philosophy/public-works-justice-maxim/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The Presuppositions Of Freedom Kant And The Social Contract</title>
-      <link>//localhost:1313/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</link>
+      <link>//localhost:58562/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</link>
       <pubDate>Mon, 16 May 2016 21:21:46 -0500</pubDate>
       
-      <guid>//localhost:1313/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</guid>
+      <guid>//localhost:58562/philosophy/the-presuppositions-of-freedom-kant-and-the-social-contract/</guid>
       <description>Northern Illinois University M.A. Thesis</description>
     </item>
     
     <item>
       <title>Obergefell and Communitarian Liberty</title>
-      <link>//localhost:1313/philosophy/obergefell/</link>
+      <link>//localhost:58562/philosophy/obergefell/</link>
       <pubDate>Sat, 12 Dec 2015 13:42:45 -0600</pubDate>
       
-      <guid>//localhost:1313/philosophy/obergefell/</guid>
+      <guid>//localhost:58562/philosophy/obergefell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The Difference Principle and Consent - Moving Away from Utopia</title>
-      <link>//localhost:1313/philosophy/different-principle-utopia/</link>
+      <link>//localhost:58562/philosophy/different-principle-utopia/</link>
       <pubDate>Sat, 12 Dec 2015 13:06:56 -0600</pubDate>
       
-      <guid>//localhost:1313/philosophy/different-principle-utopia/</guid>
+      <guid>//localhost:58562/philosophy/different-principle-utopia/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Liberty Conquest and Time Preference</title>
-      <link>//localhost:1313/philosophy/liberty-conquest-and-time-preference/</link>
+      <link>//localhost:58562/philosophy/liberty-conquest-and-time-preference/</link>
       <pubDate>Tue, 12 May 2015 13:34:34 -0600</pubDate>
       
-      <guid>//localhost:1313/philosophy/liberty-conquest-and-time-preference/</guid>
+      <guid>//localhost:58562/philosophy/liberty-conquest-and-time-preference/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Political Science and Epistomology</title>
-      <link>//localhost:1313/philosophy/politicalscience-and-epistomology/</link>
+      <link>//localhost:58562/philosophy/politicalscience-and-epistomology/</link>
       <pubDate>Fri, 12 Dec 2014 13:47:01 -0600</pubDate>
       
-      <guid>//localhost:1313/philosophy/politicalscience-and-epistomology/</guid>
+      <guid>//localhost:58562/philosophy/politicalscience-and-epistomology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Retrospective Voting</title>
-      <link>//localhost:1313/philosophy/retrospective-voting/</link>
+      <link>//localhost:58562/philosophy/retrospective-voting/</link>
       <pubDate>Fri, 12 Dec 2014 13:31:19 -0600</pubDate>
       
-      <guid>//localhost:1313/philosophy/retrospective-voting/</guid>
+      <guid>//localhost:58562/philosophy/retrospective-voting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Identity of Indiscernibles</title>
-      <link>//localhost:1313/philosophy/identity-of-indiscernibles/</link>
+      <link>//localhost:58562/philosophy/identity-of-indiscernibles/</link>
       <pubDate>Sun, 11 Dec 2011 14:30:11 -0600</pubDate>
       
-      <guid>//localhost:1313/philosophy/identity-of-indiscernibles/</guid>
+      <guid>//localhost:58562/philosophy/identity-of-indiscernibles/</guid>
       <description></description>
     </item>
     
