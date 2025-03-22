@@ -36,7 +36,7 @@ disable_comments: false
 * Classic Algorithms -
     * Fibonacci - [link](/engineering/haskell-algorithms/#fibonacci)
     * Factorial - [link](/engineering/haskell-algorithms/#factorial)
-    * Quick-Sort
+    * Quick-Sort - [link](/engineering/haskell-algorithms/#quicksort)
 
 #### Week 2
 * Effective Haskell - Chapters 3 & 4
