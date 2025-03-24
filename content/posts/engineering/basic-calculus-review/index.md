@@ -118,7 +118,11 @@ In this example our base is 2 and the answer would be 3. Of course base 2 is jus
 
 ### Derivatives
  
-A derivative tells us the slope of a function and is extremely useful for informing on the rate of change at any point in a function. I have not spoken much about functions so far, so I think a small example is required. Consider the function f(x) = $x^2$. The independent variable is the input while the dependent variable is the output. If we graph this function we will see something like this
+A derivative tells us the slope of a function and is extremely useful for informing on the rate of change at any point in a function. I have not spoken much about functions so far, so I think a small example is required. Consider the function 
+$$
+f(x) = x^2
+$$
+The independent variable is the input while the dependent variable is the output. If we graph this function we will see something like this
 
 ![Function Image](function.png "Function Image")
 
@@ -134,7 +138,11 @@ m = 4.1
 $$
 So our derivative is 4.1. What we would find though is that the closer we made out two points together, the more accurate our result will be. f(2) and f(2.00001) will result in a slope of 4.0004. This is much closer to what is considered to be the accurate slope for this function, 4. 
 
-For the purposes of computing derivatives in machine learning, there is a simplier approach. There are rules which can help transform our function in a different expression that we can use to compute the derivative. For example, when we encounter an exponential function like $$f(x) = x^2$$, we can make the exponent a multiplier and decrement the exponent by 1
+For the purposes of computing derivatives in machine learning, there is a simplier approach. There are rules which can help transform our function in a different expression that we can use to compute the derivative. For example, when we encounter an exponential function like 
+$$
+f(x) = x^2
+$$ 
+we can make the exponent a multiplier and decrement the exponent by 1
 $$
 f(x) = x^2
 (d/dx)f(x) = (d/dx)x^2 = 2x
@@ -180,7 +188,3 @@ $$
 (dz/dx) = 6x(x^2 + 1)^2
 $$
 That is it. We have computed the derivative of z with respect to x. 
-
-### Conclusion
-
-The last part of this chapter involves integrals and computing the area under the curve of our function. As important as this is in math, I am not certain how much value these concepts will have for us in our engineering endeavours going forward. If that changes I might come back and update this post. But for now, I think this concludes my summary of chapter 1. Next up will be chapter 2 and probability. 
