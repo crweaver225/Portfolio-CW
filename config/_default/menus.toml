@@ -58,22 +58,12 @@
     weight = 5
 
 [[main]]
-    identifier = "Haskell"
-    name = "Haskell"
-    url = "/series/haskell"
-    # url = "/posts/Data Structures & Algorithms/" # Remove url param from Engineering/_index.md frontmatter to use full permalink
-    parent = "Learn"
-    weight = 5
-
-[[main]]
     identifier = "C++"
     name = "C++"
     url = "/series/C++"
     # url = "/posts/Data Structures & Algorithms/" # Remove url param from Engineering/_index.md frontmatter to use full permalink
     parent = "Learn"
     weight = 5
-
-
 
 
 [[main]]
