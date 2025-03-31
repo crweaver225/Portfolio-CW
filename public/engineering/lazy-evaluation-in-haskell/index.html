@@ -284,27 +284,6 @@
       </li>
       
       
-      
-      <li class="menu-item">
-        <span class="menu-link">Learn<span class="drop-icon">▾</span></span>
-        <ul class="sub-menu">
-          
-            <li class="menu-item">
-              <a href="/series/c&#43;&#43;" class="menu-link">C&#43;&#43;</a>                  
-            </li>
-          
-            <li class="menu-item">
-              <a href="/series/data-structures--algorithms" class="menu-link">Data Structures &amp; Algorithms</a>                  
-            </li>
-          
-            <li class="menu-item">
-              <a href="/series/haskell" class="menu-link">Haskell</a>                  
-            </li>
-          
-        </ul>
-      </li>
-      
-      
       <li class="menu-item--align">
         <div class="switch">
           <input class="switch-input" type="checkbox" id="themeSwitch">
@@ -322,7 +301,7 @@
   <section class="page-header">
     <h1 class="page-header-title">Lazy Evaluation in Haskell</h1>
     <div class="post-list-meta">
-      <div class="post-list-dates">Mar 23, 2025&nbsp;&middot;&nbsp;5 min.</div>
+      <div class="post-list-dates">Mar 23, 2025&nbsp;&middot;&nbsp;6 min.</div>
       
       <div class="post-list-categories">
         
@@ -383,7 +362,7 @@
 </div>
     <article class="markdown">
         <p>The Fibonacci sequence is a series of numbers where each number is the sum of the two numbers before it. The sequence starts with 0 and 1, and continues to infinity. The sequence is named after Leonardo Fibonacci, an Italian mathematician who introduced it to Western Europe in 1202.</p>
-<p>Computing the fibonacci sequence in Haskell can be done in a rather elequent way mapping over a recursive function that utilizes guard statements for our base cases:</p>
+<p>Computing the fibonacci sequence in Haskell can be done in a rather elequent way, mapping over a recursive function that utilizes guard statements for our base cases:</p>
 
 
   <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#a6e22e">fib</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
@@ -397,8 +376,8 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#a6e22e">computeList</span> <span style="color:#f92672">::</span> [<span style="color:#66d9ef">Int</span>]
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#a6e22e">computeList</span> <span style="color:#f92672">=</span> takeWhile (<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">50</span>) fibs</span></span></code></pre></div>
-<p>This little piece of code has a few interesting parts to it. Our fib function will generate the fibonacci value for the number given to it. This function is an example tree recursion, branching downward towards our base cases and computing values on our way back up. Fibs though only computes one fibonacci value based on the index we provide it, so we must also built out a fibs function to generate a list of the fibonacci sequence by mapping over a infinite list. For many other programming langauges, iterating over an infinite list is a recipe for trouble. But this is what makes Haskell so unique. Haskell is a lazily evaluated language which means all computation is put off until it is needed. This is where the computeList function comes in, takeWhile will only evaluate the first 50 elements within the fibs list therefore ensuring the computation does not continue until the end of time.</p>
-<p>Lazy evaluation opens up a whole avenue of optimizations for the GHC compiler as well as allows for developers to build really elequent source code. The code above is a perfect example of a clean, stateless, side-effect free subroutine that can lazily compute the fibonacci sequence to any arbitrary value. But it has a problem. A runtime analysis of this program proves to execute in exponential runtime, 0(2^n). The reason for this is that fib makes two recursive calls, which each subsequent recursive calls making two more recursive calls. The number of calls we make expands exponentially as we navigate down an expanding tree of calls n times. The call suffers from redundant work as many of the recursive calls compute the same subsequence of the fibonacci sequence. On top of that, our map function redudantly re-computes each subsequence of the fibonacci sequence as it maps through the sequence.</p>
+<p>This little piece of code has a few interesting parts to it. Our fib function will generate the fibonacci value for the number given to it. This function is an example of tree recursion, branching downward towards our base cases and computing values on our way back up. Fibs though, only computes one fibonacci value based on the index we provide it, so we must also built out a fibs function to generate a list of the entire fibonacci sequence by mapping over a infinite list. For many other programming langauges, iterating over an infinite list is a recipe for trouble. But this is what makes Haskell so unique. Haskell is a lazily evaluated language which means all computation is put off until it is needed. This is where the computeList function comes in, takeWhile will only evaluate the first 50 elements within the fibs list therefore ensuring the computation does not continue until the end of time.</p>
+<p>Lazy evaluation opens up a whole avenue of optimizations for the GHC compiler as well as allows for developers to build really elequent source code. The code above is a perfect example of a clean, stateless, side-effect free subroutine that can lazily compute the fibonacci sequence to any arbitrary value. But it has a problem. A runtime analysis of this program proves to execute in exponential runtime, 0(2^n). The reason for this is that fib makes two recursive calls, with each subsequent recursive call making two more recursive calls. The number of calls we make expands exponentially as we navigate down an expanding tree of calls n times. The call suffers from redundant work as many of the recursive calls compute the same subsequence of the fibonacci sequence. On top of that, our map function redudantly re-computes each subsequence of the fibonacci sequence as it maps through the sequence.</p>
 <p>Luckily, we can modify our algorithm and optimize it from an exponential runtime to a linear runtime O(n). To do so though will require a deeper comprehension of lazy evaluation in Haskell. Lets take the time to write out this optimized subroutine, explore how it works, and advance our intuition of lazy programming.</p>
 <p>The key to optimizing our algorithm is to keep a running tally of each value as it traverses the sequence:</p>
 
@@ -409,7 +388,7 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>  <span style="color:#66d9ef">where</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    helper (a<span style="color:#66d9ef">:</span>as) (b<span style="color:#66d9ef">:</span>bs) <span style="color:#f92672">=</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>        a <span style="color:#f92672">+</span> b <span style="color:#66d9ef">:</span> helper as bs</span></span></code></pre></div>
-<p>Our optimized subroutine starts by defaulting the first two values of the sequence since these are static. The third value of the sequence will implement a cons operation and call our helper function which passes in our fibs&rsquo; list and the tail of the fibs&rsquo; list.</p>
+<p>Our optimized subroutine starts by defaulting the first two values of the sequence since these are static. The third value of the sequence will implement a cons operation and call our helper function which passes in our fibs&rsquo; list and the tail of our fibs&rsquo; list.</p>
 <p>For many, this is a little mind-bending at first glance, but this is how this gets evaluated:</p>
 
 
@@ -443,7 +422,7 @@ fibs&#39; = 0 : 1 : 1 : 2 : helper as bs</code></pre>
 helper [1, 2, &lt;thunk&gt;] [2, &lt;thunk&gt;]
 helper 1 &#43; 2 : helper as bs
 helper 3 : helper (fibs !! 3) (fibs !! 4)</code></pre>
-<p>This can continue on indefinitely. The real trick here is understanding that a thunk is a pause in computation until needed. What took me a while to understand is that the thunk does not know about the (tail fibs&rsquo;) that we originally passed into the helper function. A cons operated recursive function is a fundamental building block of Haskell similar to a for loop in languages like C++. When we see the parallel and better intuit how this fits in with lazy evaluation, we can better make sense of our optimized fibonacci sequence subroutine.</p>
+<p>This can continue on indefinitely. The real trick here is understanding that a thunk is a pause in computation until needed. What took me a while to understand is that the thunk does not know about the (tail fibs&rsquo;) that we originally passed into the helper function. Instead our thunk operates more like an index that our helper function will execute on if evaluatoin is ever needed. A cons operated recursive function is a fundamental building block of Haskell, similar to a for loop in language like C++. When we see the parallel and better intuit how this fits in with lazy evaluation, we can better make sense of our optimized fibonacci sequence subroutine.</p>
 
     </article>
     <aside>
