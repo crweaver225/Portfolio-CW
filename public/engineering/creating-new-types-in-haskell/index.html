@@ -1,0 +1,684 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=52225&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:52225/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:52225/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>Creating New Types in Haskell | Christopher Weaver</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="Portfolio site of Christopher Weaver.">
+<link rel="canonical" href="//localhost:52225/engineering/creating-new-types-in-haskell/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Creating New Types in Haskell">
+<meta property="og:description" content="One of the most highly touted features of Haskell is its rich, strong type system. The flux in types we see in JavaScript and Python do not exist, and the implicit conversion from one type to another that we see in C/C&#43;&#43; is avoided as well. Haskell comes with its own set of primative types that can be leveraged to write interesting software, but often it is important for developers to be able to create their own types. Haskell has some really unique and interesting offerings for developers looking to build and utilize custom types in their programs.">
+<meta property="og:url" content="//localhost:52225/engineering/creating-new-types-in-haskell/">
+<meta property="article:published_time" content="2025-03-28T09:38:32-06:00">
+  <meta property="article:modified_time" content="2025-03-28T09:38:32-06:00">
+  
+
+
+  <meta name="og:image" content="//localhost:52225/images/default.png"/>
+
+
+
+
+
+  <meta property="og:see_also" content="//localhost:52225/engineering/lazy-evaluation-in-haskell/" /><meta property="og:see_also" content="//localhost:52225/engineering/the-basics-of-haskell/" />
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Creating New Types in Haskell">
+<meta name="twitter:description" content="One of the most highly touted features of Haskell is its rich, strong type system. The flux in types we see in JavaScript and Python do not exist, and the implicit conversion from one type to another that we see in C/C&#43;&#43; is avoided as well. Haskell comes with its own set of primative types that can be leveraged to write interesting software, but often it is important for developers to be able to create their own types. Haskell has some really unique and interesting offerings for developers looking to build and utilize custom types in their programs.">
+
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="//localhost:52225/images/default.png"/>
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:52225/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:52225/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:52225/#/schema/image/1",
+        "url": "//localhost:52225/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:52225/#/schema/website/1",
+      "url": "//localhost:52225/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:52225/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:52225/engineering/creating-new-types-in-haskell/",
+      "url": "//localhost:52225/engineering/creating-new-types-in-haskell/",
+      "name": "Creating New Types in Haskell",
+      "description": "Portfolio site of Christopher Weaver.",
+      "isPartOf": {
+        "@id": "//localhost:52225/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:52225/#/schema/person/1"
+      },
+      "datePublished": "2025-03-28T09:38:32-06:00",
+      "dateModified": "2025-03-28T09:38:32-06:00",
+      "breadcrumb": {
+        "@id": "//localhost:52225/engineering/creating-new-types-in-haskell/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:52225/engineering/creating-new-types-in-haskell/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:52225/engineering/creating-new-types-in-haskell/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:52225/engineering/creating-new-types-in-haskell/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:52225/",
+          "url": "//localhost:52225/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:52225/engineering/",
+          "url": "//localhost:52225/engineering/",
+          "name": "Engineering"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:52225/engineering/creating-new-types-in-haskell/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:52225/#/schema/article/1",
+          "headline": "Creating New Types in Haskell",
+          "description": "",
+          "isPartOf": {
+            "@id": "//localhost:52225/engineering/creating-new-types-in-haskell/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:52225/engineering/creating-new-types-in-haskell/"
+          },
+          "datePublished": "2025-03-28T09:38:32-06:00",
+          "dateModified": "2025-03-28T09:38:32-06:00",
+          "author": {
+            "@id": "//localhost:52225/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:52225/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:52225/engineering/creating-new-types-in-haskell/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:52225/engineering/creating-new-types-in-haskell/#/schema/image/2",
+          "url": "//localhost:52225/images/default.png",
+          "contentUrl": "//localhost:52225/images/default.png",
+          "caption": "Creating New Types in Haskell"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+  
+
+  
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:52225/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Creating New Types in Haskell</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Mar 28, 2025&nbsp;&middot;&nbsp;5 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="//localhost:52225/categories/engineering/">Engineering</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc"></p>
+    <div class="single-terms">
+      
+      
+      <a class="term" href="//localhost:52225/tags/haskell/">Haskell</a></li>
+      
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#value-constructor">Value Constructor</a></li>
+        <li><a href="#records">Records</a></li>
+        <li><a href="#sum-types">Sum Types</a></li>
+        <li><a href="#recursive-data-structures">Recursive Data Structures</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+      <div class="series">
+        <p>Part of the <a href="//localhost:52225/series/haskell/">Haskell</a> series:</p>
+        
+        <ol class="series-list">
+            <li>
+                <a href="//localhost:52225/engineering/the-basics-of-haskell/">The Basics of Haskell</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:52225/engineering/lazy-evaluation-in-haskell/">Lazy Evaluation in Haskell</a>
+              
+            </li>
+            <li>Creating New Types in Haskell<span class="series-this-post">This post!</span>
+              
+            </li>
+        </ol>
+      </div>
+    
+    <div class="single-feature-img">
+
+
+
+  
+
+</div>
+    <article class="markdown">
+        <p>One of the most highly touted features of Haskell is its rich, strong type system. The flux in types we see in JavaScript and Python do not exist, and the implicit conversion from one type to another that we see in C/C++ is avoided as well. Haskell comes with its own set of primative types that can be leveraged to write interesting software, but often it is important for developers to be able to create their own types. Haskell has some really unique and interesting offerings for developers looking to build and utilize custom types in their programs.</p>
+<h3 id="value-constructor">Value Constructor<a href="#value-constructor">
+    <svg role="img" aria-labelledby="value-constructor-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="value-constructor-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>We will start by creating a value constructor, which is a special function that lets us create a new value of a certain type</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#66d9ef">String</span></span></span></code></pre></div>
+<p>We now have a new type called CarInformation with an String &lsquo;inhabitant&rsquo;</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">myCar</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">CarInformation</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">myCar</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#e6db74">&#34;Honda Civic&#34;</span></span></span></code></pre></div>
+<p>We can use our new type like so</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">showCar</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">String</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">showCar</span> (<span style="color:#66d9ef">CarInformation</span> carType) <span style="color:#f92672">=</span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#e6db74">&#34;Car type: &#34;</span> <span style="color:#f92672">&lt;&gt;</span> carType</span></span></code></pre></div>
+<p>Our types can contain more than one value if we so desire</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#66d9ef">String</span> <span style="color:#66d9ef">String</span> <span style="color:#66d9ef">Int</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">myCar</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">CarInformation</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#a6e22e">myCar</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#e6db74">&#34;Honda&#34;</span> <span style="color:#e6db74">&#34;Civic 2014 25</span></span></span></code></pre></div>
+<p>Our CarInformation now stores the car make, model, year, and MPG. In addition to the function above for building a function to access information, we can also utilize pattern matching</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">carMake</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">String</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">carMake</span> (<span style="color:#66d9ef">CarInformation</span> make <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">_</span> ) <span style="color:#f92672">=</span> make
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#a6e22e">carYear</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#a6e22e">carYear</span> (<span style="color:#66d9ef">CarInformation</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">_</span> year <span style="color:#66d9ef">_</span>) <span style="color:#f92672">=</span> year</span></span></code></pre></div>
+<p>And updating an instance of a type (say if the MPG goes down with age)</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">updateMPG</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">CarInformation</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">updateMPG</span> (<span style="color:#66d9ef">CarInformation</span> make model year <span style="color:#66d9ef">_</span> ) mpg <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#66d9ef">CarInformation</span> make model year mpg</span></span></code></pre></div>
+<h3 id="records">Records<a href="#records">
+    <svg role="img" aria-labelledby="records-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="records-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>The immediate problem with what we have done so far is that we are required to know the order of values within a type when working with them. This can be challenging, particularly for types with lots of data fields within them. Luckily, Haskell has a special syntax for building types with named parameters. These are called Records</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">CarInformation</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">CarInformation</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>{   make <span style="color:#f92672">::</span> <span style="color:#66d9ef">String</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    model <span style="color:#f92672">::</span> <span style="color:#66d9ef">String</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    year <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    mpg <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#a6e22e">mySecondCar</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">CarInformation</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#a6e22e">mySecondCar</span> <span style="color:#f92672">=</span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#66d9ef">CarInformation</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    { make <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Dodge&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>      model <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Stratus&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>      year <span style="color:#f92672">=</span> <span style="color:#ae81ff">2016</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>      mpg <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    }</span></span></code></pre></div>
+<p>Accessing these values because significantly more trivial and also allows us to compose really succinct functions</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">show</span> <span style="color:#f92672">$</span> year mySecondCar
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#75715e">-- prints: 2016</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#a6e22e">totalMpgCount</span> <span style="color:#f92672">::</span> [<span style="color:#66d9ef">CarInformation</span>] <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#a6e22e">totalMpgCount</span> <span style="color:#f92672">=</span> sum <span style="color:#f92672">.</span> map mpg</span></span></code></pre></div>
+<p>The second function can take a list of CarInformation types and sum up the miles per gallon.</p>
+<h3 id="sum-types">Sum Types<a href="#sum-types">
+    <svg role="img" aria-labelledby="sum-types-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="sum-types-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>The real value in Haskell comes from its algebraic data types, also referred to as sum types which allows us to represent between multiple different types within another type</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Direction</span> <span style="color:#f92672">=</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">North</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">East</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">South</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">West</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#a6e22e">whichDirection</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Direction</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">String</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#a6e22e">whichDirection</span> direction <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    <span style="color:#66d9ef">case</span> direction <span style="color:#66d9ef">of</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>        <span style="color:#66d9ef">North</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;North&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>        <span style="color:#66d9ef">East</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;East&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>        <span style="color:#66d9ef">South</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;South&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>        <span style="color:#66d9ef">West</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;West&#34;</span></span></span></code></pre></div>
+<p>We can leverage these sum types along with our data types to create powerful abstractions</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">PreferredContactMethod</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">Email</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">TextMessage</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">Mail</span> <span style="color:#66d9ef">String</span> <span style="color:#66d9ef">String</span> <span style="color:#66d9ef">String</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#a6e22e">emailContact</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">PreferredContactMethod</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#a6e22e">emailContact</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">Email</span> <span style="color:#e6db74">&#34;example@example.com&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#a6e22e">textContact</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">PreferredContactMethod</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#a6e22e">textContact</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">TextMessage</span> <span style="color:#e6db74">&#34;111-111-1111&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#a6e22e">mailContact</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">PreferredContactMethod</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#a6e22e">mailContact</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">Mail</span> <span style="color:#e6db74">&#34;123 main st.&#34;</span> <span style="color:#e6db74">&#34;SmallVille&#34;</span> <span style="color:#e6db74">&#34;Illinois&#34;</span> <span style="color:#ae81ff">60543</span></span></span></code></pre></div>
+<p>Similar to a variant in C++ or a union in C, this sum type allows us to generalize our work</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">confirmContact</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">PreferredContactMethod</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">String</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">confirmContact</span> contact <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#66d9ef">case</span> contact <span style="color:#66d9ef">of</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        <span style="color:#66d9ef">Email</span> emailAddress <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Ok, I will email you at &#34;</span> <span style="color:#f92672">&lt;&gt;</span> emailAddress
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>        <span style="color:#66d9ef">TextMessage</span> number <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Ok, i will text you at &#34;</span> <span style="color:#f92672">&lt;&gt;</span> number
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>        <span style="color:#66d9ef">Mail</span> street town state zipcode <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Ok, I will send a letter to &#34;</span> <span style="color:#f92672">&lt;&gt;</span> street <span style="color:#f92672">&lt;&gt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>            <span style="color:#f92672">&lt;&gt;</span> town <span style="color:#f92672">&lt;&gt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;&gt;</span> state <span style="color:#f92672">&lt;&gt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;&gt;</span> show zipcode</span></span></code></pre></div>
+<p>This provides us with a data type that logically couples a bunch of different potential options that we can pass around our code without concern about what each sum type actually holds. It also allows us to store multiple different types in the same list</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">StringOrNumber</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">S</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">N</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#a6e22e">stringsAndNumbers</span> <span style="color:#f92672">::</span> [<span style="color:#66d9ef">StringOrNumber</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#a6e22e">stringsAndNumbers</span> <span style="color:#f92672">=</span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    [
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    <span style="color:#66d9ef">S</span> <span style="color:#e6db74">&#34;this is a string&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    <span style="color:#66d9ef">N</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    <span style="color:#66d9ef">S</span> <span style="color:#e6db74">&#34;this is another string
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span><span style="color:#e6db74">    ]</span></span></span></code></pre></div>
+<p>We can combine the record types we worked through earlier with sum types as well</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">CustomerInfo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">CustomerInfo</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    customerName <span style="color:#f92672">::</span> <span style="color:#66d9ef">String</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    customerBalance <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">EmployeeInfo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">EmployeeInfo</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    employeeName <span style="color:#f92672">::</span> <span style="color:#66d9ef">String</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    employeeManagerName <span style="color:#f92672">::</span> <span style="color:#66d9ef">String</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    employeeSalary <span style="color:#f92672">::</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Person</span> <span style="color:#f92672">=</span>  <span style="color:#66d9ef">Customer</span> <span style="color:#66d9ef">CustomerInfo</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">Employee</span> <span style="color:#66d9ef">EmployeeInfo</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#a6e22e">chris</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">Customer</span> <span style="color:#f92672">$</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#66d9ef">CustomerInfo</span> { customerName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Chris Weaver&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>                   customerBalance <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#a6e22e">rachel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">Employee</span> <span style="color:#f92672">$</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#66d9ef">EmployeeInfo</span> { employeeName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Rachel Weaver&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>                   employeeManagerName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Tom&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>                   employeeSalary <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span> }</span></span></code></pre></div>
+<p>We are now ready to build out a function that can take the sum type Person and process its possible types and access the values within each type</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">getName</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Person</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">String</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">getName</span> person <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#66d9ef">case</span> person <span style="color:#66d9ef">of</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        <span style="color:#66d9ef">Customer</span> customer <span style="color:#f92672">-&gt;</span> customerName customer
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>        <span style="color:#66d9ef">Employee</span> employee <span style="color:#f92672">-&gt;</span> employeeName employee</span></span></code></pre></div>
+<h3 id="recursive-data-structures">Recursive Data Structures<a href="#recursive-data-structures">
+    <svg role="img" aria-labelledby="recursive-data-structures-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="recursive-data-structures-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3>
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+          
+          <a class="term" href="//localhost:52225/tags/haskell/">Haskell</a></li>
+          
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        <a href="https://twitter.com/intent/tweet?url=%2f%2flocalhost%3a52225%2fengineering%2fcreating-new-types-in-haskell%2f&amp;text=Creating%20New%20Types%20in%20Haskell" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
+        </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a52225%2fengineering%2fcreating-new-types-in-haskell%2f&amp;source=%2f%2flocalhost%3a52225%2fengineering%2fcreating-new-types-in-haskell%2f&amp;title=Creating%20New%20Types%20in%20Haskell&amp;summary=Creating%20New%20Types%20in%20Haskell" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Creating%20New%20Types%20in%20Haskell.&amp;body=Creating%20New%20Types%20in%20Haskell%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a52225%2fengineering%2fcreating-new-types-in-haskell%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        <div class="series">
+          <p>Part of the <a href="//localhost:52225/series/haskell/">Haskell</a> series:</p>
+          
+          <ol>
+              <li>
+                  <a href="//localhost:52225/engineering/the-basics-of-haskell/">The Basics of Haskell</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:52225/engineering/lazy-evaluation-in-haskell/">Lazy Evaluation in Haskell</a>
+                
+              </li>
+              <li>Creating New Types in Haskell<span class="series-this-post">This post!</span>
+                
+              </li>
+          </ol>
+        </div>
+      
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2025 &middot; 
+      <a href="//localhost:52225/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:52225/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:52225/main.js"></script>
+
+
+</body>
+</html>

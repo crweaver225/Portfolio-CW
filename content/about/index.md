@@ -9,13 +9,15 @@ description: Learn more about my background and experience.
 
 ## Software Engineer
 
-Professional software engineer with 7+ years of experience. I have developed native mobile apps used by hundreds of thousands of people at conferences, tradeshows, and events. I have built backend systems that support social feeds, indoor navigation, and advanced analytic dashboards. My passion is C++ development and I consider myself a continual student of building fast and robust software systems. 
+Professional software engineer. I have developed software used by millions of people across the globe. 
 
 Skills:
 
-* C++ 
+* Haskell
+* Cabal
+* Stack 
 * CMake
-* Boost
+* C++ 
 * Python
 * SQL
 * PyTorch / SciKit-Learn
