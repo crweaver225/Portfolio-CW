@@ -11,7 +11,7 @@ date: 2024-09-05T07:32:00-06:00
 lastmod: 2024-09-05T07:32:00-06:00
 publishDate: 2024-09-05T07:32:00-06:00
 
-feature_image: threadPool.png
+feature_image:
 feature_image_alt: 
 
 categories:

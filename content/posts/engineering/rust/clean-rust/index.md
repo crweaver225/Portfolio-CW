@@ -11,8 +11,8 @@ date: 2025-02-06T09:38:32-06:00
 lastmod: 2025-02-06T09:38:32-06:00
 publishDate: 2025-02-06T09:38:32-06:00
 
-feature_image: CleanCode.png
-feature_image_alt: CleanCode.png
+feature_image:
+feature_image_alt:
 
 categories:
 - Engineering

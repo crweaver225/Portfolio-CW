@@ -11,7 +11,7 @@ date: 2024-09-12T09:38:32-06:00
 lastmod: 2024-09-12T09:38:32-06:00
 publishDate: 2024-09-12T09:38:32-06:00
 
-feature_image: observer.png
+feature_image:
 feature_image_alt: 
 
 categories:
