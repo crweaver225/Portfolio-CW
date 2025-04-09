@@ -325,6 +325,3 @@ fn main() {
 The print_value function has no idea what a Car struct is, nor does it care. All it needs to know is that it is being passed something that implements the Printable trait and therefore has the print() function that it can call. 
 
 Generics and traits are two extremely useful idiomatic tools Rust offers for clean, robust software without any compromise to our runtime performance. 
-
-***Conclusion***
-Rust offers a fresh start on some of the things software engineers have had to struggle with for decades now. How do we structure code in a way that allows for quick and safe changes without sacrificing needed performance. There is no exact answer on how to do this, and each language offers multiple pros and cons when considering the tradeoff. But Rust does a better job of not only making it harder to write unclean code, but in offering out of the box tools that support clean code along with premium runtime performance. It is a paradigm shift. As hardware bottlenecks continue to crop up in the market, Rust offers the ability to democratize faster software that we can adapt quicker and offers us the robustness we have craved for so long.

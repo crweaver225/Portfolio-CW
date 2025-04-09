@@ -11,8 +11,8 @@ date: 2024-12-03T09:38:32-06:00
 lastmod: 2024-12-03T09:38:32-06:00
 publishDate: 2024-12-03T09:38:32-06:00
 
-feature_image: rustIcon.jpeg
-feature_image_alt: rustIcon.jpeg
+feature_image:
+feature_image_alt:
 
 categories:
 - Engineering

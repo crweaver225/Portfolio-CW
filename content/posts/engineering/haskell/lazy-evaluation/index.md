@@ -11,7 +11,7 @@ date: 2025-03-23T09:38:32-06:00
 lastmod: 2025-03-23T09:38:32-06:00
 publishDate: 2025-03-23T09:38:32-06:00
 
-feature_image: haskell_lazy.jpeg
+feature_image:
 feature_image_alt: 
 
 categories:
