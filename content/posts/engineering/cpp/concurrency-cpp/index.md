@@ -11,7 +11,7 @@ date: 2024-05-13T09:38:32-06:00
 lastmod: 2024-05-13T09:38:32-06:00
 publishDate: 2024-05-13T09:38:32-06:00
 
-feature_image: concurrent.png
+feature_image:
 feature_image_alt: 
 
 categories:
@@ -31,7 +31,7 @@ disable_comments: false
 
 tot manus noctis opus
 
-In today's fast-paced world, harnessing the power of concurrency is essential for maximizing the performance of software applications. C++, with its robust suite of features for managing multiple tasks simultaneously, stands as a formidable tool in a developer's arsenal. Here I attempt to demystify the complexities of concurrent programming in C++, offering a guide to understanding and implementing threads, locks, and asynchronous operations effectively. Whether you're looking to improve the responsiveness of your applications or to fully leverage multi-core processors, mastering concurrency in C++ opens up a world of possibilities. Let’s dive into the nuances of C++ concurrency, starting with the basics and moving towards more advanced concepts.
+In today's fast-paced world, harnessing the power of concurrency is essential for maximizing the performance of software applications. C++, with its robust suite of features for managing multiple tasks simultaneously, stands as a formidable tool in a developer's arsenal. Here I attempt to demystify the complexities of concurrent programming in C++, offering a guide to understanding and implementing threads, locks, and asynchronous operations effectively. Whether you're looking to improve the responsiveness of your applications or to fully leverage multi-core processors, mastering concurrency opens up a world of possibilities. Let’s dive into the nuances of C++ concurrency, starting with the basics and moving towards more advanced concepts.
 
 ### Threads
 
@@ -745,6 +745,6 @@ There is one more major aspect to C++ concurrency that I want to handle, which i
 
 ### Conclusion
 
-Our processors will, and already have started to, hit a wall as far as how fast they can sequentially process information. But our need for faster programs certainly will not acquiesce to this limiting factor. Instead, it is up to engineers to figure out how to utilize multiple threads and concurrent processes to speed up our programs. This is not an easy task by any means, but it is an important one. To the C++ engineer, we have a lot of great tools in our toolbelt to make this happen. Writing robust concurrent software in C++ is doable, and you no longer need ice in your veins to make the attempt. But you must make sure you are using the right tools and that you understand them.
+Our processors will, and already have started to, hit a wall as far as how fast they can sequentially process information. But our need for faster programs certainly will not acquiesce to this limiting factor. Instead, it is up to engineers to figure out how to utilize multiple threads and concurrent processes to speed up our programs. This is not an easy task by any means, but it is an important one. Writing robust concurrent software is doable, and you no longer need ice in your veins to make the attempt. But you must make sure you are using the right tools and that you understand them.
 
 tot manus noctis opus

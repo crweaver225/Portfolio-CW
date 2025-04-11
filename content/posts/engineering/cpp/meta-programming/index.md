@@ -28,7 +28,9 @@ newsletter: false
 disable_comments: false
 ---
 
-When writing a C++ program, we eventually have to compile the program into machine code if we wish to run it. Many things happen under the hood during this compilation process, some of which can be controlled by the developers themselves. One of the cool things an engineer can do is write code that the compiler will then use to generate other code. This is called compile-time programming or metaprogramming.
+Compiled programs offer significant advantages over interpreted programs when it comes to metaprogramming due to their ability to optimize and analyze code at compile-time. With compilation, the program is translated directly into machine code, allowing for extensive optimizations and static analysis, which can lead to faster execution and more efficient use of resources. Metaprogramming, which involves generating or manipulating code during execution, can benefit from these optimizations as compiled languages often allow for more direct control over memory management and type systems. In addition, the presence of strong typing and early error detection during the compilation process provides a safer environment for complex metaprogramming tasks, reducing runtime errors and making debugging easier. In contrast, interpreted languages typically rely on runtime interpretation, which limits optimization opportunities and can introduce overhead that impairs the effectiveness of metaprogramming techniques.
+
+In this post we will explore some of these topics through the tools the C++ language provides.
 
 ### Creating Templates
 
