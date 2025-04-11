@@ -31,7 +31,7 @@ disable_comments: false
 
 tot manus noctis opus
 
-In today's fast-paced world, harnessing the power of concurrency is essential for maximizing the performance of software applications. C++, with its robust suite of features for managing multiple tasks simultaneously, stands as a formidable tool in a developer's arsenal. Here I attempt to demystify the complexities of concurrent programming in C++, offering a guide to understanding and implementing threads, locks, and asynchronous operations effectively. Whether you're looking to improve the responsiveness of your applications or to fully leverage multi-core processors, mastering concurrency opens up a world of possibilities. Let’s dive into the nuances of C++ concurrency, starting with the basics and moving towards more advanced concepts.
+In today's world, harnessing the power of concurrency is essential for maximizing the performance of software applications. C++, with its robust suite of features for managing multiple tasks simultaneously, stands as a formidable tool in a developer's arsenal. Here I attempt to demystify the complexities of concurrent programming in C++, offering a guide to understanding and implementing threads, locks, and asynchronous operations effectively. Whether you're looking to improve the responsiveness of your applications or to fully leverage multi-core processors, mastering concurrency opens up a world of possibilities. Let’s dive into the nuances of C++ concurrency, starting with the basics and moving towards more advanced concepts.
 
 ### Threads
 
