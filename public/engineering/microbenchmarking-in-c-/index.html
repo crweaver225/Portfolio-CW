@@ -382,18 +382,6 @@ Measuring the speed up from microbenchmarking can be done with the help of *Amda
               
             </li>
             <li>
-                <a href="//localhost:1313/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
-              
-            </li>
-            <li>
-                <a href="//localhost:1313/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
-              
-            </li>
-            <li>
-                <a href="//localhost:1313/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
-              
-            </li>
-            <li>
                 <a href="//localhost:1313/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
               
             </li>
@@ -486,85 +474,85 @@ make install</code></pre>
 </ol>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>cmake_minimum_required(VERSION <span style="color:#ae81ff">3.0</span>)
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>project(benchmark<span style="color:#f92672">-</span>test) <span style="color:#960050;background-color:#1e0010">#</span> I was sure to set my CMake path to <span style="color:#f92672">-</span>DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">$</span>HOME<span style="color:#f92672">/</span>Desktop<span style="color:#f92672">/</span>Libraries
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>set(CMAKE_CXX_STANDARD <span style="color:#ae81ff">17</span>)
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>find_package(benchmark REQUIRED)
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>add_executable(benchmark_test main.cpp)
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>target_link_libraries(benchmark_test benchmark<span style="color:#f92672">::</span>benchmark)</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>cmake_minimum_required(VERSION <span style="color:#3677a9">3.0</span>)
+</span></span><span style="display:flex;"><span>project(benchmark-test) <span style="color:#a61717;background-color:#e3d2d2">#</span> I was sure to set my CMake path to -DCMAKE_INSTALL_PREFIX=<span style="color:#a61717;background-color:#e3d2d2">$</span>HOME/Desktop/Libraries
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set(CMAKE_CXX_STANDARD <span style="color:#3677a9">17</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>find_package(benchmark REQUIRED)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>add_executable(benchmark_test main.cpp)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>target_link_libraries(benchmark_test benchmark::benchmark)</span></span></code></pre></div>
 <ol start="4">
 <li>Lastly was writting my C++ file for benchmarking. For this example I benchmarked a linear and binary search algorithm for a vector. The two functions I am testing (and microbenchmarking against to optimize)</li>
 </ol>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">linear_search</span>(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> v, <span style="color:#66d9ef">int</span> key) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> v.size(); i <span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#66d9ef">if</span> (v[i] <span style="color:#f92672">==</span> key) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>            <span style="color:#66d9ef">return</span> true;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#66d9ef">return</span> false;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">binary_search</span>(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> v, <span style="color:#66d9ef">int</span> key) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#66d9ef">int</span> low <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#66d9ef">int</span> high <span style="color:#f92672">=</span> v.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#66d9ef">while</span> (low <span style="color:#f92672">&lt;=</span> high) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (high <span style="color:#f92672">+</span> low) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>        <span style="color:#66d9ef">if</span> (v[mid] <span style="color:#f92672">&lt;</span> key) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>            low <span style="color:#f92672">=</span> mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (v[mid] <span style="color:#f92672">&gt;</span> key) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>            high <span style="color:#f92672">=</span> mid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>        } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>            <span style="color:#66d9ef">return</span> true;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>        }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>    <span style="color:#66d9ef">return</span> false;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">linear_search</span>(<span style="color:#6ab825;font-weight:bold">const</span> std::vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;&amp; v, <span style="color:#6ab825;font-weight:bold">int</span> key) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (size_t i = <span style="color:#3677a9">0</span>; i &lt; v.size(); i ++) {
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (v[i] == key) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">false</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">binary_search</span>(<span style="color:#6ab825;font-weight:bold">const</span> std::vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;&amp; v, <span style="color:#6ab825;font-weight:bold">int</span> key) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> low = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> high = v.size() - <span style="color:#3677a9">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">while</span> (low &lt;= high) {
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">int</span> mid = (high + low) / <span style="color:#3677a9">2</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (v[mid] &lt; key) {
+</span></span><span style="display:flex;"><span>            low = mid + <span style="color:#3677a9">1</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#6ab825;font-weight:bold">else</span> <span style="color:#6ab825;font-weight:bold">if</span> (v[mid] &gt; key) {
+</span></span><span style="display:flex;"><span>            high = mid - <span style="color:#3677a9">1</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#6ab825;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">false</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>I have this function to build out a vector for testing:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">gen_vec</span>(<span style="color:#66d9ef">int</span> n) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        v.push_back(i);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    <span style="color:#66d9ef">return</span> v;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">gen_vec</span>(<span style="color:#6ab825;font-weight:bold">int</span> n) {
+</span></span><span style="display:flex;"><span>    std::vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt; v;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; n; i++) {
+</span></span><span style="display:flex;"><span>        v.push_back(i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> v;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>Next I need to build out another function for each piece of code I am testing. This function needs to be static and should take a bechmark::State&amp; parameter. The state will tell me how large the size of the array will be based on parameters I give the framework later using the range() function. Run a for loop through the state and tell the benchmark not to optimize. Finally we will have the framework guess the time complexity by calling the set SetComplexityN() function on the state.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bm_linear_search</span>(benchmark<span style="color:#f92672">::</span>State<span style="color:#f92672">&amp;</span> state) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">auto</span> n <span style="color:#f92672">=</span> state.range(<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#66d9ef">auto</span> v <span style="color:#f92672">=</span> gen_vec(n);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> _ : state) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        benchmark<span style="color:#f92672">::</span>DoNotOptimize(linear_search(v, n));
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    state.SetComplexityN(n);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bm_binary_search</span>(benchmark<span style="color:#f92672">::</span>State<span style="color:#f92672">&amp;</span> state) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#66d9ef">auto</span> n <span style="color:#f92672">=</span> state.range(<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    <span style="color:#66d9ef">auto</span> v <span style="color:#f92672">=</span> gen_vec(n);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> _ : state) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        benchmark<span style="color:#f92672">::</span>DoNotOptimize(binary_search(v, n));
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    state.SetComplexityN(n);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">bm_linear_search</span>(benchmark::State&amp; state) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> n = state.range(<span style="color:#3677a9">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> v = gen_vec(n);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span> _ : state) {
+</span></span><span style="display:flex;"><span>        benchmark::DoNotOptimize(linear_search(v, n));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    state.SetComplexityN(n);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">bm_binary_search</span>(benchmark::State&amp; state) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> n = state.range(<span style="color:#3677a9">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> v = gen_vec(n);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span> _ : state) {
+</span></span><span style="display:flex;"><span>        benchmark::DoNotOptimize(binary_search(v, n));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    state.SetComplexityN(n);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>When microbenchmarking, you will not have a main function. Instead pass the functions you will be testing into a BENCHMARK function and then set BENCHMARK_MAIN(). You will see by setting the RangeMultiplier we will get the benchmark to test with a bunch of different input sizes.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>BENCHMARK(bm_linear_search)<span style="color:#f92672">-&gt;</span>RangeMultiplier(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-&gt;</span>Range(<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">4096</span>)<span style="color:#f92672">-&gt;</span>Complexity();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>BENCHMARK(bm_binary_search)<span style="color:#f92672">-&gt;</span>RangeMultiplier(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-&gt;</span>Range(<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">4096</span>)<span style="color:#f92672">-&gt;</span>Complexity();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>BENCHMARK_MAIN();</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>BENCHMARK(bm_linear_search)-&gt;RangeMultiplier(<span style="color:#3677a9">2</span>)-&gt;Range(<span style="color:#3677a9">64</span>,<span style="color:#3677a9">4096</span>)-&gt;Complexity();
+</span></span><span style="display:flex;"><span>BENCHMARK(bm_binary_search)-&gt;RangeMultiplier(<span style="color:#3677a9">2</span>)-&gt;Range(<span style="color:#3677a9">64</span>,<span style="color:#3677a9">4096</span>)-&gt;Complexity();
+</span></span><span style="display:flex;"><span>BENCHMARK_MAIN();</span></span></code></pre></div>
 <ol start="5">
 <li>Once complete, I run:</li>
 </ol>
@@ -644,18 +632,6 @@ make
                 
               </li>
               <li>Microbenchmarking in C&#43;&#43;<span class="series-this-post">This post!</span>
-                
-              </li>
-              <li>
-                  <a href="//localhost:1313/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
-                
-              </li>
-              <li>
-                  <a href="//localhost:1313/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
-                
-              </li>
-              <li>
-                  <a href="//localhost:1313/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
                 
               </li>
               <li>

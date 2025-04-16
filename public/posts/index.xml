@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Christopher Weaver</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Mar 2025 09:38:32 -0600</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Mar 2025 09:38:32 -0600</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lazy Evaluation in Haskell</title>
       <link>//localhost:1313/engineering/lazy-evaluation-in-haskell/</link>
@@ -32,6 +32,15 @@
       
       <guid>//localhost:1313/engineering/breaking-binary-back-to-the-basics/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Clean Rust</title>
+      <link>//localhost:1313/engineering/clean-code-rust/</link>
+      <pubDate>Thu, 06 Feb 2025 09:38:32 -0600</pubDate>
+      
+      <guid>//localhost:1313/engineering/clean-code-rust/</guid>
+      <description>Practical Applications of Clean Code to the Rust Programming Language</description>
     </item>
     
     <item>
@@ -62,15 +71,6 @@
     </item>
     
     <item>
-      <title>Observer Design Pattern</title>
-      <link>//localhost:1313/engineering/observer-design-pattern/</link>
-      <pubDate>Thu, 12 Sep 2024 09:38:32 -0600</pubDate>
-      
-      <guid>//localhost:1313/engineering/observer-design-pattern/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Building a Thread Pool in C&#43;&#43;</title>
       <link>//localhost:1313/engineering/building-a-thread-pool/</link>
       <pubDate>Thu, 05 Sep 2024 07:32:00 -0600</pubDate>
@@ -89,29 +89,11 @@
     </item>
     
     <item>
-      <title>Static Polymorphism</title>
-      <link>//localhost:1313/engineering/static-polymorphism/</link>
-      <pubDate>Tue, 04 Jun 2024 09:38:32 -0600</pubDate>
-      
-      <guid>//localhost:1313/engineering/static-polymorphism/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Small Buffer Optimization</title>
       <link>//localhost:1313/engineering/small-buffer-optimization/</link>
       <pubDate>Mon, 03 Jun 2024 09:38:32 -0600</pubDate>
       
       <guid>//localhost:1313/engineering/small-buffer-optimization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>The Strategy Design Pattern</title>
-      <link>//localhost:1313/engineering/the-strategy-design-pattern/</link>
-      <pubDate>Fri, 24 May 2024 09:38:32 -0600</pubDate>
-      
-      <guid>//localhost:1313/engineering/the-strategy-design-pattern/</guid>
       <description></description>
     </item>
     
@@ -143,15 +125,6 @@
     </item>
     
     <item>
-      <title>The Visitor Design Pattern</title>
-      <link>//localhost:1313/engineering/the-visitor-design-pattern/</link>
-      <pubDate>Tue, 09 Apr 2024 09:38:32 -0600</pubDate>
-      
-      <guid>//localhost:1313/engineering/the-visitor-design-pattern/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Technology and the Nature of Intelligence</title>
       <link>//localhost:1313/philosophy/technology-and-the-nature-of-intelligence/</link>
       <pubDate>Thu, 04 Apr 2024 11:31:19 -0600</pubDate>
@@ -179,29 +152,11 @@
     </item>
     
     <item>
-      <title>Ranges in C&#43;&#43;</title>
-      <link>//localhost:1313/engineering/ranges-in-cpp/</link>
-      <pubDate>Wed, 20 Mar 2024 09:38:32 -0600</pubDate>
-      
-      <guid>//localhost:1313/engineering/ranges-in-cpp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Basic Calculus Review</title>
       <link>//localhost:1313/engineering/basic-calculus-review/</link>
       <pubDate>Tue, 19 Mar 2024 18:03:08 -0500</pubDate>
       
       <guid>//localhost:1313/engineering/basic-calculus-review/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Algorithms in the C&#43;&#43; Standard Library</title>
-      <link>//localhost:1313/engineering/algorithms-in-the-c-standard-library/</link>
-      <pubDate>Fri, 15 Mar 2024 09:38:32 -0600</pubDate>
-      
-      <guid>//localhost:1313/engineering/algorithms-in-the-c-standard-library/</guid>
       <description></description>
     </item>
     
@@ -220,15 +175,6 @@
       <pubDate>Thu, 15 Feb 2024 07:07:50 -0500</pubDate>
       
       <guid>//localhost:1313/engineering/big-o/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Automatic Type Deduction</title>
-      <link>//localhost:1313/engineering/automatic-type-deduction/</link>
-      <pubDate>Sat, 03 Feb 2024 07:32:00 -0600</pubDate>
-      
-      <guid>//localhost:1313/engineering/automatic-type-deduction/</guid>
       <description></description>
     </item>
     

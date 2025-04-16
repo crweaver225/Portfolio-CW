@@ -2,27 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/</loc>
-    <lastmod>2025-03-28T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>//localhost:1313/engineering/</loc>
-    <lastmod>2025-03-28T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>//localhost:1313/posts/</loc>
-    <lastmod>2025-03-28T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>//localhost:1313/categories/</loc>
     <lastmod>2025-03-23T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>//localhost:1313/</loc>
+    <lastmod>2025-03-23T09:38:32-06:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>//localhost:1313/categories/engineering/</loc>
+    <lastmod>2025-03-23T09:38:32-06:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>//localhost:1313/engineering/</loc>
     <lastmod>2025-03-23T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -38,6 +33,11 @@
     <priority>0.5</priority>
   </url><url>
     <loc>//localhost:1313/engineering/lazy-evaluation-in-haskell/</loc>
+    <lastmod>2025-03-23T09:38:32-06:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>//localhost:1313/posts/</loc>
     <lastmod>2025-03-23T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -59,6 +59,21 @@
   </url><url>
     <loc>//localhost:1313/engineering/breaking-binary-back-to-the-basics/</loc>
     <lastmod>2025-02-10T07:07:50-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>//localhost:1313/engineering/clean-code-rust/</loc>
+    <lastmod>2025-02-06T09:38:32-06:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>//localhost:1313/tags/rust/</loc>
+    <lastmod>2025-02-06T09:38:32-06:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>//localhost:1313/series/rust/</loc>
+    <lastmod>2025-02-06T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -97,16 +112,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:1313/tags/rust/</loc>
-    <lastmod>2024-12-03T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>//localhost:1313/series/rust/</loc>
-    <lastmod>2024-12-03T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>//localhost:1313/engineering/programming-in-rust/</loc>
     <lastmod>2024-12-03T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -127,23 +132,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>//localhost:1313/engineering/building-a-thread-pool/</loc>
+    <lastmod>2024-09-05T07:32:00-06:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>//localhost:1313/tags/design-patterns/</loc>
-    <lastmod>2024-09-12T09:38:32-06:00</lastmod>
+    <lastmod>2024-07-11T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>//localhost:1313/series/design-patterns/</loc>
-    <lastmod>2024-09-12T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>//localhost:1313/engineering/observer-design-pattern/</loc>
-    <lastmod>2024-09-12T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>//localhost:1313/engineering/building-a-thread-pool/</loc>
-    <lastmod>2024-09-05T07:32:00-06:00</lastmod>
+    <lastmod>2024-07-11T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -152,18 +152,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:1313/engineering/static-polymorphism/</loc>
-    <lastmod>2024-06-04T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>//localhost:1313/engineering/small-buffer-optimization/</loc>
     <lastmod>2024-06-03T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>//localhost:1313/engineering/the-strategy-design-pattern/</loc>
-    <lastmod>2024-05-24T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -187,11 +177,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>//localhost:1313/engineering/the-visitor-design-pattern/</loc>
-    <lastmod>2024-04-09T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>//localhost:1313/categories/epistomology/</loc>
     <lastmod>2024-04-04T11:31:19-06:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -209,11 +194,6 @@
   </url><url>
     <loc>//localhost:1313/engineering/solid/</loc>
     <lastmod>2024-03-25T09:38:32-06:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>//localhost:1313/engineering/ranges-in-cpp/</loc>
-    <lastmod>2024-03-20T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -244,11 +224,6 @@
   </url><url>
     <loc>//localhost:1313/categories/mathematics/</loc>
     <lastmod>2024-03-19T18:03:08-05:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>//localhost:1313/engineering/algorithms-in-the-c-standard-library/</loc>
-    <lastmod>2024-03-15T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -284,11 +259,6 @@
   </url><url>
     <loc>//localhost:1313/engineering/big-o/</loc>
     <lastmod>2024-02-15T07:07:50-05:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>//localhost:1313/engineering/automatic-type-deduction/</loc>
-    <lastmod>2024-02-03T07:32:00-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>

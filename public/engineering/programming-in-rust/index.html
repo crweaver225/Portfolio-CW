@@ -53,16 +53,14 @@
   <meta property="article:modified_time" content="2024-12-03T09:38:32-06:00">
   
 
-<meta property="og:image" content="//localhost:1313/engineering/programming-in-rust/rustIcon.jpeg"/>
-  
-    <meta property="og:image:alt" content="rustIcon.jpeg" />
-  
+
+  <meta name="og:image" content="//localhost:1313/images/default.png"/>
 
 
 
 
 
-  
+  <meta property="og:see_also" content="//localhost:1313/engineering/clean-code-rust/" />
   
 
 
@@ -75,18 +73,14 @@
 <meta name="twitter:description" content="What I discovered learning Rust">
 
 
-<meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:image" content="//localhost:1313/engineering/programming-in-rust/rustIcon.jpeg"/>
-  
-    <meta name="twitter:image:alt" content="rustIcon.jpeg">
-  
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="//localhost:1313/images/default.png"/>
 
 
 
 
 
-  
-    
   
 
 
@@ -206,9 +200,9 @@
         {
           "@type": "ImageObject",
           "@id": "//localhost:1313/engineering/programming-in-rust/#/schema/image/2",
-          "url": "//localhost:1313/engineering/programming-in-rust/rustIcon.jpeg",
-          "contentUrl": "//localhost:1313/engineering/programming-in-rust/rustIcon.jpeg",
-          "caption": "rustIcon.jpeg"
+          "url": "//localhost:1313/images/default.png",
+          "contentUrl": "//localhost:1313/images/default.png",
+          "caption": "Why Rust is everything I wanted C++ to be"
         }
       ]
     }
@@ -355,6 +349,10 @@
             <li>Why Rust is everything I wanted C&#43;&#43; to be<span class="series-this-post">This post!</span>
               
             </li>
+            <li>
+                <a href="//localhost:1313/engineering/clean-code-rust/">Clean Rust</a>
+              
+            </li>
         </ol>
       </div>
     
@@ -364,12 +362,6 @@
 
   
 
-
-<img class="feature-image" 
-     srcset="/engineering/programming-in-rust/rustIcon.jpeg 480w, /engineering/programming-in-rust/rustIcon.jpeg 800w"
-     sizes="(max-width: 600px) 480px, 800px"
-     src="/engineering/programming-in-rust/rustIcon.jpeg"
-     alt="rustIcon.jpeg">
 </div>
     <article class="markdown">
         <h3 id="c---cracks-in-the-foundation">C++ - Cracks in the Foundation<a href="#c---cracks-in-the-foundation">
@@ -383,21 +375,21 @@
 <p>This had me thinking about my own recent concerns over C++ and how these concerns have changed my thinking. The first thing that really started to make me re-evaluate the language was a recent example I came across involving <a href="https://groups.google.com/a/chromium.org/g/chromium-dev/c/EUqoIz2iFU4/m/kPZ5ZK0K3gEJ" target="_blank" rel="noopener">implicit conversions</a>. This organization discovered that chrome was making 25,000 memory allocations per keystroke while using their application. This massive hit on their apps performance was the result of code that looked like this</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>c_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Memory allocation incoming&#34;</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    std<span style="color:#f92672">::</span>string str <span style="color:#f92672">=</span> c_string;</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">char</span> *c_string = <span style="color:#ed9d13">&#34;Memory allocation incoming&#34;</span>;
+</span></span><span style="display:flex;"><span>    std::string str = c_string;</span></span></code></pre></div>
 <p>To those who are not entirely in the know about the underlying mechanics of std::string, the presumption might have been that passing a heap allocated array of chars to a std::string that owns a single heap allocated array of chars would result in the string taking ownership over the heap resource. But this was not so. Instead, std::string allocates a new array on the heap and copies each char value over to this new array. The code above does an implicit memory allocation each time we make an assignment like this. To the seasoned C++ developer, this may be well known. It may also be desirable since a deep copy of the heap array means the std::string has full ownership of the underlying data and does not have to worry about it being modified or deleted elsewhere. But C++ is bountiful with the amount of implicit behavior like this happening under the hood, and its this implicit behavior that can cause both unexpected and undesired outcomes.</p>
 <p>The second strange thing I recently came across was this gem:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#66d9ef">for</span>(;;);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">go_home_c_plus_plus_you_are_drunk</span>() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;lol&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>end;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;iostream&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span>(;;);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">go_home_c_plus_plus_you_are_drunk</span>() {
+</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; <span style="color:#ed9d13">&#34;lol&#34;</span> &lt;&lt; std::end;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>Run this simple program on your machine and you might see &rsquo;lol&rsquo; display on your console despite the fact that the function to write those characters to the console is never called. You see in C++, an infinite loop is considered <em>undefined behavior</em>, and the compiler is free to do whatever it wants when face to face with such examples. Anything is possible, and the end result can be very hard to predict. It turns out in the example above, some compilers may decide to clean up the infinite loop in such a way that there is fall through to the next function body. The prospect that a systems programming language used to write so much of the worlds most critical software could so easily end up executing code that the developer never explicitly called to execute is wildly unacceptable.</p>
 <p>Implicit and undefined behavior has recently become a front and center issue for me and it had me open to exploring other options. C++ has been the industry standard for software that needs to reach the bleeding edge of speed and memory efficiency for decades, and so many of the promised C++ killers like Java and Go were entirely unacceptable as replacements where low level code is needed. Rust though, seemed to be different. It promised comparable speed to C and C++, but without so many of the drawbacks of those languages. I decided it was worth a little bit of my time to start learning. I started by picking up a copy of</p>
 <p><em><strong>Programming Rust</strong></em></p>
@@ -429,35 +421,35 @@
 I have read many proponents of C++ over the years speak to the langauges offerings for const correctness. Mark a variable const and rest well that it will not be modified througout the lifetime of the program. Similar const flags in function signatures offer additional assurance that return values and object methods will not modify values in our program that we wish to remain unchanged. But there are two major problems with the C++ approach to const correctness. The first is that it is not always easily clear what can be modified and what cannot. This function takes a const pointer and successfully modifies it</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test_fn</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> ptr2) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#f92672">*</span>ptr2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">test_fn</span>(<span style="color:#6ab825;font-weight:bold">int</span>* <span style="color:#6ab825;font-weight:bold">const</span> ptr2) {
+</span></span><span style="display:flex;"><span>    *ptr2 = <span style="color:#3677a9">14</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>This works and we have successfully modified the underlying value despite the const marking. This is because what is actually const in this function is the memory pointer. We cannot actually modify the pointer address, but the value the pointer holds an address for is fair game for modification. This will trip many a developer up who may not be aware the only way to really lock down this value is</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test_fn</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> ptr2) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#f92672">*</span>ptr2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>; <span style="color:#75715e">// compiler error, cant modify 
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#75715e"></span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">test_fn</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">int</span>* <span style="color:#6ab825;font-weight:bold">const</span> ptr2) {
+</span></span><span style="display:flex;"><span>    *ptr2 = <span style="color:#3677a9">14</span>; <span style="color:#999;font-style:italic">// compiler error, cant modify 
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}</span></span></code></pre></div>
 <p>The second problem is that immutable values is something a C++ developer needs to opt-in to. This means by default all values are mutable and free game across the program.</p>
 <p>Rust takes a different approach, making all values immutable unless specifically marked as mutable</p>
 
 
-  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">let</span> test_var: <span style="color:#66d9ef">u8</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>test_var <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>; <span style="color:#75715e">// compiler error, test_var is not mutable
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> test_var2: <span style="color:#66d9ef">u8</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>test_var2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>; <span style="color:#75715e">// This is fine
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">let</span><span style="color:#666"> </span>test_var: <span style="color:#6ab825;font-weight:bold">u8</span> =<span style="color:#666"> </span><span style="color:#3677a9">15</span>;<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span>test_var<span style="color:#666"> </span>=<span style="color:#666"> </span><span style="color:#3677a9">42</span>;<span style="color:#666"> </span><span style="color:#999;font-style:italic">// compiler error, test_var is not mutable
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span><span style="color:#6ab825;font-weight:bold">let</span><span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">mut</span><span style="color:#666"> </span>test_var2: <span style="color:#6ab825;font-weight:bold">u8</span> =<span style="color:#666"> </span><span style="color:#3677a9">100</span>;<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span>test_var2<span style="color:#666"> </span>=<span style="color:#666"> </span><span style="color:#3677a9">200</span>;<span style="color:#666"> </span><span style="color:#999;font-style:italic">// This is fine
 </span></span></span></code></pre></div>
 <p>Even passing values into functions requires parameters be marked as mutable, otherwise they are presummed to by read only</p>
 
 
-  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test_fn</span>(our_val: <span style="color:#66d9ef">&amp;</span><span style="color:#66d9ef">u8</span>) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    out_val <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>; <span style="color:#75715e">// Error, borrowed reference is not mutable
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">test_fn2</span>(our_val: <span style="color:#a6e22e">mut</span> <span style="color:#f92672">&amp;</span><span style="color:#66d9ef">u8</span>) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    out_val <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>; <span style="color:#75715e">// This is fine
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#75715e"></span>}</span></span></code></pre></div>
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">fn</span> <span style="color:#447fcf">test_fn</span>(our_val: <span style="color:#6ab825">&amp;</span><span style="color:#6ab825;font-weight:bold">u8</span>)<span style="color:#666"> </span>{<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">    </span>out_val<span style="color:#666"> </span>=<span style="color:#666"> </span><span style="color:#3677a9">42</span>;<span style="color:#666"> </span><span style="color:#999;font-style:italic">// Error, borrowed reference is not mutable
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span><span style="color:#6ab825;font-weight:bold">fn</span> <span style="color:#447fcf">test_fn2</span>(our_val: <span style="color:#447fcf;text-decoration:underline">mut</span><span style="color:#666"> </span>&amp;<span style="color:#6ab825;font-weight:bold">u8</span>)<span style="color:#666"> </span>{<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">    </span>out_val<span style="color:#666"> </span>=<span style="color:#666"> </span><span style="color:#3677a9">42</span>;<span style="color:#666"> </span><span style="color:#999;font-style:italic">// This is fine
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}</span></span></code></pre></div>
 <p>The state of any value within your program in Rust will never change unless the developer gives explicit permission to change. Both of these philosophies work, but the Rust approach is significantly better. And the reason goes to the heart of systems programming: predictability and control. Data that cannot change is more predictable than data that can change. It is highly likely a developer will forget to mark a value as const at some point in their career, a mistake that might not be discovered until a bug becomes known at runtime. With Rust, on the other hand, if a developer forgets to mark their values as mutable and attempts to modify it later in the program, this issue is caught at compile time well before anything gets shipped to production. This is a huge win.</p>
 </li>
 <li>
@@ -465,11 +457,11 @@ I have read many proponents of C++ over the years speak to the langauges offerin
 What size is this value at runtime in C++?</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>;</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> v = <span style="color:#3677a9">12</span>;</span></span></code></pre></div>
 <p>The answer is, we do not know. C++ does not promise a fixed bit width for most of its primitives. Instead, it leaves the int size up to the compiler implementation in congruence with the machine the code is being run on. Usually we can expect an int to be 4 bytes, but this is not guaranteed. The only way to know for sure is to ask the type for its size at runtime:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>);</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>std::cout &lt;&lt; <span style="color:#6ab825;font-weight:bold">sizeof</span>(<span style="color:#6ab825;font-weight:bold">int</span>);</span></span></code></pre></div>
 <p>This is inconveniant, particullarly for a language that needs to be compiled to run. Rust on the other hand offers explicit, fixed width primitives as the default. u8, i16, f64, are all basic number values you can expect to see in Rust where the precise size of the type is clear to anyone looking at the code.</p>
 <p>Is it the end of the world that we have a better grasp of primitive types in Rust based on the source code alone compared to C++? Maybe not. Unless overflows are a concern, or you are attempting to squeeze every ounce of optimization out of your program possible. Then this information is really nice to have.</p>
 <p>To be fair, C++ does offer fixed width primitive types ever since C++11. int8_t, uint32_t, etc are all readily available for the developer to use. The problem is they often feel like second class citizens within the lanuage itself with only modest adoption amonst the C++ community. They exist, and are great to use, but they are not the default standard found within their respective code base like what you will see with Rust.</p>
@@ -495,19 +487,19 @@ Exceptions in C++ are a controvertial topic. Many C++ shops strictly forbid the 
 <p>Rust does not have exceptions. A simple Result&lt;_, error&gt; enum takes its place where some function might experience an error.</p>
 
 
-  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">parse_version</span>(header: <span style="color:#66d9ef">&amp;</span>[<span style="color:#66d9ef">u8</span>]) -&gt; Result<span style="color:#f92672">&lt;</span>Version, <span style="color:#f92672">&amp;</span>&#39;static <span style="color:#66d9ef">str</span><span style="color:#f92672">&gt;</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">match</span> header.get(<span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        None <span style="color:#f92672">=&gt;</span> Err(<span style="color:#e6db74">&#34;invalid header length&#34;</span>),
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        Some(<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">=&gt;</span> Ok(Version::Version1),
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        Some(<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">=&gt;</span> Ok(Version::Version2),
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        Some(_) <span style="color:#f92672">=&gt;</span> Err(<span style="color:#e6db74">&#34;invalid version&#34;</span>),
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#66d9ef">let</span> version <span style="color:#f92672">=</span> parse_version(<span style="color:#f92672">&amp;</span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>]);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#66d9ef">match</span> version {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    Ok(v) <span style="color:#f92672">=&gt;</span> println!(<span style="color:#e6db74">&#34;working with version: </span><span style="color:#e6db74">{v:?}</span><span style="color:#e6db74">&#34;</span>),
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    Err(e) <span style="color:#f92672">=&gt;</span> println!(<span style="color:#e6db74">&#34;error parsing header: </span><span style="color:#e6db74">{e:?}</span><span style="color:#e6db74">&#34;</span>),
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>}</span></span></code></pre></div>
+  <span class="code-language">Rust</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Rust" data-lang="Rust"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">fn</span> <span style="color:#447fcf">parse_version</span>(header: <span style="color:#6ab825">&amp;</span>[<span style="color:#6ab825;font-weight:bold">u8</span>])<span style="color:#666"> </span>-&gt; <span style="color:#24909d">Result</span>&lt;Version,<span style="color:#666"> </span>&amp;<span style="color:#24909d">&#39;static</span><span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">str</span>&gt;<span style="color:#666"> </span>{<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">    </span><span style="color:#6ab825;font-weight:bold">match</span><span style="color:#666"> </span>header.get(<span style="color:#3677a9">0</span>)<span style="color:#666"> </span>{<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">        </span><span style="color:#24909d">None</span><span style="color:#666"> </span>=&gt;<span style="color:#666"> </span><span style="color:#24909d">Err</span>(<span style="color:#ed9d13">&#34;invalid header length&#34;</span>),<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">        </span><span style="color:#24909d">Some</span>(&amp;<span style="color:#3677a9">1</span>)<span style="color:#666"> </span>=&gt;<span style="color:#666"> </span><span style="color:#24909d">Ok</span>(Version::Version1),<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">        </span><span style="color:#24909d">Some</span>(&amp;<span style="color:#3677a9">2</span>)<span style="color:#666"> </span>=&gt;<span style="color:#666"> </span><span style="color:#24909d">Ok</span>(Version::Version2),<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">        </span><span style="color:#24909d">Some</span>(_)<span style="color:#666"> </span>=&gt;<span style="color:#666"> </span><span style="color:#24909d">Err</span>(<span style="color:#ed9d13">&#34;invalid version&#34;</span>),<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">    </span>}<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span>}<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span><span style="color:#6ab825;font-weight:bold">let</span><span style="color:#666"> </span>version<span style="color:#666"> </span>=<span style="color:#666"> </span>parse_version(&amp;[<span style="color:#3677a9">1</span>,<span style="color:#666"> </span><span style="color:#3677a9">2</span>,<span style="color:#666"> </span><span style="color:#3677a9">3</span>,<span style="color:#666"> </span><span style="color:#3677a9">4</span>]);<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span><span style="color:#6ab825;font-weight:bold">match</span><span style="color:#666"> </span>version<span style="color:#666"> </span>{<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">    </span><span style="color:#24909d">Ok</span>(v)<span style="color:#666"> </span>=&gt;<span style="color:#666"> </span>println!(<span style="color:#ed9d13">&#34;working with version: </span><span style="color:#ed9d13">{v:?}</span><span style="color:#ed9d13">&#34;</span>),<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">    </span><span style="color:#24909d">Err</span>(e)<span style="color:#666"> </span>=&gt;<span style="color:#666"> </span>println!(<span style="color:#ed9d13">&#34;error parsing header: </span><span style="color:#ed9d13">{e:?}</span><span style="color:#ed9d13">&#34;</span>),<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span>}</span></span></code></pre></div>
 <p>The code above is clear within the function signature on its intent. It might error and the caller must always be prepared to handle that. There is no guessing if the function throws or not and we can easily predict how our function will perform in production regardless of the outcome.</p>
 <p>Once again, my gripe with C++ is not only that it supports exceptions, but that function signatures do not have to be explicit about if it might throw an exception or not. Instead, developers are required to mark a function as noexcept if they want to communicate to the caller (and the compiler) that this function will not throw an exception. This is another form of opt-in safety that is prone to errors, difficult to reason about, and harms performance. There is a lack of clear and concise predictability within the source code. It would have been better if C++ required functions that throw to mark in their signature that they might throw.</p>
 </li>
@@ -533,8 +525,8 @@ C++ was first introduced to the world in 1979. A lot has changed since then and 
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg>
   </a>
-</h3><p>The world runs on C++ and it is not going anywhere. I have an affinity for the language and the types of problems C++ is leveraged to solve. They say sunlight is the best disinfectant, and C++ is in desperate need of help. I do not believe drastic changes to the language to fix some of these issues are welcome as they will only bring additional complexity and/or break legacy code. I think anything that breaks the abi or older code should be a non-starter for C++, as one of its core benefits is that so much infrastructure is already built. If we are going to break older parts of our C++ code and have to re-write it, we might as well do it in a safer langauge like Rust. C++ instead needs to focus on better tooling to help mitigate many of its core problems, specifically better profiles and static analysis tools. Leave legacy code where it is, but provide tools for developers to better see where their issues might be.</p>
-<p>C++ developers also need to learn some Rust to see how they can program in a style that mimicks many of the things Rust gets right. C++ does not have algebraic data types, but it does have the std::variant which can mimick much of what virtual inheritance does, but safer. Maybe learn from Rust that not everything needs to be in giant objects and highly encapsulated. Functional style coding that is at the heart of much of Rust is largely available in C++ as well through the new Ranges library; C++ developers should use it to create more expressive code.</p>
+</h3><p>The world runs on C++ and it is not going anywhere. I have an affinity for the language and the types of problems C++ is leveraged to solve. They say sunlight is the best disinfectant, and C++ is in desperate need of help. I do not believe drastic changes to the language to fix some of these issues are welcome, as they will only bring additional complexity and/or break legacy code. I think anything that breaks the abi or older code should be a non-starter for C++, as one of its core benefits is that so much infrastructure is already built. If we are going to break older parts of our C++ code and have to re-write it, we might as well do it in a safer langauge like Rust. C++ instead needs to focus on better tooling to help mitigate many of its core problems, specifically better profiles and static analysis tools. Leave legacy code where it is, but provide tools for developers to better see where their issues might be.</p>
+<p>C++ developers also need to learn some Rust to see how they can program in a style that mimicks many of the things Rust gets right. C++ does not have algebraic data types, but it does have the std::variant which can mimick much of what virtual inheritance does, but safer. Maybe learn from Rust that not everything needs to be in large objects and highly encapsulated. Functional style coding that is at the heart of much of Rust is largely available in C++ as well through the new Ranges library; C++ developers should use it to create more expressive code.</p>
 <p>There is much to learn from Rust that can be leveraged to make C++ code bases better. Rust has much of what I want C++ to be. And while C++ will never be Rust, nor should it try, much of the best parts of Rust are doable in C++ and efforts must be made to move in that direction.</p>
 <p>Footnotes</p>
 <div class="footnotes" role="doc-endnotes">
@@ -594,6 +586,10 @@ C++ was first introduced to the world in 1979. A lot has changed since then and 
           
           <ol>
               <li>Why Rust is everything I wanted C&#43;&#43; to be<span class="series-this-post">This post!</span>
+                
+              </li>
+              <li>
+                  <a href="//localhost:1313/engineering/clean-code-rust/">Clean Rust</a>
                 
               </li>
           </ol>

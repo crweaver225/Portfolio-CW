@@ -315,7 +315,7 @@ Building software that does its designed task is often only half the battle. It 
   <section class="page-header">
     <h1 class="page-header-title">SOLID</h1>
     <div class="post-list-meta">
-      <div class="post-list-dates">Mar 25, 2024&nbsp;&middot;&nbsp;11 min.</div>
+      <div class="post-list-dates">Mar 25, 2024&nbsp;&middot;&nbsp;10 min.</div>
       
       <div class="post-list-categories">
         
@@ -437,29 +437,29 @@ Building software that does its designed task is often only half the battle. It 
 <p>The <em>SRP</em> in its colloquial form says &ldquo;Everything should just do one thing&rdquo;. What this exactly means is certianly up for interpretation. But I found the example used on pg. 12 to be an extremely helpful concrete example. Consider this Document class</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Document</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Document() <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">exportToJSON</span>(<span style="color:#75715e">/*...*/</span>) <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">serialize</span>(ByteStream<span style="color:#f92672">&amp;</span>, <span style="color:#75715e">/*...*/</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Document</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">virtual</span> ~Document() = <span style="color:#6ab825;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">exportToJSON</span>(<span style="color:#999;font-style:italic">/*...*/</span>) <span style="color:#6ab825;font-weight:bold">const</span> = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">serialize</span>(ByteStream&amp;, <span style="color:#999;font-style:italic">/*...*/</span>) = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>This purely abstract class looks eerily similar to classes I have personally written many times. On its surface there are a lot of things to like about it. This is a form of runtime polymorphism that allows our code to generically handle lots of different types without needing to know the nitty gritty details of how they implement their functionalities. Our document class appears to be well built to encapsulate and abstract away implementation details that other parts of code do not need to know.</p>
 <p>But this class is a bad design because it contains multiple artificial dependencies. First, exportTOJSON() needs to be implemented by all derived classes (even if the derived class does not support exporting to JSON!). Often in C++, things like implementing JSON exports is left to a third party library. If that is the case, all derived classes will be seperately using this library. If the time comes where a change is made to which library is used, we now need to go into each derived class and make the change (each derived class is coupled to each other in that all of them need the same change based on a change to a library).</p>
 <p>Another dependency is introduced in the serialize() function which will likely need to know which kind of document it needs to serialize its contents into. A common approach is to build a document type enum that each derived class uses to help understand its own state and how it should proceed with serialization.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DocumentType</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  pdf,
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>  word,
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>  <span style="color:#75715e">// .... potentially many more types
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#75715e"></span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">enum</span> <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">DocumentType</span> {
+</span></span><span style="display:flex;"><span>  pdf,
+</span></span><span style="display:flex;"><span>  word,
+</span></span><span style="display:flex;"><span>  <span style="color:#999;font-style:italic">// .... potentially many more types
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}</span></span></code></pre></div>
 <p>But now anytime a new type is added, all other derived types will be directly affected since each derived type would &ldquo;know&rdquo; about all other types. How do we fix this? Well by ensuring the document class only does one thing, which is to represent the most basic operations of a document.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Document</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Document() <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Document</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">virtual</span> ~Document() = <span style="color:#6ab825;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>Obviously we have now lost two important features we need. We will later discuss in the Interface Segregation Principle section how to better support exporting to JSON and serialization for this document class.</p>
 <h3 id="open-close-principle">Open-close principle<a href="#open-close-principle">
     <svg role="img" aria-labelledby="open-close-principle-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -472,79 +472,79 @@ Building software that does its designed task is often only half the battle. It 
 <p>Consider the example of a product class. We need to be able to filter by different criterion including color and size. A poor design pattern would be to build another class called ProductFilter with interfaces for filtering by these criteria. The reason being that over time what we need to filter for will likely change, meaning we will need to change the ProductFilter class. Instead check out the example below where we build a BetterFilter class that can be extended using different templates.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Color</span> {red, green, blue};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Size</span> { small, medium, large};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Product</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  string name;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  Color color;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  Size size;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span> 
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Specification</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">bool</span> is_satisfied(T<span style="color:#f92672">*</span> item) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Filter</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>  <span style="color:#66d9ef">virtual</span> Vector<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">*&gt;</span> filter(vector<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">*&gt;</span> items, Specification<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&amp;</span> spec) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BetterFilter</span><span style="color:#f92672">:</span> Filter<span style="color:#f92672">&lt;</span>Product<span style="color:#f92672">&gt;</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>  Vector<span style="color:#f92672">&lt;</span>Product <span style="color:#f92672">*&gt;</span> filter(vector<span style="color:#f92672">&lt;</span>Product<span style="color:#f92672">*&gt;</span> items, Specification<span style="color:#f92672">&lt;</span>Product<span style="color:#f92672">&gt;&amp;</span>spec) <span style="color:#66d9ef">override</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>    vector<span style="color:#f92672">&lt;</span>Product<span style="color:#f92672">*&gt;</span> result;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> item: items) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>      <span style="color:#66d9ef">if</span> (spec.is_satisfied(item)) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>        result.push_back(item);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>      }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>    <span style="color:#66d9ef">return</span> result;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SizeSpecification</span> <span style="color:#f92672">:</span> Specification<span style="color:#f92672">&lt;</span>Product<span style="color:#f92672">&gt;</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>  Size size;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>  SizeSpecification(<span style="color:#66d9ef">const</span> Size size) <span style="color:#f92672">:</span> size{size} {}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>  <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_satisfied</span>(Product<span style="color:#f92672">*</span> item) <span style="color:#66d9ef">override</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>    <span style="color:#66d9ef">return</span> item<span style="color:#f92672">-&gt;</span>size <span style="color:#f92672">==</span> size;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ColorSpecification</span><span style="color:#f92672">:</span> Specification<span style="color:#f92672">&lt;</span>Product<span style="color:#f92672">&gt;</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span><span>  Color color;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50</span><span>  ColorSpecification(Color color) <span style="color:#f92672">:</span> color(color) {}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52</span><span>  <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_satisfied</span>(Product <span style="color:#f92672">*</span>item) <span style="color:#66d9ef">override</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53</span><span>    <span style="color:#66d9ef">return</span> item<span style="color:#f92672">-&gt;</span>color <span style="color:#f92672">==</span> color;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59</span><span>  Product apple{<span style="color:#e6db74">&#34;Apple&#34;</span>, color<span style="color:#f92672">::</span>green, Size<span style="color:#f92672">::</span>small};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60</span><span>  Product tree{<span style="color:#e6db74">&#34;Tree&#34;</span>, Color<span style="color:#f92672">::</span>green, Size<span style="color:#f92672">::</span>large};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61</span><span>  Product house{<span style="color:#e6db74">&#34;House&#34;</span>, Color<span style="color:#f92672">::</span>blue, Size<span style="color:#f92672">::</span>large};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63</span><span>  BetterFilter bf;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64</span><span>  ColorSpecification green(Color<span style="color:#f92672">::</span>green);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65</span><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> item : bf.filter(items, green)) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66</span><span>    std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> item<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; is green&#34;</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69</span><span>  SizeSpecification large(Size<span style="color:#f92672">::</span>large);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70</span><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> item : bf.filter(items, large)) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71</span><span>    std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> item<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; is large&#34;</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">enum</span> <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Color</span> {red, green, blue};
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">enum</span> <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Size</span> { small, medium, large};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Product</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  string name;
+</span></span><span style="display:flex;"><span>  Color color;
+</span></span><span style="display:flex;"><span>  Size size;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">typename</span> T&gt; 
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Specification</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">bool</span> is_satisfied(T* item) = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">typename</span> T&gt;
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Filter</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">virtual</span> Vector&lt;T*&gt; filter(vector&lt;T*&gt; items, Specification&lt;T&gt;&amp; spec) = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">BetterFilter</span>: Filter&lt;Product&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  Vector&lt;Product *&gt; filter(vector&lt;Product*&gt; items, Specification&lt;Product&gt;&amp;spec) <span style="color:#6ab825;font-weight:bold">override</span> {
+</span></span><span style="display:flex;"><span>    vector&lt;Product*&gt; result;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span>&amp; item: items) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6ab825;font-weight:bold">if</span> (spec.is_satisfied(item)) {
+</span></span><span style="display:flex;"><span>        result.push_back(item);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> result;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">SizeSpecification</span> : Specification&lt;Product&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  Size size;
+</span></span><span style="display:flex;"><span>  SizeSpecification(<span style="color:#6ab825;font-weight:bold">const</span> Size size) : size{size} {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">is_satisfied</span>(Product* item) <span style="color:#6ab825;font-weight:bold">override</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> item-&gt;size == size;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">ColorSpecification</span>: Specification&lt;Product&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  Color color;
+</span></span><span style="display:flex;"><span>  ColorSpecification(Color color) : color(color) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">is_satisfied</span>(Product *item) <span style="color:#6ab825;font-weight:bold">override</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> item-&gt;color == color;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Product apple{<span style="color:#ed9d13">&#34;Apple&#34;</span>, color::green, Size::small};
+</span></span><span style="display:flex;"><span>  Product tree{<span style="color:#ed9d13">&#34;Tree&#34;</span>, Color::green, Size::large};
+</span></span><span style="display:flex;"><span>  Product house{<span style="color:#ed9d13">&#34;House&#34;</span>, Color::blue, Size::large};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  BetterFilter bf;
+</span></span><span style="display:flex;"><span>  ColorSpecification green(Color::green);
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span>&amp; item : bf.filter(items, green)) {
+</span></span><span style="display:flex;"><span>    std::cout&lt;&lt; item-&gt;name &lt;&lt; <span style="color:#ed9d13">&#34; is green&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  SizeSpecification large(Size::large);
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span>&amp; item : bf.filter(items, large)) {
+</span></span><span style="display:flex;"><span>    std::cout&lt;&lt; item-&gt;name &lt;&lt; <span style="color:#ed9d13">&#34; is large&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>When a new filter type is needed, we can build it out without ever needing to change the BetterFilter class.</p>
 <h3 id="liskov-substitution-principle">Liskov Substitution Principle<a href="#liskov-substitution-principle">
     <svg role="img" aria-labelledby="liskov-substitution-principle-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -556,37 +556,37 @@ Building software that does its designed task is often only half the battle. It 
 </h3><p>The Liskob Substitution principle is concerned with behavioral subtyping i.e. with the expected behavior of an abstraction. When subtyping a base class into its derived classes it is important that the <em>expectations</em> of the abstraction be adhered to. Consider the classic example of a Rectangle base class and a derived Square class</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Rectangle</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Rectangle() <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>  <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getWidth</span>() <span style="color:#66d9ef">const</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>  <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getHeight</span>() <span style="color:#66d9ef">const</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setWidth</span>(<span style="color:#66d9ef">int</span>);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setHeight</span>(<span style="color:#66d9ef">int</span>);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getArea</span>() <span style="color:#66d9ef">const</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  <span style="color:#66d9ef">int</span> width;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  <span style="color:#66d9ef">int</span> height;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Square</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Rectangle {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>  <span style="color:#66d9ef">void</span> setWidth(<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">override</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setHeight</span>(<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">override</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>  <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getArea</span>() <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">override</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Rectangle</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">virtual</span> ~Rectangle() = <span style="color:#6ab825;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">getWidth</span>() <span style="color:#6ab825;font-weight:bold">const</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">getHeight</span>() <span style="color:#6ab825;font-weight:bold">const</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setWidth</span>(<span style="color:#6ab825;font-weight:bold">int</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setHeight</span>(<span style="color:#6ab825;font-weight:bold">int</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">getArea</span>() <span style="color:#6ab825;font-weight:bold">const</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">private</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">int</span> width;
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">int</span> height;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Square</span>: <span style="color:#6ab825;font-weight:bold">public</span> Rectangle {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">void</span> setWidth(<span style="color:#6ab825;font-weight:bold">int</span>) <span style="color:#6ab825;font-weight:bold">override</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setHeight</span>(<span style="color:#6ab825;font-weight:bold">int</span>) <span style="color:#6ab825;font-weight:bold">override</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">getArea</span>() <span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">override</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>From a mathematical standpoint, having a square inherit from a rectangle makes sense. But consider this problem. When computing the getArea() function, we expect the width to be multiplied by the height. If we set the height to 7 and the width to 4, we expect getArea() = 24. But this will not be the case for the Square class which must have an equal width and height. For the square class, setting the height and width separately makes no sense. When dealing with abstractions of this type, we may well have a function like this:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">transform</span>(Rectangle <span style="color:#f92672">&amp;</span>rectanle) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  rectangle.setWidth(<span style="color:#ae81ff">7</span>);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>  rectangle.setHeight(<span style="color:#ae81ff">4</span>);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">transform</span>(Rectangle &amp;rectanle) {
+</span></span><span style="display:flex;"><span>  rectangle.setWidth(<span style="color:#3677a9">7</span>);
+</span></span><span style="display:flex;"><span>  rectangle.setHeight(<span style="color:#3677a9">4</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>Our expectaion is this rectangle has a height of 4 and a width of 7. But if the actual derived class is a square, this is not the case and unexpected results may occur.</p>
 <p>It is important that our derived classes can always be subsituted for a based class without any issues or violation of our expectations.</p>
 <h3 id="interface-segregation-principle">Interface Segregation Principle<a href="#interface-segregation-principle">
@@ -599,26 +599,26 @@ Building software that does its designed task is often only half the battle. It 
 </h3><p>The I in <em>SOLID</em> stands for <em>Interface Segregation Principle</em> (ISP). Simply put, it means clients should not be forced to depend on methods that they do not use. In our document example used above, I mentioned that some derived classes may be force to implement methods they do not need or support. The ISP recommends decoupling interfaces by instead seperating the interfaces like so</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JSONExportable</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>JSONExportable <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">exportToJSON</span>(<span style="color:#75715e">/*...*/</span>) <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Serializable</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Serializable() <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">serialize</span>(ByteStream<span style="color:#f92672">&amp;</span> bs, <span style="color:#75715e">/*...*/</span>) <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Document</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> JSONExportable, <span style="color:#66d9ef">public</span> Serializable {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Document() <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">JSONExportable</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">virtual</span> ~JSONExportable = <span style="color:#6ab825;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">exportToJSON</span>(<span style="color:#999;font-style:italic">/*...*/</span>) <span style="color:#6ab825;font-weight:bold">const</span> = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Serializable</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">virtual</span> ~Serializable() = <span style="color:#6ab825;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">serialize</span>(ByteStream&amp; bs, <span style="color:#999;font-style:italic">/*...*/</span>) <span style="color:#6ab825;font-weight:bold">const</span> = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Document</span>: <span style="color:#6ab825;font-weight:bold">public</span> JSONExportable, <span style="color:#6ab825;font-weight:bold">public</span> Serializable {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">virtual</span> ~Document() = <span style="color:#6ab825;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>When structured this way, we can now minimize dependencies to only the set of functions that is actually required</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">exportDocument</span>(JSONExportable <span style="color:#66d9ef">const</span><span style="color:#f92672">&amp;</span> exportable) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  exportable.exportToJSON(<span style="color:#75715e">/*pass arguments*/</span>);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">exportDocument</span>(JSONExportable <span style="color:#6ab825;font-weight:bold">const</span>&amp; exportable) {
+</span></span><span style="display:flex;"><span>  exportable.exportToJSON(<span style="color:#999;font-style:italic">/*pass arguments*/</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>Now the JSONExportable functionality no longer depends on the serialization functionality or the ByteStream class.</p>
 <h3 id="dependency-inversion-principle">Dependency Inversion Principle<a href="#dependency-inversion-principle">
     <svg role="img" aria-labelledby="dependency-inversion-principle-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -635,113 +635,113 @@ Building software that does its designed task is often only half the battle. It 
 <p>Consider this example that has a high level and low level module.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Relationship</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  parent, 
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  child, 
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>  sibling
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  string name;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#75715e">// low-level
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Relationships</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  vector<span style="color:#f92672">&lt;</span>tuple<span style="color:#f92672">&lt;</span>Person, Relationship, Person<span style="color:#f92672">&gt;&gt;</span> relations;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add_parent_and_child</span>({<span style="color:#66d9ef">const</span> Person<span style="color:#f92672">&amp;</span> parent, <span style="color:#66d9ef">const</span> Person<span style="color:#f92672">&amp;</span> child}) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    relations.push_back({parent, Relationship<span style="color:#f92672">::</span>parent, child});
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    relations.push_back({child, Relationship<span style="color:#f92672">::</span>child, parent});
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#75715e">// High-level
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Research</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>  Research(Relationships<span style="color:#f92672">&amp;</span> relationships) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>    <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> relations <span style="color:#f92672">=</span> relationships.relations;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> [first, rel, second] <span style="color:#f92672">:</span> relations) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>      <span style="color:#66d9ef">if</span> (first.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;John&#34;</span> <span style="color:#f92672">&amp;&amp;</span> rel <span style="color:#f92672">==</span> Relationship<span style="color:#f92672">::</span>parent) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>        std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;John has a child called &#34;</span> <span style="color:#f92672">&lt;&lt;</span> second.name <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>      }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>  Person parent{<span style="color:#e6db74">&#34;John&#34;</span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>  Person child1{<span style="color:#e6db74">&#34;Chris&#34;</span>}, child2{<span style="color:#e6db74">&#34;Matt&#34;</span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>  Relationships relationships;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>  relationships.add_parent_and_child(parent, child1);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>  relationships.add_parent_and_child(parent, child2);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>  Research _(relationships);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">enum</span> <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Relationship</span> {
+</span></span><span style="display:flex;"><span>  parent, 
+</span></span><span style="display:flex;"><span>  child, 
+</span></span><span style="display:flex;"><span>  sibling
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Person</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  string name;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// low-level
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Relationships</span> {
+</span></span><span style="display:flex;"><span>  vector&lt;tuple&lt;Person, Relationship, Person&gt;&gt; relations;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">add_parent_and_child</span>({<span style="color:#6ab825;font-weight:bold">const</span> Person&amp; parent, <span style="color:#6ab825;font-weight:bold">const</span> Person&amp; child}) {
+</span></span><span style="display:flex;"><span>    relations.push_back({parent, Relationship::parent, child});
+</span></span><span style="display:flex;"><span>    relations.push_back({child, Relationship::child, parent});
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// High-level
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Research</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  Research(Relationships&amp; relationships) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span>&amp; relations = relationships.relations;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span>&amp;&amp; [first, rel, second] : relations) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6ab825;font-weight:bold">if</span> (first.name == <span style="color:#ed9d13">&#34;John&#34;</span> &amp;&amp; rel == Relationship::parent) {
+</span></span><span style="display:flex;"><span>        std::cout&lt;&lt; <span style="color:#ed9d13">&#34;John has a child called &#34;</span> &lt;&lt; second.name &lt;&lt; std::endl;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
+</span></span><span style="display:flex;"><span>  Person parent{<span style="color:#ed9d13">&#34;John&#34;</span>};
+</span></span><span style="display:flex;"><span>  Person child1{<span style="color:#ed9d13">&#34;Chris&#34;</span>}, child2{<span style="color:#ed9d13">&#34;Matt&#34;</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Relationships relationships;
+</span></span><span style="display:flex;"><span>  relationships.add_parent_and_child(parent, child1);
+</span></span><span style="display:flex;"><span>  relationships.add_parent_and_child(parent, child2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Research _(relationships);
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>Here we have a high level module recieving a low level module as a dependency. The research class is aware of the Relationships class and implements its part using the vector within the Relationships class. But since Relationships is low-level, it is subject to change. Perhaps it stops using a vector or moves that vector to be private. Both changes will brake our high level code.</p>
 <p>To fix this, we need to introduce another abstraction. In this example I create the RelationshipBrowser class (a pure virtual class) which will act as our abstraction that mediates and removes the dependency of our high level code on our low level implementation details.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RelationshipBrowser</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  <span style="color:#66d9ef">virtual</span> vector<span style="color:#f92672">&lt;</span>Person<span style="color:#f92672">&gt;</span> final_all_children_od(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> name) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>}
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Relationship</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  parent, 
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  child, 
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  sibling
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  string name;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#75715e">// low-level
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Relationships</span><span style="color:#f92672">:</span> RelationshipBrowser {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>  vector<span style="color:#f92672">&lt;</span>tuple<span style="color:#f92672">&lt;</span>Person, Relationship, Person<span style="color:#f92672">&gt;&gt;</span> relations;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add_parent_and_child</span>({<span style="color:#66d9ef">const</span> Person<span style="color:#f92672">&amp;</span> parent, <span style="color:#66d9ef">const</span> Person<span style="color:#f92672">&amp;</span> child}) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>    relations.push_back({parent, Relationship<span style="color:#f92672">::</span>parent, child});
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>    relations.push_back({child, Relationship<span style="color:#f92672">::</span>child, parent});
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>  vector<span style="color:#f92672">&lt;</span>Person<span style="color:#f92672">&gt;</span> find_all_children_of(<span style="color:#66d9ef">const</span> string <span style="color:#f92672">&amp;</span>name) <span style="color:#66d9ef">override</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>    vector<span style="color:#f92672">&lt;</span>Person<span style="color:#f92672">&gt;</span> results;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> [first, rel, second] <span style="color:#f92672">:</span> relations) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>      <span style="color:#66d9ef">if</span> (first.name <span style="color:#f92672">==</span> name <span style="color:#f92672">&amp;&amp;</span> rel <span style="color:#f92672">==</span> Relationship<span style="color:#f92672">::</span>parent) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>        result.push_back(second);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>      }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>    retutn results;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span><span style="color:#75715e">// High-level
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Research</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>  Research(RelationshipBrowser<span style="color:#f92672">&amp;</span> browser) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> child : browser.find_all_children_of(<span style="color:#e6db74">&#34;John&#34;</span>)) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>      std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;John has a child called &#34;</span> <span style="color:#f92672">&lt;&lt;</span> child.name <span style="color:#f92672">&lt;&lt;</span> endl;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span><span>  Person parent{<span style="color:#e6db74">&#34;John&#34;</span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50</span><span>  Person child1{<span style="color:#e6db74">&#34;Chris&#34;</span>}, child2{<span style="color:#e6db74">&#34;Matt&#34;</span>};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52</span><span>  Relationships relationships;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53</span><span>  relationships.add_parent_and_child(parent, child1);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54</span><span>  relationships.add_parent_and_child(parent, child2);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56</span><span>  Research _(relationships);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57</span><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">RelationshipBrowser</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">virtual</span> vector&lt;Person&gt; final_all_children_od(<span style="color:#6ab825;font-weight:bold">const</span> string&amp; name) = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">enum</span> <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Relationship</span> {
+</span></span><span style="display:flex;"><span>  parent, 
+</span></span><span style="display:flex;"><span>  child, 
+</span></span><span style="display:flex;"><span>  sibling
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Person</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  string name;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// low-level
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Relationships</span>: RelationshipBrowser {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  vector&lt;tuple&lt;Person, Relationship, Person&gt;&gt; relations;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">add_parent_and_child</span>({<span style="color:#6ab825;font-weight:bold">const</span> Person&amp; parent, <span style="color:#6ab825;font-weight:bold">const</span> Person&amp; child}) {
+</span></span><span style="display:flex;"><span>    relations.push_back({parent, Relationship::parent, child});
+</span></span><span style="display:flex;"><span>    relations.push_back({child, Relationship::child, parent});
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  vector&lt;Person&gt; find_all_children_of(<span style="color:#6ab825;font-weight:bold">const</span> string &amp;name) <span style="color:#6ab825;font-weight:bold">override</span> {
+</span></span><span style="display:flex;"><span>    vector&lt;Person&gt; results;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span>&amp;&amp; [first, rel, second] : relations) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6ab825;font-weight:bold">if</span> (first.name == name &amp;&amp; rel == Relationship::parent) {
+</span></span><span style="display:flex;"><span>        result.push_back(second);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    retutn results;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// High-level
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Research</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>  Research(RelationshipBrowser&amp; browser) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span>&amp; child : browser.find_all_children_of(<span style="color:#ed9d13">&#34;John&#34;</span>)) {
+</span></span><span style="display:flex;"><span>      std::cout&lt;&lt; <span style="color:#ed9d13">&#34;John has a child called &#34;</span> &lt;&lt; child.name &lt;&lt; endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
+</span></span><span style="display:flex;"><span>  Person parent{<span style="color:#ed9d13">&#34;John&#34;</span>};
+</span></span><span style="display:flex;"><span>  Person child1{<span style="color:#ed9d13">&#34;Chris&#34;</span>}, child2{<span style="color:#ed9d13">&#34;Matt&#34;</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Relationships relationships;
+</span></span><span style="display:flex;"><span>  relationships.add_parent_and_child(parent, child1);
+</span></span><span style="display:flex;"><span>  relationships.add_parent_and_child(parent, child2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Research _(relationships);
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>Now Research no longer has any knowledge of the Relationship class and will continue to work even if changes are made to the Relationship class.</p>
 <h3 id="conclusion">Conclusion<a href="#conclusion">
     <svg role="img" aria-labelledby="conclusion-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">

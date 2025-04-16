@@ -90,11 +90,11 @@ theme = 'hugo-liftoff'
     hl_Lines = ''
     lineAnchors = ''
     lineNoStart = 1
-    lineNos = true # Not the default
+    lineNos = false # Not the default
     lineNumbersInTable = false # Not the default
     noClasses = true
     noHl = false
-    style = 'monokai'
+    style = 'native'
     tabWidth = 4
   [markup.tableOfContents]
     endLevel = 3

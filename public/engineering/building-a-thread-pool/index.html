@@ -53,8 +53,8 @@
   <meta property="article:modified_time" content="2024-09-05T07:32:00-06:00">
   
 
-<meta property="og:image" content="//localhost:1313/engineering/building-a-thread-pool/threadPool.png"/>
-  
+
+  <meta name="og:image" content="//localhost:1313/images/default.png"/>
 
 
 
@@ -73,9 +73,9 @@
 <meta name="twitter:description" content="One of my pet projects over the past few years has been my deep learning framework, built entirely in C&#43;&#43; link. Once I had an initial iteration that worked sequentially and could successfully train a neural network to accomplish specific tasks, I turned toward leveraging concurrency to speed up training. My first thought was to farm out computationally expensive tasks to different CPU cores, primarily focusing on functions that perform computations on matrices.">
 
 
-<meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:image" content="//localhost:1313/engineering/building-a-thread-pool/threadPool.png"/>
-  
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="//localhost:1313/images/default.png"/>
 
 
 
@@ -200,8 +200,8 @@
         {
           "@type": "ImageObject",
           "@id": "//localhost:1313/engineering/building-a-thread-pool/#/schema/image/2",
-          "url": "//localhost:1313/engineering/building-a-thread-pool/threadPool.png",
-          "contentUrl": "//localhost:1313/engineering/building-a-thread-pool/threadPool.png",
+          "url": "//localhost:1313/images/default.png",
+          "contentUrl": "//localhost:1313/images/default.png",
           "caption": "Building a Thread Pool in C++"
         }
       ]
@@ -346,18 +346,6 @@
               
             </li>
             <li>
-                <a href="//localhost:1313/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
-              
-            </li>
-            <li>
-                <a href="//localhost:1313/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
-              
-            </li>
-            <li>
-                <a href="//localhost:1313/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
-              
-            </li>
-            <li>
                 <a href="//localhost:1313/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
               
             </li>
@@ -389,12 +377,6 @@
 
   
 
-
-<img class="feature-image" 
-     srcset="/engineering/building-a-thread-pool/threadPool.png 480w, /engineering/building-a-thread-pool/threadPool.png 800w"
-     sizes="(max-width: 600px) 480px, 800px"
-     src="/engineering/building-a-thread-pool/threadPool.png"
-     alt="Feature image">
 </div>
     <article class="markdown">
         <p>One of my pet projects over the past few years has been my deep learning framework, built entirely in C++ <a href="https://www.christopher-weaver.com/projects/portfolio-project-1/" target="_blank" rel="noopener">link</a>. Once I had an initial iteration that worked sequentially and could successfully train a neural network to accomplish specific tasks, I turned toward leveraging concurrency to speed up training. My first thought was to farm out computationally expensive tasks to different CPU cores, primarily focusing on functions that perform computations on matrices.</p>
@@ -407,145 +389,145 @@ This approach worked, and I saw significant improvement in my training times. Ho
 <p>I decided that each neural layer should own its own ThreadPool class. The ThreadPool class would be responsible for managing its threads throughout the program&rsquo;s lifetime, including the management of all tasks sent its way. The public interface of this class looks like this:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Thread_Pool</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>        
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        Thread_Pool();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        <span style="color:#f92672">~</span>Thread_Pool();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setupPool</span>(size_t threads);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clearPool</span>();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">wait</span>();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> F, <span style="color:#66d9ef">typename</span>... Args<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        <span style="color:#66d9ef">void</span> enqueue(F<span style="color:#f92672">&amp;&amp;</span>f, Args<span style="color:#f92672">&amp;&amp;</span>... args);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    };</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Thread_Pool</span> {
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        Thread_Pool();
+</span></span><span style="display:flex;"><span>        ~Thread_Pool();
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setupPool</span>(size_t threads);
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">clearPool</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">wait</span>();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">template</span>&lt;<span style="color:#6ab825;font-weight:bold">typename</span> F, <span style="color:#6ab825;font-weight:bold">typename</span>... Args&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">void</span> enqueue(F&amp;&amp;f, Args&amp;&amp;... args);
+</span></span><span style="display:flex;"><span>    };</span></span></code></pre></div>
 <p>I decided I only wanted to utilize this thread pool during training when the mini-batch size is equal to or larger than the number of cores on the machine. From my testing, the overhead of using threads outweighs the performance gains of concurrency when the matrix sizes are too small. To accommodate this, the default constructor does not do much. Instead, when my program needs to use the thread pool, each layer calls the setupPool() function to initialize the thread pool with the appropriate number of threads. The clearPool() method does cleanup when training is complete, and the thread pool is no longer needed (the destructor will also call this method). This approach leaves room for mistakes since some of the initial state management is outside the constructor, but I felt it was a worthy tradeoff in this case. The enqueue function takes a task the neural layer needs to complete and assigns it to a thread. The wait() function is called anytime we want our neural layer class to hold until the Thread_Pool has no further work.</p>
 <p>The private members and functions look like this:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span><span style="color:#66d9ef">thread</span><span style="color:#f92672">&gt;</span> workers;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span>()<span style="color:#f92672">&gt;&gt;</span> tasks;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">worker</span>();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    std<span style="color:#f92672">::</span>mutex queueMutex;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    std<span style="color:#f92672">::</span>condition_variable condition;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    std<span style="color:#f92672">::</span>condition_variable finishedCondition;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    std<span style="color:#f92672">::</span>atomic<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> stop{false};
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    std<span style="color:#f92672">::</span>atomic<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> activeTasks{<span style="color:#ae81ff">0</span>};</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>    std::vector&lt;std::<span style="color:#6ab825;font-weight:bold">thread</span>&gt; workers;
+</span></span><span style="display:flex;"><span>    std::vector&lt;std::function&lt;<span style="color:#6ab825;font-weight:bold">void</span>()&gt;&gt; tasks;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">worker</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std::mutex queueMutex;
+</span></span><span style="display:flex;"><span>    std::condition_variable condition;
+</span></span><span style="display:flex;"><span>    std::condition_variable finishedCondition;
+</span></span><span style="display:flex;"><span>    std::atomic&lt;<span style="color:#6ab825;font-weight:bold">bool</span>&gt; stop{<span style="color:#24909d">false</span>};
+</span></span><span style="display:flex;"><span>    std::atomic&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt; activeTasks{<span style="color:#3677a9">0</span>};</span></span></code></pre></div>
 <p>I will go over these more in detail as we further evaluate our implementation details. Starting with our setupPool function</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">void</span> Thread_Pool<span style="color:#f92672">::</span>setupPool(size_t threads) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    stop <span style="color:#f92672">=</span> false;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> threads; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        workers.emplace_back(<span style="color:#f92672">&amp;</span>Thread_Pool<span style="color:#f92672">::</span>worker<span style="color:#f92672">::</span><span style="color:#66d9ef">this</span>);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> Thread_Pool::setupPool(size_t threads) {
+</span></span><span style="display:flex;"><span>    stop = <span style="color:#24909d">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (size_t i = <span style="color:#3677a9">0</span>; i &lt; threads; i++) {
+</span></span><span style="display:flex;"><span>        workers.emplace_back(&amp;Thread_Pool::worker::<span style="color:#6ab825;font-weight:bold">this</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>This function is called by the neural layer class when it determines that the thread pool is appropriate. The threads variable always matches the number of cores on a machine by passing this variable:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> processor_count <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span><span style="color:#66d9ef">thread</span><span style="color:#f92672">::</span>hardware_concurrency();</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">auto</span> processor_count = std::<span style="color:#6ab825;font-weight:bold">thread</span>::hardware_concurrency();</span></span></code></pre></div>
 <p>We construct the appropriate number of threads and place them into our thread vector called workers, where they will live throughout their lifetime. Each thread will run the worker(), which looks like this:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#66d9ef">void</span> Thread_Pool<span style="color:#f92672">::</span>worker() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>        <span style="color:#66d9ef">while</span> (true) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>            std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span>()<span style="color:#f92672">&gt;</span> task;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>            {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>                std<span style="color:#f92672">::</span>unique_lock<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>mutex<span style="color:#f92672">&gt;</span> lock(queueMutex);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>                condition.wait(lock, [<span style="color:#66d9ef">this</span>]() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>                    <span style="color:#66d9ef">return</span> stop <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>task.empty();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>                });
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>                <span style="color:#66d9ef">if</span> (stop) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>                    <span style="color:#66d9ef">return</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>                }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>                task <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(tasks.front());
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>                tasks.pop();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>            }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>            task();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>      
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>            activeTasks<span style="color:#f92672">--</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>            finishedCondition.notify_one();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>            
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>        }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>    }</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> Thread_Pool::worker() {
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">while</span> (<span style="color:#24909d">true</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            std::function&lt;<span style="color:#6ab825;font-weight:bold">void</span>()&gt; task;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                std::unique_lock&lt;std::mutex&gt; lock(queueMutex);
+</span></span><span style="display:flex;"><span>                condition.wait(lock, [<span style="color:#6ab825;font-weight:bold">this</span>]() {
+</span></span><span style="display:flex;"><span>                    <span style="color:#6ab825;font-weight:bold">return</span> stop || !task.empty();
+</span></span><span style="display:flex;"><span>                });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6ab825;font-weight:bold">if</span> (stop) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#6ab825;font-weight:bold">return</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                task = std::move(tasks.front());
+</span></span><span style="display:flex;"><span>                tasks.pop();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            task();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>            activeTasks--;
+</span></span><span style="display:flex;"><span>            finishedCondition.notify_one();
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
 <p>We want to ensure each thread is kept alive and ready for work when the time comes, so the worker() function runs a while(true) loop. However, the thread will often have no work to do, which is why we call the wait() function on our private condition variable. The condition variable locks our queueMutex mutex until the lambda we pass it returns true. The best part is that the thread itself goes to sleep and doesn’t continuously check the lambda, alleviating CPU overhead. Instead, it waits for us to call condition.notify_one(), which we do elsewhere in the class. The condition checks two things: first, whether we’ve asked the Thread_Pool class to stop. If so, it continues, and we check if stop == true. If it is, we exit the while loop. The other check is whether our tasks queue has something in it. If it’s not empty, we assign the front item to the task variable and pop it off the queue. At this point, we can release our mutex, allowing other threads to safely pull from the tasks queue without a race condition. The thread then executes the task, decrements the activeTasks, and notifies the finishedCondition that one task is done.</p>
 <p>Often, I break down my matrix into its indexed ranges and then call enqueue() on the Thread_Pool class in a loop to concurrently process subsets of the matrix on different cores. Here, it’s important for the neural layer to wait for all cores to finish processing their part of the matrix. The neural layer calls wait(), which causes the thread pool class to block until all tasks are completed. The wait() function looks like this:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#66d9ef">void</span> Thread_Pool<span style="color:#f92672">::</span>wait() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        std<span style="color:#f92672">::</span>unique_lock<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>mutex<span style="color:#f92672">&gt;</span> lock(queueMutex);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>        finishedCondition.wait(lock, [<span style="color:#66d9ef">this</span>]() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>            <span style="color:#66d9ef">return</span> stop <span style="color:#f92672">||</span> (tasks.empty() <span style="color:#f92672">&amp;&amp;</span> activeTasks <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>        })
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    }</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> Thread_Pool::wait() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        std::unique_lock&lt;std::mutex&gt; lock(queueMutex);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        finishedCondition.wait(lock, [<span style="color:#6ab825;font-weight:bold">this</span>]() {
+</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">return</span> stop || (tasks.empty() &amp;&amp; activeTasks == <span style="color:#3677a9">0</span>);
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
 <p>The finished condition checks to see if the tasks queue is empty and activeTasks == 0 (meaning all tasks are not only off the queue but completed). If these conditions aren’t met, the main thread the neural layer runs on is put to sleep. Anytime we complete a task in worker() and call finishedCondition.notify_one(), we check again to see if we can end the wait() and hand control back to the neural layer.</p>
 <p>Adding tasks to the thread pool is one of the harder challenges and requires meta-programming and a template parameter pack since we need it to handle any task given by the neural layer (as long as no return value is expected). This is the job of the enqueue() function, which generally gets called like this:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> processor_count <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span><span style="color:#66d9ef">thread</span><span style="color:#f92672">::</span>hardware_concurrency();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> processor_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        _threadPool.enqueue(<span style="color:#f92672">&amp;</span>Tensor<span style="color:#f92672">::</span>MatmulInner<span style="color:#f92672">&lt;</span>a_f<span style="color:#f92672">&gt;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>                                <span style="color:#66d9ef">this</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>                                std<span style="color:#f92672">::</span>ref(m1),
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>                                std<span style="color:#f92672">::</span>ref(m2),
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>                                bias,
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>                                i <span style="color:#f92672">*</span> dimensions_per_thread,
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>                                dimensions_per_thread,
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>                                af);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    _threadPool.wait();</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">auto</span> processor_count = std::<span style="color:#6ab825;font-weight:bold">thread</span>::hardware_concurrency();
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; processor_count - <span style="color:#3677a9">1</span>; i++) {
+</span></span><span style="display:flex;"><span>        _threadPool.enqueue(&amp;Tensor::MatmulInner&lt;a_f&gt;,
+</span></span><span style="display:flex;"><span>                                <span style="color:#6ab825;font-weight:bold">this</span>,
+</span></span><span style="display:flex;"><span>                                std::ref(m1),
+</span></span><span style="display:flex;"><span>                                std::ref(m2),
+</span></span><span style="display:flex;"><span>                                bias,
+</span></span><span style="display:flex;"><span>                                i * dimensions_per_thread,
+</span></span><span style="display:flex;"><span>                                dimensions_per_thread,
+</span></span><span style="display:flex;"><span>                                af);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    _threadPool.wait();</span></span></code></pre></div>
 <p>A lot of the parameters passed won’t make sense without further context about the program, but that’s part of the point. The enqueue() function doesn’t need to understand the parameters passed to it; it just needs to ensure they can be executed by a thread. The enqueue() function works like this:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span>... F, Args... args<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">void</span> enqueue(F<span style="color:#f92672">&amp;&amp;</span> f, Args<span style="color:#f92672">&amp;&amp;</span>... args) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>            std<span style="color:#f92672">::</span>unique_lock<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>mutex<span style="color:#f92672">&gt;</span> lock(queueMutex);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>            tasks.emplace([f <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>forward<span style="color:#f92672">&lt;</span>F<span style="color:#f92672">&gt;</span>(f), ...args <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>forward<span style="color:#f92672">&lt;</span>Args<span style="color:#f92672">&gt;</span>(args)]() <span style="color:#66d9ef">mutable</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>                <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">constexpr</span> (std<span style="color:#f92672">::</span>is_member_function_pointer<span style="color:#f92672">&lt;</span>F<span style="color:#f92672">&gt;::</span>value) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>                    std<span style="color:#f92672">::</span>invoke(f, std<span style="color:#f92672">::</span>foward<span style="color:#f92672">&lt;</span>Args<span style="color:#f92672">&gt;</span>(args)...);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>                } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>                    f(std<span style="color:#f92672">::</span>foward<span style="color:#f92672">&lt;</span>Args<span style="color:#f92672">&gt;</span>(args)...);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>                }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            });
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>            activeTasks<span style="color:#f92672">++</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        condition.notify_one();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    }</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">template</span>&lt;<span style="color:#6ab825;font-weight:bold">typename</span>... F, Args... args&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> enqueue(F&amp;&amp; f, Args&amp;&amp;... args) {
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            std::unique_lock&lt;std::mutex&gt; lock(queueMutex);
+</span></span><span style="display:flex;"><span>            tasks.emplace([f = std::forward&lt;F&gt;(f), ...args = std::forward&lt;Args&gt;(args)]() <span style="color:#6ab825;font-weight:bold">mutable</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#6ab825;font-weight:bold">if</span> <span style="color:#447fcf">constexpr</span> (std::is_member_function_pointer&lt;F&gt;::value) {
+</span></span><span style="display:flex;"><span>                    std::invoke(f, std::foward&lt;Args&gt;(args)...);
+</span></span><span style="display:flex;"><span>                } <span style="color:#6ab825;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>                    f(std::foward&lt;Args&gt;(args)...);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>            activeTasks++;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        condition.notify_one();
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
 <p>Because I want to accept any function with an arbitrary number of arguments, we use templates with a template paramter pack to capture the arguments. I capture these parameters as rvalues (&amp;&amp;) in order to ensure we can bind to both rvalues and lvalues, but this will require us to use perfect forwarding later on. I next lock the queueMutex to ensure no thread attempts to modify the tasks queue prior to me getting a new task on it. I then attempt to add a new std::function<void> task to the tasks queue that will represent the function I want my task to execute. I do this by emplacing a lambda that captures the f and args. I call std::foward on both these because I want to ensure if these values are initially passed as lvalues that I make copies and if they are passed by rvalues that I properly move them. This task will modify matrices and I therefore mark the lambda as mutable. I next utilize SFINAE by checking to see if f is a member function pointer (f is a pointer to a member function of a class, which it will be in all my uses). If it is, we need to use std::invoke to ensure correct calling semantics where the first arguments is typically an instance of the class. Otherwise, we can directly have the lambda call the f function. These are compile time checks so they should have little to no impact on our runtime. Once we have added the task lambda to our tasks queue, we can increment our activeTasks tracker, release the queueMutex and notify our condition variable that as task is ready. We saw earlier in our worker() that a notified condition variable will check to see if there is something in the task queue, grab it, and execute it.</p>
 <p>Finally we need to implement the cleanup of the class which lives within the clearPool()</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#66d9ef">void</span> Thread_Pool<span style="color:#f92672">::</span>clearPool() {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>        {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>            std<span style="color:#f92672">::</span>unique_lock<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>mutex<span style="color:#f92672">&gt;</span> lock(queueMutex);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>            stop <span style="color:#f92672">=</span> true;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>            condition.notify_all();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#66d9ef">for</span> (std<span style="color:#f92672">::</span><span style="color:#66d9ef">thread</span> <span style="color:#f92672">&amp;</span>worker : workers) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>            <span style="color:#66d9ef">if</span> (worker.joinable()) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>                worker.join();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>            }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        }
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        workers.clear();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>        std<span style="color:#f92672">::</span>queue<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span>()<span style="color:#f92672">&gt;&gt;</span> empty;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        std<span style="color:#f92672">::</span>swap(tasks,empty);
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>        activeTasks <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>        finishedCondition.notify_all();
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    }</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> Thread_Pool::clearPool() {
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            std::unique_lock&lt;std::mutex&gt; lock(queueMutex);
+</span></span><span style="display:flex;"><span>            stop = <span style="color:#24909d">true</span>;
+</span></span><span style="display:flex;"><span>            condition.notify_all();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">for</span> (std::<span style="color:#6ab825;font-weight:bold">thread</span> &amp;worker : workers) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">if</span> (worker.joinable()) {
+</span></span><span style="display:flex;"><span>                worker.join();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        workers.clear();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        std::queue&lt;std::function&lt;<span style="color:#6ab825;font-weight:bold">void</span>()&gt;&gt; empty;
+</span></span><span style="display:flex;"><span>        std::swap(tasks,empty);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        activeTasks = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        finishedCondition.notify_all();
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
 <p>We set all our invariants to values that signal no further work is needed for the threads in our thread pool. We join our threads, clear our workers vector in which our threads live, we ensure our threads queue is empty, and notify our finishedCondition just in case a thread is being blocked by our wait() function. This function is utilized by my neural net when switching from training to inference and no longer needs the concurrency a thread pool provides. I also call this function from the destructor for RAII.</p>
 <p>Thread pools are great. They provide utilization of multiple cpu cores with little overhead while often hidding implementation details we prefer to keep out of other parts of our program. Part of what makes this work so well is there is little to no communication needed between threads. Each thread works completely independent of the rest, which often is not the case. When threads need to pass information between them, better (more complex options) such as programming thread affinities might be required.</p>
 
@@ -602,18 +584,6 @@ This approach worked, and I saw significant improvement in my training times. Ho
               </li>
               <li>
                   <a href="//localhost:1313/engineering/microbenchmarking-in-c-/">Microbenchmarking in C&#43;&#43;</a>
-                
-              </li>
-              <li>
-                  <a href="//localhost:1313/engineering/automatic-type-deduction/">Automatic Type Deduction</a>
-                
-              </li>
-              <li>
-                  <a href="//localhost:1313/engineering/algorithms-in-the-c-standard-library/">Algorithms in the C&#43;&#43; Standard Library</a>
-                
-              </li>
-              <li>
-                  <a href="//localhost:1313/engineering/ranges-in-cpp/">Ranges in C&#43;&#43;</a>
                 
               </li>
               <li>
