@@ -6,7 +6,7 @@ description:
 slug: The Visitor Design Pattern
 author: Christopher Weaver
 
-draft: true
+draft: false
 date: 2024-04-09T09:38:32-06:00
 lastmod: 2024-04-09T09:38:32-06:00
 publishDate: 2024-04-09T09:38:32-06:00
