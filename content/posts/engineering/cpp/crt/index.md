@@ -1,3 +1,4 @@
+---
 title: Static Polymorphism
 seo_title: Static Polymorphism
 summary: 

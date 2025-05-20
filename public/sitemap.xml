@@ -152,8 +152,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>//localhost:1313/engineering/static-polymorphism/</loc>
+    <lastmod>2024-06-04T09:38:32-06:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>//localhost:1313/engineering/small-buffer-optimization/</loc>
     <lastmod>2024-06-03T09:38:32-06:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>//localhost:1313/engineering/the-strategy-design-pattern/</loc>
+    <lastmod>2024-05-24T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -174,6 +184,11 @@
   </url><url>
     <loc>//localhost:1313/engineering/compile-time-programming-in-c-/</loc>
     <lastmod>2024-04-12T09:38:32-06:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>//localhost:1313/engineering/the-visitor-design-pattern/</loc>
+    <lastmod>2024-04-09T09:38:32-06:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>

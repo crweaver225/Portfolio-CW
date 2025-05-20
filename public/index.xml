@@ -89,11 +89,29 @@
     </item>
     
     <item>
+      <title>Static Polymorphism</title>
+      <link>//localhost:1313/engineering/static-polymorphism/</link>
+      <pubDate>Tue, 04 Jun 2024 09:38:32 -0600</pubDate>
+      
+      <guid>//localhost:1313/engineering/static-polymorphism/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Small Buffer Optimization</title>
       <link>//localhost:1313/engineering/small-buffer-optimization/</link>
       <pubDate>Mon, 03 Jun 2024 09:38:32 -0600</pubDate>
       
       <guid>//localhost:1313/engineering/small-buffer-optimization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Strategy Design Pattern</title>
+      <link>//localhost:1313/engineering/the-strategy-design-pattern/</link>
+      <pubDate>Fri, 24 May 2024 09:38:32 -0600</pubDate>
+      
+      <guid>//localhost:1313/engineering/the-strategy-design-pattern/</guid>
       <description></description>
     </item>
     
@@ -121,6 +139,15 @@
       <pubDate>Fri, 12 Apr 2024 09:38:32 -0600</pubDate>
       
       <guid>//localhost:1313/engineering/compile-time-programming-in-c-/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Visitor Design Pattern</title>
+      <link>//localhost:1313/engineering/the-visitor-design-pattern/</link>
+      <pubDate>Tue, 09 Apr 2024 09:38:32 -0600</pubDate>
+      
+      <guid>//localhost:1313/engineering/the-visitor-design-pattern/</guid>
       <description></description>
     </item>
     
