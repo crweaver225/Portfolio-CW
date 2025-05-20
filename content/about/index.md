@@ -13,9 +13,9 @@ Professional software engineer. I have developed software used by millions of pe
 
 Skills:
 
-* Haskell
-* Cabal
-* Stack 
+* Rust
+* Cargo
+* Rocket
 * CMake
 * C++ 
 * Python
