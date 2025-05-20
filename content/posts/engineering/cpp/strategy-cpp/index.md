@@ -1,3 +1,4 @@
+---
 title: The Strategy Design Pattern
 seo_title: The Strategy Design Pattern
 summary: 
