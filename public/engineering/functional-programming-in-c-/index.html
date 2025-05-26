@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=52441&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:52441/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:52441/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>Functional Programming in C&#43;&#43; | Christopher Weaver</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="Portfolio site of Christopher Weaver.">
+<link rel="canonical" href="//localhost:52441/engineering/functional-programming-in-c-/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Functional Programming in C&#43;&#43;">
+<meta property="og:description" content="Functional Programming
+    
+      Link to this heading
+      
+      
+    
+  
+I have as of recently been on a side quest of sorts, learning Haskell and the fundamentals of functional programming. In opposition to imperative programming languages like C and Java, languages like Haskell are declarative and built by composing a series of functions that take input and produce an output without ever modifying the state of the program. Advocates of functional programming argue their code is easier to reason about, has fewer bugs, and becomes trivial to parallelize. What I found was that most of these claims are not without merit. Functional programs have an eloquence to their structure that makes programming more enjoyable at times. When it came to making code changes, I knew that as long as the function I was modifying continued to pass their unit tests, my program would continue to operate as expected, no matter how large the changes were. This felt like a superpower. There also was something incredibly refreshing about jumping into a code base and not needing to learn all the complex types defined throughout the program. The sea of objects regularly found in an object oriented focused programming language is more like a puddle of objects in functional langauges.">
+<meta property="og:url" content="//localhost:52441/engineering/functional-programming-in-c-/">
+<meta property="article:published_time" content="2025-05-24T09:38:32-06:00">
+  <meta property="article:modified_time" content="2025-05-24T09:38:32-06:00">
+  
+
+<meta property="og:image" content="//localhost:52441/engineering/functional-programming-in-c-/functional-cpp.png"/>
+  
+
+
+
+
+
+  <meta property="og:see_also" content="//localhost:52441/engineering/building-a-log-utility-class-in-cpp/" /><meta property="og:see_also" content="//localhost:52441/engineering/building-a-thread-pool/" /><meta property="og:see_also" content="//localhost:52441/engineering/concurrency-in-c-/" /><meta property="og:see_also" content="//localhost:52441/engineering/building-neural-networks-in-c-/" /><meta property="og:see_also" content="//localhost:52441/engineering/compile-time-programming-in-c-/" />
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Functional Programming in C&#43;&#43;">
+<meta name="twitter:description" content="Functional Programming
+    
+      Link to this heading
+      
+      
+    
+  
+I have as of recently been on a side quest of sorts, learning Haskell and the fundamentals of functional programming. In opposition to imperative programming languages like C and Java, languages like Haskell are declarative and built by composing a series of functions that take input and produce an output without ever modifying the state of the program. Advocates of functional programming argue their code is easier to reason about, has fewer bugs, and becomes trivial to parallelize. What I found was that most of these claims are not without merit. Functional programs have an eloquence to their structure that makes programming more enjoyable at times. When it came to making code changes, I knew that as long as the function I was modifying continued to pass their unit tests, my program would continue to operate as expected, no matter how large the changes were. This felt like a superpower. There also was something incredibly refreshing about jumping into a code base and not needing to learn all the complex types defined throughout the program. The sea of objects regularly found in an object oriented focused programming language is more like a puddle of objects in functional langauges.">
+
+
+<meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:image" content="//localhost:52441/engineering/functional-programming-in-c-/functional-cpp.png"/>
+  
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:52441/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:52441/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:52441/#/schema/image/1",
+        "url": "//localhost:52441/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:52441/#/schema/website/1",
+      "url": "//localhost:52441/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:52441/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:52441/engineering/functional-programming-in-c-/",
+      "url": "//localhost:52441/engineering/functional-programming-in-c-/",
+      "name": "Functional Programming in C++",
+      "description": "Portfolio site of Christopher Weaver.",
+      "isPartOf": {
+        "@id": "//localhost:52441/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:52441/#/schema/person/1"
+      },
+      "datePublished": "2025-05-24T09:38:32-06:00",
+      "dateModified": "2025-05-24T09:38:32-06:00",
+      "breadcrumb": {
+        "@id": "//localhost:52441/engineering/functional-programming-in-c-/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:52441/engineering/functional-programming-in-c-/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:52441/engineering/functional-programming-in-c-/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:52441/engineering/functional-programming-in-c-/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:52441/",
+          "url": "//localhost:52441/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:52441/engineering/",
+          "url": "//localhost:52441/engineering/",
+          "name": "Engineering"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:52441/engineering/functional-programming-in-c-/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:52441/#/schema/article/1",
+          "headline": "Functional Programming in C++",
+          "description": "",
+          "isPartOf": {
+            "@id": "//localhost:52441/engineering/functional-programming-in-c-/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:52441/engineering/functional-programming-in-c-/"
+          },
+          "datePublished": "2025-05-24T09:38:32-06:00",
+          "dateModified": "2025-05-24T09:38:32-06:00",
+          "author": {
+            "@id": "//localhost:52441/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:52441/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:52441/engineering/functional-programming-in-c-/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:52441/engineering/functional-programming-in-c-/#/schema/image/2",
+          "url": "//localhost:52441/engineering/functional-programming-in-c-/functional-cpp.png",
+          "contentUrl": "//localhost:52441/engineering/functional-programming-in-c-/functional-cpp.png",
+          "caption": "Functional Programming in C++"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+  
+
+  
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:52441/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Functional Programming in C&#43;&#43;</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">May 24, 2025&nbsp;&middot;&nbsp;13 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="//localhost:52441/categories/engineering/">Engineering</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc"></p>
+    <div class="single-terms">
+      
+      
+      <a class="term" href="//localhost:52441/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+      
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#functional-programming">Functional Programming</a></li>
+        <li><a href="#functional-programming-in-c">Functional Programming in C++</a></li>
+        <li><a href="#views-and-ranges">Views and Ranges</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+      <div class="series">
+        <p>Part of the <a href="//localhost:52441/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
+        
+        <ol class="series-list">
+            <li>
+                <a href="//localhost:52441/engineering/compilers/">C&#43;&#43; Compilers</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:52441/engineering/microbenchmarking-in-c-/">Microbenchmarking in C&#43;&#43;</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:52441/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:52441/engineering/compile-time-programming-in-c-/">Compile-Time Programming in C&#43;&#43;</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:52441/engineering/building-neural-networks-in-c-/">Building Neural Networks in C&#43;&#43;</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:52441/engineering/concurrency-in-c-/">Concurrency in C&#43;&#43;</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:52441/engineering/building-a-thread-pool/">Building a Thread Pool in C&#43;&#43;</a>
+              
+            </li>
+            <li>
+                <a href="//localhost:52441/engineering/building-a-log-utility-class-in-cpp/">Building a Log Utility Class in C&#43;&#43;</a>
+              
+            </li>
+            <li>Functional Programming in C&#43;&#43;<span class="series-this-post">This post!</span>
+              
+            </li>
+        </ol>
+      </div>
+    
+    <div class="single-feature-img">
+
+
+
+  
+
+
+<img class="feature-image" 
+     srcset="/engineering/functional-programming-in-c-/functional-cpp.png 480w, /engineering/functional-programming-in-c-/functional-cpp.png 800w"
+     sizes="(max-width: 600px) 480px, 800px"
+     src="/engineering/functional-programming-in-c-/functional-cpp.png"
+     alt="Feature image">
+</div>
+    <article class="markdown">
+        <h3 id="functional-programming">Functional Programming<a href="#functional-programming">
+    <svg role="img" aria-labelledby="functional-programming-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="functional-programming-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>I have as of recently been on a side quest of sorts, learning Haskell and the fundamentals of functional programming. In opposition to imperative programming languages like C and Java, languages like Haskell are declarative and built by composing a series of functions that take input and produce an output without ever modifying the state of the program. Advocates of functional programming argue their code is easier to reason about, has fewer bugs, and becomes trivial to parallelize. What I found was that most of these claims are not without merit. Functional programs have an eloquence to their structure that makes programming more enjoyable at times. When it came to making code changes, I knew that as long as the function I was modifying continued to pass their unit tests, my program would continue to operate as expected, no matter how large the changes were. This felt like a superpower. There also was something incredibly refreshing about jumping into a code base and not needing to learn all the complex types defined throughout the program. The sea of objects regularly found in an object oriented focused programming language is more like a puddle of objects in functional langauges.</p>
+<p>Haskell was a joy to learn. Among its most defining features, I found these to be the most important.</p>
+<ol>
+<li>
+<p>It tries very hard to keep everything stateless. This means if I call a function, that function will not modify any part of the program or the larger system the program is running on. The function can only take in values, run compute operations, and return entirely new values. The last part emphasizes what makes functional programming unique. Even when a variable is passed into a function, Haskell&rsquo;s vanilla functions cannot modify or return that value since doing so would mean the function can modify something at a specific memory address within the program. Even things like a simple for loop are not easily achievable since they generally require modifying an iterator of some sort as you execute your loop, which would mean modifying the state of a variable.</p>
+</li>
+<li>
+<p>Lazy evaluation. Haskell likes to execute operations that the developer asked it to compute only when those operations are going to be used. This gives the language a really unique ability to run operations on lists of infinite size. There are some really great performance benefits to this since lazy evaluation prevents storing and executing compute on large data structures where much of the data might not require being computed. Finally, lazy evaluation allows for more modular and compositional code via the chaining of functions. I write more about lazy evaluation <a href="/engineering/lazy-evaluation-in-haskell/">here.</a></p>
+</li>
+<li>
+<p>Higher-order functions. Haskell allows for functions that take other functions in as arguments just as it would any other sort of variable. This allows for some great composable code with powerful abstractions and reusable code blocks.</p>
+</li>
+</ol>
+<p>I recently wrote about some of my biggest pain points with C++ and just how incredibly well Rust resolves <a href="/engineering/programming-in-rust/">them</a>. My conclusion was not that C++ should be abandoned like a temple in an Indiana Jones film, but that there are a lot of great lessons we can leverage to write better C++ code. Learning Haskell further solidified some of those insights I had encountered and continues to nudge my opinion about proper programming styles in a language that bridges multiple paradigms. C++ is often said to be an object-oriented programming language. I think this is a fair claim. OOP concepts are first-class citizens within the mechanics of the language. Furthermore, OOP has been the go-to approach for most C++ developers since the inception of the language. But C++ does offer some really great tools for writing code that inherits (pun intended) the benefits of functional programming. A lot of these tools are part of recent additions to the language driven by the increasing popularity of functional programming paradigms.</p>
+<h3 id="functional-programming-in-c">Functional Programming in C++<a href="#functional-programming-in-c">
+    <svg role="img" aria-labelledby="functional-programming-in-c-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="functional-programming-in-c-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>So how would we go about leveraging the benefits of functional programming into our C++ source code? The lowest-hanging fruit for us is to limit the use of mutable data. When initializing variables and objects, we should default to marking them const to ensure they cannot be modified elsewhere in the program.</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">modify_var</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">int</span> _my_var) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> new_my_var = my_var + <span style="color:#3677a9">10</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> new_my_var;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">int</span> my_var = <span style="color:#3677a9">10</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">int</span> new_my_var = modify_var(my_var);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>When something is marked as const, it cannot be modified throughout the lifetime of the program. Beyond the compiler optimizations we can expect to benefit from with this minor change, we have now made our program easier to reason about and safer to execute since we do not have to worry about data changing in ways we did not anticipate. An example where having a state that can be modified throughout the program and can backfire looks like this</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">double</span> <span style="color:#447fcf">average</span>(std::vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;&amp; data) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">if</span> (!data.empty()) {
+</span></span><span style="display:flex;"><span>        data[<span style="color:#3677a9">0</span>] = <span style="color:#3677a9">999</span>;  <span style="color:#999;font-style:italic">// 😱 Side effect!
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> sum = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> x : data) {
+</span></span><span style="display:flex;"><span>        sum += x;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">static_cast</span>&lt;<span style="color:#6ab825;font-weight:bold">double</span>&gt;(sum) / data.size();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
+</span></span><span style="display:flex;"><span>    std::vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt; values = {<span style="color:#3677a9">10</span>, <span style="color:#3677a9">20</span>, <span style="color:#3677a9">30</span>, <span style="color:#3677a9">40</span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">double</span> avg = average(values);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; <span style="color:#ed9d13">&#34;Average: &#34;</span> &lt;&lt; avg &lt;&lt; std::endl;
+</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; <span style="color:#ed9d13">&#34;First element after average: &#34;</span> &lt;&lt; values[<span style="color:#3677a9">0</span>] &lt;&lt; std::endl; <span style="color:#999;font-style:italic">// Output: 999
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}</span></span></code></pre></div>
+<p>The output of this program should be 10, but instead we see 999. Our vector that we pass into the average function was modified in a way we may not have been expecting and may result in a bug down the line. Instead, we should always default to marking our vector as const within main and within the argument parameter in our average function. If we find that we need these to be modifiable in the future, we first ought to review if we have an opportunity to change our architecture and then, finally, to remove our const keyword if it remains the best option.</p>
+<p>In order to ensure statelessness, Haskell leans heavily on making copies of data as it gets processed through different functions. C++, being a systems programming language with a heavy emphasis upon performance optimization, often recoils a little at the thought of making multiple copies of the same piece of data as it traverses the control flow of the program. Allocating memory and then filling that memory with values is relatively expensive and can negatively impact performance in ways passing a reference to the same memory address doesn&rsquo;t. The contention between these two approaches is generally referred to as value semantics vs. reference semantics. There is no perfect solution to the debate, and the answer for any particular situation will depend on that situation. But within the context of discussing the benefits of functional programming, it is often extremely beneficial in C++ to simply default to value semantics and allow for multiple copies of a variable or object to propagate throughout the program. As mentioned, this removes state in an important way that reduces bugs and makes reasoning about the program much simpler.</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;iostream&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;string&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">struct</span> <span style="color:#447fcf;text-decoration:underline">Config</span> {
+</span></span><span style="display:flex;"><span>    std::string name;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> maxThreads;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">bool</span> debug;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">print</span>() <span style="color:#6ab825;font-weight:bold">const</span> {
+</span></span><span style="display:flex;"><span>        std::cout &lt;&lt; <span style="color:#ed9d13">&#34;Config: &#34;</span> &lt;&lt; name
+</span></span><span style="display:flex;"><span>                  &lt;&lt; <span style="color:#ed9d13">&#34;, maxThreads: &#34;</span> &lt;&lt; maxThreads
+</span></span><span style="display:flex;"><span>                  &lt;&lt; <span style="color:#ed9d13">&#34;, debug: &#34;</span> &lt;&lt; std::boolalpha &lt;&lt; debug &lt;&lt; std::endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// Good: return by value
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>Config <span style="color:#447fcf">makeDefaultConfig</span>() {
+</span></span><span style="display:flex;"><span>    Config cfg;
+</span></span><span style="display:flex;"><span>    cfg.name = <span style="color:#ed9d13">&#34;Default&#34;</span>;
+</span></span><span style="display:flex;"><span>    cfg.maxThreads = <span style="color:#3677a9">4</span>;
+</span></span><span style="display:flex;"><span>    cfg.debug = <span style="color:#24909d">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> cfg;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">makeBackupConfigForDisk</span>(Config original) {
+</span></span><span style="display:flex;"><span>    original.name = <span style="color:#ed9d13">&#34;Backup&#34;</span>;
+</span></span><span style="display:flex;"><span>    saveToDisk(original); <span style="color:#999;font-style:italic">// calls a function elsewhere in the system to save to disk
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
+</span></span><span style="display:flex;"><span>    Config appConfig = makeDefaultConfig(); <span style="color:#999;font-style:italic">// full ownership
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    appConfig.debug = <span style="color:#24909d">true</span>;                 <span style="color:#999;font-style:italic">// independently modifiable
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    makeBackupConfigForDisk(appConfig);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    appConfig.print();     <span style="color:#999;font-style:italic">// Modifications do not affect backupConfig
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}</span></span></code></pre></div>
+<p>Here we end up making a copy of Config when we pass it to makeBackupConfigForDisk that we then modify and further send out to another function to save to disk. The copy *might be more expensive, but the added benefit is our original appConfig object was not modified and still operates as we expect when we call print() on it. In functional programming terms, we have eliminated some side effects in our program for a more deterministic runtime.</p>
+<h3 id="views-and-ranges">Views and Ranges<a href="#views-and-ranges">
+    <svg role="img" aria-labelledby="views-and-ranges-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="views-and-ranges-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>In this really great <a href="https://www.youtube.com/watch?v=vN0U4P4qmRY" target="_blank" rel="noopener">talk</a> by Klaus Iglberger, he puts an emphasis on keeping handcrafted loops out of your C++ programs. Instead, developers should be leveraging functions from the algorithms library to process data. This is similar to Haskell&rsquo;s lack of loops in its language mechanics. Instead, Haskell largely relies either on recursion or on functions like fold and filter to traverse data structures. C++ has historically utilized the handcrafted for-loop as a primary part of the language, but recent additions in C++20 bring new abilities to sidestep the handcrafted loop and instead traverse data structures in a more functional manner.</p>
+<p>The ranges library introduced in C++20 provides a significant amount of new features developers can utilize to comply with Iglberger&rsquo;s suggestion and help us encompass many of the benefits functional programming offers us. Let&rsquo;s take a look at a small example that traverses a vector and squares each value.</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> numbers = std::vector{<span style="color:#3677a9">1</span>,<span style="color:#3677a9">2</span>,<span style="color:#3677a9">3</span>,<span style="color:#3677a9">4</span>};
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> square = [](<span style="color:#6ab825;font-weight:bold">auto</span> v) { <span style="color:#6ab825;font-weight:bold">return</span> v * v; };
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> squared_view = std::views::transform(numbers, square);
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span> s : squared_view) {
+</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; s &lt;&lt; <span style="color:#ed9d13">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// Outputs: 1 4 9 16
+</span></span></span></code></pre></div>
+<p>What is noteworthy here is that nothing gets computed until you print the variable s using cout. Prior to that moment, the transform function does not execute the square operation on any values. This is (as an ironic turn of phrase) lazy evaluation at work, similar to what we see in Haskell. Furthermore, what we are seeing is a composition of functions to achieve some end result without ever explicitly modifying the state of our program. Our numbers vector is never modified. If we were to print it out again, the values would still be 4. Instead, we have created new values each time we access another value within squared_view. Furthermore, our range-based for-loop has no iterator that gets explicitly modified throughout the loop in a way prone to human error during development. This entire code snippet is brought to you by the functional programming paradigm. It is pure in that it offers us the ability to execute operations on only the data we intend to use without fear of the execution having any side effects on the rest of our program.</p>
+<p>Functional programming offers this really cool ability to chain a bunch of functions together to transform data efficiently in a very intuitive way. Composable functions are one of the hallmarks of the paradigm and are something that was sorely missing from C++ until recently. C++ could, of course, compose functions together prior to C++20 but required either expensive copies of data or dangerous reference semantics. Let&rsquo;s take a look at an example where we want to iterate over a vector of students to find the individual in their second year with the highest score.</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">struct</span> <span style="color:#447fcf;text-decoration:underline">Student</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> year_{};
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> score_{};
+</span></span><span style="display:flex;"><span>    std::string name_{};
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">get_max_score</span>(<span style="color:#6ab825;font-weight:bold">const</span> std::vector&lt;Student&gt;&amp; students, <span style="color:#6ab825;font-weight:bold">int</span> year) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> by_year = [=](<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">auto</span>&amp; s) { <span style="color:#6ab825;font-weight:bold">return</span> s.year_ == year; };
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> v = std::vector&lt;Student&gt;{};
+</span></span><span style="display:flex;"><span>    std::ranges::copy_if(students, std::back_inserter(v), by_year);
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> it = std::ranges::max_element(v, std::less{}, &amp;Student::score_);
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> it != v.end() ? it-&gt;score_ : <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Our get_max_score function takes a vector of Student objects and the year we want to find the max score for. Our by_year lambda will handle the filtering by year, and the max_element function will give us an iterator to the student with the highest value. The issue is that the C++ algorithms library does not allow for allocating memory or composing functions together as we could in Haskell. Instead, we are forced to create a new vector and push all students that match the required year into this vector prior to looking for the maximum score. Unfortunately, the lack of composability means we need to make significantly more memory allocations in order to execute multiple operations from the algorithms library.</p>
+<p>The ranges library in C++20 allows for composability. Here is how we can leverage it to solve the same problem as above.</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">get_max_score</span>(<span style="color:#6ab825;font-weight:bold">const</span> std::vector&lt;Student&gt;&amp; s, <span style="color:#6ab825;font-weight:bold">int</span> year) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> by_year = [=](<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">auto</span>&amp; s) { <span style="color:#6ab825;font-weight:bold">return</span> s.year_ == year; };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> v1 = std::ranges::ref_view{s}; <span style="color:#999;font-style:italic">// Wrap container in a view
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">auto</span> v2 = std::ranges::filter_view{v1, by_year};
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> v3 = std:;ranges::transform_view{v2, &amp;Student::score_};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> it = std::ranges::max_element(v3);
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> it != v3.end() ? *it : <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Our function above accomplishes our initial task without the extra memory allocation in the middle to filter by year. The ref_view wraps our container and allows us to compose both our filter and max_element functionality together without any further memory allocation. Furthermore, this entire process will only iterate over the data once despite the multiple things we are asking the function to do, which offers us some really cool performance benefits. And just as before, all of this happens without any modification to the initial student vector, which means no subtle bugs potentially introduced into our program because of a change to the state of the program.</p>
+<p>The ranges library offers some great functional programming improvements, but what we see above can become quite verbose in comparison to the eloquence we see in a similar Haskell approach.</p>
+
+
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span><span style="color:#447fcf">getMaxScore</span> <span style="color:#6ab825;font-weight:bold">::</span> [<span style="color:#6ab825;font-weight:bold">Student</span>] <span style="color:#6ab825;font-weight:bold">-&gt;</span> <span style="color:#6ab825;font-weight:bold">Int</span> <span style="color:#6ab825;font-weight:bold">-&gt;</span> <span style="color:#6ab825;font-weight:bold">Int</span>
+</span></span><span style="display:flex;"><span><span style="color:#447fcf">getMaxScore</span> students targetYear <span style="color:#6ab825;font-weight:bold">=</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">case</span> [score s | s <span style="color:#6ab825;font-weight:bold">&lt;-</span> students, year s == targetYear] <span style="color:#6ab825;font-weight:bold">of</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">[]</span> <span style="color:#6ab825;font-weight:bold">-&gt;</span> <span style="color:#3677a9">0</span>
+</span></span><span style="display:flex;"><span>    scores <span style="color:#6ab825;font-weight:bold">-&gt;</span> maximum scores</span></span></code></pre></div>
+<p>Fortunately, C++ also offers range adaptors to further clean up some of this syntax. Range adaptors use the pipe operator to compose our functions in a really cool way. Here is the same function as above, but with the range adaptors.</p>
+
+
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">get_max_score</span>(<span style="color:#6ab825;font-weight:bold">const</span> std::vector&lt;Student&gt;&amp; students, <span style="color:#6ab825;font-weight:bold">int</span> year) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> by_year = [=](<span style="color:#6ab825;font-weight:bold">const</span> Student&amp; s) { <span style="color:#6ab825;font-weight:bold">return</span> s.year_ == year; };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> scores = students 
+</span></span><span style="display:flex;"><span>                | std::views::filter(by_year)
+</span></span><span style="display:flex;"><span>                | std::views::transform(&amp;Student::score_);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> it = std::ranges::max_element(scores);
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> it != scores.end() ? *it : <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>The pipe operator allows us to compose our functions and read them from left to right in an intuitive manner. Above we take the students vector, filter by year, and transform it into a non-owning view that our max_element function can quickly iterate over to give us our final result. Again, no memory allocation occurs, no handcrafted loops need to be introduced, and the state of our program does not get modified whenever this function is called. The two massive benefits here are</p>
+<ol>
+<li>
+<p>Using functions like filter, transform, and others, we can communicate to other developers what precisely is happening in a uniform way that is easy to understand. Handcrafted solutions to this can be built but require significantly more cognitive load on other developers who may later need to jump in and understand what this function is doing.</p>
+</li>
+<li>
+<p>I can modify this function as much as I want in the future, and so long as it continues to pass the unit tests that I would write for it, I can be confident my program will not break. That is because this function is relatively pure and will not impact any other part of the overarching system. This means we can refactor quickly with confidence.</p>
+</li>
+</ol>
+<h3 id="conclusion">Conclusion<a href="#conclusion">
+    <svg role="img" aria-labelledby="conclusion-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="conclusion-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>While C++ is traditionally known for its imperative and object-oriented roots, it&rsquo;s more than capable of supporting functional programming techniques — and embracing them can lead to clearer, safer, and more maintainable code. By using tools like std::ranges, pure functions, immutability, and value semantics, C++ developers can reap many of the same benefits enjoyed by users of purely functional languages like Haskell or Elm without leaving the comfort of the C++ ecosystem.</p>
+<p>Incorporating functional ideas doesn&rsquo;t mean abandoning what makes C++ powerful — it means using those features with intention: isolating side effects, reducing shared mutable state, and writing transformations instead of instructions. As C++ continues to evolve, modern features like views, lambdas, and structured bindings make functional approaches not only possible but elegant.</p>
+<p>By practicing functional programming in C++, you gain the expressive clarity of a higher-level paradigm while maintaining access to the performance and control that C++ is known for. It’s not about dogma — it’s about writing better software.</p>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+          
+          <a class="term" href="//localhost:52441/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+          
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        <a href="https://twitter.com/intent/tweet?url=%2f%2flocalhost%3a52441%2fengineering%2ffunctional-programming-in-c-%2f&amp;text=Functional%20Programming%20in%20C%2b%2b" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
+        </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a52441%2fengineering%2ffunctional-programming-in-c-%2f&amp;source=%2f%2flocalhost%3a52441%2fengineering%2ffunctional-programming-in-c-%2f&amp;title=Functional%20Programming%20in%20C%2b%2b&amp;summary=Functional%20Programming%20in%20C%2b%2b" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Functional%20Programming%20in%20C%2b%2b.&amp;body=Functional%20Programming%20in%20C%2b%2b%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a52441%2fengineering%2ffunctional-programming-in-c-%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        <div class="series">
+          <p>Part of the <a href="//localhost:52441/series/c&#43;&#43;/">C&#43;&#43;</a> series:</p>
+          
+          <ol>
+              <li>
+                  <a href="//localhost:52441/engineering/compilers/">C&#43;&#43; Compilers</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:52441/engineering/microbenchmarking-in-c-/">Microbenchmarking in C&#43;&#43;</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:52441/engineering/constructors-and-move-semantics-in-cpp/">Constructors and Move Semantics in C&#43;&#43;</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:52441/engineering/compile-time-programming-in-c-/">Compile-Time Programming in C&#43;&#43;</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:52441/engineering/building-neural-networks-in-c-/">Building Neural Networks in C&#43;&#43;</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:52441/engineering/concurrency-in-c-/">Concurrency in C&#43;&#43;</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:52441/engineering/building-a-thread-pool/">Building a Thread Pool in C&#43;&#43;</a>
+                
+              </li>
+              <li>
+                  <a href="//localhost:52441/engineering/building-a-log-utility-class-in-cpp/">Building a Log Utility Class in C&#43;&#43;</a>
+                
+              </li>
+              <li>Functional Programming in C&#43;&#43;<span class="series-this-post">This post!</span>
+                
+              </li>
+          </ol>
+        </div>
+      
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2025 &middot; 
+      <a href="//localhost:52441/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:52441/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:52441/main.js"></script>
+
+
+</body>
+</html>

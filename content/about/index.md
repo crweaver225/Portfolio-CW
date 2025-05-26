@@ -20,8 +20,9 @@ Skills:
 * C++ 
 * Python
 * SQL
+* MongoDB
 * PyTorch / SciKit-Learn
-* Flask/FastAPI
+* Flask / FastAPI
 * Native iOS Development / Swift
 
 ## Personal
