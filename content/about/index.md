@@ -13,10 +13,7 @@ Professional software engineer. I have developed software used by millions of pe
 
 Skills:
 
-* Rust
-* Cargo
-* Rocket
-* CMake
+* Haskell
 * C++ 
 * Python
 * SQL
