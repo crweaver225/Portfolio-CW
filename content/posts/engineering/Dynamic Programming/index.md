@@ -31,7 +31,7 @@ newsletter: false
 disable_comments: false
 ---
 
-Solving complex algorithmic problems requires a lot of tools in one's toolbelt. One of the most powerful tools we have available is dynamic programming. Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once. It's typically used when a problem has overlapping subproblems and optimal substructure, meaning that the solution to a larger problem can be constructed from the solutions of its smaller subproblems.
+Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once. It's typically used when a problem has overlapping subproblems and optimal substructure, meaning that the solution to a larger problem can be constructed from the solutions of its smaller subproblems.
 
 In dynamic programming, solutions to subproblems are stored in memory so that they can be reused when needed, which avoids redundant computation. This makes dynamic programming particularly useful for optimization problems and problems involving optimization of some value, where the solution involves making a sequence of decisions. Some people will differentiate dynamic programming from memoization (such as storing fibonacci results as you break the bigger problem into smaller subproblems until you get to the smallest) and say dynamic programming is only bottom up (starting at the smallest subproblem and working your way up). I consider both bottom up and top down to be dynamic programming. 
 

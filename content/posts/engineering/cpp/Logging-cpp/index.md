@@ -28,8 +28,6 @@ newsletter: false
 disable_comments: false
 ---
 
-It is a good time to be a software engineer. The amount of tools a developer has at their fingertips to write robust software is truly incredible. Break points and other debugging tools make working through bugs and runtime issues significatly easier since it gives us visual access to the stack. Unfortunately, most of the software we write is destined for production where many of these tools cannot be utilized. As any parent can tell you, eventually your kids grow up and move out into the world where you can no longer monitor them as you once had. Same goes for the software we write. To counteract this, engineers  still rely heavily upon logs that write the activity of their software to different files that can be reviewed at a later date if needed. 
-
 I was recently working through 
 
 ***Building Low Latency Applications With C++***
