@@ -89,29 +89,11 @@
     </item>
     
     <item>
-      <title>ScopeGuards</title>
-      <link>//localhost:1313/engineering/scopeguards/</link>
-      <pubDate>Thu, 11 Jul 2024 09:38:32 -0600</pubDate>
-      
-      <guid>//localhost:1313/engineering/scopeguards/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Static Polymorphism</title>
       <link>//localhost:1313/engineering/static-polymorphism/</link>
       <pubDate>Tue, 04 Jun 2024 09:38:32 -0600</pubDate>
       
       <guid>//localhost:1313/engineering/static-polymorphism/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Small Buffer Optimization</title>
-      <link>//localhost:1313/engineering/small-buffer-optimization/</link>
-      <pubDate>Mon, 03 Jun 2024 09:38:32 -0600</pubDate>
-      
-      <guid>//localhost:1313/engineering/small-buffer-optimization/</guid>
       <description></description>
     </item>
     
@@ -220,15 +202,6 @@
       <pubDate>Mon, 29 Jan 2024 09:38:32 -0600</pubDate>
       
       <guid>//localhost:1313/engineering/microbenchmarking-in-c-/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; Compilers</title>
-      <link>//localhost:1313/engineering/compilers/</link>
-      <pubDate>Tue, 16 Jan 2024 07:07:50 -0500</pubDate>
-      
-      <guid>//localhost:1313/engineering/compilers/</guid>
       <description></description>
     </item>
     
