@@ -107,8 +107,6 @@ This continues as needed, indefinitely. The key is understanding that a thunk is
 
 In this sense, a cons-operated recursive function is a fundamental building block of Haskell—just like a for loop is in C++. Once we see the parallel, and better understand how lazy evaluation works, the optimized Fibonacci subroutine makes perfect sense.
 
-### Conclusion
-
 The naive version of our Fibonacci function shows the expressive beauty of recursion in Haskell, but suffers from serious performance issues due to redundant computation. By using lazy evaluation and carefully structuring our recursion, we were able to transform an exponential-time function into a linear-time one—all while keeping the code clean, declarative, and idiomatic.
 
 Understanding lazy evaluation—and the role of thunks—opens the door to writing highly efficient and elegant code in Haskell. The Fibonacci sequence is just one example, but the techniques we used here apply broadly across the language.
