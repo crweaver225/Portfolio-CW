@@ -1,6 +1,6 @@
 ---
 title: Christopher Weaver
-subtitle: Software Engineer. Specializing in writing robust, sleek, performant code. Dabbling in philsophy on the side.   
+subtitle: Functional programming advocate. Dabbling in philsophy on the side.   
 seo_title: Christopher Weaver
 
 primary_cta_page: "about"

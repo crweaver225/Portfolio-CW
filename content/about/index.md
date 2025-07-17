@@ -7,10 +7,6 @@ image: cainn.png
 description: Learn more about my background and experience.
 ---
 
-## Software Engineer
-
-Professional software engineer. I have developed software used by millions of people across the globe. 
-
 Skills:
 
 * Haskell
