@@ -6,7 +6,7 @@ description:
 slug: The Basics of Haskell
 author: Christopher Weaver
 
-draft: false
+draft: true
 date: 2025-02-20T09:38:32-06:00
 lastmod: 2025-02-20T09:38:32-06:00
 publishDate: 2025-02-20T09:38:32-06:00

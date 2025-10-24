@@ -6,7 +6,7 @@ description:
 slug: ScopeGuards
 author: Christopher Weaver
 
-draft: false
+draft: true
 date: 2024-07-11T09:38:32-06:00
 lastmod: 2024-07-11T09:38:32-06:00
 publishDate: 2024-07-11T09:38:32-06:00
