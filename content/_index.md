@@ -1,6 +1,6 @@
 ---
 title: Christopher Weaver
-subtitle: Functional programming advocate. Dabbling in philsophy on the side.   
+subtitle: Software engineer. Dabbling in philsophy on the side.   
 seo_title: Christopher Weaver
 
 primary_cta_page: "about"
