@@ -3,3 +3,4 @@ hugo new content posts/<engineering or philosophy>/<topic>/index.md
 git add -A
 git commit -m 'commit message from terminal'
 git push
+

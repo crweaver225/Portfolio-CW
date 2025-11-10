@@ -6,14 +6,14 @@
     <description>Recent content in Haskell on Christopher Weaver</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Jul 2025 09:38:32 -0600</lastBuildDate><atom:link href="//localhost:1313/series/haskell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Mar 2025 09:38:32 -0600</lastBuildDate><atom:link href="//localhost:1313/series/haskell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Monty Hall Problem - Lessons in Humility</title>
-      <link>//localhost:1313/engineering/lazy-evaluation-in-haskell/</link>
-      <pubDate>Wed, 16 Jul 2025 09:38:32 -0600</pubDate>
+      <link>//localhost:1313/engineering/the-monty-hall-problem-lessons-in-humility/</link>
+      <pubDate>Sun, 09 Nov 2025 09:38:32 -0600</pubDate>
       
-      <guid>//localhost:1313/engineering/lazy-evaluation-in-haskell/</guid>
-      <description>Exploring the limits of human intuition by exploring the Monty Hall problem and an empirical resolution using Haskell</description>
+      <guid>//localhost:1313/engineering/the-monty-hall-problem-lessons-in-humility/</guid>
+      <description>Exploring the limits of human intuition by investigating the Monty Hall problem and an empirical resolution using Haskell</description>
     </item>
     
     <item>

@@ -3,7 +3,7 @@ title: The Monty Hall Problem - Lessons in Humility
 seo_title: The Monty Hall Problem - Lessons in Humility
 summary: Exploring the limits of human intuition by investigating the Monty Hall problem and an empirical resolution using Haskell
 description: 
-slug: Lazy Evaluation in Haskell
+slug:
 author: Christopher Weaver
 
 draft: false
