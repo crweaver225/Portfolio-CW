@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Christopher Weaver</title>
-    <link>//localhost:1313/project-types/</link>
-    <description>Recent content in Project Types on Christopher Weaver</description>
+    <link>//localhost:1313/series/philosophy/</link>
+    <description>Recent content in Philosophy on Christopher Weaver</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Dec 2024 03:52:30 -0500</lastBuildDate><atom:link href="//localhost:1313/project-types/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Nov 2025 09:38:32 -0600</lastBuildDate><atom:link href="//localhost:1313/series/philosophy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Monty Hall Problem - Lessons in Humility</title>
       <link>//localhost:1313/engineering/lazy-evaluation-in-haskell/</link>
-      <pubDate>Wed, 16 Jul 2025 09:38:32 -0600</pubDate>
+      <pubDate>Sun, 09 Nov 2025 09:38:32 -0600</pubDate>
       
       <guid>//localhost:1313/engineering/lazy-evaluation-in-haskell/</guid>
       <description>Exploring the limits of human intuition by exploring the Monty Hall problem and an empirical resolution using Haskell</description>

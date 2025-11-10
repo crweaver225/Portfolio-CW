@@ -361,7 +361,7 @@ html {
 
 html, body {
   height: 100%;
-  font-size: 15px;
+  font-size: 13px;
   /* Adjust the value as needed */ }
 
 body {
