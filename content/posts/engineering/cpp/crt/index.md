@@ -6,7 +6,7 @@ description:
 slug: Static Polymorphism
 author: Christopher Weaver
 
-draft: true
+draft: false
 date: 2024-06-04T09:38:32-06:00
 lastmod: 2024-06-04T09:38:32-06:00
 publishDate: 2024-06-04T09:38:32-06:00

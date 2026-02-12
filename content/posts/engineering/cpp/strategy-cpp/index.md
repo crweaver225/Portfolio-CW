@@ -6,7 +6,7 @@ description:
 slug: The Strategy Design Pattern
 author: Christopher Weaver
 
-draft: true
+draft: false
 date: 2024-05-24T09:38:32-06:00
 lastmod: 2024-05-24T09:38:32-06:00
 publishDate: 2024-05-24T09:38:32-06:00
