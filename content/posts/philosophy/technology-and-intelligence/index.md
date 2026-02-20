@@ -16,7 +16,7 @@ feature_image_alt:
 
 categories:
 - Philosophy
-- Epistomology
+- Epistemology
 tags:
 series:
 

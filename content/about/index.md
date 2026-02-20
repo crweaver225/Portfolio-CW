@@ -24,7 +24,7 @@ Skills:
 **Live**: Yorkville, IL  
 **Family**: Husband and father of two  
 **Religion**: Christian  
-**Hobbies**: I enjoy reading and writing about philosophy. I like thinking about the implications of epistomology on politics, ethics, and the nature of the universe. I consider myself a Kantian in the tradition of Ludwig von Mises and Hans-Hermann Hoppe. 
+**Hobbies**: I enjoy reading and writing about philosophy. I like thinking about the implications of epistemology on politics, ethics, and the nature of the universe. I consider myself a Kantian in the tradition of Ludwig von Mises and Hans-Hermann Hoppe. 
 
 I also love hiking and live outdoor music.
 

@@ -1,9 +1,9 @@
 ---
-title: Political Science and Epistomology
-seo_title: Political Science and Epistomology
+title: Political Science and Epistemology
+seo_title: Political Science and Epistemology
 summary: 
 description: 
-slug: politicalscience-and-epistomology
+slug: politicalscience-and-epistemology
 author: Christopher Weaver
 
 draft: false
