@@ -394,134 +394,134 @@ Engineers like optimization techniques; it is in our blood. An interesting, alth
 <p>We could increase the size of the local buffer to try and capture more use cases, but what we will find is that there will start to be a degradation in performance as the size of the class increases due to the larger buffer. The larger size means more cache misses which might perform worse than grabbing data from the heap. Since heap data only adds the size of the pointer (usually 64 bits) into the class memory size, the entirety of the class might be more cache friendly and perform better (even with the need to use heap memory).</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">SmallString</span> {
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">private</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">constexpr</span> size_t MAX_SIZE = <span style="color:#3677a9">15</span>; <span style="color:#999;font-style:italic">// Maximum size for the small buffer
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    size_t size;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">char</span>* data;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">char</span> buffer[MAX_SIZE + <span style="color:#3677a9">1</span>]; <span style="color:#999;font-style:italic">// Static buffer +1 for null terminator
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Constructor
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    SmallString(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">char</span>* str) : size(strlen(str)) {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (size &lt;= MAX_SIZE) {
-</span></span><span style="display:flex;"><span>            <span style="color:#999;font-style:italic">// Use the internal buffer
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>            data = buffer;
-</span></span><span style="display:flex;"><span>        } <span style="color:#6ab825;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#999;font-style:italic">// Allocate memory dynamically if size exceeds MAX_SIZE
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>            data = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">char</span>[size + <span style="color:#3677a9">1</span>];
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        strcpy(data, str);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Copy constructor
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    SmallString(<span style="color:#6ab825;font-weight:bold">const</span> SmallString&amp; other) : size(other.size) {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (size &lt;= MAX_SIZE) {
-</span></span><span style="display:flex;"><span>            data = buffer;
-</span></span><span style="display:flex;"><span>        } <span style="color:#6ab825;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>            data = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">char</span>[size + <span style="color:#3677a9">1</span>];
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        strcpy(data, other.data);
-</span></span><span style="display:flex;"><span>    }
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">SmallString</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">private</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">static</span> <span style="color:#7fbaf5">constexpr</span> size_t MAX_SIZE <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">15</span><span style="color:#56b6c2">;</span> <span style="color:#3e4460">// Maximum size for the small buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    size_t size<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">char</span><span style="color:#bc74c4">*</span> data<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">char</span> buffer<span style="color:#56b6c2">[</span>MAX_SIZE <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">];</span> <span style="color:#3e4460">// Static buffer +1 for null terminator
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    SmallString<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">char</span><span style="color:#bc74c4">*</span> str<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> size<span style="color:#56b6c2">(</span>strlen<span style="color:#56b6c2">(</span>str<span style="color:#56b6c2">))</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span>size <span style="color:#bc74c4">&lt;=</span> MAX_SIZE<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3e4460">// Use the internal buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>            data <span style="color:#bc74c4">=</span> buffer<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span> <span style="color:#7fbaf5">else</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3e4460">// Allocate memory dynamically if size exceeds MAX_SIZE
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>            data <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">char</span><span style="color:#56b6c2">[</span>size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>        strcpy<span style="color:#56b6c2">(</span>data<span style="color:#56b6c2">,</span> str<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Copy constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    SmallString<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> SmallString<span style="color:#bc74c4">&amp;</span> other<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> size<span style="color:#56b6c2">(</span>other<span style="color:#56b6c2">.</span>size<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span>size <span style="color:#bc74c4">&lt;=</span> MAX_SIZE<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            data <span style="color:#bc74c4">=</span> buffer<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span> <span style="color:#7fbaf5">else</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            data <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">char</span><span style="color:#56b6c2">[</span>size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>        strcpy<span style="color:#56b6c2">(</span>data<span style="color:#56b6c2">,</span> other<span style="color:#56b6c2">.</span>data<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Destructor
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    ~SmallString() {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (size &gt; MAX_SIZE) {
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">delete</span>[] data;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Destructor
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#bc74c4">~</span>SmallString<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span>size <span style="color:#bc74c4">&gt;</span> MAX_SIZE<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">[]</span> data<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Helper function to display string
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">print</span>() <span style="color:#6ab825;font-weight:bold">const</span> {
-</span></span><span style="display:flex;"><span>        std::cout &lt;&lt; <span style="color:#ed9d13">&#34;String: &#34;</span> &lt;&lt; data &lt;&lt; <span style="color:#ed9d13">&#34; (size: &#34;</span> &lt;&lt; size &lt;&lt; <span style="color:#ed9d13">&#34;)&#34;</span> &lt;&lt; std::endl;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Helper function to display string
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">print</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#82cc6a">&#34;String: &#34;</span> <span style="color:#bc74c4">&lt;&lt;</span> data <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#82cc6a">&#34; (size: &#34;</span> <span style="color:#bc74c4">&lt;&lt;</span> size <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#82cc6a">&#34;)&#34;</span> <span style="color:#bc74c4">&lt;&lt;</span> std<span style="color:#bc74c4">::</span>endl<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    SmallString s1(<span style="color:#ed9d13">&#34;Hello&#34;</span>);
-</span></span><span style="display:flex;"><span>    SmallString s2(<span style="color:#ed9d13">&#34;This is a very long string that does not fit in the buffer&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    SmallString s1<span style="color:#56b6c2">(</span><span style="color:#82cc6a">&#34;Hello&#34;</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    SmallString s2<span style="color:#56b6c2">(</span><span style="color:#82cc6a">&#34;This is a very long string that does not fit in the buffer&#34;</span><span style="color:#56b6c2">);</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    s1.print();
-</span></span><span style="display:flex;"><span>    s2.print();
+</span></span><span style="display:flex;"><span>    s1<span style="color:#56b6c2">.</span>print<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    s2<span style="color:#56b6c2">.</span>print<span style="color:#56b6c2">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Even with the benefits of SBO, it is unfortunate to have so many use cases where memory is allocated for the object that might never be used. Very wasteful. There is a way to work around this through the use of a union. A union in C/C++ is a user-defined datatype that can define different types of data within it, similar to a struct. But, only one member variable within the union can store data at any given time. Using a union allows us to use the same memory for both our local buffer and our pointer to the heap which is great, since without the SBO we need to store the pointer anyway. This essentially means we get our local buffer for free!</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">SmallString</span> {
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">private</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">constexpr</span> size_t MAX_SIZE = <span style="color:#3677a9">15</span>; <span style="color:#999;font-style:italic">// Maximum size for the small buffer
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">union</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">char</span>* data;  <span style="color:#999;font-style:italic">// Pointer to the dynamically allocated buffer for large strings
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        <span style="color:#6ab825;font-weight:bold">char</span> buffer[MAX_SIZE + <span style="color:#3677a9">1</span>];  <span style="color:#999;font-style:italic">// Inline buffer for small strings
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    };
-</span></span><span style="display:flex;"><span>    size_t size;
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">SmallString</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">private</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">static</span> <span style="color:#7fbaf5">constexpr</span> size_t MAX_SIZE <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">15</span><span style="color:#56b6c2">;</span> <span style="color:#3e4460">// Maximum size for the small buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#7fbaf5">union</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">char</span><span style="color:#bc74c4">*</span> data<span style="color:#56b6c2">;</span>  <span style="color:#3e4460">// Pointer to the dynamically allocated buffer for large strings
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>        <span style="color:#57c7ff;font-weight:bold">char</span> buffer<span style="color:#56b6c2">[</span>MAX_SIZE <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">];</span>  <span style="color:#3e4460">// Inline buffer for small strings
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    size_t size<span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">isSmall</span>() <span style="color:#6ab825;font-weight:bold">const</span> { <span style="color:#6ab825;font-weight:bold">return</span> size &lt;= MAX_SIZE; }
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">bool</span> <span style="color:#57c7ff">isSmall</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">return</span> size <span style="color:#bc74c4">&lt;=</span> MAX_SIZE<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Constructor
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    SmallString(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">char</span>* str
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    SmallString<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">char</span><span style="color:#bc74c4">*</span> str
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>) : size(strlen(str)) {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (isSmall()) {
-</span></span><span style="display:flex;"><span>            <span style="color:#999;font-style:italic">// Use the small buffer
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>            memcpy(buffer, str, size + <span style="color:#3677a9">1</span>);
-</span></span><span style="display:flex;"><span>        } <span style="color:#6ab825;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#999;font-style:italic">// Allocate memory for large strings
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>            data = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">char</span>[size + <span style="color:#3677a9">1</span>];
-</span></span><span style="display:flex;"><span>            memcpy(data, str, size + <span style="color:#3677a9">1</span>);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> size<span style="color:#56b6c2">(</span>strlen<span style="color:#56b6c2">(</span>str<span style="color:#56b6c2">))</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span>isSmall<span style="color:#56b6c2">())</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3e4460">// Use the small buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>            memcpy<span style="color:#56b6c2">(</span>buffer<span style="color:#56b6c2">,</span> str<span style="color:#56b6c2">,</span> size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span> <span style="color:#7fbaf5">else</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3e4460">// Allocate memory for large strings
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>            data <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">char</span><span style="color:#56b6c2">[</span>size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">];</span>
+</span></span><span style="display:flex;"><span>            memcpy<span style="color:#56b6c2">(</span>data<span style="color:#56b6c2">,</span> str<span style="color:#56b6c2">,</span> size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Destructor
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    ~SmallString() {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (!isSmall()) {
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">delete</span>[] data;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Destructor
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#bc74c4">~</span>SmallString<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span><span style="color:#bc74c4">!</span>isSmall<span style="color:#56b6c2">())</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">[]</span> data<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Copy constructor
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    SmallString(<span style="color:#6ab825;font-weight:bold">const</span> SmallString&amp; other) : size(other.size) {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (isSmall()) {
-</span></span><span style="display:flex;"><span>            memcpy(buffer, other.buffer, size + <span style="color:#3677a9">1</span>);
-</span></span><span style="display:flex;"><span>        } <span style="color:#6ab825;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>            data = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">char</span>[size + <span style="color:#3677a9">1</span>];
-</span></span><span style="display:flex;"><span>            memcpy(data, other.data, size + <span style="color:#3677a9">1</span>);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Copy constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    SmallString<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> SmallString<span style="color:#bc74c4">&amp;</span> other<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> size<span style="color:#56b6c2">(</span>other<span style="color:#56b6c2">.</span>size<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span>isSmall<span style="color:#56b6c2">())</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            memcpy<span style="color:#56b6c2">(</span>buffer<span style="color:#56b6c2">,</span> other<span style="color:#56b6c2">.</span>buffer<span style="color:#56b6c2">,</span> size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span> <span style="color:#7fbaf5">else</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            data <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">char</span><span style="color:#56b6c2">[</span>size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">];</span>
+</span></span><span style="display:flex;"><span>            memcpy<span style="color:#56b6c2">(</span>data<span style="color:#56b6c2">,</span> other<span style="color:#56b6c2">.</span>data<span style="color:#56b6c2">,</span> size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Assignment operator
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    SmallString&amp; <span style="color:#6ab825;font-weight:bold">operator</span>=(<span style="color:#6ab825;font-weight:bold">const</span> SmallString&amp; other) {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#6ab825;font-weight:bold">this</span> == &amp;other) <span style="color:#6ab825;font-weight:bold">return</span> *<span style="color:#6ab825;font-weight:bold">this</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Assignment operator
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    SmallString<span style="color:#bc74c4">&amp;</span> <span style="color:#7fbaf5">operator</span><span style="color:#bc74c4">=</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> SmallString<span style="color:#bc74c4">&amp;</span> other<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span><span style="color:#7fbaf5">this</span> <span style="color:#bc74c4">==</span> <span style="color:#bc74c4">&amp;</span>other<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">return</span> <span style="color:#bc74c4">*</span><span style="color:#7fbaf5">this</span><span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (!isSmall()) {
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">delete</span>[] data;
-</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span><span style="color:#bc74c4">!</span>isSmall<span style="color:#56b6c2">())</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">[]</span> data<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        size = other.size;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (isSmall()) {
-</span></span><span style="display:flex;"><span>            memcpy(buffer, other.buffer, size + <span style="color:#3677a9">1</span>);
-</span></span><span style="display:flex;"><span>        } <span style="color:#6ab825;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>            data = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">char</span>[size + <span style="color:#3677a9">1</span>];
-</span></span><span style="display:flex;"><span>            memcpy(data, other.data, size + <span style="color:#3677a9">1</span>);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> *<span style="color:#6ab825;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>        size <span style="color:#bc74c4">=</span> other<span style="color:#56b6c2">.</span>size<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span>isSmall<span style="color:#56b6c2">())</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            memcpy<span style="color:#56b6c2">(</span>buffer<span style="color:#56b6c2">,</span> other<span style="color:#56b6c2">.</span>buffer<span style="color:#56b6c2">,</span> size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span> <span style="color:#7fbaf5">else</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            data <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">char</span><span style="color:#56b6c2">[</span>size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">];</span>
+</span></span><span style="display:flex;"><span>            memcpy<span style="color:#56b6c2">(</span>data<span style="color:#56b6c2">,</span> other<span style="color:#56b6c2">.</span>data<span style="color:#56b6c2">,</span> size <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">return</span> <span style="color:#bc74c4">*</span><span style="color:#7fbaf5">this</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Print function for demonstration
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">print</span>() <span style="color:#6ab825;font-weight:bold">const</span> {
-</span></span><span style="display:flex;"><span>        std::cout &lt;&lt; (isSmall() ? buffer : data) &lt;&lt; std::endl;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Print function for demonstration
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">print</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#56b6c2">(</span>isSmall<span style="color:#56b6c2">()</span> <span style="color:#bc74c4">?</span> <span style="color:#cf5967">buffer</span> <span style="color:#56b6c2">:</span> data<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">&lt;&lt;</span> std<span style="color:#bc74c4">::</span>endl<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    SmallString s1(<span style="color:#ed9d13">&#34;Hello&#34;</span>);
-</span></span><span style="display:flex;"><span>    SmallString s2(<span style="color:#ed9d13">&#34;This is a very long string, definitely not small!&#34;</span>);
-</span></span><span style="display:flex;"><span>    s1.print();
-</span></span><span style="display:flex;"><span>    s2.print();
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    SmallString s1<span style="color:#56b6c2">(</span><span style="color:#82cc6a">&#34;Hello&#34;</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    SmallString s2<span style="color:#56b6c2">(</span><span style="color:#82cc6a">&#34;This is a very long string, definitely not small!&#34;</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    s1<span style="color:#56b6c2">.</span>print<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    s2<span style="color:#56b6c2">.</span>print<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>If the SmallString instantiation is larger than 15 characters, the data variable will be used within the union, otherwise the buffer variable will be used. In both cases, the union will take up the same memory footprint at the largest item in the union, which in this case is likely buffer at 16 bytes. So in this case, we get either the pointer for free.</p>
 <h3 id="conclusion">Conclusion<a href="#conclusion">
     <svg role="img" aria-labelledby="conclusion-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">

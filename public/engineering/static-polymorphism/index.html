@@ -396,90 +396,90 @@ Performance is very important in C&#43;&#43; programming, so important that the 
 </h3><p>The CRTP uses the idea of using a base class as an abstraction, but instead of establishing a runtime relationship between the base class and its derived class, this relationship is established at compile time using templates.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;iostream&gt;</span><span style="color:#cd2828;font-weight:bold">
-</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// Base class template
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">template</span>&lt;<span style="color:#6ab825;font-weight:bold">typename</span> Derived&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Car</span> {
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> start() {
-</span></span><span style="display:flex;"><span>        <span style="color:#999;font-style:italic">// Call the startEngine method of the Derived class
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        <span style="color:#6ab825;font-weight:bold">static_cast</span>&lt;Derived*&gt;(<span style="color:#6ab825;font-weight:bold">this</span>)-&gt;startEngine();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">size</span>() <span style="color:#6ab825;font-weight:bold">const</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">static_cast</span>&lt;Derived*&gt;(<span style="color:#6ab825;font-weight:bold">this</span>)-&gt;size();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>};
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">#include</span> <span style="color:#7fbaf5">&lt;iostream&gt;</span><span style="color:#7fbaf5">
+</span></span></span><span style="display:flex;"><span><span style="color:#7fbaf5"></span>
+</span></span><span style="display:flex;"><span><span style="color:#3e4460">// Base class template
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#7fbaf5">template</span><span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">typename</span> Derived<span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Car</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> start<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3e4460">// Call the startEngine method of the Derived class
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>        <span style="color:#7fbaf5">static_cast</span><span style="color:#bc74c4">&lt;</span>Derived<span style="color:#bc74c4">*&gt;</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">this</span><span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>startEngine<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">size</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">static_cast</span><span style="color:#bc74c4">&lt;</span>Derived<span style="color:#bc74c4">*&gt;</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">this</span><span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>size<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// Derived class
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">SportsCar</span> : <span style="color:#6ab825;font-weight:bold">public</span> Car&lt;SportsCar&gt; {
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> startEngine() {
-</span></span><span style="display:flex;"><span>        std::cout &lt;&lt; <span style="color:#ed9d13">&#34;SportsCar engine started with a roar!&#34;</span> &lt;&lt; std::endl;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">size</span>() <span style="color:#6ab825;font-weight:bold">const</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">100</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#3e4460">// Derived class
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">SportsCar</span> <span style="color:#bc74c4">:</span> <span style="color:#7fbaf5">public</span> Car<span style="color:#bc74c4">&lt;</span>SportsCar<span style="color:#bc74c4">&gt;</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> startEngine<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#82cc6a">&#34;SportsCar engine started with a roar!&#34;</span> <span style="color:#bc74c4">&lt;&lt;</span> std<span style="color:#bc74c4">::</span>endl<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">size</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">return</span> <span style="color:#56b6c2">100</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// Another derived class
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">FamilyCar</span> : <span style="color:#6ab825;font-weight:bold">public</span> Car&lt;FamilyCar&gt; {
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> startEngine() {
-</span></span><span style="display:flex;"><span>        std::cout &lt;&lt; <span style="color:#ed9d13">&#34;FamilyCar engine started quietly.&#34;</span> &lt;&lt; std::endl;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">size</span>() <span style="color:#6ab825;font-weight:bold">const</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">50</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#3e4460">// Another derived class
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">FamilyCar</span> <span style="color:#bc74c4">:</span> <span style="color:#7fbaf5">public</span> Car<span style="color:#bc74c4">&lt;</span>FamilyCar<span style="color:#bc74c4">&gt;</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> startEngine<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#82cc6a">&#34;FamilyCar engine started quietly.&#34;</span> <span style="color:#bc74c4">&lt;&lt;</span> std<span style="color:#bc74c4">::</span>endl<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">size</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">return</span> <span style="color:#56b6c2">50</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    SportsCar mySportsCar;
-</span></span><span style="display:flex;"><span>    FamilyCar myFamilyCar;
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    SportsCar mySportsCar<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    FamilyCar myFamilyCar<span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; <span style="color:#ed9d13">&#34;Starting SportsCar:&#34;</span> &lt;&lt; std::endl;
-</span></span><span style="display:flex;"><span>    mySportsCar.start();
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#82cc6a">&#34;Starting SportsCar:&#34;</span> <span style="color:#bc74c4">&lt;&lt;</span> std<span style="color:#bc74c4">::</span>endl<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    mySportsCar<span style="color:#56b6c2">.</span>start<span style="color:#56b6c2">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; <span style="color:#ed9d13">&#34;Starting FamilyCar:&#34;</span> &lt;&lt; std::endl;
-</span></span><span style="display:flex;"><span>    myFamilyCar.start();
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#82cc6a">&#34;Starting FamilyCar:&#34;</span> <span style="color:#bc74c4">&lt;&lt;</span> std<span style="color:#bc74c4">::</span>endl<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    myFamilyCar<span style="color:#56b6c2">.</span>start<span style="color:#56b6c2">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>It took some time for me to wrap my head around this. Our derived class inherits from the base class while passing itself as a template argument. Then, within the base class interface, we need to ensure we static_cast itself as an instance of its template argument and call the correct function for that derived class. In the example above, even though SportsCar does not have a start() member function, it does support the call as part of its interface since it inherits from the Car base class. And because the Car base class can call the correct derived class function based on its template arguments, the startEngine function within the SportsCar class will get called.</p>
 <p>The CRTP allows us to build a common interface via the base class as well as a default implementation for the reduction of duplicate code.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Derived</span>&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Base</span> {
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> interface() {
-</span></span><span style="display:flex;"><span>        <span style="color:#999;font-style:italic">// Static polymorphism used here
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        <span style="color:#6ab825;font-weight:bold">static_cast</span>&lt;Derived*&gt;(<span style="color:#6ab825;font-weight:bold">this</span>)-&gt;implementation();
-</span></span><span style="display:flex;"><span>    }
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">template</span> <span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Derived</span><span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Base</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> interface<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3e4460">// Static polymorphism used here
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>        <span style="color:#7fbaf5">static_cast</span><span style="color:#bc74c4">&lt;</span>Derived<span style="color:#bc74c4">*&gt;</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">this</span><span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>implementation<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">implementation</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#999;font-style:italic">// Default implementation (if any)
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    }
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">implementation</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3e4460">// Default implementation (if any)
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Derived</span> : <span style="color:#6ab825;font-weight:bold">public</span> Base&lt;Derived&gt; {
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> implementation() {
-</span></span><span style="display:flex;"><span>        <span style="color:#999;font-style:italic">// Custom implementation for Derived
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        std::cout &lt;&lt; <span style="color:#ed9d13">&#34;Derived implementation&#34;</span> &lt;&lt; std::endl;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Derived</span> <span style="color:#bc74c4">:</span> <span style="color:#7fbaf5">public</span> Base<span style="color:#bc74c4">&lt;</span>Derived<span style="color:#bc74c4">&gt;</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> implementation<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3e4460">// Custom implementation for Derived
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>        std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#82cc6a">&#34;Derived implementation&#34;</span> <span style="color:#bc74c4">&lt;&lt;</span> std<span style="color:#bc74c4">::</span>endl<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Derived2</span>: <span style="color:#6ab825;font-weight:bold">public</span> Base&lt;Derived2&gt; {
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Derived2</span><span style="color:#bc74c4">:</span> <span style="color:#7fbaf5">public</span> Base<span style="color:#bc74c4">&lt;</span>Derived2<span style="color:#bc74c4">&gt;</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    Derived d;
-</span></span><span style="display:flex;"><span>    d.interface();  <span style="color:#999;font-style:italic">// Calls Derived::implementation()
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>
-</span></span><span style="display:flex;"><span>    Derived2 d2;
-</span></span><span style="display:flex;"><span>    d2.interface(); <span style="color:#999;font-style:italic">// Calls Base::implementation()
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    Derived d<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    d<span style="color:#56b6c2">.</span>interface<span style="color:#56b6c2">();</span>  <span style="color:#3e4460">// Calls Derived::implementation()
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>
+</span></span><span style="display:flex;"><span>    Derived2 d2<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    d2<span style="color:#56b6c2">.</span>interface<span style="color:#56b6c2">();</span> <span style="color:#3e4460">// Calls Base::implementation()
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Here, both d and d2 have a common interface, which is nice. Additionally, if we have a bunch of derived classes that all have the same implementation details for the implementation() function, we can default to the base class&rsquo;s version without needing to duplicate code. Then, only when we need a unique implementation for a derived class can we write it up.</p>
 <p>You should expect an implementation of CRTP to be significantly faster than a similar implementation using dynamic polymorphism. This is because:</p>
 <ol>
@@ -499,11 +499,11 @@ Performance is very important in C&#43;&#43; programming, so important that the 
 <p>The major benefit of any type of polymorphism is that we can work with objects even though we do not know their specific type. This is possible with static polymorphism via templates</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">template</span>&lt;<span style="color:#6ab825;font-weight:bold">typename</span> Derived&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">float</span> fairMarketPrice(Car&lt;Derived&gt; car) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> car_size = car-&gt;size();
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">/// the rest of the implementation
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">template</span><span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">typename</span> Derived<span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">float</span> fairMarketPrice<span style="color:#56b6c2">(</span>Car<span style="color:#bc74c4">&lt;</span>Derived<span style="color:#bc74c4">&gt;</span> car<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> car_size <span style="color:#bc74c4">=</span> car<span style="color:#bc74c4">-&gt;</span>size<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">/// the rest of the implementation
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Here our function does not know which specific car is being passed to it until compile time. This gives us our polymorphism that we want.</p>
 <h3 id="crtp-and-abstract-classes">CRTP and Abstract Classes<a href="#crtp-and-abstract-classes">
     <svg role="img" aria-labelledby="crtp-and-abstract-classes-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -515,19 +515,19 @@ Performance is very important in C&#43;&#43; programming, so important that the 
 </h3><p>When a derived class does not implement a function that it should, the base class will attempt to do it on the derived class&rsquo;s behalf. But if the base class does not implement the function either (because we are attempting to make the function something the derived class must implement), our program will be malformed. In order to match the pure virtual functions of dynamic polymorphism, we must change the implementation name that the derived class should complete to be different from the base class function to cause a compilation error when it is not implemented.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">typename</span> D&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">B</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">void</span> f(<span style="color:#6ab825;font-weight:bold">int</span> i) {
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">static_cast</span>&lt;D*&gt;(<span style="color:#6ab825;font-weight:bold">this</span>)-&gt;f_impl(i);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">D</span> : <span style="color:#6ab825;font-weight:bold">public</span> B&lt;D&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">void</span> f_impl(<span style="color:#6ab825;font-weight:bold">int</span> i) {
-</span></span><span style="display:flex;"><span>            <span style="color:#999;font-style:italic">// implementation
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        }
-</span></span><span style="display:flex;"><span>};</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">template</span> <span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">typename</span> D<span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">B</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">void</span> f<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> i<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">static_cast</span><span style="color:#bc74c4">&lt;</span>D<span style="color:#bc74c4">*&gt;</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">this</span><span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>f_impl<span style="color:#56b6c2">(</span>i<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">D</span> <span style="color:#bc74c4">:</span> <span style="color:#7fbaf5">public</span> B<span style="color:#bc74c4">&lt;</span>D<span style="color:#bc74c4">&gt;</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">void</span> f_impl<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> i<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3e4460">// implementation
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span></span></span></code></pre></div>
 <h3 id="crtp-and-access-control">CRTP and Access Control<a href="#crtp-and-access-control">
     <svg role="img" aria-labelledby="crtp-and-access-control-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="crtp-and-access-control-IconTitle">Link to this heading</title>
@@ -538,20 +538,20 @@ Performance is very important in C&#43;&#43; programming, so important that the 
 </h3><p>How do we allow our base class to access private functions and members of the derived class that we do not want accessible to the client? The simplest way is to use a friend declaration against the template argument.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">typename</span> D&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">B</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">friend</span> D;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">void</span> f(<span style="color:#6ab825;font-weight:bold">int</span> i) {
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">static_cast</span>&lt;D*&gt;(<span style="color:#6ab825;font-weight:bold">this</span>)-&gt;f_impl(i);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">D</span> : <span style="color:#6ab825;font-weight:bold">public</span> B&lt;D&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">private</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">void</span> f_impl(<span style="color:#6ab825;font-weight:bold">int</span> i) {
-</span></span><span style="display:flex;"><span>            <span style="color:#999;font-style:italic">// implementation
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        }
-</span></span><span style="display:flex;"><span>};</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">template</span> <span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">typename</span> D<span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">B</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">friend</span> D<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">void</span> f<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> i<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">static_cast</span><span style="color:#bc74c4">&lt;</span>D<span style="color:#bc74c4">*&gt;</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">this</span><span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>f_impl<span style="color:#56b6c2">(</span>i<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">D</span> <span style="color:#bc74c4">:</span> <span style="color:#7fbaf5">public</span> B<span style="color:#bc74c4">&lt;</span>D<span style="color:#bc74c4">&gt;</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">private</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">void</span> f_impl<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> i<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3e4460">// implementation
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span></span></span></code></pre></div>
 <p>As a general rule of thumb, using a friend declaration invokes a code smell. But sometimes, such as this, it makes sense in its use.</p>
 <h3 id="downside">Downside<a href="#downside">
     <svg role="img" aria-labelledby="downside-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -571,69 +571,69 @@ Performance is very important in C&#43;&#43; programming, so important that the 
 </h3><p>C++20 comes with the addition of concepts, which is a modern approach to restrict our templates in interesting ways. In many cases, we can use concepts instead of the CRTP.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#999;font-style:italic">// Concept that defines requirements for a Car
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">template</span>&lt;<span style="color:#6ab825;font-weight:bold">typename</span> T&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">concept</span> Car = <span style="color:#6ab825;font-weight:bold">requires</span>(T a) {
-</span></span><span style="display:flex;"><span>    { a.startEngine() } -&gt; std::same_as&lt;<span style="color:#6ab825;font-weight:bold">void</span>&gt;;  <span style="color:#999;font-style:italic">// Requires a startEngine() function that returns void
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>};
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#3e4460">// Concept that defines requirements for a Car
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#7fbaf5">template</span><span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">typename</span> T<span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">concept</span> Car <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">requires</span><span style="color:#56b6c2">(</span>T a<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">{</span> a<span style="color:#56b6c2">.</span>startEngine<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">}</span> <span style="color:#bc74c4">-&gt;</span> std<span style="color:#bc74c4">::</span>same_as<span style="color:#bc74c4">&lt;</span><span style="color:#57c7ff;font-weight:bold">void</span><span style="color:#bc74c4">&gt;</span><span style="color:#56b6c2">;</span>  <span style="color:#3e4460">// Requires a startEngine() function that returns void
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// Class that uses the concept
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">template</span>&lt;Car T&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Vehicle</span> {
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> start() {
-</span></span><span style="display:flex;"><span>        T car;
-</span></span><span style="display:flex;"><span>        car.startEngine();  <span style="color:#999;font-style:italic">// Guaranteed to exist and be valid due to the Car concept
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    }
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#3e4460">// Class that uses the concept
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#7fbaf5">template</span><span style="color:#bc74c4">&lt;</span>Car T<span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Vehicle</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> start<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        T car<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        car<span style="color:#56b6c2">.</span>startEngine<span style="color:#56b6c2">();</span>  <span style="color:#3e4460">// Guaranteed to exist and be valid due to the Car concept
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">// A class that satisfies the Car concept
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">SportsCar</span> {
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> startEngine() {
-</span></span><span style="display:flex;"><span>        std::cout &lt;&lt; <span style="color:#ed9d13">&#34;SportsCar engine started with a roar!&#34;</span> &lt;&lt; std::endl;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#3e4460">// A class that satisfies the Car concept
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">SportsCar</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> startEngine<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> <span style="color:#82cc6a">&#34;SportsCar engine started with a roar!&#34;</span> <span style="color:#bc74c4">&lt;&lt;</span> std<span style="color:#bc74c4">::</span>endl<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    Vehicle&lt;SportsCar&gt; mySportsCar;
-</span></span><span style="display:flex;"><span>    mySportsCar.start();
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    Vehicle<span style="color:#bc74c4">&lt;</span>SportsCar<span style="color:#bc74c4">&gt;</span> mySportsCar<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    mySportsCar<span style="color:#56b6c2">.</span>start<span style="color:#56b6c2">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>As long as our derived class implements the Car concept requirements, we can define our Vehicle class with the start() interface similar to what we did with the CRTP above. The difference is that C++ concepts provide a cleaner, less perplexing syntax along with comprehensible compile-time errors when something is wrong. Along with these benefits, we also get the same runtime performance as CRTP. Let&rsquo;s look at one more example where we want a function that can take two examples of a generic base class and compute the Euclidean distance between them. With dynamic polymorphism, we would create our abstract base class Point with virtual functions to get x() and y() values that our derived class would use to return values. We can do something similar to that with concepts by first defining our limiting concept:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">typename</span> T&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">concept</span> Point = <span style="color:#6ab825;font-weight:bold">requires</span>(T p) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">requires</span> std::is_same_v&lt;<span style="color:#6ab825;font-weight:bold">decltype</span>(p.x()), <span style="color:#6ab825;font-weight:bold">decltype</span>(p.y())&gt;; <span style="color:#999;font-style:italic">// Requires T has x() &amp; y() and they return the same types
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">requires</span> std::is_arithmetic_v&lt;<span style="color:#6ab825;font-weight:bold">decltype</span>(p.x())&gt;; <span style="color:#999;font-style:italic">// ensures the return value can be operated on by C++ math operators 
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>};</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">template</span> <span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">typename</span> T<span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">concept</span> Point <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">requires</span><span style="color:#56b6c2">(</span>T p<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">requires</span> std<span style="color:#bc74c4">::</span>is_same_v<span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">decltype</span><span style="color:#56b6c2">(</span>p<span style="color:#56b6c2">.</span>x<span style="color:#56b6c2">()),</span> <span style="color:#7fbaf5">decltype</span><span style="color:#56b6c2">(</span>p<span style="color:#56b6c2">.</span>y<span style="color:#56b6c2">())</span><span style="color:#bc74c4">&gt;</span><span style="color:#56b6c2">;</span> <span style="color:#3e4460">// Requires T has x() &amp; y() and they return the same types
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#7fbaf5">requires</span> std<span style="color:#bc74c4">::</span>is_arithmetic_v<span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">decltype</span><span style="color:#56b6c2">(</span>p<span style="color:#56b6c2">.</span>x<span style="color:#56b6c2">())</span><span style="color:#bc74c4">&gt;</span><span style="color:#56b6c2">;</span> <span style="color:#3e4460">// ensures the return value can be operated on by C++ math operators 
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#56b6c2">};</span></span></span></code></pre></div>
 <p>Instead of defining a base class Point, we have now defined a Point concept that other classes can mimic as long as they meet all the criteria defined in the concept.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">template</span> &lt;<span style="color:#6ab825;font-weight:bold">typename</span> T&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Point2D</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>        Point2D(T x, T y) : x_{x}, y_{y} {}
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">x</span>() { <span style="color:#6ab825;font-weight:bold">return</span> x_; }
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">y</span>() { <span style="color:#6ab825;font-weight:bold">return</span> y_; }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">private</span>:
-</span></span><span style="display:flex;"><span>        T x_{};
-</span></span><span style="display:flex;"><span>        T y_{};
-</span></span><span style="display:flex;"><span>};
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">template</span> <span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">typename</span> T<span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Point2D</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        Point2D<span style="color:#56b6c2">(</span>T x<span style="color:#56b6c2">,</span> T y<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> x_<span style="color:#56b6c2">{</span>x<span style="color:#56b6c2">},</span> y_<span style="color:#56b6c2">{</span>y<span style="color:#56b6c2">}</span> <span style="color:#56b6c2">{}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">x</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">return</span> x_<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">y</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">return</span> y_<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">private</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        T x_<span style="color:#56b6c2">{};</span>
+</span></span><span style="display:flex;"><span>        T y_<span style="color:#56b6c2">{};</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">dist</span>(Point <span style="color:#6ab825;font-weight:bold">auto</span> p1, Point <span style="color:#6ab825;font-weight:bold">auto</span> p2) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> a = p1.x() - p2.x();
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> b = p1.y() - p2.y();
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> std::sqrt(a*a + b*b);
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">dist</span><span style="color:#56b6c2">(</span>Point <span style="color:#7fbaf5">auto</span> p1<span style="color:#56b6c2">,</span> Point <span style="color:#7fbaf5">auto</span> p2<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">auto</span> a <span style="color:#bc74c4">=</span> p1<span style="color:#56b6c2">.</span>x<span style="color:#56b6c2">()</span> <span style="color:#bc74c4">-</span> p2<span style="color:#56b6c2">.</span>x<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">auto</span> b <span style="color:#bc74c4">=</span> p1<span style="color:#56b6c2">.</span>y<span style="color:#56b6c2">()</span> <span style="color:#bc74c4">-</span> p2<span style="color:#56b6c2">.</span>y<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> std<span style="color:#bc74c4">::</span>sqrt<span style="color:#56b6c2">(</span>a<span style="color:#bc74c4">*</span>a <span style="color:#bc74c4">+</span> b<span style="color:#bc74c4">*</span>b<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    Point2D p1{<span style="color:#3677a9">12.0</span>, <span style="color:#3677a9">14.0</span>};
-</span></span><span style="display:flex;"><span>    Point2D p2{<span style="color:#3677a9">5.0</span>, <span style="color:#3677a9">11.0</span>};
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> e_distance = dist(p1, p2);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    Point2D p1<span style="color:#56b6c2">{</span><span style="color:#56b6c2">12.0</span><span style="color:#56b6c2">,</span> <span style="color:#56b6c2">14.0</span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    Point2D p2<span style="color:#56b6c2">{</span><span style="color:#56b6c2">5.0</span><span style="color:#56b6c2">,</span> <span style="color:#56b6c2">11.0</span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">auto</span> e_distance <span style="color:#bc74c4">=</span> dist<span style="color:#56b6c2">(</span>p1<span style="color:#56b6c2">,</span> p2<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Point2D does not inherit from Point, yet it can be passed to a function that accepts Point because it successfully honors the requirements of the concept Point. We get the convenience of generically using the Point abstraction and the performance of no virtual function indirection!</p>
 <p>Concepts are huge, and something I plan to explore more in the future. I recommend using C++ concepts over the CRTP whenever possible.</p>
 <h3 id="conclusion">Conclusion<a href="#conclusion">

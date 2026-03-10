@@ -60,7 +60,7 @@
 
 
 
-  
+  <meta property="og:see_also" content="//localhost:1313/engineering/why-haskell/" />
   
 
 
@@ -340,6 +340,10 @@
             <li>Lazy Evaluation in Haskell<span class="series-this-post">This post!</span>
               
             </li>
+            <li>
+                <a href="//localhost:1313/engineering/why-haskell/">Why Haskell</a>
+              
+            </li>
         </ol>
       </div>
     
@@ -355,17 +359,17 @@
 <p>Computing the Fibonacci sequence in Haskell can be done in a rather elegant way, mapping over a recursive function that utilizes guard statements for our base cases:</p>
 
 
-  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span><span style="color:#447fcf">fib</span> <span style="color:#6ab825;font-weight:bold">::</span> <span style="color:#6ab825;font-weight:bold">Int</span> <span style="color:#6ab825;font-weight:bold">-&gt;</span> <span style="color:#6ab825;font-weight:bold">Int</span>
-</span></span><span style="display:flex;"><span><span style="color:#447fcf">fib</span> n
-</span></span><span style="display:flex;"><span>  | n == <span style="color:#3677a9">0</span> <span style="color:#6ab825;font-weight:bold">=</span> <span style="color:#3677a9">0</span>
-</span></span><span style="display:flex;"><span>  | n == <span style="color:#3677a9">1</span> <span style="color:#6ab825;font-weight:bold">=</span> <span style="color:#3677a9">1</span>
-</span></span><span style="display:flex;"><span>  | otherwise <span style="color:#6ab825;font-weight:bold">=</span> fib (n - <span style="color:#3677a9">1</span>) + fib (n - <span style="color:#3677a9">2</span>)
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span><span style="color:#57c7ff">fib</span> <span style="color:#bc74c4">::</span> <span style="color:#57c7ff;font-weight:bold">Int</span> <span style="color:#bc74c4">-&gt;</span> <span style="color:#57c7ff;font-weight:bold">Int</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff">fib</span> n
+</span></span><span style="display:flex;"><span>  <span style="color:#bc74c4">|</span> n <span style="color:#bc74c4">==</span> <span style="color:#56b6c2">0</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#bc74c4">|</span> n <span style="color:#bc74c4">==</span> <span style="color:#56b6c2">1</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#bc74c4">|</span> otherwise <span style="color:#bc74c4">=</span> fib <span style="color:#56b6c2">(</span>n <span style="color:#bc74c4">-</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">)</span> <span style="color:#bc74c4">+</span> fib <span style="color:#56b6c2">(</span>n <span style="color:#bc74c4">-</span> <span style="color:#56b6c2">2</span><span style="color:#56b6c2">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#447fcf">fibs</span> <span style="color:#6ab825;font-weight:bold">::</span> [<span style="color:#6ab825;font-weight:bold">Int</span>]
-</span></span><span style="display:flex;"><span><span style="color:#447fcf">fibs</span> <span style="color:#6ab825;font-weight:bold">=</span> map fib [<span style="color:#3677a9">0</span>..]
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff">fibs</span> <span style="color:#bc74c4">::</span> <span style="color:#56b6c2">[</span><span style="color:#57c7ff;font-weight:bold">Int</span><span style="color:#56b6c2">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff">fibs</span> <span style="color:#bc74c4">=</span> map fib <span style="color:#56b6c2">[</span><span style="color:#56b6c2">0</span><span style="color:#bc74c4">..</span><span style="color:#56b6c2">]</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#447fcf">computeList</span> <span style="color:#6ab825;font-weight:bold">::</span> [<span style="color:#6ab825;font-weight:bold">Int</span>]
-</span></span><span style="display:flex;"><span><span style="color:#447fcf">computeList</span> <span style="color:#6ab825;font-weight:bold">=</span> takeWhile (&lt; <span style="color:#3677a9">50</span>) fibs</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff">computeList</span> <span style="color:#bc74c4">::</span> <span style="color:#56b6c2">[</span><span style="color:#57c7ff;font-weight:bold">Int</span><span style="color:#56b6c2">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff">computeList</span> <span style="color:#bc74c4">=</span> takeWhile <span style="color:#56b6c2">(</span><span style="color:#bc74c4">&lt;</span> <span style="color:#56b6c2">50</span><span style="color:#56b6c2">)</span> fibs</span></span></code></pre></div>
 <p>This little piece of code has a few interesting parts to it. Our fib function generates the Fibonacci value for the number given to it. This is an example of tree recursion, branching downward toward our base cases and computing values on the way back up.</p>
 <p>The fib function only computes a single Fibonacci value based on the index we provide it, so we also define a fibs function to generate a list of the entire Fibonacci sequence by mapping fib over an infinite list. In many other programming languages, iterating over an infinite list would be a recipe for disaster. But this is what makes Haskell so unique.</p>
 <p>Haskell is a lazily evaluated language, which means all computation is deferred until the result is actually needed. This is where the computeList function comes in. takeWhile will only evaluate values from the fibs list up to the first one ≥ 50, ensuring that computation does not continue until the end of time.</p>
@@ -379,11 +383,11 @@
 <p>The key to optimizing our algorithm is to keep a running tally of each value as it traverses the sequence:</p>
 
 
-  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span><span style="color:#999;font-style:italic">-- Optimized</span>
-</span></span><span style="display:flex;"><span><span style="color:#447fcf">fibs&#39;</span> <span style="color:#6ab825;font-weight:bold">::</span> [<span style="color:#6ab825;font-weight:bold">Int</span>]
-</span></span><span style="display:flex;"><span><span style="color:#447fcf">fibs&#39;</span> <span style="color:#6ab825;font-weight:bold">=</span> <span style="color:#3677a9">0</span> <span style="color:#6ab825;font-weight:bold">:</span> <span style="color:#3677a9">1</span> <span style="color:#6ab825;font-weight:bold">:</span> helper fibs&#39; (tail fibs&#39;)
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">where</span>
-</span></span><span style="display:flex;"><span>    helper (a<span style="color:#6ab825;font-weight:bold">:</span>as) (b<span style="color:#6ab825;font-weight:bold">:</span>bs) <span style="color:#6ab825;font-weight:bold">=</span> a + b <span style="color:#6ab825;font-weight:bold">:</span> helper as bs</span></span></code></pre></div>
+  <span class="code-language">Haskell</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-Haskell" data-lang="Haskell"><span style="display:flex;"><span><span style="color:#3e4460">-- Optimized</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff">fibs&#39;</span> <span style="color:#bc74c4">::</span> <span style="color:#56b6c2">[</span><span style="color:#57c7ff;font-weight:bold">Int</span><span style="color:#56b6c2">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff">fibs&#39;</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span> <span style="color:#57c7ff;font-weight:bold">:</span> <span style="color:#56b6c2">1</span> <span style="color:#57c7ff;font-weight:bold">:</span> helper fibs&#39; <span style="color:#56b6c2">(</span>tail fibs&#39;<span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#7fbaf5">where</span>
+</span></span><span style="display:flex;"><span>    helper <span style="color:#56b6c2">(</span>a<span style="color:#57c7ff;font-weight:bold">:</span>as<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">(</span>b<span style="color:#57c7ff;font-weight:bold">:</span>bs<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">=</span> a <span style="color:#bc74c4">+</span> b <span style="color:#57c7ff;font-weight:bold">:</span> helper as bs</span></span></code></pre></div>
 <p>Our optimized subroutine starts by hardcoding the first two values of the sequence, since these are fixed. The third value is computed using a cons operation (:), and then calls our helper function, passing in fibs&rsquo; and tail fibs'.</p>
 <p>For many, this looks a little mind-bending at first glance, but here’s how it gets evaluated:</p>
 
@@ -465,6 +469,10 @@ bs = fibs&#39; starting at index 2</code></pre>
           
           <ol>
               <li>Lazy Evaluation in Haskell<span class="series-this-post">This post!</span>
+                
+              </li>
+              <li>
+                  <a href="//localhost:1313/engineering/why-haskell/">Why Haskell</a>
                 
               </li>
           </ol>

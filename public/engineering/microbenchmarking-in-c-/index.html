@@ -474,85 +474,85 @@ make install</code></pre>
 </ol>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>cmake_minimum_required(VERSION <span style="color:#3677a9">3.0</span>)
-</span></span><span style="display:flex;"><span>project(benchmark-test) <span style="color:#a61717;background-color:#e3d2d2">#</span> I was sure to set my CMake path to -DCMAKE_INSTALL_PREFIX=<span style="color:#a61717;background-color:#e3d2d2">$</span>HOME/Desktop/Libraries
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>cmake_minimum_required<span style="color:#56b6c2">(</span>VERSION <span style="color:#56b6c2">3.0</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span>project<span style="color:#56b6c2">(</span>benchmark<span style="color:#bc74c4">-</span>test<span style="color:#56b6c2">)</span> <span style="color:#cf5967">#</span> I was sure to set my CMake path to <span style="color:#bc74c4">-</span>DCMAKE_INSTALL_PREFIX<span style="color:#bc74c4">=</span><span style="color:#cf5967">$</span>HOME<span style="color:#bc74c4">/</span>Desktop<span style="color:#bc74c4">/</span>Libraries
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>set(CMAKE_CXX_STANDARD <span style="color:#3677a9">17</span>)
+</span></span><span style="display:flex;"><span>set<span style="color:#56b6c2">(</span>CMAKE_CXX_STANDARD <span style="color:#56b6c2">17</span><span style="color:#56b6c2">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>find_package(benchmark REQUIRED)
+</span></span><span style="display:flex;"><span>find_package<span style="color:#56b6c2">(</span>benchmark REQUIRED<span style="color:#56b6c2">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>add_executable(benchmark_test main.cpp)
+</span></span><span style="display:flex;"><span>add_executable<span style="color:#56b6c2">(</span>benchmark_test main<span style="color:#56b6c2">.</span>cpp<span style="color:#56b6c2">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>target_link_libraries(benchmark_test benchmark::benchmark)</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>target_link_libraries<span style="color:#56b6c2">(</span>benchmark_test benchmark<span style="color:#bc74c4">::</span>benchmark<span style="color:#56b6c2">)</span></span></span></code></pre></div>
 <ol start="4">
 <li>Lastly was writting my C++ file for benchmarking. For this example I benchmarked a linear and binary search algorithm for a vector. The two functions I am testing (and microbenchmarking against to optimize)</li>
 </ol>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">linear_search</span>(<span style="color:#6ab825;font-weight:bold">const</span> std::vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;&amp; v, <span style="color:#6ab825;font-weight:bold">int</span> key) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (size_t i = <span style="color:#3677a9">0</span>; i &lt; v.size(); i ++) {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (v[i] == key) {
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">true</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">false</span>;
-</span></span><span style="display:flex;"><span>}
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">bool</span> <span style="color:#57c7ff">linear_search</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> std<span style="color:#bc74c4">::</span>vector<span style="color:#bc74c4">&lt;</span><span style="color:#57c7ff;font-weight:bold">int</span><span style="color:#bc74c4">&gt;&amp;</span> v<span style="color:#56b6c2">,</span> <span style="color:#57c7ff;font-weight:bold">int</span> key<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">for</span> <span style="color:#56b6c2">(</span>size_t i <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span> i <span style="color:#bc74c4">&lt;</span> v<span style="color:#56b6c2">.</span>size<span style="color:#56b6c2">();</span> i <span style="color:#bc74c4">++</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span>v<span style="color:#56b6c2">[</span>i<span style="color:#56b6c2">]</span> <span style="color:#bc74c4">==</span> key<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">return</span> <span style="color:#7fbaf5">true</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> <span style="color:#7fbaf5">false</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">binary_search</span>(<span style="color:#6ab825;font-weight:bold">const</span> std::vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;&amp; v, <span style="color:#6ab825;font-weight:bold">int</span> key) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> low = <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> high = v.size() - <span style="color:#3677a9">1</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">while</span> (low &lt;= high) {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">int</span> mid = (high + low) / <span style="color:#3677a9">2</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (v[mid] &lt; key) {
-</span></span><span style="display:flex;"><span>            low = mid + <span style="color:#3677a9">1</span>;
-</span></span><span style="display:flex;"><span>        } <span style="color:#6ab825;font-weight:bold">else</span> <span style="color:#6ab825;font-weight:bold">if</span> (v[mid] &gt; key) {
-</span></span><span style="display:flex;"><span>            high = mid - <span style="color:#3677a9">1</span>;
-</span></span><span style="display:flex;"><span>        } <span style="color:#6ab825;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">true</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">false</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">bool</span> <span style="color:#57c7ff">binary_search</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> std<span style="color:#bc74c4">::</span>vector<span style="color:#bc74c4">&lt;</span><span style="color:#57c7ff;font-weight:bold">int</span><span style="color:#bc74c4">&gt;&amp;</span> v<span style="color:#56b6c2">,</span> <span style="color:#57c7ff;font-weight:bold">int</span> key<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> low <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> high <span style="color:#bc74c4">=</span> v<span style="color:#56b6c2">.</span>size<span style="color:#56b6c2">()</span> <span style="color:#bc74c4">-</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">while</span> <span style="color:#56b6c2">(</span>low <span style="color:#bc74c4">&lt;=</span> high<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">int</span> mid <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">(</span>high <span style="color:#bc74c4">+</span> low<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">/</span> <span style="color:#56b6c2">2</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span>v<span style="color:#56b6c2">[</span>mid<span style="color:#56b6c2">]</span> <span style="color:#bc74c4">&lt;</span> key<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            low <span style="color:#bc74c4">=</span> mid <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span> <span style="color:#7fbaf5">else</span> <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span>v<span style="color:#56b6c2">[</span>mid<span style="color:#56b6c2">]</span> <span style="color:#bc74c4">&gt;</span> key<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            high <span style="color:#bc74c4">=</span> mid <span style="color:#bc74c4">-</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span> <span style="color:#7fbaf5">else</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">return</span> <span style="color:#7fbaf5">true</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> <span style="color:#7fbaf5">false</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>I have this function to build out a vector for testing:</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">gen_vec</span>(<span style="color:#6ab825;font-weight:bold">int</span> n) {
-</span></span><span style="display:flex;"><span>    std::vector&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt; v;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; n; i++) {
-</span></span><span style="display:flex;"><span>        v.push_back(i);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> v;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">gen_vec</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> n<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>vector<span style="color:#bc74c4">&lt;</span><span style="color:#57c7ff;font-weight:bold">int</span><span style="color:#bc74c4">&gt;</span> v<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">for</span> <span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> i <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span> i <span style="color:#bc74c4">&lt;</span> n<span style="color:#56b6c2">;</span> i<span style="color:#bc74c4">++</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        v<span style="color:#56b6c2">.</span>push_back<span style="color:#56b6c2">(</span>i<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> v<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Next I need to build out another function for each piece of code I am testing. This function needs to be static and should take a bechmark::State&amp; parameter. The state will tell me how large the size of the array will be based on parameters I give the framework later using the range() function. Run a for loop through the state and tell the benchmark not to optimize. Finally we will have the framework guess the time complexity by calling the set SetComplexityN() function on the state.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">bm_linear_search</span>(benchmark::State&amp; state) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> n = state.range(<span style="color:#3677a9">0</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> v = gen_vec(n);
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">static</span> <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">bm_linear_search</span><span style="color:#56b6c2">(</span>benchmark<span style="color:#bc74c4">::</span>State<span style="color:#bc74c4">&amp;</span> state<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">auto</span> n <span style="color:#bc74c4">=</span> state<span style="color:#56b6c2">.</span>range<span style="color:#56b6c2">(</span><span style="color:#56b6c2">0</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">auto</span> v <span style="color:#bc74c4">=</span> gen_vec<span style="color:#56b6c2">(</span>n<span style="color:#56b6c2">);</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span> _ : state) {
-</span></span><span style="display:flex;"><span>        benchmark::DoNotOptimize(linear_search(v, n));
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">for</span> <span style="color:#56b6c2">(</span><span style="color:#7fbaf5">auto</span> <span style="color:#cf5967">_</span> <span style="color:#56b6c2">:</span> state<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        benchmark<span style="color:#bc74c4">::</span>DoNotOptimize<span style="color:#56b6c2">(</span>linear_search<span style="color:#56b6c2">(</span>v<span style="color:#56b6c2">,</span> n<span style="color:#56b6c2">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    state.SetComplexityN(n);
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>    state<span style="color:#56b6c2">.</span>SetComplexityN<span style="color:#56b6c2">(</span>n<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">bm_binary_search</span>(benchmark::State&amp; state) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> n = state.range(<span style="color:#3677a9">0</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">auto</span> v = gen_vec(n);
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">static</span> <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">bm_binary_search</span><span style="color:#56b6c2">(</span>benchmark<span style="color:#bc74c4">::</span>State<span style="color:#bc74c4">&amp;</span> state<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">auto</span> n <span style="color:#bc74c4">=</span> state<span style="color:#56b6c2">.</span>range<span style="color:#56b6c2">(</span><span style="color:#56b6c2">0</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">auto</span> v <span style="color:#bc74c4">=</span> gen_vec<span style="color:#56b6c2">(</span>n<span style="color:#56b6c2">);</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">auto</span> _ : state) {
-</span></span><span style="display:flex;"><span>        benchmark::DoNotOptimize(binary_search(v, n));
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">for</span> <span style="color:#56b6c2">(</span><span style="color:#7fbaf5">auto</span> <span style="color:#cf5967">_</span> <span style="color:#56b6c2">:</span> state<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        benchmark<span style="color:#bc74c4">::</span>DoNotOptimize<span style="color:#56b6c2">(</span>binary_search<span style="color:#56b6c2">(</span>v<span style="color:#56b6c2">,</span> n<span style="color:#56b6c2">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    state.SetComplexityN(n);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    state<span style="color:#56b6c2">.</span>SetComplexityN<span style="color:#56b6c2">(</span>n<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>When microbenchmarking, you will not have a main function. Instead pass the functions you will be testing into a BENCHMARK function and then set BENCHMARK_MAIN(). You will see by setting the RangeMultiplier we will get the benchmark to test with a bunch of different input sizes.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>BENCHMARK(bm_linear_search)-&gt;RangeMultiplier(<span style="color:#3677a9">2</span>)-&gt;Range(<span style="color:#3677a9">64</span>,<span style="color:#3677a9">4096</span>)-&gt;Complexity();
-</span></span><span style="display:flex;"><span>BENCHMARK(bm_binary_search)-&gt;RangeMultiplier(<span style="color:#3677a9">2</span>)-&gt;Range(<span style="color:#3677a9">64</span>,<span style="color:#3677a9">4096</span>)-&gt;Complexity();
-</span></span><span style="display:flex;"><span>BENCHMARK_MAIN();</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>BENCHMARK<span style="color:#56b6c2">(</span>bm_linear_search<span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>RangeMultiplier<span style="color:#56b6c2">(</span><span style="color:#56b6c2">2</span><span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>Range<span style="color:#56b6c2">(</span><span style="color:#56b6c2">64</span><span style="color:#56b6c2">,</span><span style="color:#56b6c2">4096</span><span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>Complexity<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>BENCHMARK<span style="color:#56b6c2">(</span>bm_binary_search<span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>RangeMultiplier<span style="color:#56b6c2">(</span><span style="color:#56b6c2">2</span><span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>Range<span style="color:#56b6c2">(</span><span style="color:#56b6c2">64</span><span style="color:#56b6c2">,</span><span style="color:#56b6c2">4096</span><span style="color:#56b6c2">)</span><span style="color:#bc74c4">-&gt;</span>Complexity<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>BENCHMARK_MAIN<span style="color:#56b6c2">();</span></span></span></code></pre></div>
 <ol start="5">
 <li>Once complete, I run:</li>
 </ol>

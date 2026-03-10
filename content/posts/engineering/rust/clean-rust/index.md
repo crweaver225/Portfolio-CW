@@ -6,7 +6,7 @@ description: Practical Applications of Clean Code to the Rust Programming Langua
 slug: Clean Code Rust
 author: Christopher Weaver
 
-draft: true
+draft: false
 date: 2025-02-06T09:38:32-06:00
 lastmod: 2025-02-06T09:38:32-06:00
 publishDate: 2025-02-06T09:38:32-06:00

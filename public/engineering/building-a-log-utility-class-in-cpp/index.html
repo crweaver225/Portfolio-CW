@@ -392,214 +392,214 @@ and found a really cool example of a Logger class that is pretty plug and play f
 <p>Imagine you want to log anytime your utility class has its execute() invoked along with the current state of the utility class. We want a logger class that is both so simple you can easily call log() to write to a specific log file, but flexible enough to take any arbitrary number of arguments to help construct the log entry</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">UtilityClass</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">int</span> flag_ = <span style="color:#3677a9">1</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">int</span> timesInvoked_ = <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>  Logger logger_;
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">UtilityClass</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#57c7ff;font-weight:bold">int</span> flag_ <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#57c7ff;font-weight:bold">int</span> timesInvoked_ <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>  Logger logger_<span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  UtilityClass() : logger_(<span style="color:#ed9d13">&#34;utility_class.log&#34;</span>);
-</span></span><span style="display:flex;"><span>};</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>  UtilityClass<span style="color:#56b6c2">()</span> <span style="color:#bc74c4">:</span> logger_<span style="color:#56b6c2">(</span><span style="color:#82cc6a">&#34;utility_class.log&#34;</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span></span></span></code></pre></div>
 <p>Our utility class will hold onto a Logger member variable that is initailized within the constructor. Our logger class will need an initial string argument that informs the logger where it needs to store the logs written to it. Once this is good to go though, writting logs is pretty simple</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>UtilityClass::execute() {
-</span></span><span style="display:flex;"><span>  logger_-&gt;log(<span style="color:#ed9d13">&#34;%:% %() invoked. flag=%, timesInvoked=% </span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, __FILE__, __LINE__, __FUNCTION__, flag_, ++timesInvoked_);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>UtilityClass<span style="color:#bc74c4">::</span>execute<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  logger_<span style="color:#bc74c4">-&gt;</span>log<span style="color:#56b6c2">(</span><span style="color:#82cc6a">&#34;%:% %() invoked. flag=%, timesInvoked=% </span><span style="color:#56b6c2">\n</span><span style="color:#82cc6a">&#34;</span><span style="color:#56b6c2">,</span> __FILE__<span style="color:#56b6c2">,</span> __LINE__<span style="color:#56b6c2">,</span> __FUNCTION__<span style="color:#56b6c2">,</span> flag_<span style="color:#56b6c2">,</span> <span style="color:#bc74c4">++</span>timesInvoked_<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Thats it. We lay out the text we want to be logged and then pass an arbitrary amount of other arguments to the log function that will replace each instace of %. Our final example will look something like this within our log</p>
 <p>utilityclass.cpp, 12, execute() invoked. flag=true, timesInvoked=1</p>
 <p>This text will live within the .log file we setup when constructing our Logger class. Let us now see how we implement the Logger class.</p>
 <p>We will start with defining our Logger constructor and private members</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Logger</span> {
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Logger</span> <span style="color:#56b6c2">{</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">explicit</span> <span style="color:#447fcf">Logger</span>(<span style="color:#6ab825;font-weight:bold">const</span> std::string &amp;file_name) : file_name_(file_name) {
-</span></span><span style="display:flex;"><span>    file_.open(file_name);
-</span></span><span style="display:flex;"><span>    ASSERT(file_.is_open(), <span style="color:#ed9d13">&#34;Could not open log file:&#34;</span> + file_name);
-</span></span><span style="display:flex;"><span>    logger_thread = std::<span style="color:#6ab825;font-weight:bold">thread</span>(&amp;Logger::flush, <span style="color:#6ab825;font-weight:bold">this</span>);
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#7fbaf5">explicit</span> <span style="color:#57c7ff">Logger</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> std<span style="color:#bc74c4">::</span>string <span style="color:#bc74c4">&amp;</span>file_name<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> file_name_<span style="color:#56b6c2">(</span>file_name<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    file_<span style="color:#56b6c2">.</span>open<span style="color:#56b6c2">(</span>file_name<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    ASSERT<span style="color:#56b6c2">(</span>file_<span style="color:#56b6c2">.</span>is_open<span style="color:#56b6c2">(),</span> <span style="color:#82cc6a">&#34;Could not open log file:&#34;</span> <span style="color:#bc74c4">+</span> file_name<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    logger_thread <span style="color:#bc74c4">=</span> std<span style="color:#bc74c4">::</span><span style="color:#7fbaf5">thread</span><span style="color:#56b6c2">(</span><span style="color:#bc74c4">&amp;</span>Logger<span style="color:#bc74c4">::</span>flush<span style="color:#56b6c2">,</span> <span style="color:#7fbaf5">this</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#999;font-style:italic">// Deleted default, copy &amp; move constructors and assignment-operators.
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>  Logger() = <span style="color:#6ab825;font-weight:bold">delete</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#3e4460">// Deleted default, copy &amp; move constructors and assignment-operators.
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>  Logger<span style="color:#56b6c2">()</span> <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  Logger(<span style="color:#6ab825;font-weight:bold">const</span> Logger &amp;) = <span style="color:#6ab825;font-weight:bold">delete</span>;
+</span></span><span style="display:flex;"><span>  Logger<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Logger <span style="color:#bc74c4">&amp;</span><span style="color:#56b6c2">)</span> <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  Logger(<span style="color:#6ab825;font-weight:bold">const</span> Logger &amp;&amp;) = <span style="color:#6ab825;font-weight:bold">delete</span>;
+</span></span><span style="display:flex;"><span>  Logger<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Logger <span style="color:#bc74c4">&amp;&amp;</span><span style="color:#56b6c2">)</span> <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  Logger &amp;<span style="color:#6ab825;font-weight:bold">operator</span>=(<span style="color:#6ab825;font-weight:bold">const</span> Logger &amp;) = <span style="color:#6ab825;font-weight:bold">delete</span>;
+</span></span><span style="display:flex;"><span>  Logger <span style="color:#bc74c4">&amp;</span><span style="color:#7fbaf5">operator</span><span style="color:#bc74c4">=</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Logger <span style="color:#bc74c4">&amp;</span><span style="color:#56b6c2">)</span> <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  Logger &amp;<span style="color:#6ab825;font-weight:bold">operator</span>=(<span style="color:#6ab825;font-weight:bold">const</span> Logger &amp;&amp;) = <span style="color:#6ab825;font-weight:bold">delete</span>;
+</span></span><span style="display:flex;"><span>  Logger <span style="color:#bc74c4">&amp;</span><span style="color:#7fbaf5">operator</span><span style="color:#bc74c4">=</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Logger <span style="color:#bc74c4">&amp;&amp;</span><span style="color:#56b6c2">)</span> <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">private</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">const</span> std::string file_name_;
-</span></span><span style="display:flex;"><span>    std::ofstream file_;
+</span></span><span style="display:flex;"><span>  <span style="color:#7fbaf5">private</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">const</span> std<span style="color:#bc74c4">::</span>string file_name_<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>ofstream file_<span style="color:#56b6c2">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std::queue&lt;LogElement&gt; queue_;
-</span></span><span style="display:flex;"><span>    std::atomic&lt;<span style="color:#6ab825;font-weight:bold">bool</span>&gt; running_;
-</span></span><span style="display:flex;"><span>    std::<span style="color:#6ab825;font-weight:bold">thread</span> *logger_thread_;
-</span></span><span style="display:flex;"><span>};</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>queue<span style="color:#bc74c4">&lt;</span>LogElement<span style="color:#bc74c4">&gt;</span> queue_<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>atomic<span style="color:#bc74c4">&lt;</span><span style="color:#57c7ff;font-weight:bold">bool</span><span style="color:#bc74c4">&gt;</span> running_<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span><span style="color:#7fbaf5">thread</span> <span style="color:#bc74c4">*</span>logger_thread_<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span></span></span></code></pre></div>
 <p>Our constructor takes in the file name and attempts to open an ofstream file that it has ownership over. Assuming this works, we next start up a thread that runs a function called flush which we will get to shortly. We do not want our Logger class being copied or moved and therefore delete those constructors. Our private member variables include a queue to asynchronously take in new items to write to our log file, an atomic boolean to track if the log should still be running, and our thread to handle writing logs on a backend thread that doesnt bog down any critical processes.</p>
 <p>Before we proceed any further, there are a couple of data structures we will need to define that our logger class will use to handle the different data types it might be passed to log.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">enum</span> <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">LogType</span> : <span style="color:#6ab825;font-weight:bold">int8_t</span> {
-</span></span><span style="display:flex;"><span>  CHAR = <span style="color:#3677a9">0</span>,
-</span></span><span style="display:flex;"><span>  INTEGER = <span style="color:#3677a9">1</span>,
-</span></span><span style="display:flex;"><span>  LONG_INTEGER = <span style="color:#3677a9">2</span>,
-</span></span><span style="display:flex;"><span>  LONG_LONG_INTEGER = <span style="color:#3677a9">3</span>,
-</span></span><span style="display:flex;"><span>  UNSIGNED_INTEGER = <span style="color:#3677a9">4</span>,
-</span></span><span style="display:flex;"><span>  UNSIGNED_LONG_INTEGER = <span style="color:#3677a9">5</span>,
-</span></span><span style="display:flex;"><span>  UNSIGNED_LONG_LONG_INTEGER = <span style="color:#3677a9">6</span>,
-</span></span><span style="display:flex;"><span>  FLOAT = <span style="color:#3677a9">7</span>,
-</span></span><span style="display:flex;"><span>  DOUBLE = <span style="color:#3677a9">8</span>
-</span></span><span style="display:flex;"><span>};
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">enum</span> <span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">LogType</span> <span style="color:#bc74c4">:</span> <span style="color:#57c7ff;font-weight:bold">int8_t</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  CHAR <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">,</span>
+</span></span><span style="display:flex;"><span>  INTEGER <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">,</span>
+</span></span><span style="display:flex;"><span>  LONG_INTEGER <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">2</span><span style="color:#56b6c2">,</span>
+</span></span><span style="display:flex;"><span>  LONG_LONG_INTEGER <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">3</span><span style="color:#56b6c2">,</span>
+</span></span><span style="display:flex;"><span>  UNSIGNED_INTEGER <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">4</span><span style="color:#56b6c2">,</span>
+</span></span><span style="display:flex;"><span>  UNSIGNED_LONG_INTEGER <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">5</span><span style="color:#56b6c2">,</span>
+</span></span><span style="display:flex;"><span>  UNSIGNED_LONG_LONG_INTEGER <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">6</span><span style="color:#56b6c2">,</span>
+</span></span><span style="display:flex;"><span>  FLOAT <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">7</span><span style="color:#56b6c2">,</span>
+</span></span><span style="display:flex;"><span>  DOUBLE <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">struct</span> <span style="color:#447fcf;text-decoration:underline">LogElement</span> {
-</span></span><span style="display:flex;"><span>  LogType type_ = LogType::CHAR;
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">union</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">char</span> c;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> i;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">long</span> l;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#6ab825;font-weight:bold">long</span> ll;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">unsigned</span> u;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> ul;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#6ab825;font-weight:bold">long</span> ull;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">float</span> f;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">double</span> d;
-</span></span><span style="display:flex;"><span>  } u_;
-</span></span><span style="display:flex;"><span>};</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">struct</span> <span style="color:#ecbe7b">LogElement</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  LogType type_ <span style="color:#bc74c4">=</span> LogType<span style="color:#bc74c4">::</span>CHAR<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#7fbaf5">union</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">char</span> c<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> i<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">long</span> l<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">long</span> <span style="color:#57c7ff;font-weight:bold">long</span> ll<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">unsigned</span> u<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">unsigned</span> <span style="color:#57c7ff;font-weight:bold">long</span> ul<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">unsigned</span> <span style="color:#57c7ff;font-weight:bold">long</span> <span style="color:#57c7ff;font-weight:bold">long</span> ull<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">float</span> f<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">double</span> d<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#56b6c2">}</span> u_<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span></span></span></code></pre></div>
 <p>We first construct an enum to represent the different primitive types supported by our logger class. We also construct a LogElement struct that holds two values. The first is the enum of the primitive type stored by the LogElement and the second is a union that stores the actual primitive value. It should be noted an std::variant is a more modern solution to getting similar behavior, but with a performance hit I do not find acceptable in C++.</p>
 <p>We can now look at the implementation details of our flush function.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">flushQueue</span>() <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">while</span> (running_) {
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">flushQueue</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#7fbaf5">while</span> <span style="color:#56b6c2">(</span>running_<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">while</span> (!queue_.empty()) {
-</span></span><span style="display:flex;"><span>      <span style="color:#6ab825;font-weight:bold">auto</span> next = queue_.front();
-</span></span><span style="display:flex;"><span>      queue_.pop();
-</span></span><span style="display:flex;"><span>      <span style="color:#6ab825;font-weight:bold">switch</span> (next-&gt;type_) {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">case</span> LogType::CHAR:
-</span></span><span style="display:flex;"><span>          file_ &lt;&lt; next-&gt;u_.c;
-</span></span><span style="display:flex;"><span>          <span style="color:#6ab825;font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">case</span> LogType::INTEGER:
-</span></span><span style="display:flex;"><span>          file_ &lt;&lt; next-&gt;u_.i;
-</span></span><span style="display:flex;"><span>          <span style="color:#6ab825;font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">case</span> LogType::LONG_INTEGER:
-</span></span><span style="display:flex;"><span>          file_ &lt;&lt; next-&gt;u_.l;
-</span></span><span style="display:flex;"><span>          <span style="color:#6ab825;font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">case</span> LogType::LONG_LONG_INTEGER:
-</span></span><span style="display:flex;"><span>          file_ &lt;&lt; next-&gt;u_.ll;
-</span></span><span style="display:flex;"><span>          <span style="color:#6ab825;font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">case</span> LogType::UNSIGNED_INTEGER:
-</span></span><span style="display:flex;"><span>          file_ &lt;&lt; next-&gt;u_.u;
-</span></span><span style="display:flex;"><span>          <span style="color:#6ab825;font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">case</span> LogType::UNSIGNED_LONG_INTEGER:
-</span></span><span style="display:flex;"><span>          file_ &lt;&lt; next-&gt;u_.ul;
-</span></span><span style="display:flex;"><span>          <span style="color:#6ab825;font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">case</span> LogType::UNSIGNED_LONG_LONG_INTEGER:
-</span></span><span style="display:flex;"><span>          file_ &lt;&lt; next-&gt;u_.ull;
-</span></span><span style="display:flex;"><span>          <span style="color:#6ab825;font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">case</span> LogType::FLOAT:
-</span></span><span style="display:flex;"><span>          file_ &lt;&lt; next-&gt;u_.f;
-</span></span><span style="display:flex;"><span>          <span style="color:#6ab825;font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">case</span> LogType::DOUBLE:
-</span></span><span style="display:flex;"><span>          file_ &lt;&lt; next-&gt;u_.d;
-</span></span><span style="display:flex;"><span>          <span style="color:#6ab825;font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    file_.flush();
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">while</span> <span style="color:#56b6c2">(</span><span style="color:#bc74c4">!</span>queue_<span style="color:#56b6c2">.</span>empty<span style="color:#56b6c2">())</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#7fbaf5">auto</span> next <span style="color:#bc74c4">=</span> queue_<span style="color:#56b6c2">.</span>front<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>      queue_<span style="color:#56b6c2">.</span>pop<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#7fbaf5">switch</span> <span style="color:#56b6c2">(</span>next<span style="color:#bc74c4">-&gt;</span>type_<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">case</span> LogType<span style="color:#bc74c4">::</span><span style="color:#cf5967">CHAR</span><span style="color:#56b6c2">:</span>
+</span></span><span style="display:flex;"><span>          file_ <span style="color:#bc74c4">&lt;&lt;</span> next<span style="color:#bc74c4">-&gt;</span>u_<span style="color:#56b6c2">.</span>c<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#7fbaf5">break</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">case</span> LogType<span style="color:#bc74c4">::</span><span style="color:#cf5967">INTEGER</span><span style="color:#56b6c2">:</span>
+</span></span><span style="display:flex;"><span>          file_ <span style="color:#bc74c4">&lt;&lt;</span> next<span style="color:#bc74c4">-&gt;</span>u_<span style="color:#56b6c2">.</span>i<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#7fbaf5">break</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">case</span> LogType<span style="color:#bc74c4">::</span><span style="color:#cf5967">LONG_INTEGER</span><span style="color:#56b6c2">:</span>
+</span></span><span style="display:flex;"><span>          file_ <span style="color:#bc74c4">&lt;&lt;</span> next<span style="color:#bc74c4">-&gt;</span>u_<span style="color:#56b6c2">.</span>l<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#7fbaf5">break</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">case</span> LogType<span style="color:#bc74c4">::</span><span style="color:#cf5967">LONG_LONG_INTEGER</span><span style="color:#56b6c2">:</span>
+</span></span><span style="display:flex;"><span>          file_ <span style="color:#bc74c4">&lt;&lt;</span> next<span style="color:#bc74c4">-&gt;</span>u_<span style="color:#56b6c2">.</span>ll<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#7fbaf5">break</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">case</span> LogType<span style="color:#bc74c4">::</span><span style="color:#cf5967">UNSIGNED_INTEGER</span><span style="color:#56b6c2">:</span>
+</span></span><span style="display:flex;"><span>          file_ <span style="color:#bc74c4">&lt;&lt;</span> next<span style="color:#bc74c4">-&gt;</span>u_<span style="color:#56b6c2">.</span>u<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#7fbaf5">break</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">case</span> LogType<span style="color:#bc74c4">::</span><span style="color:#cf5967">UNSIGNED_LONG_INTEGER</span><span style="color:#56b6c2">:</span>
+</span></span><span style="display:flex;"><span>          file_ <span style="color:#bc74c4">&lt;&lt;</span> next<span style="color:#bc74c4">-&gt;</span>u_<span style="color:#56b6c2">.</span>ul<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#7fbaf5">break</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">case</span> LogType<span style="color:#bc74c4">::</span><span style="color:#cf5967">UNSIGNED_LONG_LONG_INTEGER</span><span style="color:#56b6c2">:</span>
+</span></span><span style="display:flex;"><span>          file_ <span style="color:#bc74c4">&lt;&lt;</span> next<span style="color:#bc74c4">-&gt;</span>u_<span style="color:#56b6c2">.</span>ull<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#7fbaf5">break</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">case</span> LogType<span style="color:#bc74c4">::</span><span style="color:#cf5967">FLOAT</span><span style="color:#56b6c2">:</span>
+</span></span><span style="display:flex;"><span>          file_ <span style="color:#bc74c4">&lt;&lt;</span> next<span style="color:#bc74c4">-&gt;</span>u_<span style="color:#56b6c2">.</span>f<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#7fbaf5">break</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">case</span> LogType<span style="color:#bc74c4">::</span><span style="color:#cf5967">DOUBLE</span><span style="color:#56b6c2">:</span>
+</span></span><span style="display:flex;"><span>          file_ <span style="color:#bc74c4">&lt;&lt;</span> next<span style="color:#bc74c4">-&gt;</span>u_<span style="color:#56b6c2">.</span>d<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#7fbaf5">break</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    file_<span style="color:#56b6c2">.</span>flush<span style="color:#56b6c2">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#6ab825;font-weight:bold">namespace</span> std::literals::chrono_literals;
-</span></span><span style="display:flex;"><span>    std::this_thread::sleep_for(<span style="color:#3677a9">10</span>ms);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">using</span> <span style="color:#7fbaf5">namespace</span> std<span style="color:#bc74c4">::</span>literals<span style="color:#bc74c4">::</span>chrono_literals<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>this_thread<span style="color:#bc74c4">::</span>sleep_for<span style="color:#56b6c2">(</span><span style="color:#56b6c2">10</span>ms<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>This function will run on a while true loop, confirming with the atomic boolean that it should continue to loop after each iteration. This is fine since, as stated earlier, this function runs on a background thread spun up within the constructor. Each iteration involves pulling all the items from the queue one at a time, checking the type, and writing the correct union value to our ofstream file. Once the queue is cleared, we flush the file and put the thread to sleep for 10ms.</p>
 <p>Next is the most challenging part of our logger class which is the actual log function. Because we want to be able to take an arbitrary number of arguments that can be inserted in place of the % symbol in the string, we will need to utilize a template variadic pack.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">template</span>&lt;<span style="color:#6ab825;font-weight:bold">typename</span> T, <span style="color:#6ab825;font-weight:bold">typename</span>... A&gt;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> log(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">char</span> *s, <span style="color:#6ab825;font-weight:bold">const</span> T &amp;value, A... args) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">while</span> (*s) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">if</span> (*s == <span style="color:#ed9d13">&#39;%&#39;</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#6ab825;font-weight:bold">if</span> (*(s + <span style="color:#3677a9">1</span>) == <span style="color:#ed9d13">&#39;%&#39;</span>) { <span style="color:#999;font-style:italic">// to allow %% -&gt; % escape character.
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        ++s;
-</span></span><span style="display:flex;"><span>      } <span style="color:#6ab825;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>        pushValue(value); <span style="color:#999;font-style:italic">// substitute % with the value specified in the arguments.
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        log(s + <span style="color:#3677a9">1</span>, args...); <span style="color:#999;font-style:italic">// pop an argument and call self recursively.
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        <span style="color:#6ab825;font-weight:bold">return</span>;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    pushValue(*s++);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">template</span><span style="color:#bc74c4">&lt;</span><span style="color:#7fbaf5">typename</span> T<span style="color:#56b6c2">,</span> <span style="color:#7fbaf5">typename</span><span style="color:#56b6c2">...</span> A<span style="color:#bc74c4">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> log<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">char</span> <span style="color:#bc74c4">*</span>s<span style="color:#56b6c2">,</span> <span style="color:#7fbaf5">const</span> T <span style="color:#bc74c4">&amp;</span>value<span style="color:#56b6c2">,</span> A<span style="color:#56b6c2">...</span> args<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#7fbaf5">while</span> <span style="color:#56b6c2">(</span><span style="color:#bc74c4">*</span>s<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span><span style="color:#bc74c4">*</span>s <span style="color:#bc74c4">==</span> <span style="color:#57c7ff">&#39;%&#39;</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#7fbaf5">if</span> <span style="color:#56b6c2">(</span><span style="color:#bc74c4">*</span><span style="color:#56b6c2">(</span>s <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">)</span> <span style="color:#bc74c4">==</span> <span style="color:#57c7ff">&#39;%&#39;</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span> <span style="color:#3e4460">// to allow %% -&gt; % escape character.
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>        <span style="color:#bc74c4">++</span>s<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#56b6c2">}</span> <span style="color:#7fbaf5">else</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        pushValue<span style="color:#56b6c2">(</span>value<span style="color:#56b6c2">);</span> <span style="color:#3e4460">// substitute % with the value specified in the arguments.
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>        log<span style="color:#56b6c2">(</span>s <span style="color:#bc74c4">+</span> <span style="color:#56b6c2">1</span><span style="color:#56b6c2">,</span> args<span style="color:#56b6c2">...);</span> <span style="color:#3e4460">// pop an argument and call self recursively.
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>        <span style="color:#7fbaf5">return</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    pushValue<span style="color:#56b6c2">(</span><span style="color:#bc74c4">*</span>s<span style="color:#bc74c4">++</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Our log function takes a pointer to the beginning of the string we want our log to write to and an arbitrary number of templated arguments. A while loop allows us to iterate the string one memory address at a time until we reach our null terminated string value. We check each character to see if it is a % that requires work to grab the next templated argument to place within our string. We have an edge case where we are actually escaping a % by having two of them in a row. Each iteration of our while loop will end in us calling the pushValue() method. If our character is not a %, then we stay within the scope of the current function and continue to the next loop. If our character matches %, then we will call pushValue() with the next templated argument, which will insert that templated value in our log, and then we call log() again with args&hellip; to ensure our log function gets the next templated argument. Our pushValue function is overloaded to handle all the primitive types supported by our LogType enum</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">char</span> value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(LogElement{LogType::CHAR, {.c = value}});
-</span></span><span style="display:flex;"><span>}
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">char</span> value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>LogElement<span style="color:#56b6c2">{</span>LogType<span style="color:#bc74c4">::</span>CHAR<span style="color:#56b6c2">,</span> <span style="color:#56b6c2">{.</span>c <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">}});</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">int</span> value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(LogElement{LogType::INTEGER, {.i = value}});
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>LogElement<span style="color:#56b6c2">{</span>LogType<span style="color:#bc74c4">::</span>INTEGER<span style="color:#56b6c2">,</span> <span style="color:#56b6c2">{.</span>i <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">}});</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">long</span> value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(LogElement{LogType::LONG_INTEGER, {.l = value}});
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">long</span> value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>LogElement<span style="color:#56b6c2">{</span>LogType<span style="color:#bc74c4">::</span>LONG_INTEGER<span style="color:#56b6c2">,</span> <span style="color:#56b6c2">{.</span>l <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">}});</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#6ab825;font-weight:bold">long</span> value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(LogElement{LogType::LONG_LONG_INTEGER, {.ll = value}});
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">long</span> <span style="color:#57c7ff;font-weight:bold">long</span> value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>LogElement<span style="color:#56b6c2">{</span>LogType<span style="color:#bc74c4">::</span>LONG_LONG_INTEGER<span style="color:#56b6c2">,</span> <span style="color:#56b6c2">{.</span>ll <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">}});</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">unsigned</span> value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(LogElement{LogType::UNSIGNED_INTEGER, {.u = value}});
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">unsigned</span> value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>LogElement<span style="color:#56b6c2">{</span>LogType<span style="color:#bc74c4">::</span>UNSIGNED_INTEGER<span style="color:#56b6c2">,</span> <span style="color:#56b6c2">{.</span>u <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">}});</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(LogElement{LogType::UNSIGNED_LONG_INTEGER, {.ul = value}});
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">unsigned</span> <span style="color:#57c7ff;font-weight:bold">long</span> value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>LogElement<span style="color:#56b6c2">{</span>LogType<span style="color:#bc74c4">::</span>UNSIGNED_LONG_INTEGER<span style="color:#56b6c2">,</span> <span style="color:#56b6c2">{.</span>ul <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">}});</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#6ab825;font-weight:bold">long</span> value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(LogElement{LogType::UNSIGNED_LONG_LONG_INTEGER, {.ull = value}});
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">unsigned</span> <span style="color:#57c7ff;font-weight:bold">long</span> <span style="color:#57c7ff;font-weight:bold">long</span> value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>LogElement<span style="color:#56b6c2">{</span>LogType<span style="color:#bc74c4">::</span>UNSIGNED_LONG_LONG_INTEGER<span style="color:#56b6c2">,</span> <span style="color:#56b6c2">{.</span>ull <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">}});</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">float</span> value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(LogElement{LogType::FLOAT, {.f = value}});
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">float</span> value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>LogElement<span style="color:#56b6c2">{</span>LogType<span style="color:#bc74c4">::</span>FLOAT<span style="color:#56b6c2">,</span> <span style="color:#56b6c2">{.</span>f <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">}});</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">double</span> value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(LogElement{LogType::DOUBLE, {.d = value}});
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">double</span> value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>LogElement<span style="color:#56b6c2">{</span>LogType<span style="color:#bc74c4">::</span>DOUBLE<span style="color:#56b6c2">,</span> <span style="color:#56b6c2">{.</span>d <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">}});</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">char</span> *value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">while</span> (*value) {
-</span></span><span style="display:flex;"><span>    pushValue(*value);
-</span></span><span style="display:flex;"><span>    ++value;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">char</span> <span style="color:#bc74c4">*</span>value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#7fbaf5">while</span> <span style="color:#56b6c2">(</span><span style="color:#bc74c4">*</span>value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    pushValue<span style="color:#56b6c2">(</span><span style="color:#bc74c4">*</span>value<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#bc74c4">++</span>value<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> std::string &amp;value) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  pushValue(value.c_str());
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> std<span style="color:#bc74c4">::</span>string <span style="color:#bc74c4">&amp;</span>value<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  pushValue<span style="color:#56b6c2">(</span>value<span style="color:#56b6c2">.</span>c_str<span style="color:#56b6c2">());</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">auto</span> <span style="color:#447fcf">pushValue</span>(<span style="color:#6ab825;font-weight:bold">const</span> LogElement &amp;log_element) <span style="color:#6ab825;font-weight:bold">noexcept</span> {
-</span></span><span style="display:flex;"><span>  queue_.push(log_element);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">auto</span> <span style="color:#57c7ff">pushValue</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> LogElement <span style="color:#bc74c4">&amp;</span>log_element<span style="color:#56b6c2">)</span> <span style="color:#7fbaf5">noexcept</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  queue_<span style="color:#56b6c2">.</span>push<span style="color:#56b6c2">(</span>log_element<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>The last overloaded function takes the actual LogElement we converted all the other primitive types to and adds it to the queue_. From here, our flushQueue() method running on its own thread will periodically take all LogElement values in the queue_ and add to them our log file.</p>
 <p>Finally, we utilize a destructor on our Logger to clean up</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>~Logger() {
-</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">while</span> (queue_.size()) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#6ab825;font-weight:bold">namespace</span> std::literals::chrono_literals;
-</span></span><span style="display:flex;"><span>    std::this_thread::sleep_for(<span style="color:#3677a9">1</span>s);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  running_ = <span style="color:#24909d">false</span>;
-</span></span><span style="display:flex;"><span>  logger_thread_-&gt;join();
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#bc74c4">~</span>Logger<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#7fbaf5">while</span> <span style="color:#56b6c2">(</span>queue_<span style="color:#56b6c2">.</span>size<span style="color:#56b6c2">())</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">using</span> <span style="color:#7fbaf5">namespace</span> std<span style="color:#bc74c4">::</span>literals<span style="color:#bc74c4">::</span>chrono_literals<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>this_thread<span style="color:#bc74c4">::</span>sleep_for<span style="color:#56b6c2">(</span><span style="color:#56b6c2">1</span>s<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>  running_ <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">false</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>  logger_thread_<span style="color:#bc74c4">-&gt;</span>join<span style="color:#56b6c2">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  file_.close();
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>  file_<span style="color:#56b6c2">.</span>close<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>We wait for the flushQueue method to clean up any items left in our queue_, then we join our threads and close our file.</p>
 <p>The end result is a light logging class that we can use anywhere in our project. A big note of warning, our implementation is not entirely thread safe as it currently sits. Two different places in our code writing to the same log file at the same time could lead to characters being inter-mixed. Additional locks or synchronizations techniques can be included to prevent such issues from occuring.</p>
 <p>Happy logging</p>

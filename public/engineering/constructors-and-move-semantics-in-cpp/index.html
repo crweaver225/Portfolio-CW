@@ -424,7 +424,7 @@ It is fair to say C&#43;&#43; is not explicitly an object-oriented programming l
 </h4><p>This constructor has no arguments and can be automatically synthesized by the compiler if no other user-defined constructor exists.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>Car c; <span style="color:#999;font-style:italic">// Invokes default constructor
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>Car c<span style="color:#56b6c2">;</span> <span style="color:#3e4460">// Invokes default constructor
 </span></span></span></code></pre></div>
 <h4 id="parameterized-constructor">Parameterized Constructor<a href="#parameterized-constructor">
     <svg role="img" aria-labelledby="parameterized-constructor-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -436,70 +436,70 @@ It is fair to say C&#43;&#43; is not explicitly an object-oriented programming l
 </h4><p>The parameterized constructor has one or more arguments. It will accept one or more arguments and will never be synthesized by the compiler. The usage of a parameterized constructor will block the compiler from building a default constructor.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Integer</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">int</span> m_Value;
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">int</span> n_Value;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>        Integer(<span style="color:#6ab825;font-weight:bold">int</span> value) {
-</span></span><span style="display:flex;"><span>            m_Value = value;
-</span></span><span style="display:flex;"><span>            n_Value = <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        Integer(<span style="color:#6ab825;font-weight:bold">int</span> m_Value, <span style="color:#6ab825;font-weight:bold">int</span> n_Value) {
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_Value = m;
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">this</span>-&gt;n_Value = n;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Integer</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">int</span> m_Value<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">int</span> n_Value<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        Integer<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            m_Value <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>            n_Value <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>        Integer<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> m_Value<span style="color:#56b6c2">,</span> <span style="color:#57c7ff;font-weight:bold">int</span> n_Value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">this</span><span style="color:#bc74c4">-&gt;</span>m_Value <span style="color:#bc74c4">=</span> m<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">this</span><span style="color:#bc74c4">-&gt;</span>n_Value <span style="color:#bc74c4">=</span> n<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>The example above overloads the constructor with a couple of different options. Furthermore, you can see in the second constructor there was an ambiguous use of m_Value and n_Value between the named constructor parameters and the class members. To fix that, we use this-&gt; as a pointer to the class that helps the compiler know which value we are referring to. One issue with the code above is it will no longer automatically build a default constructor for us. Attempting to set an Integer i1; will result in a compiler error, even though all the member values should default to zero and work fine. To fix this, we can tell the compiler to build the default constructor</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Integer</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">int</span> m_Value{<span style="color:#3677a9">0</span>};
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">int</span> n_Value{<span style="color:#3677a9">0</span>};
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>        Integer() = <span style="color:#6ab825;font-weight:bold">default</span>;
-</span></span><span style="display:flex;"><span>        Integer(<span style="color:#6ab825;font-weight:bold">int</span> value) {
-</span></span><span style="display:flex;"><span>            m_Value = value;
-</span></span><span style="display:flex;"><span>            n_Value = <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        Integer(<span style="color:#6ab825;font-weight:bold">int</span> m_Value, <span style="color:#6ab825;font-weight:bold">int</span> n_Value) {
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">this</span>-&gt;m_Value = m;
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">this</span>-&gt;n_Value = n;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>};</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Integer</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">int</span> m_Value<span style="color:#56b6c2">{</span><span style="color:#56b6c2">0</span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">int</span> n_Value<span style="color:#56b6c2">{</span><span style="color:#56b6c2">0</span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        Integer<span style="color:#56b6c2">()</span> <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">default</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        Integer<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            m_Value <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>            n_Value <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>        Integer<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> m_Value<span style="color:#56b6c2">,</span> <span style="color:#57c7ff;font-weight:bold">int</span> n_Value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">this</span><span style="color:#bc74c4">-&gt;</span>m_Value <span style="color:#bc74c4">=</span> m<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#7fbaf5">this</span><span style="color:#bc74c4">-&gt;</span>n_Value <span style="color:#bc74c4">=</span> n<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span></span></span></code></pre></div>
 <p>An often despised part of the C++ programming language is implicit conversions. This is something that needs to be looked out for when building constructors as well. Consider this example</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">MyClass</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>     MyClass(<span style="color:#6ab825;font-weight:bold">int</span> x) {
-</span></span><span style="display:flex;"><span>        m_Value = x;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">private</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> m_Value;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">display</span>(<span style="color:#6ab825;font-weight:bold">const</span> MyClass&amp; obj) {
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Do something here
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    display(<span style="color:#3677a9">10</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">MyClass</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>     MyClass<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> x<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        m_Value <span style="color:#bc74c4">=</span> x<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">private</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> m_Value<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">display</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> MyClass<span style="color:#bc74c4">&amp;</span> obj<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Do something here
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    display<span style="color:#56b6c2">(</span><span style="color:#56b6c2">10</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>This example compiles and runs because the compiler will implicitly convert the int 10 into MyClass. This is a scary prospect for a strongly typed language like C++ as it allows our program to be used in ways we did not anticipate or want. In most cases, it is best to mark the constructor as explicit to help ensure these types of conversions are not allowed</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">MyClass</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>     <span style="color:#6ab825;font-weight:bold">explicit</span> MyClass(<span style="color:#6ab825;font-weight:bold">int</span> x) {
-</span></span><span style="display:flex;"><span>        m_Value = x;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">private</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> m_Value;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">display</span>(<span style="color:#6ab825;font-weight:bold">const</span> MyClass&amp; obj) {
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Do something here
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    display(<span style="color:#3677a9">10</span>); <span style="color:#999;font-style:italic">// compiler error, constructor is marked explicit
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">MyClass</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#7fbaf5">explicit</span> MyClass<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> x<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>        m_Value <span style="color:#bc74c4">=</span> x<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">private</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> m_Value<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">display</span><span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> MyClass<span style="color:#bc74c4">&amp;</span> obj<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Do something here
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    display<span style="color:#56b6c2">(</span><span style="color:#56b6c2">10</span><span style="color:#56b6c2">);</span> <span style="color:#3e4460">// compiler error, constructor is marked explicit
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <h4 id="initializer-lists">Initializer Lists<a href="#initializer-lists">
     <svg role="img" aria-labelledby="initializer-lists-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="initializer-lists-IconTitle">Link to this heading</title>
@@ -510,24 +510,24 @@ It is fair to say C&#43;&#43; is not explicitly an object-oriented programming l
 </h4><p>An initializer list in the constructor will initialize member variables to specific values just before the class constructor runs</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>Date::Date(<span style="color:#6ab825;font-weight:bold">int</span> day, <span style="color:#6ab825;font-weight:bold">int</span> month, <span style="color:#6ab825;font-weight:bold">int</span> year) : year_(year) {
-</span></span><span style="display:flex;"><span>    Day(day);
-</span></span><span style="display:flex;"><span>    Month(month);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>Date<span style="color:#bc74c4">::</span>Date<span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> day<span style="color:#56b6c2">,</span> <span style="color:#57c7ff;font-weight:bold">int</span> month<span style="color:#56b6c2">,</span> <span style="color:#57c7ff;font-weight:bold">int</span> year<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> year_<span style="color:#56b6c2">(</span>year<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    Day<span style="color:#56b6c2">(</span>day<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    Month<span style="color:#56b6c2">(</span>month<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>In general, unless an invariant needs to be applied to the argument being passed in, prefer initialization over assignment within the constructor. Initialization sets the value as soon as the object exists, whereas assignment sets the value only after the object comes into being. This means that assignment creates an opportunity to accidentally use a variable before its value is set. Initialization is actually a requirement for const member functions and for many use cases in dynamic polymorphism.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Animal</span> {
-</span></span><span style="display:flex;"><span>    std::string name_;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>        Animal(std::string name);
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">Talk</span>() <span style="color:#6ab825;font-weight:bold">const</span> = <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Dog</span>: <span style="color:#6ab825;font-weight:bold">public</span> Animal {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>        Dog(std::string name) : Animal(name) {};
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">Talk</span>() <span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">override</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Animal</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>string name_<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        Animal<span style="color:#56b6c2">(</span>std<span style="color:#bc74c4">::</span>string name<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#7fbaf5">virtual</span> <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">Talk</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Dog</span><span style="color:#bc74c4">:</span> <span style="color:#7fbaf5">public</span> Animal <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>        Dog<span style="color:#56b6c2">(</span>std<span style="color:#bc74c4">::</span>string name<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> Animal<span style="color:#56b6c2">(</span>name<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{};</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">Talk</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#7fbaf5">override</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Since the Dog inherits from the Animal, C++ requires we first initialize the Animal base class before we finish initializing the Dog.</p>
 <h3 id="copy-constructors">Copy Constructors<a href="#copy-constructors">
     <svg role="img" aria-labelledby="copy-constructors-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -539,26 +539,26 @@ It is fair to say C&#43;&#43; is not explicitly an object-oriented programming l
 </h3><p>C++ supports value and reference semantics for different needs. Passing objects by pointer or reference essentially means passing the memory address of the object so that it can be modified in other scopes. Passing by value means making a copy of the object, data being allocated to a new memory space. When passed by value, any modifications done in one scope will not be reflective in another scope. For primitive data types like int, float, bool, etc, we are safe to almost always pass the variable around by value. But often we must be more careful when working with user-defined objects</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Integer</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> *p_int;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    Integer() { p_int = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">int</span>(<span style="color:#3677a9">0</span>); };
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">explicit</span> <span style="color:#447fcf">Integer</span>(<span style="color:#6ab825;font-weight:bold">int</span> value) : p_int(value) {};
-</span></span><span style="display:flex;"><span>    ~Integer() { <span style="color:#6ab825;font-weight:bold">delete</span> p_int; }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">getValue</span>() <span style="color:#6ab825;font-weight:bold">const</span> { <span style="color:#6ab825;font-weight:bold">return</span> *p_int; };
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setValue</span>(<span style="color:#6ab825;font-weight:bold">int</span> value) { *p_int = value; };
-</span></span><span style="display:flex;"><span>};
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Integer</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#bc74c4">*</span>p_int<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    Integer<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> p_int <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">int</span><span style="color:#56b6c2">(</span><span style="color:#56b6c2">0</span><span style="color:#56b6c2">);</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">explicit</span> <span style="color:#57c7ff">Integer</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> p_int<span style="color:#56b6c2">(</span>value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#bc74c4">~</span>Integer<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">delete</span> p_int<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">getValue</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">return</span> <span style="color:#bc74c4">*</span>p_int<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">setValue</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span> <span style="color:#bc74c4">*</span>p_int <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">Print</span>(Integer i) {
-</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; i.getValue();
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">Print</span><span style="color:#56b6c2">(</span>Integer i<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> i<span style="color:#56b6c2">.</span>getValue<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    Integer i(<span style="color:#3677a9">5</span>);
-</span></span><span style="display:flex;"><span>    Print(i);
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> a = i.getValue();
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    Integer i<span style="color:#56b6c2">(</span><span style="color:#56b6c2">5</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    Print<span style="color:#56b6c2">(</span>i<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> a <span style="color:#bc74c4">=</span> i<span style="color:#56b6c2">.</span>getValue<span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> <span style="color:#56b6c2">0</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Running this code may cause a crash in debug mode. The reason is because of how C++ default copies values when passing by value. By default, C++ does a shallow copy of the object. A new copy of primitive types will be made for the new object to be created, but for dynamically allocated data, C++ will end up copying the pointer to the new object instead of its underlying data. This is problematic when moving data between scopes because the following will happen:</p>
 <ol>
 <li>We create a Integer class in Main() and pass it to the Print() function</li>
@@ -570,24 +570,24 @@ It is fair to say C&#43;&#43; is not explicitly an object-oriented programming l
 <p>We solve this problem by building out copy constructors for deep copies.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Integer</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> *p_int;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    Integer() { p_int = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">int</span>(<span style="color:#3677a9">0</span>); };
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">explicit</span> <span style="color:#447fcf">Integer</span>(<span style="color:#6ab825;font-weight:bold">int</span> value) : p_int(value) {};
-</span></span><span style="display:flex;"><span>    Integer(<span style="color:#6ab825;font-weight:bold">const</span> Integer &amp;obj); <span style="color:#999;font-style:italic">// Copy Constructor
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    Integer &amp; <span style="color:#6ab825;font-weight:bold">operator</span> = (<span style="color:#6ab825;font-weight:bold">const</span> Integer *obj); <span style="color:#999;font-style:italic">// Copy Assignment
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    ~Integer() { <span style="color:#6ab825;font-weight:bold">delete</span> p_int; }
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">getValue</span>() <span style="color:#6ab825;font-weight:bold">const</span> { <span style="color:#6ab825;font-weight:bold">return</span> *p_int; };
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setValue</span>(<span style="color:#6ab825;font-weight:bold">int</span> value) { *p_int = value; };
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>Integer::Integer(<span style="color:#6ab825;font-weight:bold">const</span> Integer &amp;obj) {
-</span></span><span style="display:flex;"><span>    p_int = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">int</span>(obj.p_int);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>Integer&amp; Integer::<span style="color:#6ab825;font-weight:bold">operator</span> = (<span style="color:#6ab825;font-weight:bold">const</span> Integer &amp;obj) {
-</span></span><span style="display:flex;"><span>    p_int = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">int</span>(obj.p_int);
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> *<span style="color:#6ab825;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Integer</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#bc74c4">*</span>p_int<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    Integer<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> p_int <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">int</span><span style="color:#56b6c2">(</span><span style="color:#56b6c2">0</span><span style="color:#56b6c2">);</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">explicit</span> <span style="color:#57c7ff">Integer</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> p_int<span style="color:#56b6c2">(</span>value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{};</span>
+</span></span><span style="display:flex;"><span>    Integer<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Integer <span style="color:#bc74c4">&amp;</span>obj<span style="color:#56b6c2">);</span> <span style="color:#3e4460">// Copy Constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    Integer <span style="color:#bc74c4">&amp;</span> <span style="color:#7fbaf5">operator</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Integer <span style="color:#bc74c4">*</span>obj<span style="color:#56b6c2">);</span> <span style="color:#3e4460">// Copy Assignment
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#bc74c4">~</span>Integer<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">delete</span> p_int<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">getValue</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">return</span> <span style="color:#bc74c4">*</span>p_int<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">setValue</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span> <span style="color:#bc74c4">*</span>p_int <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>Integer<span style="color:#bc74c4">::</span>Integer<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Integer <span style="color:#bc74c4">&amp;</span>obj<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    p_int <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">int</span><span style="color:#56b6c2">(</span>obj<span style="color:#56b6c2">.</span>p_int<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>Integer<span style="color:#bc74c4">&amp;</span> Integer<span style="color:#bc74c4">::</span><span style="color:#7fbaf5">operator</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Integer <span style="color:#bc74c4">&amp;</span>obj<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    p_int <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">int</span><span style="color:#56b6c2">(</span>obj<span style="color:#56b6c2">.</span>p_int<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> <span style="color:#bc74c4">*</span><span style="color:#7fbaf5">this</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>Once these two constructors are built, the Integer class can safely be passed around by value without concern since a deep copy of the entire object will now be generated. When we pass the Integer class to the Print() function, the user-defined copy constructor will be called instead of the compiler-generated one which by default does the shallow copy.</p>
 <h3 id="l-and-r-values">L and R Values<a href="#l-and-r-values">
     <svg role="img" aria-labelledby="l-and-r-values-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -612,35 +612,35 @@ It is fair to say C&#43;&#43; is not explicitly an object-oriented programming l
 </ol>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// Below, x is the l value and 12 is the r value
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">int</span> x = <span style="color:#3677a9">12</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> y = <span style="color:#3677a9">10</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> z = <span style="color:#3677a9">8</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// (x + y) is an express that returns a r-value
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">int</span> result = (x + y) + z;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// Below, x is the l value and 12 is the r value
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#57c7ff;font-weight:bold">int</span> x <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">12</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> y <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">10</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> z <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">8</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3e4460">// (x + y) is an express that returns a r-value
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    <span style="color:#57c7ff;font-weight:bold">int</span> result <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">(</span>x <span style="color:#bc74c4">+</span> y<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">+</span> z<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>We also need to differentiate between l-value references and r-value references</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> &amp;x = <span style="color:#3677a9">12</span>; <span style="color:#999;font-style:italic">// l-value reference
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">int</span> &amp;&amp;y = <span style="color:#3677a9">14</span>; <span style="color:#999;font-style:italic">// r-value reference
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">int</span> &amp;z = y; <span style="color:#999;font-style:italic">// const l-value reference
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#bc74c4">&amp;</span>x <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">12</span><span style="color:#56b6c2">;</span> <span style="color:#3e4460">// l-value reference
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#bc74c4">&amp;&amp;</span>y <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">14</span><span style="color:#56b6c2">;</span> <span style="color:#3e4460">// r-value reference
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#7fbaf5">const</span> <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#bc74c4">&amp;</span>z <span style="color:#bc74c4">=</span> y<span style="color:#56b6c2">;</span> <span style="color:#3e4460">// const l-value reference
 </span></span></span></code></pre></div>
 <p>l-value references can only ever bind to l-values unless the reference is marked const. r-value references can only every bind to temporaries (r-values). The syntax here allows us to detect r-values in our code so that we can properly handle them.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">Print</span>(<span style="color:#6ab825;font-weight:bold">int</span> &amp;i) {
-</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; i;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">Print</span>(<span style="color:#6ab825;font-weight:bold">int</span> &amp;&amp;i) {
-</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; i;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> x = <span style="color:#3677a9">12</span>;
-</span></span><span style="display:flex;"><span>    Print(x); <span style="color:#999;font-style:italic">// This will call Print(int &amp;i)
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    Print(<span style="color:#3677a9">3</span>); <span style="color:#999;font-style:italic">// This will call Print(int &amp;&amp;i). It would also call Print(const int &amp;i) if that existed and r-value reference did not. 
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">Print</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#bc74c4">&amp;</span>i<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> i<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">Print</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#bc74c4">&amp;&amp;</span>i<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> i<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> x <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">12</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    Print<span style="color:#56b6c2">(</span>x<span style="color:#56b6c2">);</span> <span style="color:#3e4460">// This will call Print(int &amp;i)
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    Print<span style="color:#56b6c2">(</span><span style="color:#56b6c2">3</span><span style="color:#56b6c2">);</span> <span style="color:#3e4460">// This will call Print(int &amp;&amp;i). It would also call Print(const int &amp;i) if that existed and r-value reference did not. 
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <h3 id="move-semantics">Move Semantics<a href="#move-semantics">
     <svg role="img" aria-labelledby="move-semantics-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="move-semantics-IconTitle">Link to this heading</title>
@@ -670,29 +670,29 @@ It is fair to say C&#43;&#43; is not explicitly an object-oriented programming l
 <p>This will invalidate the original object since it no longer has a correct pointer to its dynamic data, but this is usually of no concern since it is a temporary (r-value) anyway. By adding overloaded constructors for r-values in our object, we can support moving these objects as r-values and improve the performance of our program</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Integer</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> *p_int;
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">public</span>:
-</span></span><span style="display:flex;"><span>    Integer() { p_int = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">int</span>(<span style="color:#3677a9">0</span>); };
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">explicit</span> <span style="color:#447fcf">Integer</span>(<span style="color:#6ab825;font-weight:bold">int</span> value) : p_int(value) {};
-</span></span><span style="display:flex;"><span>    Integer(<span style="color:#6ab825;font-weight:bold">const</span> Integer &amp;obj); <span style="color:#999;font-style:italic">// Copy Constructor
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    Integer &amp; <span style="color:#6ab825;font-weight:bold">operator</span> = (<span style="color:#6ab825;font-weight:bold">const</span> Integer &amp;obj); <span style="color:#999;font-style:italic">// Copy Assignment
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    Integer(Integer &amp;&amp;obj);
-</span></span><span style="display:flex;"><span>    Integer&amp; <span style="color:#6ab825;font-weight:bold">operator</span> = (Integer &amp;&amp;obj);
-</span></span><span style="display:flex;"><span>    ~Integer() { <span style="color:#6ab825;font-weight:bold">delete</span> p_int; }
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Integer</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#bc74c4">*</span>p_int<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7fbaf5">public</span><span style="color:#bc74c4">:</span>
+</span></span><span style="display:flex;"><span>    Integer<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> p_int <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">int</span><span style="color:#56b6c2">(</span><span style="color:#56b6c2">0</span><span style="color:#56b6c2">);</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">explicit</span> <span style="color:#57c7ff">Integer</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> p_int<span style="color:#56b6c2">(</span>value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{};</span>
+</span></span><span style="display:flex;"><span>    Integer<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Integer <span style="color:#bc74c4">&amp;</span>obj<span style="color:#56b6c2">);</span> <span style="color:#3e4460">// Copy Constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    Integer <span style="color:#bc74c4">&amp;</span> <span style="color:#7fbaf5">operator</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Integer <span style="color:#bc74c4">&amp;</span>obj<span style="color:#56b6c2">);</span> <span style="color:#3e4460">// Copy Assignment
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    Integer<span style="color:#56b6c2">(</span>Integer <span style="color:#bc74c4">&amp;&amp;</span>obj<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    Integer<span style="color:#bc74c4">&amp;</span> <span style="color:#7fbaf5">operator</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">(</span>Integer <span style="color:#bc74c4">&amp;&amp;</span>obj<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#bc74c4">~</span>Integer<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">delete</span> p_int<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">getValue</span>() <span style="color:#6ab825;font-weight:bold">const</span> { <span style="color:#6ab825;font-weight:bold">return</span> *p_int; };
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">setValue</span>(<span style="color:#6ab825;font-weight:bold">int</span> value) { *p_int = value; };
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>Integer::Integer(Integer &amp;&amp;obj) {
-</span></span><span style="display:flex;"><span>    p_int = obj.p_int;
-</span></span><span style="display:flex;"><span>    obj.p_int = <span style="color:#6ab825;font-weight:bold">nullptr</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>Integer&amp; Integer::<span style="color:#6ab825;font-weight:bold">operator</span> = (Integer &amp;&amp;obj) {
-</span></span><span style="display:flex;"><span>    p_int = obj.p_int;
-</span></span><span style="display:flex;"><span>    obj.p_int = <span style="color:#6ab825;font-weight:bold">nullptr</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> *<span style="color:#6ab825;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">getValue</span><span style="color:#56b6c2">()</span> <span style="color:#7fbaf5">const</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">return</span> <span style="color:#bc74c4">*</span>p_int<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">setValue</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span> <span style="color:#bc74c4">*</span>p_int <span style="color:#bc74c4">=</span> value<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>Integer<span style="color:#bc74c4">::</span>Integer<span style="color:#56b6c2">(</span>Integer <span style="color:#bc74c4">&amp;&amp;</span>obj<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    p_int <span style="color:#bc74c4">=</span> obj<span style="color:#56b6c2">.</span>p_int<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    obj<span style="color:#56b6c2">.</span>p_int <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">nullptr</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span>Integer<span style="color:#bc74c4">&amp;</span> Integer<span style="color:#bc74c4">::</span><span style="color:#7fbaf5">operator</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">(</span>Integer <span style="color:#bc74c4">&amp;&amp;</span>obj<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    p_int <span style="color:#bc74c4">=</span> obj<span style="color:#56b6c2">.</span>p_int<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    obj<span style="color:#56b6c2">.</span>p_int <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">nullptr</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">return</span> <span style="color:#bc74c4">*</span><span style="color:#7fbaf5">this</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>With these new constructors in place, when passing an Integer to a function by value where that function will return an Integer itself, we should no longer expect the deep copy from the copy constructor to be performed. Instead, the Integer within the Print() function will be returned as an r-value and efficiently moved back to the main() function as the returned Integer (this ignores that C++ often avoids all this using copy elision).</p>
 <h3 id="the-rule-of-5">The Rule of 5<a href="#the-rule-of-5">
     <svg role="img" aria-labelledby="the-rule-of-5-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -723,25 +723,25 @@ It is fair to say C&#43;&#43; is not explicitly an object-oriented programming l
 </ol>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Integer</span> {
-</span></span><span style="display:flex;"><span>    Integer() { p_int = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">int</span>(<span style="color:#3677a9">0</span>); };
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">explicit</span> <span style="color:#447fcf">Integer</span>(<span style="color:#6ab825;font-weight:bold">int</span> value) : p_int(value) {};
-</span></span><span style="display:flex;"><span>    Integer(<span style="color:#6ab825;font-weight:bold">const</span> Integer &amp;obj) = <span style="color:#6ab825;font-weight:bold">delete</span>; <span style="color:#999;font-style:italic">// Copy Constructor
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    Integer &amp; <span style="color:#6ab825;font-weight:bold">operator</span> = (<span style="color:#6ab825;font-weight:bold">const</span> Integer &amp;obj) = <span style="color:#6ab825;font-weight:bold">delete</span>; <span style="color:#999;font-style:italic">// Copy Assignment
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    Integer(Integer &amp;&amp;obj);
-</span></span><span style="display:flex;"><span>    Integer&amp; <span style="color:#6ab825;font-weight:bold">operator</span> = (Integer &amp;&amp;obj);
-</span></span><span style="display:flex;"><span>    ~Integer() { <span style="color:#6ab825;font-weight:bold">delete</span> p_int; }
-</span></span><span style="display:flex;"><span>};</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#7fbaf5">class</span> <span style="color:#ecbe7b">Integer</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    Integer<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> p_int <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">new</span> <span style="color:#57c7ff;font-weight:bold">int</span><span style="color:#56b6c2">(</span><span style="color:#56b6c2">0</span><span style="color:#56b6c2">);</span> <span style="color:#56b6c2">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7fbaf5">explicit</span> <span style="color:#57c7ff">Integer</span><span style="color:#56b6c2">(</span><span style="color:#57c7ff;font-weight:bold">int</span> value<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">:</span> p_int<span style="color:#56b6c2">(</span>value<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{};</span>
+</span></span><span style="display:flex;"><span>    Integer<span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Integer <span style="color:#bc74c4">&amp;</span>obj<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">;</span> <span style="color:#3e4460">// Copy Constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    Integer <span style="color:#bc74c4">&amp;</span> <span style="color:#7fbaf5">operator</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">(</span><span style="color:#7fbaf5">const</span> Integer <span style="color:#bc74c4">&amp;</span>obj<span style="color:#56b6c2">)</span> <span style="color:#bc74c4">=</span> <span style="color:#7fbaf5">delete</span><span style="color:#56b6c2">;</span> <span style="color:#3e4460">// Copy Assignment
+</span></span></span><span style="display:flex;"><span><span style="color:#3e4460"></span>    Integer<span style="color:#56b6c2">(</span>Integer <span style="color:#bc74c4">&amp;&amp;</span>obj<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    Integer<span style="color:#bc74c4">&amp;</span> <span style="color:#7fbaf5">operator</span> <span style="color:#bc74c4">=</span> <span style="color:#56b6c2">(</span>Integer <span style="color:#bc74c4">&amp;&amp;</span>obj<span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#bc74c4">~</span>Integer<span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span> <span style="color:#7fbaf5">delete</span> p_int<span style="color:#56b6c2">;</span> <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">};</span></span></span></code></pre></div>
 <p>When this is done, we have no choice but to pass an object by r-value only. But how can you do this? C++ supports forcing an object to be an r-value by using the std::move() feature.</p>
 
 
-  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">Print</span>(Integer i) {
-</span></span><span style="display:flex;"><span>    std::cout &lt;&lt; i;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
-</span></span><span style="display:flex;"><span>    Integer ii(<span style="color:#3677a9">1</span>);
-</span></span><span style="display:flex;"><span>    Print(std::move(ii));
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  <span class="code-language">C&#43;&#43;</span><div class="highlight"><pre tabindex="0" style="color:#c9c9c9;background-color:#282c34;-moz-tab-size:3;-o-tab-size:3;tab-size:3;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">void</span> <span style="color:#57c7ff">Print</span><span style="color:#56b6c2">(</span>Integer i<span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#bc74c4">::</span>cout <span style="color:#bc74c4">&lt;&lt;</span> i<span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#57c7ff;font-weight:bold">int</span> <span style="color:#57c7ff">main</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span>    Integer ii<span style="color:#56b6c2">(</span><span style="color:#56b6c2">1</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span>    Print<span style="color:#56b6c2">(</span>std<span style="color:#bc74c4">::</span>move<span style="color:#56b6c2">(</span>ii<span style="color:#56b6c2">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">}</span></span></span></code></pre></div>
 <p>std::move() forces the object to use the move constructor when creating the i Integer within the Print function instead of the copy constructor. The pro of this is the efficiency we gain from such an operation, the negative is if we try to use the ii variable after calling the Print function in main(), we will likely have undefined behavior since its data has been moved.</p>
 
     </article>

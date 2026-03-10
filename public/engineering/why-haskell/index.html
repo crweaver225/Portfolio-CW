@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:1313/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:1313/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>Why Haskell | Christopher Weaver</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="Portfolio site of Christopher Weaver.">
+<link rel="canonical" href="//localhost:1313/engineering/why-haskell/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why Haskell">
+<meta property="og:description" content="It is a phrase as old as time. A reductio ad absurdum recited by parents to their children in one form or another in households across the globe. If your friends jump off a bridge, would you jump too? The question is rhetorical of course, at least in most cases, and is designed to encourage kids to refrain from engaging in poor behavior in the face of peer pressure. But at a deeper level, this question is meant to cast doubt on the wisom of the crowd. Is it always true that decisions made by larger groups of individuals tend to be better than those of a single expert? As a child growing up at the height of popularity for the tv show Who Wants to be a Millionaire?, we all knew it was generally a good choice to lean on your lifelife to ask the audience when in doubt. Some studies found that the audience on that show was correct an astrounding 91% of the time. So there is wisdom it in the herd, but does that mean we follow them off the bridge?">
+<meta property="og:url" content="//localhost:1313/engineering/why-haskell/">
+<meta property="article:published_time" content="2026-02-20T09:38:32-06:00">
+  <meta property="article:modified_time" content="2026-02-20T09:38:32-06:00">
+  
+
+
+  <meta name="og:image" content="//localhost:1313/images/default.png"/>
+
+
+
+
+
+  <meta property="og:see_also" content="//localhost:1313/engineering/lazy-evaluation-in-haskell/" />
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Why Haskell">
+<meta name="twitter:description" content="It is a phrase as old as time. A reductio ad absurdum recited by parents to their children in one form or another in households across the globe. If your friends jump off a bridge, would you jump too? The question is rhetorical of course, at least in most cases, and is designed to encourage kids to refrain from engaging in poor behavior in the face of peer pressure. But at a deeper level, this question is meant to cast doubt on the wisom of the crowd. Is it always true that decisions made by larger groups of individuals tend to be better than those of a single expert? As a child growing up at the height of popularity for the tv show Who Wants to be a Millionaire?, we all knew it was generally a good choice to lean on your lifelife to ask the audience when in doubt. Some studies found that the audience on that show was correct an astrounding 91% of the time. So there is wisdom it in the herd, but does that mean we follow them off the bridge?">
+
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="//localhost:1313/images/default.png"/>
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:1313/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:1313/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:1313/#/schema/image/1",
+        "url": "//localhost:1313/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:1313/#/schema/website/1",
+      "url": "//localhost:1313/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:1313/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:1313/engineering/why-haskell/",
+      "url": "//localhost:1313/engineering/why-haskell/",
+      "name": "Why Haskell",
+      "description": "Portfolio site of Christopher Weaver.",
+      "isPartOf": {
+        "@id": "//localhost:1313/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:1313/#/schema/person/1"
+      },
+      "datePublished": "2026-02-20T09:38:32-06:00",
+      "dateModified": "2026-02-20T09:38:32-06:00",
+      "breadcrumb": {
+        "@id": "//localhost:1313/engineering/why-haskell/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:1313/engineering/why-haskell/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:1313/engineering/why-haskell/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:1313/engineering/why-haskell/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:1313/",
+          "url": "//localhost:1313/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:1313/engineering/",
+          "url": "//localhost:1313/engineering/",
+          "name": "Engineering"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:1313/engineering/why-haskell/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:1313/#/schema/article/1",
+          "headline": "Why Haskell",
+          "description": "",
+          "isPartOf": {
+            "@id": "//localhost:1313/engineering/why-haskell/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:1313/engineering/why-haskell/"
+          },
+          "datePublished": "2026-02-20T09:38:32-06:00",
+          "dateModified": "2026-02-20T09:38:32-06:00",
+          "author": {
+            "@id": "//localhost:1313/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:1313/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:1313/engineering/why-haskell/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:1313/engineering/why-haskell/#/schema/image/2",
+          "url": "//localhost:1313/images/default.png",
+          "contentUrl": "//localhost:1313/images/default.png",
+          "caption": "Why Haskell"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+  
+
+  
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:1313/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Why Haskell</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Feb 20, 2026&nbsp;&middot;&nbsp;8 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="//localhost:1313/categories/engineering/">Engineering</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc"></p>
+    <div class="single-terms">
+      
+      
+      <a class="term" href="//localhost:1313/tags/haskell/">Haskell</a></li>
+      
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents"></nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+      <div class="series">
+        <p>Part of the <a href="//localhost:1313/series/haskell/">Haskell</a> series:</p>
+        
+        <ol class="series-list">
+            <li>
+                <a href="//localhost:1313/engineering/lazy-evaluation-in-haskell/">Lazy Evaluation in Haskell</a>
+              
+            </li>
+            <li>Why Haskell<span class="series-this-post">This post!</span>
+              
+            </li>
+        </ol>
+      </div>
+    
+    <div class="single-feature-img">
+
+
+
+  
+
+</div>
+    <article class="markdown">
+        <p>It is a phrase as old as time. A reductio ad absurdum recited by parents to their children in one form or another in households across the globe. <em>If your friends jump off a bridge, would you jump too?</em> The question is rhetorical of course, at least in most cases, and is designed to encourage kids to refrain from engaging in poor behavior in the face of peer pressure. But at a deeper level, this question is meant to cast doubt on the wisom of the crowd. Is it always true that decisions made by larger groups of individuals tend to be better than those of a single expert? As a child growing up at the height of popularity for the tv show <em>Who Wants to be a Millionaire?</em>, we all knew it was generally a good choice to lean on your lifelife to ask the audience when in doubt. Some studies found that the audience on that show was correct an astrounding 91% of the time. So there is wisdom it in the herd, but does that mean we follow them off the bridge?</p>
+<p>Enough with all this talk of bridges and hypothetical ponderings about ones mode of exiting from said bridges. There are more concrete examples where the wisdom of the herd frames and influences the decisions we make. Wearing a toga during summer months may sounds like a great way to keep cool and increase airflow to areas of the body most desperate for it, but we dont do it. Can the same be said for our technology stacks? In the 2025 Stack Overflow survey of most programming langauges, we see JavaScript and Python absolutely dominate the list in popularity. Java, C#, and C++ remain frequently popular as well within the second tier. New languages like Rust, Go, Swift, and Dart have all found solid footing in the software development world and have consistently been grabbing a larger share of the amount of software powered by their technologies. Where on this list does Haskell fall? It does not even make the list. The cutoff apparently is at COBOL at 1.1%. COBOL, the antiquated language of the 1960&rsquo;s, now largely relagated to a few mainframes in goverment offices and banks makes the list while Haskell does not even receive an honorable mention.
+
+	
+	
+	<img src="/engineering/why-haskell/plsurveys.png"
+	width="800"
+	height="904"
+	
+	alt="Popular Programming Languages Survey"  title="Survey Results" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+
+The popularity of Haskell certainly leaves something to be desired. Its use in industry is so small one would be forgiven in thinking it a dead language. In fact, that often appears to be peoples understanding of Haskells standing when I tell people I make a living writing Haskell for industrial applications. I am often met with a quizzical look and some response along the lines of &ldquo;I did not know anyone still used Haskell outside of university research labs&rdquo;. Mea culpa for breaking their world model of software development. Haskell is alive. Small, but alive.</p>
+<p>For me, Haskell was a choice. I was well aware its footprint in the corporate world was very small. I was aware career opportunities would be limited. And yet I choose to spend countless personal free time learning the technology and reorienting my career trajectory towards the language and its niche usage in the world of professional software development. I can defend my decision. But I face a steep hill in doing so. Certainly Haskell&rsquo;s lack of use compared to popular programming languages like Python, JavaScript, and C++ is not purely coincidental. In the marketplace of programming languages, businesses and engineers choose the language that best helps meet their ends. Their choice of programming langauge often has massive implications for the health of their organization and software. These choices cannot be arbitrary. Certainly this suggests Haskells lack of use means its a poorly designed language that cannot deliver as a useful engineering tool for developers and industry. All of software development jumped off the bridge in pursuit of Python, JavaScript, and Java; how can I justify not following them?</p>
+<p>When I was a kid, one of my favorite places to be was Space Mountain at Disney&rsquo;s Magic Kingdom in Tomorrowland. The ride was enclosed by a domineering and yet sleek retro-futuristic building. A combination of sharp lines and geometric curves invoked a inspirational view of technology and the future. The technology within the ride was meant to be an invisible part of the infrustructure. Present and powerful, yet largely relegated to working behind the scenes and in a way that that lends itself to almost being forgetable. This was the hopeful future of technology I always found compelling. Not a kaleidoscope of screens, dashboards, chatbots, and other technological noise front and center for people to engage with. Not the cyberpunk world of present with all the blinking lights, screens, and avalanche of information. The retro-futuristic technology I enviosioned clean, pure, and reliable. Like the Space Mountain building itself, it would be something you can marvel at both because of its sophistication and because of its simplicity. Its technology that just works, and it works without need of attention, but instead quietly serves its purpose with a quiet hum that extends infinitely into the future. This is what Haskell is. This is the future Haskell offers to those ready and willing to take up its torch and build with it.</p>
+<p>Haskell is a paradigm shift. Its a different way of building computer systems. A better way. Marketed as a pure functional programming language, Haskell lives in a realm where software is desired as both a means to an end, and an end within itself. Yes, Haskell is used to write programs that business can leverage to serve their customers and employees. In that way, it is a means to an end where engineers using the language must consistently engage in pragmatism and balancing out different tradeoffs between different choices on how the software is built. As Claude so recently told me during my evaluation on how to solve a specific problem I was facing at work, even in Haskell, sometimes pragmatism need win over purity and elegant architecture. But Haskell by its very nature often feels like an end within itself. It encourages engineers to write software using syntactic structure that is within itself beautiful. It nudges developers towards solutions that are concise, maintainable, and less fundamentally brittle than is often pursued by engineers working in other programming languages. By way of analogy, Haskell is the empire state building whereas other popular programming languages are the Sears tower<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Both functionally work as large buildings that provide vast amounts of usable indoor space while only taking up a very small amount of actual land. But the Empire State Building offers an architectural grandeur in its Art Deco style that the Sears tower simply does not have.</p>
+<p>So what is it that makes Haskell unique? Repeated as nauseum across many hundreds of different blog posts on the manner, Haskell is generally marketed as a functional programming language that offers programatic purity in a way no other language can. The emphasis on this is not misplaced. Functional programming concepts continue to drive a large amount of the evolution programming languages have adopted over the past decade or so. The enthuisiam for object oriented programming has waned to a suprising degree as the promise of easily mapping problem domains to inheritance structures failed. Programming languages like Java and C++ have added things like anonymous llamda functions and composable higher ordered functions to their tool belt. These new features are generally celebrated as better, more modern, ways of programming within the literature. At least, that has been my impression for reading much of the newest books and tutorials written on C++ in the past decade or so.</p>
+<p>Functional programming clears away much of the clunky organizational specific abstractions that get built with the intention of mapping domains in a way that is easier for teams of developers to intuit. In theory, objects in a program can encapsulate much of the complexity behind simple interfaces and allow different teams to leverage the power of these objects without ever needing to understand that complexity behind the curtain. In reality, objects awkwards map to the problems business are trying to solve. Complex hierarchies of inheritance get built to alleviate this awkwardice that increase programmic indirection and blow up the limited context window of the engineer trying to comprehend how everything maps to one another. Worse yet is that these objects possess state within them that often leads to unexpected runtime behavior. Much like in the Wizard of Oz, object oriented programming asks that we refrain from peeking behind the curtain and trust that all is at it appears to be. And it is true that ignorance is often bliss, that is until you receive that call at 3 am that the system is down and you wonder to yourself if the Emerald city might have built it foundations on sinking sand.</p>
+<p>Haskell promises something quite different. Purity in the form of immutability.</p>
+<p>Footnotes</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Please do not come at me with comments that it is now the Willis Tower. Your correction will fall upon deaf ears. It will always be the Sears tower to me. Nothing else need be said on the matter.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+          
+          <a class="term" href="//localhost:1313/tags/haskell/">Haskell</a></li>
+          
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        <a href="https://twitter.com/intent/tweet?url=%2f%2flocalhost%3a1313%2fengineering%2fwhy-haskell%2f&amp;text=Why%20Haskell" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
+        </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a1313%2fengineering%2fwhy-haskell%2f&amp;source=%2f%2flocalhost%3a1313%2fengineering%2fwhy-haskell%2f&amp;title=Why%20Haskell&amp;summary=Why%20Haskell" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Why%20Haskell.&amp;body=Why%20Haskell%2c%20by%20Christopher%20Weaver%0a%0a%0a%2f%2flocalhost%3a1313%2fengineering%2fwhy-haskell%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        <div class="series">
+          <p>Part of the <a href="//localhost:1313/series/haskell/">Haskell</a> series:</p>
+          
+          <ol>
+              <li>
+                  <a href="//localhost:1313/engineering/lazy-evaluation-in-haskell/">Lazy Evaluation in Haskell</a>
+                
+              </li>
+              <li>Why Haskell<span class="series-this-post">This post!</span>
+                
+              </li>
+          </ol>
+        </div>
+      
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2026 &middot; 
+      <a href="//localhost:1313/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:1313/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:1313/main.js"></script>
+
+
+</body>
+</html>

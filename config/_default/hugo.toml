@@ -94,8 +94,8 @@ theme = 'hugo-liftoff'
     lineNumbersInTable = false # Not the default
     noClasses = true
     noHl = false
-    style = 'native'
-    tabWidth = 4
+    style = 'vulcan'
+    tabWidth = 3
   [markup.tableOfContents]
     endLevel = 3
     ordered = false
