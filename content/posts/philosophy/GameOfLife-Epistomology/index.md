@@ -1,7 +1,7 @@
 ---
 title: Conways Game of Life - Epistemological Considerations
 seo_title: Conways Game of Life - Epistemological Considerations
-summary: Similar to what God said to the sea in Job 38:11, He tell us our knowledge of the universe can come this far, but no further.
+summary: Similar to what God said to the sea in Job 38:11, He tells us our knowledge of the universe can come this far, but no further.
 description: What Conways Game of Life can teach us about the nature of reality
 slug: Conways Game of Life - Epistemological Considerations
 author: Christopher Weaver
