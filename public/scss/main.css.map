@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/Users/christopherweaver/Documents/portfolio-cw",
+	"sourceRoot": "/home/christopher/Desktop/Portfolio-CW",
 	"sources": [
 		"themes/hugo-liftoff/assets/scss/main.scss",
 		"themes/hugo-liftoff/assets/scss/abstracts/_variables.scss",

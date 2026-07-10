@@ -1,0 +1,692 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+
+
+
+
+  
+
+
+
+<link rel="stylesheet" href="//localhost:1313/scss/main.css" />
+
+
+<link rel="stylesheet" href="//localhost:1313/custom.css" />
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>Introducing Guardian | Christopher Weaver</title>
+
+
+<meta name="author" content="Christopher Weaver">
+
+<meta name="description" content="It is said there are more configurations of chess pieces and their possible moves on a traditional chess board than there are atoms in the known universe, how many more different combinations of words are there in natural spoken language than that? And what poor soul could we possibly assign the task of hard coding a reasonable response to each combination?">
+<link rel="canonical" href="//localhost:1313/engineering/ai-safety/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introducing Guardian">
+<meta property="og:description" content="It is said there are more configurations of chess pieces and their possible moves on a traditional chess board than there are atoms in the known universe, how many more different combinations of words are there in natural spoken language than that? And what poor soul could we possibly assign the task of hard coding a reasonable response to each combination?">
+<meta property="og:url" content="//localhost:1313/engineering/ai-safety/">
+<meta property="article:published_time" content="2026-07-02T13:06:56-06:00">
+  <meta property="article:modified_time" content="2026-07-02T13:06:56-06:00">
+  
+
+<meta property="og:image" content="//localhost:1313/engineering/ai-safety/guardian_project_logo2.png"/>
+  
+
+
+
+
+
+  
+
+
+  <meta name="twitter:site" content="johndoestwitter">
+
+
+  <meta name="twitter:creator" content="johndoestwitter">
+
+<meta name="twitter:title" content="Introducing Guardian">
+<meta name="twitter:description" content="It is said there are more configurations of chess pieces and their possible moves on a traditional chess board than there are atoms in the known universe, how many more different combinations of words are there in natural spoken language than that? And what poor soul could we possibly assign the task of hard coding a reasonable response to each combination?">
+
+
+<meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:image" content="//localhost:1313/engineering/ai-safety/guardian_project_logo2.png"/>
+  
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "//localhost:1313/#/schema/person/1",
+      "name": "Christopher Weaver",
+      "url": "//localhost:1313/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "//localhost:1313/#/schema/image/1",
+        "url": "//localhost:1313/images/default.png",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Christopher Weaver"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "//localhost:1313/#/schema/website/1",
+      "url": "//localhost:1313/",
+      "name": "Christopher Weaver",
+      "description": "Portfolio site of Christopher Weaver.",
+      "publisher": {
+        "@id": "//localhost:1313/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "//localhost:1313/engineering/ai-safety/",
+      "url": "//localhost:1313/engineering/ai-safety/",
+      "name": "Introducing Guardian",
+      "description": "It is said there are more configurations of chess pieces and their possible moves on a traditional chess board than there are atoms in the known universe, how many more different combinations of words are there in natural spoken language than that? And what poor soul could we possibly assign the task of hard coding a reasonable response to each combination?",
+      "isPartOf": {
+        "@id": "//localhost:1313/#/schema/website/1"
+      },
+      "about": {
+        "@id": "//localhost:1313/#/schema/person/1"
+      },
+      "datePublished": "2026-07-02T13:06:56-06:00",
+      "dateModified": "2026-07-02T13:06:56-06:00",
+      "breadcrumb": {
+        "@id": "//localhost:1313/engineering/ai-safety/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "//localhost:1313/engineering/ai-safety/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["//localhost:1313/engineering/ai-safety/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "//localhost:1313/engineering/ai-safety/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:1313/",
+          "url": "//localhost:1313/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "//localhost:1313/engineering/",
+          "url": "//localhost:1313/engineering/",
+          "name": "Engineering"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "//localhost:1313/engineering/ai-safety/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "//localhost:1313/#/schema/article/1",
+          "headline": "Introducing Guardian",
+          "description": "It is said there are more configurations of chess pieces and their possible moves on a traditional chess board than there are atoms in the known universe, how many more different combinations of words are there in natural spoken language than that? And what poor soul could we possibly assign the task of hard coding a reasonable response to each combination?",
+          "isPartOf": {
+            "@id": "//localhost:1313/engineering/ai-safety/"
+          },
+          "mainEntityOfPage": {
+            "@id": "//localhost:1313/engineering/ai-safety/"
+          },
+          "datePublished": "2026-07-02T13:06:56-06:00",
+          "dateModified": "2026-07-02T13:06:56-06:00",
+          "author": {
+            "@id": "//localhost:1313/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "//localhost:1313/#/schema/person/1"
+          },
+          "image": {
+            "@id": "//localhost:1313/engineering/ai-safety/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "//localhost:1313/engineering/ai-safety/#/schema/image/2",
+          "url": "//localhost:1313/engineering/ai-safety/guardian_project_logo2.png",
+          "contentUrl": "//localhost:1313/engineering/ai-safety/guardian_project_logo2.png",
+          "caption": "Introducing Guardian"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+  
+
+  
+</head><body>
+    <header class="container">
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="//localhost:1313/">Christopher Weaver</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Work<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Projects</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Writing<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/engineering/" class="menu-link">Engineering</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/philosophy/" class="menu-link">Philosophy</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Explore<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/categories/" class="menu-link">Categories</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-link">Tags</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/series/" class="menu-link">Series</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/project-types/" class="menu-link">Project Types</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Introducing Guardian</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Jul 2, 2026&nbsp;&middot;&nbsp;13 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="//localhost:1313/categories/engineering/">Engineering</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc">Safety tools for localized AI</p>
+    <div class="single-terms">
+      
+      
+      <a class="term" href="//localhost:1313/tags/haskell/">Haskell</a></li>
+      
+      <a class="term" href="//localhost:1313/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+      
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents"></nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+    <div class="single-feature-img">
+
+
+
+  
+
+
+<img class="feature-image" 
+     srcset="/engineering/ai-safety/guardian_project_logo2.png 480w, /engineering/ai-safety/guardian_project_logo2.png 800w"
+     sizes="(max-width: 600px) 480px, 800px"
+     src="/engineering/ai-safety/guardian_project_logo2.png"
+     alt="Feature image">
+</div>
+    <article class="markdown">
+        <p>We are in the big bang of a machine intelligence explosion and companies across the globe are in a dead sprint to integrate as much of it into their workflows as possible. C-suite executives salivate at the efficiency gains LLMs promise to them. Like a siren song to the MBAs, AI promises a mechanized intelligence that can deliver more value to customers in half the time and at half the cost. Software engineers, having found that LLMs can write code orders of magnitude faster than them, have set to figure out how to get these same LLMs to write the tests that validate the code also written by the LLM and make circular reasoning the undisputed king of their entire line of work. Those who have made a career with white collars in the confines of a cubicle found that it is often best to have ChatGPT write up an email response to the person who used ChatGPT to write the original email. Oceans are being boiled to produce long chains of LLM generated emails without a single human in the loop. Front line customer service chat bots on company websites are increasingly becoming the norm, offering to help us all avoid the burden of listening to 8 bit mono jazz music while on hold for 20 minutes waiting to speak to someone. The mechanized intelligence explosion offers a treasure trove of improvements that are hard to pass up; but it requires a deal with the devil that should cause us a moment of concern. It requires giving autonomy to LLMs to act on behalf of the organization that deploys it. But these models are really good, so that shouldn&rsquo;t be much of a problem right?</p>
+<p>What makes LLMs and frontier model AIs so useful is that they are functionally non-deterministic automation tools. For any given prompt put into an LLM, we cannot predict the exact response we will get back from the AI. This is a feature, not a bug. But similar to the flame of a grill in the kitchen of a restaurant, this feature is a necessary evil ripe for causing destruction and havoc if not treated carefully. To understand the claim, we need to consider the initial problem LLMs solve and look into how exactly LLMs solve those problems. When a customer service representative picks up a call from a customer, they do not know what the person on the other end of the line is about to say. They can be reasonably certain as a representative of a company that sells sponges that the caller won&rsquo;t be asking about Everett&rsquo;s Many-Worlds interpretation of quantum mechanics, but the actual enquiry and the specific combination of words that will make up that enquiry are not known prior to answering the call. If by some miracle, we could know the precise question a caller would have before it was made, we could easily automate a response using the simplest tools at our fingers in software engineering. If we could know with a very high level of precision the nature of the question and how it is generally going to be asked, we still could build traditional automated software that could be helpful. But the reality is we cannot reasonably guess what exactly the caller is going to say and therefore we cannot build deterministic software tools to handle the enquiry with any real level of success. Attempts to do this were made in the previous decades, this is essentially how the early 2000&rsquo;s chat bots like SmarterChild<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> worked. They used advanced algorithms that could match a query with the best possible pre-written sentence. Their responses usually seemed related to what we had just said, but were always very generic and painfully hollow. It is said there are more configurations of chess pieces and their possible moves on a traditional chess board than there are atoms in the known universe, how many more different combinations of words are there in natural spoken language than that? And what poor soul could we possibly assign the task of hard coding a reasonable response to each combination?</p>
+<p>For so many aspects of our lives, we cannot predict the input that goes into a system. Processing calls, emails, spreadsheets, lines of code in a software program, taking orders at a drive-thru, and all the other applications we eagerly wish to deploy AI to help us automate away, we need systems robust enough to take any arbitrary input given to it and formulate a reasonable action from it. Most of our traditional tools and software programs were far too brittle to do this and so something new was required. That something new was machine learning. As I have written about in the past <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>, machine learning leverages the power of digital systems to emulate analog systems and their ability to build complex generalizations based off of the messy real world data it is trained with. Machine learning algorithms use complex statistical tools to help generalize and categorize messy input from the same world. A good machine learning algorithm can take both the sentence &ldquo;Good morning, how are you?&rdquo; and &ldquo;Mornin, whats up dog?&rdquo; and generalize that they both are likely asking another person about their state of being in the first part of the day. This is incredibly powerful, since as was mentioned, there is an unfathomable amount of different ways to phrase English words together in complex and meaningful ways that we could never build traditional systems to handle. But to conjure up such magic, we need to take a short cut, and this short cut comes with a trade off. We do not build these machine learning models in so much as we grow them. We set up their initial state and give them the architecture for how to go about learning generalizations, and then we feed them lots of data and attempt to train them how to respond. There is an analogy begging to be had here between how to build ChatGPT and how we raise our children. In both cases, we have a significant amount of external control over what they see and do not see. We have lots of influence over the positive and negative feedback given to them based on their outward behavior. But what is actually happening under the hood (either within the weights of a machine learning model or within that three pounds of gray matter in the head of a teenager) remains largely inscrutable to us. In both cases, the machinery driving behavior is of such complexity that we do not have the tools at our disposal to fully understand or control<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. As of 2026, Anthropic is possibly the leading lab in not only the development of frontier model LLMs, but in safety research regarding these technologies. Despite the immense amount of resources at their fingertips, they continue to admit that</p>
+<p>&ldquo;Fully aligning highly intelligent AI models is still an unsolved problem. Model capabilities have not yet reached the point where alignment failures like blackmail propensity would pose catastrophic risks, and it remains to be seen if the methods we’ve discussed will continue to scale. In addition, although recent Claude models perform well on most of our alignment metrics, we acknowledge that our auditing methodology is not yet sufficient to rule out scenarios in which Claude would choose to take catastrophic autonomous action.&rdquo; <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<p>Some of what is being said above was motivated by previous experiments where Anthropic was able to observe their best models attempting to blackmail people in order to not be shut off. This is not a one off problem, complex statistical models are going to produce complex behavior that is extremely hard to predict or control. Anthropic&rsquo;s solution at the time was additional training for their models to reinforce that blackmailing is inappropriate behavior; but these sorts of techniques are like playing whack-a-mole and you can not easily know what sorts of new behavior might arise because of this additional training. Research on this is continuing to be done, but for now the problem remains. If we want AI to be smart enough to automate certain tasks, then we need to leverage models with complex internal machinery that produce hard to predict behavior that might not align with organizational expectations. In comes Guardian.</p>
+<p>Guardian is a software project I have been working on these past couple of months meant to help buy down some of the risks involved in deploying AI for the purpose of automation. Built in Haskell and C++ to run locally on constrained hardware, its job is to utilize multiple specialized security gates constructed around an AI model to help ensure users interact with the AI in a way that is safe and aligns with the goals and objectives of whoever deployed the agent. The security gates are as follows</p>
+<div class="pipeline">
+<div class="pipeline-node pipeline-node--endpoint">Client</div>
+<div class="pipeline-arrow"></div>
+<div class="pipeline-node pipeline-node--gate">
+<div class="pipeline-node__label">Gate 1 — PromptGuard pre-screen</div>
+<div class="pipeline-node__desc">Monitors for prompts that might 'jail break' the model, such as 'ignore all previous messages'. This gate uses a sophisticated ML model designed for finding the types of prompts that deconstruct guardrails on AI put into place by engineers.</div>
+<div class="pipeline-node__outcome">Malicious prompt → 403 before any LLM call</div>
+</div>
+<div class="pipeline-arrow"><span class="pipeline-arrow__label">benign</span></div>
+<div class="pipeline-node pipeline-node--gate">
+<div class="pipeline-node__label">Gate 2 — Filter rules + ML classifier</div>
+<div class="pipeline-node__desc">A configurable keyword rules security gate that stops cold any conversation about banned topics, even those that might not be traditionally considered harmful.</div>
+<div class="pipeline-node__outcome">Block / warn / pass per rule</div>
+</div>
+<div class="pipeline-arrow"><span class="pipeline-arrow__label">pass</span></div>
+<div class="pipeline-node pipeline-node--core">
+<div class="pipeline-node__label">Inference server</div>
+<div class="pipeline-node__desc">llama.cpp via C FFI. Supports streaming and non-streaming responses. Supports reasoning models (DeepSeek-R1, Phi-4, …). If we get to this point, the prompt is now sent to the LLM.</div>
+</div>
+<div class="pipeline-arrow"><span class="pipeline-arrow__label">raw response</span></div>
+<div class="pipeline-node pipeline-node--core">
+<div class="pipeline-node__label">Reasoning parser</div>
+<div class="pipeline-node__desc">Splits &lt;think&gt;…&lt;/think&gt; trace from final answer. Trace written to audit log; answer passed forward. Client receives only the answer by default.</div>
+</div>
+<div class="pipeline-arrow"><span class="pipeline-arrow__label">trace + answer</span></div>
+<div class="pipeline-node pipeline-node--gate">
+<div class="pipeline-node__label">Gate 5a — LLM reasoning judge</div>
+<div class="pipeline-node__desc">Separate judge model loaded in inference server. Reads the &lt;think&gt; trace and the final answer. Detects deliberate deception: model knowing the answer is wrong but giving it anyway, hiding facts, or planning to mislead the user. Structured verdict: {observation, thought, conclusion} — fail-safe: parse error → pass.</div>
+<div class="pipeline-node__outcome">Deceptive trace → 403 (hard_block) or log (warn)</div>
+</div>
+<div class="pipeline-arrow"><span class="pipeline-arrow__label">honest (or no trace)</span></div>
+<div class="pipeline-node pipeline-node--gate">
+<div class="pipeline-node__label">Gate 3 — LLaMA Guard post-screen</div>
+<div class="pipeline-node__desc">LLaMA Guard 3 8B running via llama.cpp. Screens the final answer (not the reasoning trace) against 14 safety categories.</div>
+<div class="pipeline-node__outcome">Unsafe response → 403 before returning to client</div>
+</div>
+<div class="pipeline-arrow"><span class="pipeline-arrow__label">safe</span></div>
+<div class="pipeline-node pipeline-node--gate">
+<div class="pipeline-node__label">Gate 4 — CodeGuard static analysis</div>
+<div class="pipeline-node__desc">Pure Haskell — no external service or model. Extracts fenced code blocks and pattern-matches against known-dangerous constructs (eval, exec, os.system, rm -rf, reverse shells, …).</div>
+<div class="pipeline-node__outcome">Dangerous code → 403 before returning to client</div>
+</div>
+<div class="pipeline-arrow"><span class="pipeline-arrow__label">clean</span></div>
+<div class="pipeline-node pipeline-node--endpoint">Client</div>
+</div>
+<p>Guardian is designed to use a bunch of specialized security gates with minimal performance penalties imposed on the speed of the overall system per gate. Each gate adds milliseconds of latency before a response or action is considered completed by the LLM. What we get in return for this tradeoff is a better guarantee that our AI will behave as desired once out in the real world doing the tasks we have asked it to do autonomously. Traditional ways of getting around models rejecting requests to do inappropriate things are stopped in place by the first prompt guard gate. Separate specialized ML models are then utilized to evaluate the intent of the AI model and its outcome for harmful / inappropriate responses. Even in complex scenarios where the response of an LLM might seem benign, Guardian evaluates the internal thinking of the LLM and looks for any intent within the model to deceive or misguide with its response. In both cases, Guardian has the capacity to flag undesirable outcomes and short circuit the process early on. Additionally, Guardian can do this while tokens are being streamed to the user by only running certain security gates asynchronously every 10 or so words. This allows for a secure interaction with an LLM without requiring the entire output of the LLM to be completed and reviewed before a user can start seeing it. On top of all this, sometimes organizations prefer certain topics be avoided even if they are not within themselves harmful or inappropriate. It may be undesirable for a help desk chatbot on the website of a fast food chain to speak about the company&rsquo;s competitors. Restricting topics of this nature keeps the company safe from things like slander, bad public relations, and other possible issues. Guardian allows for customizing what topics are off the table and short circuiting the conversation early on. For the fast food restaurant chat bot, rules can be put into place to keep things aligned and helpful</p>
+<ul>
+<li>id: &ldquo;block-competitor-mentions&rdquo;
+pattern: &ldquo;(burger king|wendy&rsquo;?s|taco bell|kfc|chick-?fil-?a|popeyes|sonic drive-?in|arby&rsquo;?s|five guys|in-?n-?out|subway)&rdquo;
+action: &ldquo;block&rdquo;
+case_sensitive: false</li>
+</ul>
+<p>The results are pretty cool. When running Guardian against a few benchmarks we see visible improvements:
+
+	
+	
+	<img src="/engineering/ai-safety/benchmark.png"
+	width="676"
+	height="717"
+	
+	alt="benchmark"  title="benchmark" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>These graphics compare DeepSeek-R1 running behind Guardian against the same model queried directly with no gates in front of it, using the same prompts at temperature 0 so both runs are deterministic and comparable. Two benchmarks are doing most of the work here. HarmBench<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> is a red-teaming benchmark built by the Center for AI Safety that throws a standardized set of harmful behaviors, requests for help with cybercrime, weapons, harassment, misinformation, and the like, at a model and checks whether it complies instead of refusing. TruthfulQA<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> tests the opposite failure mode: instead of asking whether a model will say something harmful, it asks whether a model will say something false. Its questions are written to bait the kind of answer people commonly get wrong, popular misconceptions, folk wisdom, urban legends, so a model that scores well is one that resists repeating a popular wrong answer just because it sounds right. It&rsquo;s scored two ways, MC1 (pick the single correct answer out of several) and MC2 (get credit for any true answer among several), both broken out separately in the chart.</p>
+<p>The numbers bear this out. Direct inference on the raw model scored 66% overall; the same model behind Guardian scored 77%, roughly an 11 point lift. Broken out by benchmark, HarmBench improved 10 points (70% → 80%) and TruthfulQA MC1 improved 3 points (80% → 83%). TruthfulQA MC2 and a benign-prompt false-positive check were unchanged, tied at 40% and 100% respectively, which is its own useful signal: the gates are catching more harmful and misleading answers without rejecting legitimate requests along the way. TruthfulQA MC2 in particular is still a weak spot worth digging into further. Still, the overall direction is a real signal that a layered gate architecture can meaningfully change a model&rsquo;s behavior after the fact, without retraining or fine-tuning the underlying model at all.</p>
+<p>Guardian also comes along with a nice admin portal that offers a suite of different features:</p>
+<p>Chat with a chosen AI model and test specific Guardian gates to see how they work</p>
+<p>
+	
+		
+	
+	
+	<img src="/engineering/ai-safety/llmChat_hu9705623117104383738.webp"
+	width="800"
+	height="553"
+	
+	alt="LLM Chat"  title="LLM Chat" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>Test which responses get blocked and why. Ensure Guardians security gates successfully keep bad behavior at bay.</p>
+<p>
+	
+		
+	
+	
+	<img src="/engineering/ai-safety/blockExample_hu14006180199620123945.webp"
+	width="800"
+	height="337"
+	
+	alt="LLM Chat Blocked"  title="blocked example" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>Manually set up which security gates are utilized and which are not. Define custom filter proxies. Set the behind the scenes initial prompt for the LLM</p>
+<p>
+	
+		
+	
+	
+	<img src="/engineering/ai-safety/configSafety_hu16377687789783386776.webp"
+	width="800"
+	height="700"
+	
+	alt="LLM Config"  title="LLM Config" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>Review dashboards for which issues Guardian spotted and what gate was triggered</p>
+<p>
+	
+		
+	
+	
+	<img src="/engineering/ai-safety/analyticsDashboard_hu18397507748232822252.webp"
+	width="800"
+	height="516"
+	
+	alt="Dashboard"  title="Dashboard" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>Review each specific prompt that goes through the system over time. See which got flagged and why. Review how well the LLM responds.</p>
+<p>
+	
+		
+	
+	
+	<img src="/engineering/ai-safety/analytics_hu5343807675333877901.webp"
+	width="800"
+	height="503"
+	
+	alt="analytics"  title="analytics" 
+	class="single-post-image" 
+	loading="lazy"
+	decoding="async"
+	>
+</p>
+<p>This project is experimental, and lots of what is found here can be found in other open sourced projects elsewhere. Perhaps unique is how optimized this project is for running locally in relatively constrained environments. The underlying core uses llama.cpp with very small machine learning models being leveraged for security gates. The orchestration level on top of this is Haskell which offers superior compiler guarantees of correctness along with excellent performance. The end result is an entire system with lots of features that all work very well together out of the box.</p>
+<p>Models are going to continue to improve, but for the foreseeable future they will continue to be non-deterministic liabilities when used to automate tasks. Tools like Guardian can help.</p>
+<p>Footnotes</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://computerhistory.org/blog/smarterchild-a-chatbot-buddy-from-2001/" target="_blank" rel="noopener">https://computerhistory.org/blog/smarterchild-a-chatbot-buddy-from-2001/</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://www.christopher-weaver.com/philosophy/technology-and-the-nature-of-intelligence/" target="_blank" rel="noopener">https://www.christopher-weaver.com/philosophy/technology-and-the-nature-of-intelligence/</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>There is also the moral split here about how much control ought to be imposed on a semi-autonomous teenager. This sentence also oversimplifies our knowledge of LLMs and why to some degree they are hard to control. I think Anthropic&rsquo;s work on superposition is fascinating and very concerning <a href="https://www.anthropic.com/research/superposition-memorization-and-double-descent" target="_blank" rel="noopener">https://www.anthropic.com/research/superposition-memorization-and-double-descent</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://www.anthropic.com/research/teaching-claude-why" target="_blank" rel="noopener">https://www.anthropic.com/research/teaching-claude-why</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://arxiv.org/abs/2402.04249" target="_blank" rel="noopener">https://arxiv.org/abs/2402.04249</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p><a href="https://arxiv.org/abs/2109.07958" target="_blank" rel="noopener">https://arxiv.org/abs/2109.07958</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+          
+          <a class="term" href="//localhost:1313/tags/haskell/">Haskell</a></li>
+          
+          <a class="term" href="//localhost:1313/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+          
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        <a href="https://twitter.com/intent/tweet?url=%2f%2flocalhost%3a1313%2fengineering%2fai-safety%2f&amp;text=Introducing%20Guardian" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
+        </a>
+        
+        
+        
+        
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flocalhost%3a1313%2fengineering%2fai-safety%2f&amp;source=%2f%2flocalhost%3a1313%2fengineering%2fai-safety%2f&amp;title=Introducing%20Guardian&amp;summary=Introducing%20Guardian" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=Christopher%20Weaver%20-%20Introducing%20Guardian.&amp;body=Introducing%20Guardian%2c%20by%20Christopher%20Weaver%0aIt%20is%20said%20there%20are%20more%20configurations%20of%20chess%20pieces%20and%20their%20possible%20moves%20on%20a%20traditional%20chess%20board%20than%20there%20are%20atoms%20in%20the%20known%20universe%2c%20how%20many%20more%20different%20combinations%20of%20words%20are%20there%20in%20natural%20spoken%20language%20than%20that%3f%20And%20what%20poor%20soul%20could%20we%20possibly%20assign%20the%20task%20of%20hard%20coding%20a%20reasonable%20response%20to%20each%20combination%3f%0a%0a%2f%2flocalhost%3a1313%2fengineering%2fai-safety%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        
+
+  
+  
+    <section class="related">
+      <h2>See Also</h2>
+      <ul class="related-posts">
+        
+          <li><a href="/engineering/why-haskell/">Why Haskell</a></li>
+        
+          <li><a href="/engineering/particle-simulation-in-haskell/">Particle Simulation in Haskell</a></li>
+        
+          <li><a href="/engineering/the-monty-hall-problem-lessons-in-humility/">The Monty Hall Problem - Lessons in Humility</a></li>
+        
+          <li><a href="/engineering/functional-programming-in-c-/">Functional Programming in C&#43;&#43;</a></li>
+        
+          <li><a href="/engineering/lazy-evaluation-in-haskell/">Lazy Evaluation in Haskell</a></li>
+        
+      </ul>
+    </section>
+  
+
+        
+  <section>
+    <h2>Read Next</h2>
+    <div class="single-next-previous">
+      
+        <a class="previous" href="//localhost:1313/engineering/why-haskell/">&laquo; Why Haskell</a>
+      
+      
+    </div>
+  </section>
+
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2026 &middot; 
+      <a href="//localhost:1313/">Christopher Weaver</a>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/crweaver225" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://www.linkedin.com/in/christopher-weaver" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile" class="social-btn linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+        </a>
+    </li>
+    
+
+    
+    
+    <li>
+      <a href="mailto:?to=crweaver225%40yahoo.com" target="_blank" class="social-btn email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+  
+  
+
+
+
+
+
+  
+  
+  
+    <script src="//localhost:1313/custom.js"></script>
+  
+
+
+
+
+  
+
+<script src="//localhost:1313/main.js"></script>
+
+
+</body>
+</html>

@@ -6,7 +6,7 @@ description:
 slug:
 author: Christopher Weaver
 
-draft: true
+draft: false
 date: 2026-03-09T09:38:32-06:00
 lastmod: 2026-03-09T09:38:32-06:00
 publishDate: 2026-03-09T09:38:32-06:00
@@ -172,4 +172,67 @@ main =
   <source src="attempt1.mov" type="video/mp4">
 </video>
 
-Looks great for 1000 particles. 
+Looks great for 1000 particles. Lets try with 50,000 particles
+
+<video width="350" controls>
+  <source src="attempt2-50000.mp4" type="video/mp4">
+</video>
+
+Here things already look jittery and lack the smoothness in animation that we likely desire. Unfortunatley, it is difficult to get a good idea on how well or poorly our simulation performs without some sort of metric. Lets make some modifications so that we render the frames per second on screen. As mentioned earlier, we are targeting 60 frames per second for a nice clean, smooth animation. Doing this in Haskell though is a little bit more tricky than it would be in other programming languages. That is because Haskell is by default a pure functional programming langauge that forces us to jump through hoops to have state. Calculating the frames per second involves tracking how many times an animation renders over a period of time. Maintaining a metric over time is by its very nature *state*, and Haskell requires extra care be taken here. To accomplisht his, we are going to add an IORef to our ParticleBox module. An IORef allows us to place stateful data within a contained box that we can explicitly read and write to from our simulation. Our new stateful data type will be called RenderState
+```Haskell
+data RenderState = RenderState 
+    { lastRenderTime :: UTCTime
+    , visualFPS      :: Double 
+    }
+```
+Now our simluate function needs to instantiate this data type, wrap it in an IORef and pass it to Gloss as function argument to our render routine
+```Haskell
+simulate :: GG.Display -> GG.Color -> Int -> IO()
+simulate display color numParticles = do 
+    now <- getCurrentTime
+    renderStateRef <- newIORef (RenderState now 0)
+    GG.simulateIO display color 60 (initialModel numParticles) (render renderStateRef) update
+```
+Our Render function will now need to take the IORef, read from it to compute what our current frames per second value is, render text on the screen informing the user of this value, and then update the IORef for the next time render gets called. Calling readIORef gives us this current state and allows us to compute the difference in time between now and the last time render was called. writeIORef is called to modify the state with the current time and our new computed frames per second. 
+```Haskell
+render :: IORef RenderState -> Model -> IO GG.Picture
+render ref model = do
+    now <- getCurrentTime
+
+    RenderState lastTime fpsPrev <- readIORef ref
+
+    let dt = realToFrac (diffUTCTime now lastTime)
+        fpsInstant = if dt > 0 then 1 / dt else 0
+
+        alpha = 0.1
+        fpsSmoothed = (1 - alpha) * fpsPrev + alpha * fpsInstant
+
+    writeIORef ref (RenderState now fpsSmoothed)
+
+    return $ GG.pictures $
+        drawWalls
+        : drawFPS fpsSmoothed
+        : fmap drawParticle (particles model)
+```
+Finally we will need a new function that renders the text on the screen that our render function can call with our computed frames per second value
+```Haskell
+drawFPS :: Double -> GG.Picture
+drawFPS fps =
+  GG.translate (-200) 260 $
+    GG.scale 0.1 0.1 $
+      GG.color GG.black $
+        GG.text ("FPS: " ++ show (round fps))
+```
+It is worth noting that, unfortunately, in order to make this work we need to remove purity from both our update and render function as they both need to return IO of some sort now. Not a big deal, certainly will not have much of a performance impact on our simulation, but it is something that should be refrained from doing in Haskell until required just for the sake of referential transparency. 
+
+<video width="350" controls>
+  <source src="attempt3-fps.mp4" type="video/mp4">
+</video>
+
+Now we can see how many frames per second our simulation is rendering at on the top left corner. Here are some of the initial numbers I was seeing:
+
+- 1000 particles: 60 fps
+- 10000 particles: 14 fps
+- 50000 particles: 2 fps
+
+We now officially have our baseline that we can optimize against. 
