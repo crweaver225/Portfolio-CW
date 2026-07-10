@@ -1,7 +1,7 @@
 ---
-title: Particle Simulation in Haskell
+title: Particle Simulation in Haskell - Part 1
 seo_title: Particle Simulation in Haskell
-summary: Exploring methods to optimize programs written in Haskell
+summary: Exploring methods to optimize programs written in Haskell - Part 1
 description: 
 slug:
 author: Christopher Weaver
@@ -27,7 +27,7 @@ social_share: true
 newsletter: false
 disable_comments: false
 ---
-What follows is my attempt to simluate 50,000 particles bouncing around in a room at 60 frames per second. For simplicity, these particles will selectively act like neurtrinos and refrain from interacting with one another. But these will honor walls that keep them bounded within the similation space. The goal is to further work through some optimization techniques that can help improve the runtime performance of our Haskell program. 
+What follows is my attempt to simluate 50,000 particles bouncing around in a room at 60 frames per second. This is part 1, setting a minimal working example that in part 2 we will attempt to optimize against. For simplicity, these particles will selectively act like neurtrinos and refrain from interacting with one another. But these will honor walls that keep them bounded within the similation space. The goal is to further work through some optimization techniques that can help improve the runtime performance of our Haskell program. 
 
 For this project, I choose to utilize the [Gloss](https://hackage.haskell.org/package/gloss) framework as my graphics engine. Under the hood it utilizes the famous OpenGL package for highly optimized graphical renderings. Lets start with a naive attempt at this simulation and see what kind of results we might accomplish. 
 
@@ -229,7 +229,7 @@ It is worth noting that, unfortunately, in order to make this work we need to re
   <source src="attempt3-fps.mp4" type="video/mp4">
 </video>
 
-Now we can see how many frames per second our simulation is rendering at on the top left corner. Here are some of the initial numbers I was seeing:
+Now we can see how many frames per second our simulation is rendering at on the top left corner. Here are some of the initial numbers I was seeing while running on a 2020 m1 macbook pro:
 
 - 1000 particles: 60 fps
 - 10000 particles: 14 fps

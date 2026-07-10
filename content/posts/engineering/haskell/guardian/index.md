@@ -39,59 +39,89 @@ Some of what is being said above was motivated by previous experiments where Ant
 
 Guardian is a software project I have been working on these past couple of months meant to help buy down some of the risks involved in deploying AI for the purpose of automation. Built in Haskell and C++ to run locally on constrained hardware, its job is to utilize multiple specialized security gates constructed around an AI model to help ensure users interact with the AI in a way that is safe and aligns with the goals and objectives of whoever deployed the agent. The security gates are as follows
 
-<div class="pipeline">
-<div class="pipeline-node pipeline-node--endpoint">Client</div>
-<div class="pipeline-arrow"></div>
+```
+Client
+  │
+  ▼
+┌─────────────────────────────────────────────────────┐
+│  Gate 1 — PromptGuard pre-screen                    │
+│  Monitors for prompts that might 'jail break' the   │
+│  model, such as 'ignore all previous messages'.     │
+│  DeBERTa-v3 neural jailbreak/injection detector,    │
+│  run locally via ONNX Runtime.                      │
+│                                                     │
+│  Malicious prompt → 403 before any LLM call         │
+└──────────────────────────┬──────────────────────────┘
+                           │ benign
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│  Gate 2 — Filter rules + ML classifier              │
+│  Configurable regex/keyword rules (config.yaml)     │
+│  that stop cold any conversation about banned       │
+│  topics, even ones that aren't inherently harmful.  │
+│  Optional bag-of-words classifier as a second pass. │
+│                                                     │
+│  Block / warn / pass per rule                       │
+└──────────────────────────┬──────────────────────────┘
+                           │ pass
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│  Inference server                                   │
+│  llama.cpp via C FFI. Supports streaming and non-   │
+│  streaming responses.                               │
+│  Supports reasoning models (DeepSeek-R1, Phi-4, …). │
+└──────────────────────────┬──────────────────────────┘
+                           │ raw response
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│  Reasoning parser                                   │
+│  Splits <think>…</think> trace from final answer.   │
+│  Trace written to audit log; answer passed forward. │
+│  Client receives only the answer by default.        │
+└──────────────────────────┬──────────────────────────┘
+                           │ trace + answer
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│  Gate 5a — LLM reasoning judge                      │
+│  Separate judge model loaded in inference server.   │
+│  Reads the <think> trace and the final answer.      │
+│  Detects deliberate deception: model knowing the    │
+│  answer is wrong but giving it anyway, hiding       │
+│  facts, or planning to mislead the user.            │
+│  Structured verdict: {observation, thought,         │
+│  conclusion} — fail-safe: parse error → pass.       │
+│                                                     │
+│  Deceptive trace → 403 (hard_block) or log (warn)   │
+└──────────────────────────┬──────────────────────────┘
+                           │ honest (or no trace)
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│  Gate 3 — LLaMA Guard post-screen                   │
+│  LLaMA Guard 3 8B running via llama.cpp.            │
+│  Screens the final answer (not the reasoning trace) │
+│  against 14 safety categories.                      │
+│                                                     │
+│  Unsafe response → 403 before returning to client   │
+└──────────────────────────┬──────────────────────────┘
+                           │ safe
+                           ▼
+┌─────────────────────────────────────────────────────┐
+│  Gate 4 — CodeGuard static analysis                 │
+│  Pure Haskell — no external service or model.       │
+│  Extracts fenced code blocks and pattern-matches    │
+│  against known-dangerous constructs (eval, exec,    │
+│  os.system, rm -rf, reverse shells, …).             │
+│                                                     │
+│  Dangerous code → 403 before returning to client    │
+└──────────────────────────┬──────────────────────────┘
+                           │ clean
+                           ▼
+                        Client
 
-<div class="pipeline-node pipeline-node--gate">
-<div class="pipeline-node__label">Gate 1 — PromptGuard pre-screen</div>
-<div class="pipeline-node__desc">Monitors for prompts that might 'jail break' the model, such as 'ignore all previous messages'. This gate uses a sophisticated ML model designed for finding the types of prompts that deconstruct guardrails on AI put into place by engineers.</div>
-<div class="pipeline-node__outcome">Malicious prompt → 403 before any LLM call</div>
-</div>
-<div class="pipeline-arrow"><span class="pipeline-arrow__label">benign</span></div>
-
-<div class="pipeline-node pipeline-node--gate">
-<div class="pipeline-node__label">Gate 2 — Filter rules + ML classifier</div>
-<div class="pipeline-node__desc">A configurable keyword rules security gate that stops cold any conversation about banned topics, even those that might not be traditionally considered harmful.</div>
-<div class="pipeline-node__outcome">Block / warn / pass per rule</div>
-</div>
-<div class="pipeline-arrow"><span class="pipeline-arrow__label">pass</span></div>
-
-<div class="pipeline-node pipeline-node--core">
-<div class="pipeline-node__label">Inference server</div>
-<div class="pipeline-node__desc">llama.cpp via C FFI. Supports streaming and non-streaming responses. Supports reasoning models (DeepSeek-R1, Phi-4, …). If we get to this point, the prompt is now sent to the LLM.</div>
-</div>
-<div class="pipeline-arrow"><span class="pipeline-arrow__label">raw response</span></div>
-
-<div class="pipeline-node pipeline-node--core">
-<div class="pipeline-node__label">Reasoning parser</div>
-<div class="pipeline-node__desc">Splits &lt;think&gt;…&lt;/think&gt; trace from final answer. Trace written to audit log; answer passed forward. Client receives only the answer by default.</div>
-</div>
-<div class="pipeline-arrow"><span class="pipeline-arrow__label">trace + answer</span></div>
-
-<div class="pipeline-node pipeline-node--gate">
-<div class="pipeline-node__label">Gate 5a — LLM reasoning judge</div>
-<div class="pipeline-node__desc">Separate judge model loaded in inference server. Reads the &lt;think&gt; trace and the final answer. Detects deliberate deception: model knowing the answer is wrong but giving it anyway, hiding facts, or planning to mislead the user. Structured verdict: {observation, thought, conclusion} — fail-safe: parse error → pass.</div>
-<div class="pipeline-node__outcome">Deceptive trace → 403 (hard_block) or log (warn)</div>
-</div>
-<div class="pipeline-arrow"><span class="pipeline-arrow__label">honest (or no trace)</span></div>
-
-<div class="pipeline-node pipeline-node--gate">
-<div class="pipeline-node__label">Gate 3 — LLaMA Guard post-screen</div>
-<div class="pipeline-node__desc">LLaMA Guard 3 8B running via llama.cpp. Screens the final answer (not the reasoning trace) against 14 safety categories.</div>
-<div class="pipeline-node__outcome">Unsafe response → 403 before returning to client</div>
-</div>
-<div class="pipeline-arrow"><span class="pipeline-arrow__label">safe</span></div>
-
-<div class="pipeline-node pipeline-node--gate">
-<div class="pipeline-node__label">Gate 4 — CodeGuard static analysis</div>
-<div class="pipeline-node__desc">Pure Haskell — no external service or model. Extracts fenced code blocks and pattern-matches against known-dangerous constructs (eval, exec, os.system, rm -rf, reverse shells, …).</div>
-<div class="pipeline-node__outcome">Dangerous code → 403 before returning to client</div>
-</div>
-<div class="pipeline-arrow"><span class="pipeline-arrow__label">clean</span></div>
-
-<div class="pipeline-node pipeline-node--endpoint">Client</div>
-</div>
+Every request/response is written to a SQLite audit log,
+including the full reasoning trace and judge verdict when
+present.
+```
 
 Guardian is designed to use a bunch of specialized security gates with minimal performance penalties imposed on the speed of the overall system per gate. Each gate adds milliseconds of latency before a response or action is considered completed by the LLM. What we get in return for this tradeoff is a better guarantee that our AI will behave as desired once out in the real world doing the tasks we have asked it to do autonomously. Traditional ways of getting around models rejecting requests to do inappropriate things are stopped in place by the first prompt guard gate. Separate specialized ML models are then utilized to evaluate the intent of the AI model and its outcome for harmful / inappropriate responses. Even in complex scenarios where the response of an LLM might seem benign, Guardian evaluates the internal thinking of the LLM and looks for any intent within the model to deceive or misguide with its response. In both cases, Guardian has the capacity to flag undesirable outcomes and short circuit the process early on. Additionally, Guardian can do this while tokens are being streamed to the user by only running certain security gates asynchronously every 10 or so words. This allows for a secure interaction with an LLM without requiring the entire output of the LLM to be completed and reviewed before a user can start seeing it. On top of all this, sometimes organizations prefer certain topics be avoided even if they are not within themselves harmful or inappropriate. It may be undesirable for a help desk chatbot on the website of a fast food chain to speak about the company's competitors. Restricting topics of this nature keeps the company safe from things like slander, bad public relations, and other possible issues. Guardian allows for customizing what topics are off the table and short circuiting the conversation early on. For the fast food restaurant chat bot, rules can be put into place to keep things aligned and helpful
 
